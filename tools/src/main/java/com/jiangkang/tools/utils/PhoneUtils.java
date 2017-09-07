@@ -4,6 +4,8 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.SystemClock;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Profile;
 import android.text.TextUtils;
 
 import com.jiangkang.tools.King;
@@ -18,6 +20,13 @@ import java.util.Map;
  */
 
 public class PhoneUtils {
+
+    private static String[] projection = new String[]{
+            Profile._ID,
+            Profile.DISPLAY_NAME_PRIMARY,
+            Profile.LOOKUP_KEY
+    };
+
 
     /**
      * 获取手机联系人
@@ -93,11 +102,11 @@ public class PhoneUtils {
     }
 
 
-    public static Map<String, String> getAllContacts(){
-
-
-
-    }
+//    public static Map<String, String> getAllContacts(){
+//
+//
+//
+//    }
 
 
 }

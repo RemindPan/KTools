@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import java.util.ArrayList;
 
 /**
@@ -19,48 +21,63 @@ import java.util.ArrayList;
 
 public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHolder> {
 
-  private Context mContext;
+    private Context mContext;
 
-  private ArrayList<FunctionEntity> functionList = new ArrayList<>();
+    private ArrayList<FunctionEntity> functionList = new ArrayList<>();
 
-  public FunctionAdapter(Context mContext) {
-    this.mContext = mContext;
-    loadData();
-  }
-
-  private void loadData() {
-    functionList.add(new FunctionEntity("System", SystemActivity.class, -1));
-  }
-
-  @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    return new ViewHolder(
-        LayoutInflater.from(mContext).inflate(R.layout.layout_item_function, parent, false));
-  }
-
-  @Override public void onBindViewHolder(ViewHolder holder, final int position) {
-    holder.itemView.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        mContext.startActivity(new Intent(mContext,functionList.get(position).getActivity()));
-      }
-    });
-
-    holder.mTvFunctionName.setText(functionList.get(position).getName());
-
-  }
-
-  @Override public int getItemCount() {
-    return functionList.size();
-  }
-
-
-  static class ViewHolder extends RecyclerView.ViewHolder{
-
-    @BindView(R.id.iv_function_icon) ImageView mIvFunctionIcon;
-    @BindView(R.id.tv_function_name) TextView mTvFunctionName;
-
-    ViewHolder(View view) {
-      super(view);
-      ButterKnife.bind(this, view);
+    public FunctionAdapter(Context mContext) {
+        this.mContext = mContext;
+        loadData();
     }
-  }
+
+    private void loadData() {
+        functionList.add(new FunctionEntity("System", SystemActivity.class, R.drawable.ic_system));
+        functionList.add(new FunctionEntity("Widget", WidgetActivity.class, -1));
+        functionList.add(new FunctionEntity("Storage", StorageActivity.class, -1));
+        functionList.add(new FunctionEntity("Requests", RequestsActivity.class, -1));
+        functionList.add(new FunctionEntity("Device", DeviceActivity.class, -1));
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ViewHolder(
+                LayoutInflater.from(mContext).inflate(R.layout.layout_item_function, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final FunctionEntity entity = functionList.get(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, entity.getActivity()));
+            }
+        });
+
+        holder.mTvFunctionName.setText(entity.getName());
+        if (entity.getResId() != -1) {
+            holder.mIvFunctionIcon.setImageResource(entity.getResId());
+        }
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return functionList.size();
+    }
+
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.iv_function_icon)
+        ImageView mIvFunctionIcon;
+        @BindView(R.id.tv_function_name)
+        TextView mTvFunctionName;
+
+        ViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
+    }
 }
