@@ -32,10 +32,10 @@ public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHo
 
     private void loadData() {
         functionList.add(new FunctionEntity("System", SystemActivity.class, R.drawable.ic_system));
-        functionList.add(new FunctionEntity("Widget", WidgetActivity.class, -1));
-        functionList.add(new FunctionEntity("Storage", StorageActivity.class, -1));
-        functionList.add(new FunctionEntity("Requests", RequestsActivity.class, -1));
-        functionList.add(new FunctionEntity("Device", DeviceActivity.class, -1));
+        functionList.add(new FunctionEntity("Widget", WidgetActivity.class, R.drawable.ic_widget));
+        functionList.add(new FunctionEntity("Storage", StorageActivity.class, R.drawable.ic_storage));
+        functionList.add(new FunctionEntity("Requests", RequestsActivity.class, R.drawable.ic_requests));
+        functionList.add(new FunctionEntity("Device", DeviceActivity.class, R.drawable.ic_device));
     }
 
     @Override
