@@ -59,7 +59,6 @@ public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHo
             holder.mIvFunctionIcon.setImageResource(entity.getResId());
         }
 
-
     }
 
     @Override

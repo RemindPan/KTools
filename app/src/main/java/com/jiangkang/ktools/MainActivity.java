@@ -9,8 +9,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-  private FunctionAdapter mAdapter;
-
   @BindView(R.id.rc_function_list) RecyclerView mRcFunctionList;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
