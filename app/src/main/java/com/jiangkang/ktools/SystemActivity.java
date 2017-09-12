@@ -13,6 +13,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
+
+import com.jiangkang.tools.utils.ClipboardUtils;
+import com.jiangkang.tools.utils.ToastUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,8 +40,14 @@ public class SystemActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_get_all_contacts)
     Button btnGetAllContacts;
+    @BindView(R.id.et_content)
+    EditText etContent;
+    @BindView(R.id.btn_set_clipboard)
+    Button btnSetClipboard;
+    @BindView(R.id.btn_get_clipboard)
+    Button btnGetClipboard;
 
-    private List<HashMap<String,String>> contacts;
+    private List<HashMap<String, String>> contacts;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,7 +103,6 @@ public class SystemActivity extends AppCompatActivity {
     }
 
 
-
     @OnClick(R.id.btn_get_all_contacts)
     public void onBtnGetAllContactsClicked() {
 
@@ -102,5 +111,17 @@ public class SystemActivity extends AppCompatActivity {
     public void getContacts() {
 
 
+    }
+
+    @OnClick(R.id.btn_set_clipboard)
+    public void onBtnSetClipboardClicked() {
+        String content = etContent.getText().toString();
+        ClipboardUtils.putStringToClipboard(content);
+        ToastUtils.showShortToast("设置成功");
+    }
+
+    @OnClick(R.id.btn_get_clipboard)
+    public void onBtnGetClipboardClicked() {
+        ToastUtils.showShortToast(ClipboardUtils.getStringFromClipboard());
     }
 }

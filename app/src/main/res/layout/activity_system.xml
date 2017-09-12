@@ -25,5 +25,37 @@
         android:text="获取所有联系人"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="在此输入内容"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+      <Button
+          android:id="@+id/btn_set_clipboard"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="设置剪贴板数据"
+          />
+      <Button
+          android:id="@+id/btn_get_clipboard"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="获取剪贴板数据"/>
+
+    </LinearLayout>
+
   </LinearLayout>
 </ScrollView>
