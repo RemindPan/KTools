@@ -1,8 +1,19 @@
 package com.jiangkang.tools.system;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Loader;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.util.Log;
+
+import org.json.JSONObject;
+
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
 
 /**
  * Created by jiangkang on 2017/9/8.
@@ -10,34 +21,58 @@ import android.provider.ContactsContract;
 
 public class ContactHelper {
 
-    private final static String[] FROM_CLOUMNS = new String[]{
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB?
-                    ContactsContract.Contacts.DISPLAY_NAME_PRIMARY:
-                    ContactsContract.Contacts.DISPLAY_NAME
-    };
+    private static final String TAG = "ContactHelper";
+    private Activity context;
 
-    private final static String[] PROJECTION = new String[]{
-            ContactsContract.Contacts._ID,
-            ContactsContract.Contacts.LOOKUP_KEY,
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB?
-                    ContactsContract.Contacts.DISPLAY_NAME_PRIMARY:
-                    ContactsContract.Contacts.DISPLAY_NAME
+    private JSONObject contacts;
 
-    };
+    public ContactHelper(Activity context) {
+        this.context = context;
+    }
 
-    // The column index for the _ID column
-    private static final int CONTACT_ID_INDEX = 0;
-    // The column index for the LOOKUP_KEY column
-    private static final int LOOKUP_KEY_INDEX = 1;
+    public JSONObject queryContactList(){
+        final CountDownLatch latch = new CountDownLatch(1);
+        ContactsLoaderCallback callback = new ContactsLoaderCallback(context);
+        callback.setQueryListener(new ContactsLoaderCallback.QueryListener() {
+            @Override
+            public void success(final JSONObject object) {
+                contacts = object;
+                latch.countDown();
+            }
+        });
+        context.getLoaderManager().restartLoader(0,null,callback);
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return contacts;
+    }
 
 
-    private long mContactId;
+    public void queryContactNameList(){
 
-    private String mContactKey;
+        Cursor cursor = context.getContentResolver()
+                .query(
+                        ContactsContract.Contacts.CONTENT_URI,
+                        new String[]{
+                                ContactsContract.Contacts.DISPLAY_NAME
+                        },
+                        null,
+                        null,
+                        null
+                );
 
-    private Uri mContactUri;
+        if (cursor != null && cursor.moveToFirst()){
+            do {
+                int nameIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+                String name = cursor.getString(nameIndex);
+                Log.d(TAG, "queryContactNameList: \n name = " + name);
+            }while (cursor.moveToNext());
 
+        }
 
-
+    }
 
 }

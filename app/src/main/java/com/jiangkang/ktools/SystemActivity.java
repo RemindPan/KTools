@@ -3,11 +3,15 @@ package com.jiangkang.ktools;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.LoaderManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +19,12 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.jiangkang.tools.system.ContactHelper;
+import com.jiangkang.tools.system.ContactsLoaderCallback;
 import com.jiangkang.tools.utils.ClipboardUtils;
 import com.jiangkang.tools.utils.ToastUtils;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +55,7 @@ public class SystemActivity extends AppCompatActivity {
     @BindView(R.id.btn_get_clipboard)
     Button btnGetClipboard;
 
-    private List<HashMap<String, String>> contacts;
+    private JSONObject jsonObject;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,13 +67,17 @@ public class SystemActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     @OnClick(R.id.btn_open_contacts)
     public void onOpenContactsClicked() {
-        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            //granted
-            gotoContactPage();
-        } else {
-            //not granted
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_PERMISSION_READ_CONTACTS);
-        }
+
+        ContactHelper helper = new ContactHelper(this);
+        helper.queryContactNameList();
+
+//        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+//            //granted
+//            gotoContactPage();
+//        } else {
+//            //not granted
+//            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_PERMISSION_READ_CONTACTS);
+//        }
 
     }
 
@@ -81,8 +93,7 @@ public class SystemActivity extends AppCompatActivity {
     }
 
     private void gotoContactPage() {
-        Uri uri = Uri.parse("content://contacts/people");
-        Intent intent = new Intent(Intent.ACTION_PICK, uri);
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         startActivityForResult(intent, 1111);
     }
 
@@ -93,8 +104,8 @@ public class SystemActivity extends AppCompatActivity {
                 if (data == null) {
                     Log.d(TAG, "onActivityResult: 什么东西都没有选");
                 } else {
-
-                    getContacts();
+                    Log.d(TAG, "onActivityResult: 有返回");
+                    Uri contactData = data.getData();
 
                 }
             }
@@ -105,13 +116,51 @@ public class SystemActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_get_all_contacts)
     public void onBtnGetAllContactsClicked() {
+        LoaderManager.enableDebugLogging(true);
+        final ContactHelper helper = new ContactHelper(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                jsonObject = helper.queryContactList();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new AlertDialog.Builder(SystemActivity.this)
+                                .setTitle("通讯录")
+                                .setMessage(jsonObject.toString())
+                                .setPositiveButton("关闭", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                });
+            }
+        }).start();
 
+
+//        ContactsActivity.launch(this,null);
+//        ContactsLoaderCallback callback = new ContactsLoaderCallback(this);
+//        callback.setQueryListener(new ContactsLoaderCallback.QueryListener() {
+//            @Override
+//            public void success(final JSONObject object) {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        new AlertDialog.Builder(SystemActivity.this)
+//                                .setTitle("通讯录")
+//                                .setMessage(object.toString())
+//                                .show();
+//                    }
+//                });
+//            }
+//        });
+//        getLoaderManager().initLoader(1111,null,callback);
     }
 
-    public void getContacts() {
 
-
-    }
 
     @OnClick(R.id.btn_set_clipboard)
     public void onBtnSetClipboardClicked() {
