@@ -8,6 +8,7 @@ import android.app.LoaderManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,11 +22,13 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jiangkang.tools.struct.JsonGenerator;
 import com.jiangkang.tools.system.ContactHelper;
 import com.jiangkang.tools.system.ContactsLoaderCallback;
 import com.jiangkang.tools.utils.ClipboardUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -122,12 +125,77 @@ public class SystemActivity extends AppCompatActivity {
                     Log.d(TAG, "onActivityResult: 什么东西都没有选");
                 } else {
                     Log.d(TAG, "onActivityResult: 有返回");
-                    Uri contactData = data.getData();
-
+                    Cursor cursor = getContentResolver().query(
+                            data.getData(),
+                            null,
+                            null,
+                            null,
+                            null
+                    );
+                    JSONObject contact = handleCursor(cursor);
+                    try {
+                        new AlertDialog.Builder(this)
+                                .setTitle("选择的联系人信息")
+                                .setMessage(contact.toString(4))
+                                .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .create()
+                                .show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private JSONObject handleCursor(Cursor data) {
+        JSONObject result = new JSONObject();
+        if (data != null && data.moveToFirst()) {
+            do {
+                String name = data.getString(
+                        data.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)
+                );
+                int id = data.getInt(
+                        data.getColumnIndex(ContactsContract.Contacts._ID)
+                );
+
+                //指定获取NUMBER这一列数据
+                String[] phoneProjection = new String[]{
+                        ContactsContract.CommonDataKinds.Phone.NUMBER
+                };
+
+                Cursor cursor = getContentResolver().query(
+                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                        phoneProjection,
+                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + id,
+                        null,
+                        null
+                );
+                if (cursor != null && cursor.moveToFirst()) {
+                    do {
+                        String number = cursor.getString(
+                                cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                        );
+
+                               result = new JsonGenerator()
+                                        .put("name", name)
+                                        .put("tel", number)
+                                        .gen();
+                    } while (cursor.moveToNext());
+                }
+
+            } while (data.moveToNext());
+        }
+
+        Log.d(TAG, "onLoadFinished: result =\n" + result.toString());
+
+        return result;
     }
 
 
