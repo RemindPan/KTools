@@ -27,7 +27,7 @@ import java.util.List;
 
 public class ContactsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final int LOAD_ID = 1102;
+    private static final int LOAD_ID = 0;
     private static final String TAG = ContactsActivity.class.getSimpleName();
 
     private JSONObject result;

@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.jiangkang.tools.device.DeviceUtils;
 import com.jiangkang.tools.utils.AppUtils;

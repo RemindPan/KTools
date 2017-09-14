@@ -19,11 +19,14 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jiangkang.tools.system.ContactHelper;
 import com.jiangkang.tools.system.ContactsLoaderCallback;
 import com.jiangkang.tools.utils.ClipboardUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -40,18 +43,28 @@ import butterknife.OnClick;
 
 public class SystemActivity extends AppCompatActivity {
 
-    private static final int REQUEST_PERMISSION_READ_CONTACTS = 1001;
+    private static final int REQUEST_PERMISSION_PICK_CONTACT = 1001;
+
+    private static final int REQUEST_PERMISSION_GET_CONTACTS = 1002;
+
+    private static final int REQUEST_PICK_CONTACT = 1112;
+
+
     private static final String TAG = SystemActivity.class.getSimpleName();
+
 
     @BindView(R.id.btn_open_contacts)
     Button mBtnOpenContacts;
 
     @BindView(R.id.btn_get_all_contacts)
     Button btnGetAllContacts;
+
     @BindView(R.id.et_content)
     EditText etContent;
+
     @BindView(R.id.btn_set_clipboard)
     Button btnSetClipboard;
+
     @BindView(R.id.btn_get_clipboard)
     Button btnGetClipboard;
 
@@ -71,22 +84,26 @@ public class SystemActivity extends AppCompatActivity {
         ContactHelper helper = new ContactHelper(this);
         helper.queryContactNameList();
 
-//        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-//            //granted
-//            gotoContactPage();
-//        } else {
-//            //not granted
-//            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_PERMISSION_READ_CONTACTS);
-//        }
+        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+            //granted
+            gotoContactPage();
+        } else {
+            //not granted
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_PERMISSION_PICK_CONTACT);
+        }
 
     }
 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_PERMISSION_READ_CONTACTS) {
+        if (requestCode == REQUEST_PERMISSION_PICK_CONTACT) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 gotoContactPage();
+            }
+        }else if (requestCode == REQUEST_PERMISSION_GET_CONTACTS){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                getContactList();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -94,12 +111,12 @@ public class SystemActivity extends AppCompatActivity {
 
     private void gotoContactPage() {
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-        startActivityForResult(intent, 1111);
+        startActivityForResult(intent, REQUEST_PICK_CONTACT);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1111) {
+        if (requestCode == REQUEST_PICK_CONTACT) {
             if (resultCode == Activity.RESULT_OK) {
                 if (data == null) {
                     Log.d(TAG, "onActivityResult: 什么东西都没有选");
@@ -114,9 +131,22 @@ public class SystemActivity extends AppCompatActivity {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.M)
     @OnClick(R.id.btn_get_all_contacts)
     public void onBtnGetAllContactsClicked() {
-        LoaderManager.enableDebugLogging(true);
+
+        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+            //granted
+            getContactList();
+        } else {
+            //not granted
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_PERMISSION_PICK_CONTACT);
+        }
+
+
+    }
+
+    private void getContactList() {
         final ContactHelper helper = new ContactHelper(this);
         new Thread(new Runnable() {
             @Override
@@ -125,21 +155,36 @@ public class SystemActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        new AlertDialog.Builder(SystemActivity.this)
-                                .setTitle("通讯录")
-                                .setMessage(jsonObject.toString())
-                                .setPositiveButton("关闭", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                })
-                                .show();
+                        try {
+                            new AlertDialog.Builder(SystemActivity.this)
+                                    .setTitle("通讯录")
+                                    .setMessage(jsonObject.toString(4))
+                                    .setPositiveButton("关闭", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setNegativeButton("复制", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            try {
+                                                ClipboardUtils.putStringToClipboard(jsonObject.toString(4));
+                                                ToastUtils.showShortToast("复制成功");
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
         }).start();
-
 
 //        ContactsActivity.launch(this,null);
 //        ContactsLoaderCallback callback = new ContactsLoaderCallback(this);
@@ -157,9 +202,8 @@ public class SystemActivity extends AppCompatActivity {
 //                });
 //            }
 //        });
-//        getLoaderManager().initLoader(1111,null,callback);
+//        getLoaderManager().initLoader(0,null,callback);
     }
-
 
 
     @OnClick(R.id.btn_set_clipboard)
