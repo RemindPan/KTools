@@ -34,6 +34,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:support-annotations:25.0.1'
     testCompile "org.robolectric:robolectric:3.1.2"
+    compile 'com.android.support:appcompat-v7:25.0.1'
 
+    compile deps['rxAndroid']
+    compile deps['rxJava']
 
 }

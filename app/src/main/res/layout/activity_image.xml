@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jiangkang.ktools.ImageActivity">
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_choose_picture_from_album"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="从相册中选择照片"/>
+
+    <Button
+        android:id="@+id/btn_take_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开系统相机拍照"/>
+
+    <Button
+        android:id="@+id/btn_take_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="调用系统相机拍摄视频"/>
+
+    <Button
+        android:id="@+id/btn_screen_capture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="截屏"
+        />
+
+
+
+</LinearLayout>

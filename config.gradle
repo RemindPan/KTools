@@ -34,6 +34,9 @@ ext {
             //leakcanary
             leakcanaryVersion         : '1.5.1',
 
+            rxJavaVersion             : '1.1.5',
+            rxAndroidVersion          : '1.1.0',
+
 
     ]
 
@@ -76,8 +79,12 @@ ext {
 
             //leakcanary
             leakcanary          : "com.squareup.leakcanary:leakcanary-android:${libVersion.leakcanaryVersion}",
-            leakcanary_no_op    : "com.squareup.leakcanary:leakcanary-android-no-op:${libVersion.leakcanaryVersion}"
+            leakcanary_no_op    : "com.squareup.leakcanary:leakcanary-android-no-op:${libVersion.leakcanaryVersion}",
 
+
+            //RxJava
+            rxJava             : "io.reactivex:rxjava:${libVersion.rxJavaVersion}",
+            rxAndroid          : "io.reactivex:rxandroid:${libVersion.rxAndroidVersion}",
 
     ]
 

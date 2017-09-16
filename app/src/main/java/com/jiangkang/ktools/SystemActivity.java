@@ -4,12 +4,10 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.LoaderManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -19,29 +17,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.struct.JsonGenerator;
 import com.jiangkang.tools.system.ContactHelper;
-import com.jiangkang.tools.system.ContactsLoaderCallback;
 import com.jiangkang.tools.utils.ClipboardUtils;
+import com.jiangkang.tools.utils.PermissionUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscriber;
+import rx.functions.Action1;
 
 /**
  * Created by jiangkang on 2017/9/5.
- * description：
+ * description：与系统相关的Demo
+ * 1.打开通讯录，选择联系人，获得联系人姓名和手机号
+ * 2.获取联系人列表
+ * 3.设置文本到剪贴板，从剪贴板中取出文本
  */
 
 public class SystemActivity extends AppCompatActivity {
@@ -51,7 +50,6 @@ public class SystemActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_GET_CONTACTS = 1002;
 
     private static final int REQUEST_PICK_CONTACT = 1112;
-
 
     private static final String TAG = SystemActivity.class.getSimpleName();
 
@@ -70,6 +68,12 @@ public class SystemActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_get_clipboard)
     Button btnGetClipboard;
+    @BindView(R.id.radio_btn_contact)
+    RadioButton radioBtnContact;
+    @BindView(R.id.radio_btn_storage)
+    RadioButton radioBtnStorage;
+    @BindView(R.id.btn_request_permission)
+    Button btnRequestPermission;
 
     private JSONObject jsonObject;
 
@@ -83,33 +87,19 @@ public class SystemActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     @OnClick(R.id.btn_open_contacts)
     public void onOpenContactsClicked() {
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.READ_CONTACTS)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean granted) {
+                        if (granted){
+                            gotoContactPage();
+                        }else {
+                            ToastUtils.showShortToast("权限被拒绝");
+                        }
+                    }
+                });
 
-        ContactHelper helper = new ContactHelper(this);
-        helper.queryContactNameList();
-
-        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            //granted
-            gotoContactPage();
-        } else {
-            //not granted
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_PERMISSION_PICK_CONTACT);
-        }
-
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_PERMISSION_PICK_CONTACT) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                gotoContactPage();
-            }
-        }else if (requestCode == REQUEST_PERMISSION_GET_CONTACTS){
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                getContactList();
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void gotoContactPage() {
@@ -183,10 +173,10 @@ public class SystemActivity extends AppCompatActivity {
                                 cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
                         );
 
-                               result = new JsonGenerator()
-                                        .put("name", name)
-                                        .put("tel", number)
-                                        .gen();
+                        result = new JsonGenerator()
+                                .put("name", name)
+                                .put("tel", number)
+                                .gen();
                     } while (cursor.moveToNext());
                 }
 
@@ -202,16 +192,18 @@ public class SystemActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     @OnClick(R.id.btn_get_all_contacts)
     public void onBtnGetAllContactsClicked() {
-
-        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            //granted
-            getContactList();
-        } else {
-            //not granted
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_PERMISSION_PICK_CONTACT);
-        }
-
-
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.READ_CONTACTS)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        if (aBoolean){
+                            getContactList();
+                        }else {
+                            ToastUtils.showShortToast("权限被拒绝");
+                        }
+                    }
+                });
     }
 
     private void getContactList() {
@@ -285,4 +277,22 @@ public class SystemActivity extends AppCompatActivity {
     public void onBtnGetClipboardClicked() {
         ToastUtils.showShortToast(ClipboardUtils.getStringFromClipboard());
     }
+
+    @OnClick(R.id.btn_request_permission)
+    public void onBtnRequestPermissionClicked() {
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.READ_CONTACTS)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        if (aBoolean){
+                            ToastUtils.showShortToast("成功了");
+                        }else {
+                            ToastUtils.showShortToast("失败了");
+                        }
+                    }
+                });
+
+    }
+
 }

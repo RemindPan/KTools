@@ -1,17 +1,12 @@
 package com.jiangkang.tools.system;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Loader;
 import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 
 import org.json.JSONObject;
 
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 
@@ -51,6 +46,11 @@ public class ContactHelper {
     }
 
 
+    public JSONObject pickContact(){
+        return null;
+    }
+
+
     public void queryContactNameList(){
 
         Cursor cursor = context.getContentResolver()
@@ -74,5 +74,7 @@ public class ContactHelper {
         }
 
     }
+
+
 
 }
