@@ -290,6 +290,12 @@ public class ImageActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_screen_capture)
     public void onBtnScreenCaptureClicked() {
+        View decorView = getWindow().getDecorView();
+        decorView.setDrawingCacheEnabled(true);
+        decorView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        decorView.buildDrawingCache();
+        Bitmap screen = Bitmap.createBitmap(decorView.getDrawingCache());
+        showImgInDialog(screen);
     }
 
     @OnClick(R.id.btn_take_picture_without_compress)
