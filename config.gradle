@@ -86,6 +86,8 @@ ext {
             rxJava             : "io.reactivex:rxjava:${libVersion.rxJavaVersion}",
             rxAndroid          : "io.reactivex:rxandroid:${libVersion.rxAndroidVersion}",
 
+            zxing              : "com.google.zxing:core:3.3.0",
+
     ]
 
 }
