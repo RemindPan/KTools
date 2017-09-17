@@ -14,9 +14,11 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.VideoView;
 
 import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.utils.ToastUtils;
@@ -34,12 +36,15 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 
 public class ImageActivity extends AppCompatActivity {
 
+    private static final String TAG = ImageActivity.class.getSimpleName();
+
     private static final int REQUEST_OPEN_ALBUM = 1000;
 
     private static final int REQUEST_IMAGE_CAPTURE = 1001;
 
     private static final int REQUEST_CODE_CAPTURE_IMAGE_WITHOUT_COMPRESS = 1002;
-    private static final String TAG = ImageActivity.class.getSimpleName();
+
+    private static final int REQUEST_CODE_TAKE_VIDEO = 1003;
 
 
     @BindView(R.id.btn_choose_picture_from_album)
@@ -57,7 +62,9 @@ public class ImageActivity extends AppCompatActivity {
 
     RxPermissions rxPermissions;
 
-    File outputFile;
+    private File outputImageFile;
+
+    private File outputVideoFile;
 
     @BindView(R.id.btn_take_picture_without_compress)
     Button btnTakePictureWithoutCompress;
@@ -111,15 +118,62 @@ public class ImageActivity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_CODE_CAPTURE_IMAGE_WITHOUT_COMPRESS:
-                handleImageCaptureWithoutCompress(data);
+                if (resultCode == RESULT_OK) {
+                    handleImageCaptureWithoutCompress(data);
+                }
+                break;
+            case REQUEST_CODE_TAKE_VIDEO:
+                if (resultCode == RESULT_OK) {
+                    handleVideoData(data);
+                }
                 break;
             default:
                 break;
         }
     }
 
+    private void handleVideoData(Intent data) {
+        showVideoInDialog(outputVideoFile);
+    }
+
+    private void showVideoInDialog(File file) {
+        final VideoView videoView = new VideoView(this);
+        videoView.setVideoPath(file.getAbsolutePath());
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(videoView)
+                .setPositiveButton("播放",null)
+                .setNeutralButton("暂停",null)
+                .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        videoView.start();
+                    }
+                });
+
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        videoView.pause();
+                    }
+                });
+
+
+
+    }
+
     private void handleImageCaptureWithoutCompress(Intent data) {
-        Bitmap bitmap = BitmapFactory.decodeFile(outputFile.getAbsolutePath());
+        Bitmap bitmap = BitmapFactory.decodeFile(outputImageFile.getAbsolutePath());
         showImgInDialog(bitmap);
     }
 
@@ -194,6 +248,44 @@ public class ImageActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_take_video)
     public void onBtnTakeVideoClicked() {
+        rxPermissions
+                .request(Manifest.permission.CAMERA)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        if (aBoolean) {
+                            takeVideo();
+                        } else {
+                            ToastUtils.showShortToast("权限被拒绝");
+                        }
+                    }
+                });
+
+    }
+
+    private void takeVideo() {
+        File dirVideo = new File(Environment.getExternalStorageDirectory(), "ktools/videos/");
+        if (!dirVideo.exists()) {
+            dirVideo.mkdirs();
+        }
+        outputVideoFile = new File(dirVideo.getAbsolutePath() + System.currentTimeMillis() + ".mp4");
+        if (!outputVideoFile.exists()) {
+            try {
+                outputVideoFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Uri videoUri = FileProvider.getUriForFile(
+                this,
+                BuildConfig.APPLICATION_ID,
+                outputVideoFile
+        );
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
+        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+        intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 3000);
+        startActivityForResult(intent, REQUEST_CODE_TAKE_VIDEO);
     }
 
     @OnClick(R.id.btn_screen_capture)
@@ -206,9 +298,9 @@ public class ImageActivity extends AppCompatActivity {
                 .subscribe(new Action1<Boolean>() {
                     @Override
                     public void call(Boolean aBoolean) {
-                        if (aBoolean){
-                           openCameraWithOutput();
-                        }else {
+                        if (aBoolean) {
+                            openCameraWithOutput();
+                        } else {
                             ToastUtils.showShortToast("权限被拒绝");
                         }
                     }
@@ -216,14 +308,14 @@ public class ImageActivity extends AppCompatActivity {
     }
 
     private void openCameraWithOutput() {
-        String path = new File(Environment.getExternalStorageDirectory(),"ktools").getAbsolutePath();
-        if (!new File(path).exists()){
+        String path = new File(Environment.getExternalStorageDirectory(), "ktools").getAbsolutePath();
+        if (!new File(path).exists()) {
             new File(path).mkdirs();
         }
-        outputFile = new File(path ,System.currentTimeMillis() + ".png");
-        if (!outputFile.exists()){
+        outputImageFile = new File(path, System.currentTimeMillis() + ".png");
+        if (!outputImageFile.exists()) {
             try {
-                outputFile.createNewFile();
+                outputImageFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -231,12 +323,12 @@ public class ImageActivity extends AppCompatActivity {
         Uri contentUri = FileProvider.getUriForFile(
                 this,
                 BuildConfig.APPLICATION_ID,
-                outputFile
-                );
+                outputImageFile
+        );
         Log.d(TAG, "openCameraWithOutput: uri = " + contentUri.toString());
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(Intent.EXTRA_MIME_TYPES, MimeTypeMap.getSingleton().getMimeTypeFromExtension("png"));
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,contentUri);
-        startActivityForResult(intent,REQUEST_CODE_CAPTURE_IMAGE_WITHOUT_COMPRESS);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+        startActivityForResult(intent, REQUEST_CODE_CAPTURE_IMAGE_WITHOUT_COMPRESS);
     }
 }
