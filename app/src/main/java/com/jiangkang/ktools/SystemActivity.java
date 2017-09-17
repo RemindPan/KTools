@@ -81,6 +81,7 @@ public class SystemActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system);
+        setTitle("System");
         ButterKnife.bind(this);
     }
 

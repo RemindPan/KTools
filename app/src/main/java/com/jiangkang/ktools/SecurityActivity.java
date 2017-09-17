@@ -48,6 +48,7 @@ public class SecurityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_security);
+        setTitle("Security");
         ButterKnife.bind(this);
     }
 

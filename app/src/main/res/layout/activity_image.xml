@@ -17,6 +17,12 @@
         android:text="打开系统相机拍照"/>
 
     <Button
+        android:id="@+id/btn_take_picture_without_compress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开系统相机拍照（原图））"/>
+
+    <Button
         android:id="@+id/btn_take_video"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

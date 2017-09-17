@@ -35,6 +35,7 @@ public class DeviceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
+        setTitle("Device");
         unbinder = ButterKnife.bind(this);
     }
 

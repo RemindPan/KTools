@@ -2,6 +2,7 @@ package com.jiangkang.ktools;
 
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +33,9 @@ public class FileSystemActivity extends AppCompatActivity {
             "\ngetCodeCacheDir() " + getCodeCacheDir() +
             "\ngetDataDir() " + getDataDir() +
             "\ngetExternalCacheDirs() " + getExternalCacheDirs() +
-            "\ngetExternalMediaDirs() " + getExternalMediaDirs());
+            "\ngetExternalMediaDirs() " + getExternalMediaDirs() +
+            "\nEnvironment.getExternalStorageDirectory()" + Environment.getExternalStorageDirectory() +
+            "\nEnvironment.getExternalStoragePublicDirectory()" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
     }
 
 

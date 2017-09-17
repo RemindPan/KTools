@@ -22,15 +22,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SystemActivity" />
-        <activity android:name=".DeviceActivity" />
+        <activity android:name=".SystemActivity"
+            />
+        <activity android:name=".DeviceActivity"
+            />
         <activity android:name=".RequestsActivity" />
         <activity android:name=".WidgetActivity" />
         <activity android:name=".StorageActivity" />
@@ -42,6 +45,20 @@
         <activity android:name=".system.ContactsActivity" />
         <activity android:name=".system.ContentActivity" />
         <activity android:name=".FileSystemActivity"></activity>
+
+
+
+
+        <provider
+            android:authorities="${applicationId}"
+            android:name="android.support.v4.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_path" />
+        </provider>
+
     </application>
 
 </manifest>
