@@ -276,12 +276,14 @@ public class ImageActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        //兼容7.0
         Uri videoUri = FileProvider.getUriForFile(
                 this,
                 BuildConfig.APPLICATION_ID,
                 outputVideoFile
         );
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        //指定输出
         intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
         intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 3000);
@@ -326,6 +328,7 @@ public class ImageActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        //兼容7.0
         Uri contentUri = FileProvider.getUriForFile(
                 this,
                 BuildConfig.APPLICATION_ID,
@@ -334,6 +337,7 @@ public class ImageActivity extends AppCompatActivity {
         Log.d(TAG, "openCameraWithOutput: uri = " + contentUri.toString());
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(Intent.EXTRA_MIME_TYPES, MimeTypeMap.getSingleton().getMimeTypeFromExtension("png"));
+        //指定输出路径
         intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
         startActivityForResult(intent, REQUEST_CODE_CAPTURE_IMAGE_WITHOUT_COMPRESS);
     }
