@@ -4,27 +4,61 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.jiangkang.ktools.web.WebActivity;
+import com.jiangkang.tools.utils.ToastUtils;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-  @BindView(R.id.rc_function_list) RecyclerView mRcFunctionList;
+    @BindView(R.id.rc_function_list)
+    RecyclerView mRcFunctionList;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    ButterKnife.bind(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        initViews();
+    }
 
-    initViews();
 
-  }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, 0, 0, "关于");
+        menu.add(0, 1, 1, "源代码");
+        return true;
+    }
 
-  private void initViews() {
 
-    mRcFunctionList.setLayoutManager(new GridLayoutManager(this,4));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 0:
+                AboutActivity.launch(this,null);
+                break;
+            case 1:
+                Bundle bundle = new Bundle();
+                bundle.putString("launchUrl","https://github.com/jiangkang/KTools");
+                WebActivity.launch(this,bundle);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-    mRcFunctionList.setAdapter(new FunctionAdapter(this));
+    private void initViews() {
 
-  }
+        mRcFunctionList.setLayoutManager(new GridLayoutManager(this, 4));
+
+        mRcFunctionList.setAdapter(new FunctionAdapter(this));
+
+    }
+
+
 }

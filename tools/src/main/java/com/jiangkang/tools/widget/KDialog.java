@@ -27,4 +27,17 @@ public class KDialog{
                 .show();
     }
 
+    public static void showMsgDialog(Context context, String content){
+        new AlertDialog.Builder(context)
+                .setMessage(content)
+                .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+
 }

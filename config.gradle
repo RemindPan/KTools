@@ -37,6 +37,8 @@ ext {
             rxJavaVersion             : '1.1.5',
             rxAndroidVersion          : '1.1.0',
 
+            okhttpVersion             : '3.9.0',
+
 
     ]
 
@@ -87,6 +89,10 @@ ext {
             rxAndroid          : "io.reactivex:rxandroid:${libVersion.rxAndroidVersion}",
 
             zxing              : "com.google.zxing:core:3.3.0",
+
+
+            okhttp             : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
+            mockwebserver      : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
 
     ]
 

@@ -18,21 +18,23 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.jiangkang.tools.permission.RxPermissions;
+import com.jiangkang.tools.utils.SecurityUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import rx.functions.Action1;
-
-import static android.os.Environment.DIRECTORY_PICTURES;
 
 public class ImageActivity extends AppCompatActivity {
 
@@ -61,6 +63,8 @@ public class ImageActivity extends AppCompatActivity {
     Button btnScreenCapture;
 
     RxPermissions rxPermissions;
+    @BindView(R.id.tv_content)
+    TextView tvContent;
 
     private File outputImageFile;
 
@@ -141,8 +145,8 @@ public class ImageActivity extends AppCompatActivity {
         videoView.setVideoPath(file.getAbsolutePath());
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(videoView)
-                .setPositiveButton("播放",null)
-                .setNeutralButton("暂停",null)
+                .setPositiveButton("播放", null)
+                .setNeutralButton("暂停", null)
                 .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -169,11 +173,10 @@ public class ImageActivity extends AppCompatActivity {
                 });
 
 
-
     }
 
     private void handleImageCaptureWithoutCompress(Intent data) {
-        Bitmap bitmap = BitmapFactory.decodeFile(outputImageFile.getAbsolutePath());
+        final Bitmap bitmap = BitmapFactory.decodeFile(outputImageFile.getAbsolutePath());
         showImgInDialog(bitmap);
     }
 
@@ -341,4 +344,6 @@ public class ImageActivity extends AppCompatActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
         startActivityForResult(intent, REQUEST_CODE_CAPTURE_IMAGE_WITHOUT_COMPRESS);
     }
+
+
 }

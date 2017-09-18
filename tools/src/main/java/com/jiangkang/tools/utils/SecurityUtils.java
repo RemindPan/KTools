@@ -1,7 +1,10 @@
 package com.jiangkang.tools.utils;
 
+import android.graphics.Bitmap;
 import android.util.Base64;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -19,6 +22,26 @@ public class SecurityUtils {
 
         }
         return result;
+    }
+
+
+    public static String bmp2base64(Bitmap bitmap, Bitmap.CompressFormat compressFormat,int quality){
+        if (bitmap == null){
+            return "";
+        }else {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            bitmap.compress(compressFormat,quality,outputStream);
+            try {
+                outputStream.flush();
+                outputStream.close();
+                byte[] bytes = outputStream.toByteArray();
+
+                return Base64.encodeToString(bytes,Base64.DEFAULT);
+
+            } catch (IOException e) {
+                return "";
+            }
+        }
     }
 
 
