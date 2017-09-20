@@ -11,6 +11,17 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
   @Test public void addition_isCorrect() throws Exception {
+
+    int a = 0x0000_0111;
+
+    byte b = (byte) a;
+
+    String str = "d";
+
+    System.out.println(a);
+    System.out.println(str.toCharArray());
+    System.out.println(str.getBytes());
+
     assertEquals(4, 2 + 2);
   }
 }
