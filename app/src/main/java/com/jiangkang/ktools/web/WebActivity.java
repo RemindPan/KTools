@@ -68,6 +68,13 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
         webContainer.setWebChromeClient(new KWebChromeClient(this));
         webContainer.setWebViewClient(new KWebViewClient(this));
 
+        webContainer.setWebContentsDebuggingEnabled(true);
+
+        webContainer.getSettings().setJavaScriptEnabled(true);
+        webContainer.getSettings().getAllowFileAccessFromFileURLs();
+
+        webContainer.addJavascriptInterface(new KJavaInterface(this),"jk");
+
         webContainer.loadUrl(launchUrl);
 
     }

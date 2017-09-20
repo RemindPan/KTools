@@ -42,9 +42,9 @@ public class ScanActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_gen_qr_code)
     public void onBtnGenQrCodeClicked() {
-        if (!TextUtils.isEmpty(etUrl.getText())) {
+        if (!TextUtils.isEmpty(etUrl.getText().toString())) {
             Bitmap bitmap = QRCodeUtils.createQRCodeBitmap(
-                    "https://jiangkang.github.io",
+                    etUrl.getText().toString(),
                     640,
                     640
             );

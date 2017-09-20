@@ -18,17 +18,15 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.jiangkang.ktools.web.WebActivity;
 import com.jiangkang.tools.permission.RxPermissions;
-import com.jiangkang.tools.utils.SecurityUtils;
+import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,8 +61,9 @@ public class ImageActivity extends AppCompatActivity {
     Button btnScreenCapture;
 
     RxPermissions rxPermissions;
-    @BindView(R.id.tv_content)
-    TextView tvContent;
+
+    @BindView(R.id.btn_show_base64_img_in_web)
+    Button btnShowBase64ImgInWeb;
 
     private File outputImageFile;
 
@@ -346,4 +345,10 @@ public class ImageActivity extends AppCompatActivity {
     }
 
 
+    @OnClick(R.id.btn_show_base64_img_in_web)
+    public void onBtnShowBase64ImgInWebClicked() {
+        Bundle bundle = new Bundle();
+        bundle.putString("launchUrl", FileUtils.getAssetsPath("index.html"));
+        WebActivity.launch(this,bundle);
+    }
 }

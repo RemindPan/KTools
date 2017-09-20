@@ -24,6 +24,7 @@
             android:layout_centerInParent="true"
             android:ellipsize="marquee"
             android:focusable="true"
+            android:gravity="center"
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             />

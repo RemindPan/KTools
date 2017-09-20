@@ -1,11 +1,13 @@
 package com.jiangkang.ktools.web;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.webkit.ConsoleMessage;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+
 
 /**
  * Created by jiangkang on 2017/9/20.
@@ -13,6 +15,7 @@ import android.webkit.WebView;
 
 public class KWebChromeClient extends WebChromeClient {
 
+    private static final String TAG = "Web";
     private WebContract.IView mContext;
 
     public KWebChromeClient(WebContract.IView context) {
@@ -21,7 +24,8 @@ public class KWebChromeClient extends WebChromeClient {
 
     @Override
     public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-        return super.onConsoleMessage(consoleMessage);
+        Log.d(TAG, "onConsoleMessage:\n " + consoleMessage.message());
+        return true;
     }
 
 
