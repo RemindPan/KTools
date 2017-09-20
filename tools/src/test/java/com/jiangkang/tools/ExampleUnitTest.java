@@ -17,11 +17,12 @@ public class ExampleUnitTest {
     byte b = (byte) a;
 
     String str = "d";
-
     System.out.println(a);
     System.out.println(str.toCharArray());
     System.out.println(str.getBytes());
 
     assertEquals(4, 2 + 2);
   }
+
+
 }

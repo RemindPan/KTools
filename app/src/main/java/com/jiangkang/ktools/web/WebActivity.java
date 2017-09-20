@@ -21,7 +21,7 @@ import butterknife.OnClick;
 
 import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
 
-public class WebActivity extends AppCompatActivity {
+public class WebActivity extends AppCompatActivity implements WebContract.IView{
 
 
     private static final String TAG = "WebActivity";
@@ -54,7 +54,6 @@ public class WebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         ButterKnife.bind(this);
-
         initVar();
 
     }
@@ -66,8 +65,8 @@ public class WebActivity extends AppCompatActivity {
         Log.d(TAG, "initVar: launchUrl = " + launchUrl);
 
         webContainer.getSettings().setMixedContentMode(MIXED_CONTENT_ALWAYS_ALLOW);
-        webContainer.setWebChromeClient(new WebChromeClient());
-        webContainer.setWebViewClient(new WebViewClient());
+        webContainer.setWebChromeClient(new KWebChromeClient(this));
+        webContainer.setWebViewClient(new KWebViewClient(this));
 
         webContainer.loadUrl(launchUrl);
 
@@ -76,11 +75,34 @@ public class WebActivity extends AppCompatActivity {
 
     @OnClick(R.id.iv_title_left)
     public void onIvTitleLeftClicked() {
-
+        if (webContainer.canGoBack()){
+            webContainer.goBack();
+        }else {
+            finish();
+        }
     }
 
     @OnClick(R.id.tv_title_right)
     public void onTvTitleRightClicked() {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webContainer.canGoBack()) {
+            webContainer.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public TextView getTvTitle() {
+        return tvTitleMiddle;
+    }
+
+    @Override
+    public ImageView getIvBack() {
+        return ivTitleLeft;
     }
 }
