@@ -83,13 +83,11 @@ ext {
             leakcanary          : "com.squareup.leakcanary:leakcanary-android:${libVersion.leakcanaryVersion}",
             leakcanary_no_op    : "com.squareup.leakcanary:leakcanary-android-no-op:${libVersion.leakcanaryVersion}",
 
-
             //RxJava
             rxJava             : "io.reactivex:rxjava:${libVersion.rxJavaVersion}",
             rxAndroid          : "io.reactivex:rxandroid:${libVersion.rxAndroidVersion}",
 
             zxing              : "com.google.zxing:core:3.3.0",
-
 
             okhttp             : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
             mockwebserver      : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",

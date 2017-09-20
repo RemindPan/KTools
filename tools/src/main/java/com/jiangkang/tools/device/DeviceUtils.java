@@ -1,5 +1,6 @@
 package com.jiangkang.tools.device;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -24,6 +25,8 @@ import android.util.Log;
 
 import com.jiangkang.tools.King;
 
+import java.net.NetworkInterface;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -37,6 +40,9 @@ public class DeviceUtils {
     private static final String NETWORK_TYPE_WIFI = "wifi";
     private static final String NETWORK_TYPE_MOBILE = "mobile";
     private static final String NETWORK_TYPE_OTHER = "other";
+
+
+    private static final String MAC_ADDRESS_DEFAULT = "02:00:00:00:00:00";
 
     private static WifiManager sWifiManager;
 
@@ -75,51 +81,71 @@ public class DeviceUtils {
     }
 
 
-    /*
-    *
-    * 获取信号强度，暂时还没有靠谱的方案
-    * */
-    public static int getMobileSignalStrength(){
-        int dbm = -1;
-        TelephonyManager tm = (TelephonyManager)King.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-        List<CellInfo> cellInfoList;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-        {
-            cellInfoList = tm.getAllCellInfo();
-            if (null != cellInfoList)
-            {
-                for (CellInfo cellInfo : cellInfoList)
-                {
-                    if (cellInfo instanceof CellInfoGsm)
-                    {
-                        CellSignalStrengthGsm cellSignalStrengthGsm = ((CellInfoGsm)cellInfo).getCellSignalStrength();
-                        dbm = cellSignalStrengthGsm.getDbm();
+    public static String getMacAddress(){
+        WifiInfo wifiInfo = sWifiManager.getConnectionInfo();
+        String macAddress = wifiInfo.getMacAddress();
+        if (!MAC_ADDRESS_DEFAULT.equals(macAddress)){
+            return macAddress;
+        }
+
+        macAddress = getMacAddressByNetworkInterface();
+        if (!MAC_ADDRESS_DEFAULT.equals(macAddress)){
+            return macAddress;
+        }
+        return MAC_ADDRESS_DEFAULT;
+    }
+
+
+    /**
+     * 获取设备MAC地址
+     * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
+     *
+     * @return MAC地址
+     */
+    private static String getMacAddressByNetworkInterface() {
+        try {
+            List<NetworkInterface> nis = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface ni : nis) {
+                if (!ni.getName().equalsIgnoreCase("wlan0")) continue;
+                byte[] macBytes = ni.getHardwareAddress();
+                if (macBytes != null && macBytes.length > 0) {
+                    StringBuilder res1 = new StringBuilder();
+                    for (byte b : macBytes) {
+                        res1.append(String.format("%02x:", b));
                     }
-                    else if (cellInfo instanceof CellInfoCdma)
-                    {
-                        CellSignalStrengthCdma cellSignalStrengthCdma =
-                                ((CellInfoCdma)cellInfo).getCellSignalStrength();
-                        dbm = cellSignalStrengthCdma.getDbm();
-                    }
-                    else if (cellInfo instanceof CellInfoWcdma)
-                    {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-                        {
-                            CellSignalStrengthWcdma cellSignalStrengthWcdma =
-                                    ((CellInfoWcdma)cellInfo).getCellSignalStrength();
-                            dbm = cellSignalStrengthWcdma.getDbm();
-                        }
-                    }
-                    else if (cellInfo instanceof CellInfoLte)
-                    {
-                        CellSignalStrengthLte cellSignalStrengthLte = ((CellInfoLte)cellInfo).getCellSignalStrength();
-                        dbm = cellSignalStrengthLte.getDbm();
-                    }
+                    return res1.deleteCharAt(res1.length() - 1).toString();
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return dbm;
+        return "02:00:00:00:00:00";
     }
+
+
+    /**
+     * 获取设备MAC地址
+     * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
+     *
+     * @return MAC地址
+     */
+    @SuppressLint("HardwareIds")
+    private static String getMacAddressByWifiInfo() {
+        try {
+            @SuppressLint("WifiManagerLeak")
+            WifiManager wifi = (WifiManager) King.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            if (wifi != null) {
+                WifiInfo info = wifi.getConnectionInfo();
+                if (info != null) return info.getMacAddress();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "02:00:00:00:00:00";
+    }
+
+
+
 
 
 

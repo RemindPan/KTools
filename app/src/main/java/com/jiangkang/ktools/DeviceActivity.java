@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.jiangkang.tools.device.DeviceUtils;
 import com.jiangkang.tools.utils.AppUtils;
 import com.jiangkang.tools.utils.ToastUtils;
+import com.jiangkang.tools.widget.KDialog;
 
 import java.util.concurrent.Executors;
 
@@ -42,14 +43,7 @@ public class DeviceActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     @OnClick(R.id.btn_check_network_info)
     public void onBtnCheckNetworkInfoClicked() {
-//        ToastUtils.showShortToast(String.valueOf(DeviceUtils.getMobileSignalStrength()));
-//        ToastUtils.showShortToast(DeviceUtils.getNetWorkType());
-        if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            showMsgDialog("信号强度", String.valueOf(DeviceUtils.getMobileSignalStrength()));
-        }else {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},1111);
-        }
-
+        KDialog.showMsgDialog(this,"Mac地址：" + DeviceUtils.getMacAddress());
     }
 
     @Override
@@ -68,10 +62,5 @@ public class DeviceActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1111){
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                showMsgDialog("信号强度", String.valueOf(DeviceUtils.getMobileSignalStrength()));
-            }
-        }
     }
 }
