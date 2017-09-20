@@ -2,9 +2,11 @@ package com.jiangkang.ktools;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -40,13 +42,16 @@ public class ScanActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_gen_qr_code)
     public void onBtnGenQrCodeClicked() {
-        Bitmap bitmap = QRCodeUtils.createQRCodeBitmap(
-                "https://jiangkang.github.io",
-                640,
-                640
-                );
-        if (bitmap != null){
-            KDialog.showImgInDialog(this,bitmap);
+        if (!TextUtils.isEmpty(etUrl.getText())) {
+            Bitmap bitmap = QRCodeUtils.createQRCodeBitmap(
+                    "https://jiangkang.github.io",
+                    640,
+                    640
+            );
+            if (bitmap != null) {
+                KDialog.showImgInDialog(this, bitmap);
+            }
         }
+
     }
 }
