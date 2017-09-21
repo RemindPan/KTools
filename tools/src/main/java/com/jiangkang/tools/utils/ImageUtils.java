@@ -1,7 +1,9 @@
 package com.jiangkang.tools.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -12,6 +14,8 @@ import java.io.IOException;
  */
 
 public class ImageUtils {
+
+    private static final String TAG = "ImageUtils";
 
     public static byte[] bitmap2Bytes(Bitmap bitmap, int quality, Bitmap.CompressFormat format){
         if (bitmap == null){
@@ -38,6 +42,27 @@ public class ImageUtils {
                 .replace("\t","");
     }
 
+
+
+    public static Bitmap scaleBitmap(Bitmap srcBitmap, int maxWidth, int maxHeight){
+
+        int width = srcBitmap.getWidth();
+        int height = srcBitmap.getHeight();
+
+        Log.d(TAG, "scaleBitmap: \nwidth = " + width + "\nheight = " + height);
+
+        int desiredWidth = Math.min(width,maxWidth);
+        int desiredHeight = Math.min(height,maxHeight);
+
+        float scaleWidth = ((float) desiredWidth / width);
+        float scaleHeight = ((float) desiredHeight / height);
+
+        float scaled = Math.min(scaleHeight,scaleWidth);
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaled,scaled);
+        return Bitmap.createBitmap(srcBitmap,0,0,width,height,matrix,true);
+    }
 
 
 }

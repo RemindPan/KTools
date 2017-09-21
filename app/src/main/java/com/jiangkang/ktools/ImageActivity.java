@@ -13,16 +13,19 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.jiangkang.ktools.web.WebActivity;
 import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.utils.FileUtils;
+import com.jiangkang.tools.utils.ImageUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
 import java.io.File;
@@ -64,6 +67,12 @@ public class ImageActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_show_base64_img_in_web)
     Button btnShowBase64ImgInWeb;
+    @BindView(R.id.btn_scale_image_by_max_width_and_height)
+    Button btnScaleImageByMaxWidthAndHeight;
+    @BindView(R.id.et_max_width)
+    EditText etMaxWidth;
+    @BindView(R.id.et_max_height)
+    EditText etMaxHeight;
 
     private File outputImageFile;
 
@@ -349,6 +358,24 @@ public class ImageActivity extends AppCompatActivity {
     public void onBtnShowBase64ImgInWebClicked() {
         Bundle bundle = new Bundle();
         bundle.putString("launchUrl", FileUtils.getAssetsPath("index.html"));
-        WebActivity.launch(this,bundle);
+        WebActivity.launch(this, bundle);
+    }
+
+
+    @OnClick(R.id.btn_scale_image_by_max_width_and_height)
+    public void onbtnScaleImageByMaxWidthAndHeightClicked() {
+        Bitmap srcBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.demo);
+        int maxWidth = srcBitmap.getWidth();
+        int maxHeight = srcBitmap.getHeight();
+        if (!TextUtils.isEmpty(etMaxWidth.getText().toString()) && TextUtils.isDigitsOnly(etMaxWidth.getText().toString())){
+            maxWidth = Integer.parseInt(etMaxWidth.getText().toString());
+        }
+        if (!TextUtils.isEmpty(etMaxHeight.getText().toString()) && TextUtils.isDigitsOnly(etMaxHeight.getText().toString())){
+            maxHeight = Integer.parseInt(etMaxHeight.getText().toString());
+        }
+        Bitmap scaledBitmap = ImageUtils.scaleBitmap(srcBitmap,maxWidth,maxHeight);
+        if (scaledBitmap != null){
+            showImgInDialog(scaledBitmap);
+        }
     }
 }

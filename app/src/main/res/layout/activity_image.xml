@@ -43,5 +43,33 @@
         android:textAllCaps="false"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+    <EditText
+        android:id="@+id/et_max_width"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入图片最大宽度（px）"
+        android:inputType="numberDecimal"
+        />
+
+    <EditText
+        android:id="@+id/et_max_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入图片最大高度（px）"
+        android:inputType="numberDecimal"
+        />
+
+    <Button
+        android:id="@+id/btn_scale_image_by_max_width_and_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="按照最大宽高限制缩放图片"
+        />
+
 
 </LinearLayout>
