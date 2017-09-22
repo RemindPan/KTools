@@ -58,7 +58,22 @@
         <activity android:name=".AboutActivity" />
         <activity
             android:name=".web.WebActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <service
+            android:name=".device.CheckCurrentActivityService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".device.ActivityChangeReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.jiangkang.ktools.ActivityChange"/>
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

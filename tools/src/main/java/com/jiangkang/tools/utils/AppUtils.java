@@ -1,10 +1,17 @@
 package com.jiangkang.tools.utils;
 
+import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
 import com.jiangkang.tools.King;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by jiangkang on 2017/9/8.
@@ -32,6 +39,23 @@ public final class AppUtils {
         return pm.getPackageInfo(King.getApplicationContext().getPackageName(),PackageManager.GET_CONFIGURATIONS);
     }
 
+
+
+    public static String getCurrentActivity(){
+        return King.getTopActivityWeakRef().get().getComponentName().getClassName();
+    }
+
+
+    public static List<String> getActivityListInStack(){
+        List<Activity> activities = King.getsActivityList();
+        List<String> list = new ArrayList<>();
+        Iterator iterator = activities.iterator();
+        while (iterator.hasNext()){
+            Activity activity = (Activity) iterator.next();
+            list.add(activity.getComponentName().getClassName());
+        }
+        return list;
+    }
 
 
 

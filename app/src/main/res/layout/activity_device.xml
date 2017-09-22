@@ -14,7 +14,14 @@
             android:id="@+id/btn_check_network_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="查看网络信息"/>
+            android:text="查看网络信息"
+            />
+
+        <Button
+            android:id="@+id/btn_check_current_activity"
+            style="@style/KButton"
+            android:text="查看当前Activity"
+            />
 
     </LinearLayout>
 
