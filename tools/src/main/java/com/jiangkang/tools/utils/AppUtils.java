@@ -32,4 +32,10 @@ public final class AppUtils {
         return pm.getPackageInfo(King.getApplicationContext().getPackageName(),PackageManager.GET_CONFIGURATIONS);
     }
 
+
+
+
+
+
+
 }

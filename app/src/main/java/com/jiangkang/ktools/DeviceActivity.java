@@ -43,7 +43,10 @@ public class DeviceActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     @OnClick(R.id.btn_check_network_info)
     public void onBtnCheckNetworkInfoClicked() {
-        KDialog.showMsgDialog(this,"Mac地址：" + DeviceUtils.getMacAddress());
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("网络类型: %s\n",DeviceUtils.getNetWorkType()))
+                .append(String.format("Mac地址: %s\n",DeviceUtils.getMacAddress()));
+        KDialog.showMsgDialog(this,builder.toString());
     }
 
     @Override
