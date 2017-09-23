@@ -30,7 +30,7 @@ public class FloatingWindow {
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 Build.VERSION.SDK_INT > Build.VERSION_CODES.N?
                         WindowManager.LayoutParams.TYPE_PHONE: WindowManager.LayoutParams.TYPE_TOAST,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
                 PixelFormat.TRANSLUCENT
         );
         sWindowLayoutParams.gravity = Gravity.TOP + Gravity.RIGHT;

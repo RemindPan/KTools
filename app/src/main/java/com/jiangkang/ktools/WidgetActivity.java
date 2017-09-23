@@ -5,9 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiangkang.ktools.widget.SearchViewActivity;
+import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.FloatingWindow;
+
+import java.util.Timer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,7 +55,7 @@ public class WidgetActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_tab_layout)
     public void onBtnTabLayoutClicked() {
-
+        ToastUtils.showToast("测试自定义显示时间Toast",9000);
     }
 
 
@@ -63,4 +68,7 @@ public class WidgetActivity extends AppCompatActivity {
     public void onBtnDismissFloatingWindowClicked() {
         FloatingWindow.dismiss();
     }
+
+
+
 }
