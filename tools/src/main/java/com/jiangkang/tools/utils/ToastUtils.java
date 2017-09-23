@@ -1,11 +1,8 @@
 package com.jiangkang.tools.utils;
 
-import android.content.Context;
 import android.widget.Toast;
 
 import com.jiangkang.tools.King;
-import com.jiangkang.tools.R;
-import com.jiangkang.tools.widget.SuperToast;
 
 import java.util.Timer;
 import java.util.TimerTask;

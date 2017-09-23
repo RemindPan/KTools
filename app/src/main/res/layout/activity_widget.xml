@@ -17,10 +17,10 @@
             android:text="SearchView"
             android:textAllCaps="false"/>
         <Button
-            android:id="@+id/btn_tab_layout"
+            android:id="@+id/btn_set_toast_show_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TabLayout"
+            android:text="自定义Toast显示时间"
             android:textAllCaps="false"/>
 
         <LinearLayout
