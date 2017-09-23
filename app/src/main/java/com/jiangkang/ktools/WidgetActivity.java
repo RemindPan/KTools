@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import com.jiangkang.ktools.widget.SearchViewActivity;
+import com.jiangkang.tools.widget.FloatingWindow;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,8 +18,14 @@ public class WidgetActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_search_view)
     Button btnSearchView;
+
     @BindView(R.id.btn_tab_layout)
     Button btnTabLayout;
+    @BindView(R.id.btn_show_floating_window)
+    Button btnShowFloatingWindow;
+    @BindView(R.id.btn_dismiss_floating_window)
+    Button btnDismissFloatingWindow;
+
 
     public static void launch(Context context, Bundle bundle) {
         Intent intent = new Intent(context, WidgetActivity.class);
@@ -38,10 +45,22 @@ public class WidgetActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_search_view)
     public void onBtnSearchViewClicked() {
-        SearchViewActivity.launch(this,null);
+        SearchViewActivity.launch(this, null);
     }
 
     @OnClick(R.id.btn_tab_layout)
     public void onBtnTabLayoutClicked() {
+
+    }
+
+
+    @OnClick(R.id.btn_show_floating_window)
+    public void onBtnShowFloatingWindowClicked() {
+        FloatingWindow.show(this,"来来来，看这里\n这是一个悬浮框");
+    }
+
+    @OnClick(R.id.btn_dismiss_floating_window)
+    public void onBtnDismissFloatingWindowClicked() {
+        FloatingWindow.dismiss();
     }
 }

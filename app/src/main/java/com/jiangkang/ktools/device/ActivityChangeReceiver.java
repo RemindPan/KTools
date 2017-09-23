@@ -8,6 +8,7 @@ import android.content.Intent;
 
 import com.jiangkang.ktools.R;
 import com.jiangkang.tools.utils.AppUtils;
+import com.jiangkang.tools.widget.FloatingWindow;
 
 public class ActivityChangeReceiver extends BroadcastReceiver {
 
@@ -16,6 +17,8 @@ public class ActivityChangeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
        if ("com.jiangkang.ktools.ActivityChange".equals(intent.getAction())){
            createNotification(context, AppUtils.getCurrentActivity());
+//           FloatingWindow.dismiss();
+//           FloatingWindow.show(context,AppUtils.getCurrentActivity());
        }
     }
 
@@ -29,6 +32,8 @@ public class ActivityChangeReceiver extends BroadcastReceiver {
                 .build();
         manager.notify(0,notification);
     }
+
+
 
 
 }
