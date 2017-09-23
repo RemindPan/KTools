@@ -45,6 +45,12 @@
 
         </LinearLayout>
 
+      <Button
+          android:id="@+id/btn_create_simple_notification"
+          style="@style/KButton"
+          android:text="创建简单的通知栏"
+          />
+
 
 
     </LinearLayout>
