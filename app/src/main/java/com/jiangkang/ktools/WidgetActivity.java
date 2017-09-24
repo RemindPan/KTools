@@ -24,6 +24,7 @@ public class WidgetActivity extends AppCompatActivity {
 
   @BindView(R.id.btn_set_toast_show_time) Button btnSetToastShowTime;
   @BindView(R.id.btn_create_simple_notification) Button mBtnCreateSimpleNotification;
+  @BindView(R.id.btn_show_custom_notification) Button mBtnShowCustomNotification;
 
   public static void launch(Context context, Bundle bundle) {
     Intent intent = new Intent(context, WidgetActivity.class);
@@ -56,12 +57,15 @@ public class WidgetActivity extends AppCompatActivity {
   }
 
   @OnClick(R.id.btn_create_simple_notification) public void onBtnCreateSimpleNotificationClicked() {
-    //KNotification.createNotification(this,R.mipmap.ic_launcher,"测试标题","测试内容",new Intent(this,MainActivity.class));
-    RemoteViews views = new RemoteViews(this.getPackageName(),R.layout.layout_big_notification);
-    views.setImageViewResource(R.id.iv_notification_img,R.drawable.demo);
-    KNotification.createNotification(this,R.mipmap.ic_launcher,views,new Intent(this,MainActivity.class));
+    KNotification.createNotification(this,R.mipmap.ic_launcher,"测试标题","测试内容",new Intent(this,MainActivity.class));
   }
 
-  
+  @OnClick(R.id.btn_show_custom_notification) public void onBtnShowCustomNotificationClicked() {
+    RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.layout_big_notification);
+    views.setImageViewResource(R.id.iv_notification_img, R.drawable.demo);
+    KNotification.createNotification(this, R.mipmap.ic_launcher, views,
+        new Intent(this, MainActivity.class));
+  }
+
 
 }

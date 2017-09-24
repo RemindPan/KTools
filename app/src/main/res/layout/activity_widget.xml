@@ -1,59 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    android:id="@+id/layout_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none">
+    android:scrollbars="none"
+    >
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      >
+    <Button
+        android:id="@+id/btn_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SearchView"
+        android:textAllCaps="false"
+        />
+    <Button
+        android:id="@+id/btn_set_toast_show_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义Toast显示时间"
+        android:textAllCaps="false"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/btn_search_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SearchView"
-            android:textAllCaps="false"/>
-        <Button
-            android:id="@+id/btn_set_toast_show_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="自定义Toast显示时间"
-            android:textAllCaps="false"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <Button
-                android:id="@+id/btn_show_floating_window"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="显示悬浮框"
-                />
-            <Button
-                android:id="@+id/btn_dismiss_floating_window"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="关闭悬浮框"
-                />
-
-        </LinearLayout>
-
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
       <Button
-          android:id="@+id/btn_create_simple_notification"
-          style="@style/KButton"
-          android:text="创建简单的通知栏"
+          android:id="@+id/btn_show_floating_window"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="显示悬浮框"
+          />
+      <Button
+          android:id="@+id/btn_dismiss_floating_window"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="关闭悬浮框"
           />
 
-
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_create_simple_notification"
+        android:text="创建简单的通知栏"
+        style="@style/KButton"
+        />
+
+    <Button
+        android:id="@+id/btn_show_custom_notification"
+        android:text="显示自定义通知栏"
+        style="@style/KButton"
+        />
+
+
+  </LinearLayout>
 </ScrollView>
 
 

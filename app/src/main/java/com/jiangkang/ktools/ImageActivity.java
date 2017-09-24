@@ -49,7 +49,6 @@ public class ImageActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_TAKE_VIDEO = 1003;
 
-
     @BindView(R.id.btn_choose_picture_from_album)
     Button btnChoosePictureFromAlbum;
 
@@ -357,7 +356,7 @@ public class ImageActivity extends AppCompatActivity {
     @OnClick(R.id.btn_show_base64_img_in_web)
     public void onBtnShowBase64ImgInWebClicked() {
         Bundle bundle = new Bundle();
-        bundle.putString("launchUrl", FileUtils.getAssetsPath("index.html"));
+        bundle.putString("launchUrl", FileUtils.getAssetsPath("sample.html"));
         WebActivity.launch(this, bundle);
     }
 
