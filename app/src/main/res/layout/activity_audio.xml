@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jiangkang.ktools.AudioActivity">
+    android:orientation="vertical"
+    android:scrollbars="none">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/et_text_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入需要转换的英文"
+            />
+
+        <Button
+            android:id="@+id/btn_text_to_speech"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="文字转语音(English)"
+            android:textAllCaps="false"
+            />
+
+
+        <Button
+            android:id="@+id/btn_play_single_sound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="播放单一音频文件"
+            />
+
+        <Button
+            android:id="@+id/btn_play_multi_sounds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="连续播放多个音频文件"
+            />
+
+    </LinearLayout>
+
+
+</ScrollView>

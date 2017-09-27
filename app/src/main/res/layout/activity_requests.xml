@@ -9,11 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Get a Url"
-        android:textAllCaps="false"
-        />
+        android:textAllCaps="false" />
 
 
-
+    <Button
+        android:id="@+id/btn_post"
+        style="@style/KButton"
+        android:text="Post （Github登录）" />
 
 
 </LinearLayout>

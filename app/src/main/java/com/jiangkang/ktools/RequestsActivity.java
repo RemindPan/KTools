@@ -1,9 +1,11 @@
 package com.jiangkang.ktools;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
+import com.jiangkang.ktools.requests.LoginActivity;
 import com.jiangkang.tools.widget.KDialog;
 
 import org.json.JSONException;
@@ -22,6 +24,8 @@ public class RequestsActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_get_a_url)
     Button btnGetAUrl;
+    @BindView(R.id.btn_post)
+    Button btnPost;
     private OkHttpClient client;
 
     private static final String URL_GET = "https://api.github.com";
@@ -71,5 +75,10 @@ public class RequestsActivity extends AppCompatActivity {
     @OnClick(R.id.btn_get_a_url)
     public void onBtnGetAUrlClicked() {
         getAUrl();
+    }
+
+    @OnClick(R.id.btn_post)
+    public void onBtnPostClicked() {
+//        LoginActivity.launch(this,null);
     }
 }
