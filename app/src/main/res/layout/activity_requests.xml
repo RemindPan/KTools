@@ -6,15 +6,16 @@
 
     <Button
         android:id="@+id/btn_get_a_url"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/KButton"
         android:text="Get a Url"
-        android:textAllCaps="false" />
+        android:background="#f44336"
+        />
 
 
     <Button
         android:id="@+id/btn_post"
         style="@style/KButton"
+        android:background="#E91E63"
         android:text="Post （Github登录）" />
 
 

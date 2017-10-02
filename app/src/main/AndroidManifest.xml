@@ -76,6 +76,8 @@
 
     <activity android:name=".requests.LoginActivity">
     </activity>
+    <activity android:name=".widget.MultiTabsActivity">
+    </activity>
   </application>
 
 </manifest>

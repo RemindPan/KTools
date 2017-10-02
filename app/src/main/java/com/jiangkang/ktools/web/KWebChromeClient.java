@@ -55,4 +55,7 @@ public class KWebChromeClient extends WebChromeClient {
     public void onReceivedTitle(WebView view, String title) {
         mContext.getTvTitle().setText(title);
     }
+
+
+
 }

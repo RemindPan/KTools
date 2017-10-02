@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jiangkang.ktools.widget.MultiTabsActivity"
+    >
+
+
+  <android.support.design.widget.TabLayout
+      android:id="@+id/tab_layout_static"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="top"
+      app:tabGravity="fill"
+      app:tabPaddingTop="6dp"
+      app:tabPaddingBottom="6dp"
+      >
+
+    <android.support.design.widget.TabItem
+        android:id="@+id/tab_item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="图片"
+        />
+    <android.support.design.widget.TabItem
+        android:id="@+id/tab_item_article"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="文章"
+        />
+    <android.support.design.widget.TabItem
+        android:id="@+id/tab_item_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="音乐"
+        />
+
+    <android.support.design.widget.TabItem
+        android:id="@+id/tab_item_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="视频"
+        />
+
+  </android.support.design.widget.TabLayout>
+</LinearLayout>

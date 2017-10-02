@@ -16,12 +16,14 @@
             android:id="@+id/btn_set_pref"
             style="@style/KButton"
             android:text="将值存入SharedPreference"
+            android:background="#f44336"
             />
 
         <Button
             android:id="@+id/btn_get_pref"
             style="@style/KButton"
             android:text="从SharedPreference中取值"
+            android:background="#E91E63"
             />
 
     </LinearLayout>

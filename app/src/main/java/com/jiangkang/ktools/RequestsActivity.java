@@ -1,7 +1,9 @@
 package com.jiangkang.ktools;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
@@ -80,5 +82,7 @@ public class RequestsActivity extends AppCompatActivity {
     @OnClick(R.id.btn_post)
     public void onBtnPostClicked() {
 //        LoginActivity.launch(this,null);
+      Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+      startActivity(intent);
     }
 }

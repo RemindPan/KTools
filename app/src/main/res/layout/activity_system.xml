@@ -13,26 +13,30 @@
 
     <Button
         android:id="@+id/btn_open_contacts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/KButton"
+        android:background="#FFCC99"
         android:text="打开通讯录" />
 
     <Button
         android:id="@+id/btn_get_all_contacts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/KButton"
+        android:background="#FFCC66"
         android:text="获取所有联系人" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        />
 
     <EditText
         android:id="@+id/et_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="在此输入内容" />
+        android:hint="在此输入内容"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,17 +45,19 @@
 
       <Button
           android:id="@+id/btn_set_clipboard"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
+          style="@style/KButton"
           android:layout_weight="1"
-          android:text="设置剪贴板数据" />
+          android:text="设置剪贴板数据"
+          android:background="#FF99CC"
+          />
 
       <Button
           android:id="@+id/btn_get_clipboard"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
+          style="@style/KButton"
           android:layout_weight="1"
-          android:text="获取剪贴板数据" />
+          android:text="获取剪贴板数据"
+          android:background="#FF99CC"
+          />
 
     </LinearLayout>
 
@@ -63,7 +69,10 @@
       <RadioGroup
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          >
 
           <RadioButton
               android:id="@+id/radio_btn_contact"
@@ -81,9 +90,10 @@
 
       <Button
           android:id="@+id/btn_request_permission"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="请求权限"/>
+          style="@style/KButton"
+          android:text="请求权限"
+          android:background="#FF9966"
+          />
 
 
   </LinearLayout>

@@ -5,12 +5,12 @@
     android:orientation="vertical">
 
 
+    <!--red:500-->
     <Button
         android:id="@+id/btn_download_by_download_manager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/KButton"
         android:text="使用DownloadManager下载"
-        android:textAllCaps="false"
+        android:background="#f44336"
         />
 
 </LinearLayout>

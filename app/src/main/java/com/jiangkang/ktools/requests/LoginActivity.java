@@ -64,9 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             ToastUtils.showShortToast("用户名或者密码不能为空！");
             return;
         }
-
         loginGitHub(username, password);
-
     }
 
     private void loginGitHub(String username, String password) {

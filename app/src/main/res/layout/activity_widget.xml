@@ -14,17 +14,15 @@
       >
     <Button
         android:id="@+id/btn_search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/KButton"
         android:text="SearchView"
-        android:textAllCaps="false"
+        android:background="#66CCCC"
         />
     <Button
         android:id="@+id/btn_set_toast_show_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/KButton"
         android:text="自定义Toast显示时间"
-        android:textAllCaps="false"
+        android:background="#6699CC"
         />
 
     <LinearLayout
@@ -34,17 +32,17 @@
         >
       <Button
           android:id="@+id/btn_show_floating_window"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
+          style="@style/KButton"
           android:layout_weight="1"
           android:text="显示悬浮框"
+          android:background="#669999"
           />
       <Button
           android:id="@+id/btn_dismiss_floating_window"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
+          style="@style/KButton"
           android:layout_weight="1"
           android:text="关闭悬浮框"
+          android:background="#669999"
           />
 
     </LinearLayout>
@@ -53,12 +51,14 @@
         android:id="@+id/btn_create_simple_notification"
         android:text="创建简单的通知栏"
         style="@style/KButton"
+        android:background="#6666CC"
         />
 
     <Button
         android:id="@+id/btn_show_custom_notification"
         android:text="显示自定义通知栏"
         style="@style/KButton"
+        android:background="#663399"
         />
 
 
