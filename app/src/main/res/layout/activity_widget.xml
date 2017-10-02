@@ -61,6 +61,13 @@
         android:background="#663399"
         />
 
+      <Button
+          android:id="@+id/btn_widget_dialog"
+          style="@style/KButton"
+          android:text="Dialog"
+          android:background="#4DB6AC"
+          />
+
 
   </LinearLayout>
 </ScrollView>

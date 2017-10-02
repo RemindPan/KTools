@@ -3,13 +3,9 @@ package com.jiangkang.ktools.web;
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.os.Build;
-import android.util.Log;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import com.jiangkang.tools.utils.LogUtils;
 
 
 /**
@@ -37,7 +33,6 @@ public class KWebViewClient extends WebViewClient{
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        LogUtils.d(TAG,"url = %s",request.getUrl().toString());
         return super.shouldOverrideUrlLoading(view, request);
     }
 
@@ -49,7 +44,6 @@ public class KWebViewClient extends WebViewClient{
 
     @Override
     public void onScaleChanged(WebView view, float oldScale, float newScale) {
-        LogUtils.d(TAG,"oldScale = %s,newScale = %s",String.valueOf(oldScale),String.valueOf(newScale));
         super.onScaleChanged(view, oldScale, newScale);
     }
 }
