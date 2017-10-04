@@ -356,13 +356,13 @@ public class ImageActivity extends AppCompatActivity {
     @OnClick(R.id.btn_show_base64_img_in_web)
     public void onBtnShowBase64ImgInWebClicked() {
         Bundle bundle = new Bundle();
-        bundle.putString("launchUrl", FileUtils.getAssetsPath("sample.html"));
+        bundle.putString("launchUrl", FileUtils.getAssetsPath("web/demo_img.html"));
         WebActivity.launch(this, bundle);
     }
 
 
     @OnClick(R.id.btn_scale_image_by_max_width_and_height)
-    public void onbtnScaleImageByMaxWidthAndHeightClicked() {
+    public void onBtnScaleImageByMaxWidthAndHeightClicked() {
         Bitmap srcBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.demo);
         int maxWidth = srcBitmap.getWidth();
         int maxHeight = srcBitmap.getHeight();

@@ -1,18 +1,37 @@
 package com.jiangkang.ktools.widget;
 
+import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.jiangkang.ktools.R;
+import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.KDialog;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +57,8 @@ public class KDialogActivity extends AppCompatActivity {
     Button btnChooseTimeDialog;
     @BindView(R.id.btn_web_view_dialog)
     Button btnWebViewDialog;
+    @BindView(R.id.btn_bottom_dialog)
+    Button btnBottomDialog;
 
 
     public static void launch(Context context, Bundle bundle) {
@@ -78,15 +99,15 @@ public class KDialogActivity extends AppCompatActivity {
                 "乒乓球",
                 "羽毛球"
         };
-       KDialog.showSingleChoiceDialog(this,
-               "你最喜欢哪种运动？",
-               singleChoiceItems,
-               new KDialog.SingleSelectedCallback() {
-                   @Override
-                   public void singleSelected(int index) {
-                       ToastUtils.showShortToast(singleChoiceItems[index]);
-                   }
-               });
+        KDialog.showSingleChoiceDialog(this,
+                "你最喜欢哪种运动？",
+                singleChoiceItems,
+                new KDialog.SingleSelectedCallback() {
+                    @Override
+                    public void singleSelected(int index) {
+                        ToastUtils.showShortToast(singleChoiceItems[index]);
+                    }
+                });
     }
 
     @OnClick(R.id.btn_multi_choices_dialog)
@@ -105,7 +126,7 @@ public class KDialogActivity extends AppCompatActivity {
                     @Override
                     public void multiSelected(List<Integer> list) {
                         StringBuilder builder = new StringBuilder();
-                        for (int index : list){
+                        for (int index : list) {
                             builder.append("\n" + multiChoicesItems[index]);
                         }
                         ToastUtils.showShortToast("你擅长:" + builder.toString());
@@ -121,25 +142,135 @@ public class KDialogActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_progress_dialog_simple)
     public void onBtnProgressDialogSimpleClicked() {
+        final int[] progress = {0};
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                progress[0] += 10;
+                dialog.setProgress(progress[0]);
+                if (progress[0] >= 100) {
+                    ToastUtils.showShortToast("加载完成");
+                    timer.cancel();
+                    dialog.dismiss();
+                }
+            }
+        }, 0, 500);
     }
 
     @OnClick(R.id.btn_progress_dialog_indeterminate)
     public void onBtnProgressDialogIndeterminateClicked() {
+        ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("正在加载中，请稍等....");
+        dialog.show();
     }
 
     @OnClick(R.id.btn_input_dialog)
     public void onBtnInputDialogClicked() {
+        /*
+        * 封装之后，会变得非常有趣
+        * */
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        View inputView1 = LayoutInflater.from(this).inflate(R.layout.layout_input_dialog, linearLayout, false);
+        View inputView2 = LayoutInflater.from(this).inflate(R.layout.layout_input_dialog, linearLayout, false);
+        ((TextView) inputView1.findViewById(R.id.tv_input)).setText("用户名：");
+        ((EditText) inputView1.findViewById(R.id.et_input)).setHint("请输入用户名");
+        ((TextView) inputView2.findViewById(R.id.tv_input)).setText("密    码：");
+        ((EditText) inputView2.findViewById(R.id.et_input)).setHint("请输入密码");
+        linearLayout.addView(inputView1, 0);
+        linearLayout.addView(inputView2, 1);
+        new AlertDialog.Builder(this)
+                .setView(linearLayout)
+                .setTitle("登录框")
+                .setCancelable(false)
+                .setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ToastUtils.showShortToast("这只是一个假登录");
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
+
 
     @OnClick(R.id.btn_choose_date_dialog)
     public void onBtnChooseDateDialogClicked() {
+        final Calendar calendar = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        String date = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+                        ToastUtils.showShortToast(date);
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
     }
 
     @OnClick(R.id.btn_choose_time_dialog)
     public void onBtnChooseTimeDialogClicked() {
+        final Calendar calendar = Calendar.getInstance();
+        TimePickerDialog dialog = new TimePickerDialog(
+                this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+                        String time = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+                        ToastUtils.showShortToast(time);
+                    }
+                },
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                false
+        );
+        dialog.show();
     }
 
     @OnClick(R.id.btn_web_view_dialog)
     public void onBtnWebViewDialogClicked() {
+        final WebView webView = new WebView(this);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(FileUtils.getAssetsPath("web/gravity-points/index.html"));
+        new AlertDialog.Builder(this)
+                .setView(webView)
+                .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }
+
+    @OnClick(R.id.btn_bottom_dialog)
+    public void onBtnBottomDialogClicked() {
+        WebView webView = new WebView(this);
+        webView.loadUrl("https://github.com/jiangkang/KTools");
+        webView.getSettings().setJavaScriptEnabled(true);
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        dialog.setCancelable(true);
+        dialog.setContentView(webView);
+        dialog.show();
     }
 }

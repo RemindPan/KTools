@@ -82,7 +82,7 @@ public class KDialog {
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (callback != null){
+                        if (callback != null) {
                             callback.singleSelected(selectedIndex[0]);
                         }
                         dialog.dismiss();
@@ -99,8 +99,7 @@ public class KDialog {
     }
 
 
-
-    public static void showMultiChocicesDialog(final Context context, final String title, CharSequence[] items, final MultiSelectedCallback callback){
+    public static void showMultiChocicesDialog(final Context context, final String title, CharSequence[] items, final MultiSelectedCallback callback) {
         final int[] selectedItems;
         final boolean[] selected = new boolean[items.length];
         new AlertDialog.Builder(context)
@@ -116,15 +115,15 @@ public class KDialog {
                     public void onClick(DialogInterface dialog, int which) {
                         int size = selected.length;
                         List<Integer> selectedList = new ArrayList<>();
-                        if (callback != null){
-                            for (int i = 0;i < size;i++){
-                                if (selected[i]){
+                        if (callback != null) {
+                            for (int i = 0; i < size; i++) {
+                                if (selected[i]) {
                                     selectedList.add(i);
                                 }
                             }
-                            if (selectedList != null && selectedList.size() > 0){
+                            if (selectedList != null && selectedList.size() > 0) {
                                 callback.multiSelected(selectedList);
-                            }else {
+                            } else {
                                 callback.selectedNothing();
                             }
                         }
@@ -146,8 +145,9 @@ public class KDialog {
         void singleSelected(int index);
     }
 
-    public interface MultiSelectedCallback{
+    public interface MultiSelectedCallback {
         void multiSelected(List<Integer> list);
+
         void selectedNothing();
     }
 
