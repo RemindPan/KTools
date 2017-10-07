@@ -27,3 +27,5 @@
 -dontwarn okhttp3.**
 -dontwarn okio.**
 -dontwarn javax.annotation.**
+-keep class android.support.design.widget.** { *; }
+-keep interface android.support.design.widget.** { *; }

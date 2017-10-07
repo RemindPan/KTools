@@ -74,9 +74,22 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".requests.LoginActivity"></activity>
-        <activity android:name=".widget.MultiTabsActivity"></activity>
-        <activity android:name=".widget.KDialogActivity"></activity>
+        <activity android:name=".requests.LoginActivity" />
+        <activity android:name=".widget.MultiTabsActivity" />
+        <activity android:name=".widget.KDialogActivity" />
+        <activity
+            android:name=".widget.CoordinatorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".widget.ThemeActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".widget.FabActivity"></activity>
     </application>
 
 </manifest>

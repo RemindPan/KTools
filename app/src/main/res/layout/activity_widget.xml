@@ -12,10 +12,11 @@
       android:layout_height="match_parent"
       android:orientation="vertical"
       >
+
     <Button
-        android:id="@+id/btn_search_view"
+        android:id="@+id/btn_coordinator_layout"
         style="@style/KButton"
-        android:text="SearchView"
+        android:text="CoordinatorLayout"
         android:background="#66CCCC"
         />
     <Button
@@ -67,6 +68,21 @@
           android:text="Dialog"
           android:background="#4DB6AC"
           />
+
+      <Button
+          android:id="@+id/btn_floating_action_button"
+          style="@style/KButton"
+          android:background="#2196F3"
+          android:text="FloatingActionBar"
+          />
+
+
+      <!--<Button-->
+          <!--android:id="@+id/btn_theme"-->
+          <!--style="@style/KButton"-->
+          <!--android:background="#f44336"-->
+          <!--android:text="主题"-->
+           <!--/>-->
 
 
   </LinearLayout>

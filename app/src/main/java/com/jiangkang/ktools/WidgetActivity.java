@@ -8,8 +8,9 @@ import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.ScrollView;
 
+import com.jiangkang.ktools.widget.CoordinatorActivity;
+import com.jiangkang.ktools.widget.FabActivity;
 import com.jiangkang.ktools.widget.KDialogActivity;
-import com.jiangkang.ktools.widget.SearchViewActivity;
 import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.FloatingWindow;
 import com.jiangkang.tools.widget.KNotification;
@@ -20,8 +21,8 @@ import butterknife.OnClick;
 
 public class WidgetActivity extends AppCompatActivity {
 
-    @BindView(R.id.btn_search_view)
-    Button btnSearchView;
+    @BindView(R.id.btn_coordinator_layout)
+    Button btnCoordinatorLayout;
 
     @BindView(R.id.btn_show_floating_window)
     Button btnShowFloatingWindow;
@@ -31,14 +32,23 @@ public class WidgetActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_set_toast_show_time)
     Button btnSetToastShowTime;
+
     @BindView(R.id.btn_create_simple_notification)
     Button mBtnCreateSimpleNotification;
+
     @BindView(R.id.btn_show_custom_notification)
     Button mBtnShowCustomNotification;
+
     @BindView(R.id.btn_widget_dialog)
     Button btnWidgetDialog;
+
     @BindView(R.id.layout_content)
     ScrollView layoutContent;
+    @BindView(R.id.btn_floating_action_button)
+    Button mBtnFloatingActionButton;
+
+//    @BindView(R.id.btn_theme)
+//    Button btnTheme;
 
     public static void launch(Context context, Bundle bundle) {
         Intent intent = new Intent(context, WidgetActivity.class);
@@ -55,9 +65,10 @@ public class WidgetActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btn_search_view)
+    @OnClick(R.id.btn_coordinator_layout)
     public void onBtnSearchViewClicked() {
-        SearchViewActivity.launch(this, null);
+        CoordinatorActivity.launch(this, null);
+//        SearchViewActivity.launch(this, null);
     }
 
     @OnClick(R.id.btn_show_floating_window)
@@ -91,6 +102,17 @@ public class WidgetActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_widget_dialog)
     public void onBtnWidgetDialogClicked() {
-        KDialogActivity.launch(this,null);
+        KDialogActivity.launch(this, null);
     }
+
+    @OnClick(R.id.btn_floating_action_button)
+    public void onFabClicked() {
+        FabActivity.launch(this,null);
+    }
+
+
+//    @OnClick(R.id.btn_theme)
+//    public void onBtnThemeClicked() {
+//
+//    }
 }

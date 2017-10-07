@@ -38,7 +38,7 @@ public final class King {
         @Override
         public void onActivityResumed(Activity activity) {
             setTopActivity(activity);
-            activity.sendBroadcast(new Intent("com.jiangkang.ktools.ActivityChange"));
+//            activity.sendBroadcast(new Intent("com.jiangkang.ktools.ActivityChange"));
         }
 
         @Override
