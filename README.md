@@ -5,12 +5,10 @@ Android常用功能的封装库
 <div>
     <img src="/capture/home_page.png" width="180" height="320" alt="首页"/>
     <img src="/capture/RxJava.png" width="180" height="320" alt="RxJava"/>
+    <img src="/capture/image.png" width="180" height="320" alt="Image"/>
+    <img src="/capture/ui.png" width="180" height="320" alt="UI"/>
 </div>
 
-<div>
-    <img src="/capture/image.png" width="360" height="640" alt="Image"/>
-    <img src="/capture/ui.png" width="360" height="640" alt="UI"/>
-</div>
 
 
 
