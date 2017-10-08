@@ -1,0 +1,56 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_bg_work"
+            style="@style/KButton"
+            android:text="后台耗时任务(线程切换)"
+            android:background="#f44336"
+            />
+
+        <Button
+            android:id="@+id/btn_buffer"
+            style="@style/KButton"
+            android:text="累计点击数(buffer)"
+            android:background="#E91E63"
+            />
+
+        <Button
+            android:id="@+id/btn_debounce"
+            style="@style/KButton"
+            android:text="即时搜索(debounce)"
+            android:background="#9C27B0"
+            />
+
+        <Button
+            android:id="@+id/btn_two_way_data_binding"
+            style="@style/KButton"
+            android:text="双向绑定(PublishSubject)"
+            android:background="#673AB7"
+            />
+
+        <Button
+            android:id="@+id/btn_timing_out_task"
+            style="@style/KButton"
+            android:text="超时任务(timeout)"
+            android:background="#3F51B5"
+            />
+
+
+        <Button
+            android:id="@+id/btn_polling"
+            style="@style/KButton"
+            android:text="轮询(interval/repeatWhen)"
+            android:background="#2196F3"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

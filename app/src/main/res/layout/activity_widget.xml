@@ -76,6 +76,23 @@
           android:text="FloatingActionBar"
           />
 
+    <Button
+        android:id="@+id/btn_scroll"
+        style="@style/KButton"
+        android:background="#03A9F4"
+        android:text="Scrolling"
+        />
+
+
+      <Button
+          android:id="@+id/btn_bottom_nav"
+          style="@style/KButton"
+          android:background="#009688"
+          android:text="Bottom Navigation"
+          />
+
+
+
 
       <!--<Button-->
           <!--android:id="@+id/btn_theme"-->

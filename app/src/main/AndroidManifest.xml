@@ -89,7 +89,17 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".widget.FabActivity"></activity>
+        <activity android:name=".widget.FabActivity" />
+        <activity
+            android:name=".widget.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".video.VideoActivity" />
+        <activity
+            android:name=".widget.BottomNavigationActivity"
+            android:label="@string/title_activity_bottom_navigation"></activity>
+
+        <activity android:name=".rxjava.RxJavaActivity" />
     </application>
 
 </manifest>

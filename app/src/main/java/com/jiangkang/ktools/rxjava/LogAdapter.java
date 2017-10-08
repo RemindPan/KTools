@@ -1,4 +1,4 @@
-package com.jiangkang.ktools.log;
+package com.jiangkang.ktools.rxjava;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -8,9 +8,11 @@ import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.ScrollView;
 
+import com.jiangkang.ktools.widget.BottomNavigationActivity;
 import com.jiangkang.ktools.widget.CoordinatorActivity;
 import com.jiangkang.ktools.widget.FabActivity;
 import com.jiangkang.ktools.widget.KDialogActivity;
+import com.jiangkang.ktools.widget.ScrollingActivity;
 import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.FloatingWindow;
 import com.jiangkang.tools.widget.KNotification;
@@ -46,9 +48,10 @@ public class WidgetActivity extends AppCompatActivity {
     ScrollView layoutContent;
     @BindView(R.id.btn_floating_action_button)
     Button mBtnFloatingActionButton;
-
-//    @BindView(R.id.btn_theme)
-//    Button btnTheme;
+    @BindView(R.id.btn_scroll)
+    Button btnScroll;
+    @BindView(R.id.btn_bottom_nav)
+    Button btnBottomNav;
 
     public static void launch(Context context, Bundle bundle) {
         Intent intent = new Intent(context, WidgetActivity.class);
@@ -107,12 +110,16 @@ public class WidgetActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_floating_action_button)
     public void onFabClicked() {
-        FabActivity.launch(this,null);
+        FabActivity.launch(this, null);
     }
 
+    @OnClick(R.id.btn_scroll)
+    public void onBtnScrollClicked() {
+        ScrollingActivity.launch(this, null);
+    }
 
-//    @OnClick(R.id.btn_theme)
-//    public void onBtnThemeClicked() {
-//
-//    }
+    @OnClick(R.id.btn_bottom_nav)
+    public void onBottomNavClicked() {
+        BottomNavigationActivity.launch(this,null);
+    }
 }

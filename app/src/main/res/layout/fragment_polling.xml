@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="利用RxJava实现轮询操作，分为简单的轮询和时间依次递增的轮询操作"/>
+
+
+    <Button
+        android:id="@+id/btn_polling_simple"
+       style="@style/KButton"
+        android:text="简单轮询"
+        android:background="#4DB6AC"
+        />
+
+    <Button
+        android:id="@+id/btn_polling_increase"
+        style="@style/KButton"
+        android:text="增量轮询"
+        android:background="#009688"
+        />
+
+    <Button
+        android:id="@+id/btn_polling_clear_logs"
+        style="@style/KButton"
+        android:text="清除log"
+        android:background="#00796B"
+        />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_polling"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>
