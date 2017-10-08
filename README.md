@@ -2,10 +2,16 @@
 Android常用功能的封装库
 
 ## 效果图
-<img src="/capture/home_page.png" width="360" height="640" alt="首页"/>
-<img src="/capture/RxJava.png" width="360" height="640" alt="首页"/>
-<img src="/capture/image.png" width="360" height="640" alt="首页"/>
-<img src="/capture/ui.png" width="360" height="640" alt="首页"/>
+<div>
+    <img src="/capture/home_page.png" width="360" height="640" alt="首页"/>
+    <img src="/capture/RxJava.png" width="360" height="640" alt="首页"/>
+</div>
+
+<div>
+    <img src="/capture/image.png" width="360" height="640" alt="首页"/>
+    <img src="/capture/ui.png" width="360" height="640" alt="首页"/>
+</div>
+
 
 
 ## 文章
