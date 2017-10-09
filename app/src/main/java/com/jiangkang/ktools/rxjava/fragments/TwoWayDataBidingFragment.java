@@ -18,8 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnTextChanged;
 import butterknife.Unbinder;
-import rx.Subscriber;
-import rx.subjects.PublishSubject;
+import io.reactivex.functions.Consumer;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,19 +53,9 @@ public class TwoWayDataBidingFragment extends BaseRxJavaFragment {
 
         publishSubject = PublishSubject.create();
 
-        publishSubject.subscribe(new Subscriber<String>() {
+        publishSubject.subscribe(new Consumer<String>() {
             @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(String s) {
+            public void accept(String s) throws Exception {
                 mTvAddResult.setText(s);
             }
         });

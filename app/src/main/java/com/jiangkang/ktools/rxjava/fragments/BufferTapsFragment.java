@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.jiangkang.ktools.R;
 
+import org.reactivestreams.Subscriber;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -21,9 +23,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,31 +75,25 @@ public class BufferTapsFragment extends BaseRxJavaFragment {
 
     private void countTaps() {
         Observable
-                .create(new Observable.OnSubscribe<Boolean>() {
+                .create(new ObservableOnSubscribe<Boolean>() {
                     @Override
-                    public void call(final Subscriber<? super Boolean> subscriber) {
+                    public void subscribe(final ObservableEmitter<Boolean> observableEmitter) throws Exception {
                         mBtnStartBufferTaps.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 log("点击了按钮");
                                 mTvTapsCounter.setText(String.valueOf((++counter)));
-                                subscriber.onNext(true);
+                                observableEmitter.onNext(true);
                             }
                         });
                     }
                 })
                 .buffer(3, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<Boolean>>() {
+                .subscribe(new Observer<List<Boolean>>() {
                     @Override
-                    public void onCompleted() {
+                    public void onSubscribe(Disposable disposable) {
 
-                        log("subscriber -> onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        log("subscriber -> onError:" + e.getMessage());
                     }
 
                     @Override
@@ -103,6 +103,16 @@ public class BufferTapsFragment extends BaseRxJavaFragment {
                             mTvTapsCounter.setText("0");
                             counter = 0;
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        log("subscriber -> onError:" + throwable.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        log("subscriber -> onCompleted");
                     }
                 });
     }

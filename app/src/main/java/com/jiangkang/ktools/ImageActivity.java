@@ -35,7 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import rx.functions.Action1;
+import io.reactivex.functions.Consumer;
 
 public class ImageActivity extends AppCompatActivity {
 
@@ -238,15 +238,16 @@ public class ImageActivity extends AppCompatActivity {
     @OnClick(R.id.btn_take_picture)
     public void onBtnTakePictureClicked() {
         rxPermissions.request(Manifest.permission.CAMERA)
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean aBoolean) {
+                    public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean) {
                             openCamera();
                         } else {
                             ToastUtils.showShortToast("权限被拒绝");
                         }
                     }
+
                 });
 
     }
@@ -260,9 +261,9 @@ public class ImageActivity extends AppCompatActivity {
     public void onBtnTakeVideoClicked() {
         rxPermissions
                 .request(Manifest.permission.CAMERA)
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean aBoolean) {
+                    public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean) {
                             takeVideo();
                         } else {
@@ -313,15 +314,16 @@ public class ImageActivity extends AppCompatActivity {
     @OnClick(R.id.btn_take_picture_without_compress)
     public void onBtnTakePictureWithoutCompressClicked() {
         rxPermissions.request(Manifest.permission.CAMERA)
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean aBoolean) {
+                    public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean) {
                             openCameraWithOutput();
                         } else {
                             ToastUtils.showShortToast("权限被拒绝");
                         }
                     }
+
                 });
     }
 

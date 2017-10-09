@@ -32,8 +32,8 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Subscriber;
-import rx.functions.Action1;
+import io.reactivex.functions.Consumer;
+
 
 /**
  * Created by jiangkang on 2017/9/5.
@@ -90,9 +90,9 @@ public class SystemActivity extends AppCompatActivity {
     public void onOpenContactsClicked() {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.request(Manifest.permission.READ_CONTACTS)
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean granted) {
+                    public void accept(Boolean granted) throws Exception {
                         if (granted){
                             gotoContactPage();
                         }else {
@@ -195,15 +195,16 @@ public class SystemActivity extends AppCompatActivity {
     public void onBtnGetAllContactsClicked() {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.request(Manifest.permission.READ_CONTACTS)
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean aBoolean) {
+                    public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean){
                             getContactList();
                         }else {
                             ToastUtils.showShortToast("权限被拒绝");
                         }
                     }
+
                 });
     }
 
@@ -283,15 +284,16 @@ public class SystemActivity extends AppCompatActivity {
     public void onBtnRequestPermissionClicked() {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.request(Manifest.permission.READ_CONTACTS)
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean aBoolean) {
+                    public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean){
                             ToastUtils.showShortToast("成功了");
                         }else {
                             ToastUtils.showShortToast("失败了");
                         }
                     }
+
                 });
 
     }

@@ -26,13 +26,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,9 +57,9 @@ public class BackgroundWorkFragment extends Fragment {
     private LogAdapter mAdapter;
     private List<String> mLogs;
 
-    private Subscription subscription;
+    private Disposable subscription;
 
-    private CompositeSubscription compositeSubscription = new CompositeSubscription();
+    private CompositeDisposable compositeSubscription = new CompositeDisposable();
 
 
     public BackgroundWorkFragment() {
@@ -131,32 +133,33 @@ public class BackgroundWorkFragment extends Fragment {
 
     private void startRxJavaStream() {
         subscription = Observable.just(true)
-                .map(new Func1<Boolean, Boolean>() {
+                .map(new Function<Boolean, Boolean>() {
                     @Override
-                    public Boolean call(Boolean aBoolean) {
+                    public Boolean apply(Boolean aBoolean) throws Exception {
                         log("Observable -> map -> call");
                         doSomethingBlocked();
                         return aBoolean;
                     }
+
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void onCompleted() {
+                    public void accept(Boolean aBoolean) throws Exception {
+                        log("subscriber -> onNext :" + aBoolean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mProgressBgWork.setVisibility(View.INVISIBLE);
+                        log("subscriber -> onError :" + throwable.getMessage());
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
                         mProgressBgWork.setVisibility(View.INVISIBLE);
                         log("subscriber -> onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mProgressBgWork.setVisibility(View.INVISIBLE);
-                        log("subscriber -> onError :" + e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(Boolean aBoolean) {
-                        log("subscriber -> onNext :" + aBoolean);
                     }
                 });
         compositeSubscription.add(subscription);
@@ -174,7 +177,10 @@ public class BackgroundWorkFragment extends Fragment {
     @OnClick(R.id.btn_clear_log)
     public void onBtnClearLogClicked() {
         clearLogs();
-        subscription.unsubscribe();
+        if (subscription != null){
+            subscription.dispose();
+        }
+
         compositeSubscription.clear();
     }
 

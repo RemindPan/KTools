@@ -24,11 +24,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,7 +48,7 @@ public class DebounceSearchFragment extends BaseRxJavaFragment {
     RecyclerView mRcDebounceSearch;
     Unbinder unbinder;
 
-    private Subscription subscription;
+    private Disposable subscription;
 
     public DebounceSearchFragment() {
         // Required empty public constructor
@@ -69,9 +73,9 @@ public class DebounceSearchFragment extends BaseRxJavaFragment {
 
 
         subscription = Observable
-                .create(new Observable.OnSubscribe<String>() {
+                .create(new ObservableOnSubscribe<String>() {
                     @Override
-                    public void call(final Subscriber<? super String> subscriber) {
+                    public void subscribe(final ObservableEmitter<String> observableEmitter) throws Exception {
                         mEtSearch.addTextChangedListener(new TextWatcher() {
                             @Override
                             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,7 +84,7 @@ public class DebounceSearchFragment extends BaseRxJavaFragment {
 
                             @Override
                             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                subscriber.onNext(s.toString());
+                                observableEmitter.onNext(s.toString());
                             }
 
                             @Override
@@ -89,40 +93,42 @@ public class DebounceSearchFragment extends BaseRxJavaFragment {
                             }
                         });
                     }
+
                 })
                 .debounce(500, TimeUnit.MILLISECONDS)
-                .filter(new Func1<String, Boolean>() {
-                    @Override
-                    public Boolean call(String s) {
-                        if (!TextUtils.isEmpty(s)) return true;
-                        return false;
-                    }
-                })
+//                .filter(new Function<String, Boolean>() {
+//                    @Override
+//                    public Boolean apply(String s) throws Exception {
+//                        if (!TextUtils.isEmpty(s)) return true;
+//                        return false;
+//                    }
+//                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
+                .subscribe(new Consumer<String>() {
                     @Override
-                    public void onCompleted() {
+                    public void accept(String s) throws Exception {
+                        if (!TextUtils.isEmpty(s)) {
+                            log(s);
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        log("subscriber -> onError ->" + throwable.getMessage());
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
                         log("subscriber -> onCompleted");
                     }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        log("subscriber -> onError ->" + e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        log(s);
-                    }
                 });
-
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        subscription.unsubscribe();
+        subscription.dispose();
     }
 
     @OnClick(R.id.btn_search_clear_log)

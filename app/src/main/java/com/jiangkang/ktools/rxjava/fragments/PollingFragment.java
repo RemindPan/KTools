@@ -14,17 +14,21 @@ import android.widget.Button;
 
 import com.jiangkang.ktools.R;
 
+import org.reactivestreams.Subscriber;
+
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import rx.Observable;
-import rx.Subscriber;
-import rx.functions.Action0;
-import rx.functions.Func1;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +43,7 @@ public class PollingFragment extends BaseRxJavaFragment {
 
     private int mCounter = 0;
 
-    private CompositeSubscription subscriptions = new CompositeSubscription();
+    private CompositeDisposable subscriptions = new CompositeDisposable();
 
 
     @BindView(R.id.btn_polling_simple)
@@ -87,39 +91,37 @@ public class PollingFragment extends BaseRxJavaFragment {
         subscriptions.add(
                 Observable
                         .interval(INITIAL_DELAY, POLLING_INTERVAL, TimeUnit.MILLISECONDS)
-                        .map(new Func1<Long, String>() {
+                        .map(new Function<Long, Object>() {
                             @Override
-                            public String call(Long aLong) {
+                            public Object apply(Long aLong) throws Exception {
                                 return simulateRequestAndResponse(aLong);
                             }
                         })
                         .take(POLL_COUNT)
-                        .doOnSubscribe(new Action0() {
+                        .doOnSubscribe(new Consumer<Disposable>() {
                             @Override
-                            public void call() {
-                                //subscribe前的初始化操作
+                            public void accept(Disposable disposable) throws Exception {
                                 log(String.format("开始简单的轮询: %s", mCounter));
                             }
                         })
-                        .subscribe(new Subscriber<String>() {
+                        .subscribe(new Consumer<Object>() {
                             @Override
-                            public void onCompleted() {
+                            public void accept(Object o) throws Exception {
+                                log(String.format("执行任务：%s（%02d）", mCounter, getExeSecond()));
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) throws Exception {
+                                mCounter = 0;
+                                log("subscriber -> onError ->" + throwable.getMessage().toString());
+                            }
+                        }, new Action() {
+                            @Override
+                            public void run() throws Exception {
                                 mCounter = 0;
                                 log("subscriber -> onCompleted");
                             }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                mCounter = 0;
-                                log("subscriber -> onError ->" + e.getMessage().toString());
-                            }
-
-                            @Override
-                            public void onNext(String s) {
-                                log(String.format("执行任务：%s（%02d）", mCounter, getExeSecond()));
-                            }
                         }));
-
 
     }
 

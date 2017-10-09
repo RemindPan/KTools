@@ -11,8 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
 import com.jiangkang.ktools.R;
+
+import org.reactivestreams.Subscriber;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,10 +21,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,39 +75,39 @@ public class TimingoutFragment extends BaseRxJavaFragment {
     public void onBtnTimingNormalClicked() {
 
         Observable
-                .create(new Observable.OnSubscribe<String>() {
+                .create(new ObservableOnSubscribe<String>() {
                     @Override
-                    public void call(Subscriber<? super String> subscriber) {
+                    public void subscribe(ObservableEmitter<String> observableEmitter) throws Exception {
                         log("开始一个耗时2s左右的任务，超时时间为3s");
-                        subscriber.onNext("正常任务");
+                        observableEmitter.onNext("正常任务");
                         try {
                             Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        subscriber.onCompleted();
+                        observableEmitter.onComplete();
                     }
+
                 })
                 .subscribeOn(Schedulers.computation())
                 .timeout(3, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
+                .subscribe(new Consumer<String>() {
                     @Override
-                    public void onCompleted() {
-                        log("任务完成");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        log("任务出错 ->" + e.getMessage().toString());
-                    }
-
-                    @Override
-                    public void onNext(String s) {
+                    public void accept(String s) throws Exception {
                         log(String.format("onNext() -> %s", s));
                     }
-                })
-        ;
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        log("任务出错 ->" + throwable.getMessage().toString());
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        log("任务完成");
+                    }
+                });
 
 
     }
@@ -112,42 +116,43 @@ public class TimingoutFragment extends BaseRxJavaFragment {
     public void onBtnTimingOutClicked() {
 
         Observable
-                .create(new Observable.OnSubscribe<String>() {
+                .create(new ObservableOnSubscribe<String>() {
                     @Override
-                    public void call(Subscriber<? super String> subscriber) {
+                    public void subscribe(ObservableEmitter<String> observableEmitter) throws Exception {
                         log("开启一个耗时4s左右，超时时间为3s的任务");
-                        subscriber.onNext("超时任务");
+                        observableEmitter.onNext("超时任务");
                         try {
                             Thread.sleep(4000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        subscriber.onCompleted();
+                        observableEmitter.onComplete();
                     }
+
                 })
                 .subscribeOn(Schedulers.computation())
-                .timeout(3,TimeUnit.SECONDS,Observable.create(new Observable.OnSubscribe<String>() {
+                .timeout(3, TimeUnit.SECONDS, Observable.create(new ObservableOnSubscribe<String>() {
                     @Override
-                    public void call(Subscriber<? super String> subscriber) {
+                    public void subscribe(ObservableEmitter<String> observableEmitter) throws Exception {
                         log("任务超时");
-                        subscriber.onCompleted();
+                        observableEmitter.onComplete();
                     }
                 }))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
+                .subscribe(new Consumer<String>() {
                     @Override
-                    public void onCompleted() {
+                    public void accept(String s) throws Exception {
+                        log(String.format("onNext() -> %s", s));
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        log("任务出错 ->" + throwable.getMessage().toString());
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
                         log("任务完成");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        log("任务出错 ->" + e.getMessage().toString());
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        log(String.format("onNext() -> %s",s));
                     }
                 });
 

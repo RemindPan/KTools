@@ -106,6 +106,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
     @Override
     public void onBackPressed() {
         if (webContainer.canGoBack()) {
+            webContainer.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
             webContainer.goBack();
         } else {
             super.onBackPressed();
