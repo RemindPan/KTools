@@ -118,7 +118,7 @@ public class KDialogActivity extends AppCompatActivity {
                 "乒乓球",
                 "羽毛球"
         };
-        KDialog.showMultiChocicesDialog(
+        KDialog.showMultiChoicesDialog(
                 this,
                 "你擅长哪些运动？",
                 multiChoicesItems,

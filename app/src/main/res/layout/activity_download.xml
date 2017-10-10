@@ -13,4 +13,12 @@
         android:background="#f44336"
         />
 
+    <Button
+        android:id="@+id/btn_download_by_retrofit"
+        style="@style/KButton"
+        android:text="使用Retrofit/Okhttp下载"
+        android:background="#E91E63"
+        />
+
+
 </LinearLayout>

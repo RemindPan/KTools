@@ -41,6 +41,8 @@ ext {
 
             daggerVersion             : '2.11',
 
+            retrofitVersion           : '2.3.0',
+
 
     ]
 
@@ -93,10 +95,14 @@ ext {
 
             okhttp             : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
             mockwebserver      : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
+            "okhttp-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${libVersion.okhttpVersion}",
 
             dagger             : "com.google.dagger:dagger:${libVersion.daggerVersion}",
             daggerCompiler     : "com.google.dagger:dagger-compiler:${libVersion.daggerVersion}",
 
+            retrofit           : "com.squareup.retrofit2:retrofit:${libVersion.retrofitVersion}",
+            retrofit_converterJson : "com.squareup.retrofit2:converter-gson:${libVersion.retrofitVersion}",
+            retrofit_adpter_rxjava2: "com.squareup.retrofit2:adapter-rxjava2:${libVersion.retrofitVersion}",
     ]
 
 }

@@ -61,6 +61,7 @@ dependencies {
     compile project(path: ':tools')
 
     compile deps['okhttp']
+    compile deps["okhttp-logging-interceptor"]
     compile deps['mockwebserver']
 
     //    testCompile "org.mockito:mockito-core:2.+"
@@ -89,6 +90,10 @@ dependencies {
     compile deps['dagger']
 //    compile deps['daggerSupport']
     annotationProcessor deps['daggerCompiler']
+
+    compile deps["retrofit"]
+    compile deps["retrofit_converterJson"]
+    compile deps["retrofit_adpter_rxjava2"]
 
 
 

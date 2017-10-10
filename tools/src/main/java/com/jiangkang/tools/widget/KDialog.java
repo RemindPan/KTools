@@ -1,11 +1,13 @@
 package com.jiangkang.tools.widget;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.LayoutRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
@@ -99,7 +101,7 @@ public class KDialog {
     }
 
 
-    public static void showMultiChocicesDialog(final Context context, final String title, CharSequence[] items, final MultiSelectedCallback callback) {
+    public static void showMultiChoicesDialog(final Context context, final String title, CharSequence[] items, final MultiSelectedCallback callback) {
         final int[] selectedItems;
         final boolean[] selected = new boolean[items.length];
         new AlertDialog.Builder(context)
@@ -138,6 +140,27 @@ public class KDialog {
                 })
                 .setCancelable(false)
                 .show();
+    }
+
+
+    private static ProgressDialog progressDialog;
+
+    public static void showProgressDialog(final Context context, int progress){
+        if (progressDialog == null){
+            progressDialog = new ProgressDialog(context);
+        }
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setMax(100);
+        progressDialog.setProgress(progress);
+        progressDialog.show();
+
+        if (progress >= 100){
+            if (progressDialog != null && progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+        }
     }
 
 
