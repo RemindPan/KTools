@@ -54,7 +54,6 @@ public class KDialog {
 
     }
 
-
     public static void showCustomViewDialog(final Context context, final String title, final View view,
                                             final DialogInterface.OnClickListener positiveListener, final DialogInterface.OnClickListener negativeListener) {
         new Handler(Looper.getMainLooper())

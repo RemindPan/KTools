@@ -3,6 +3,7 @@ package com.jiangkang.ktools;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaDataSource;
@@ -118,9 +119,9 @@ public class AudioActivity extends AppCompatActivity {
     list.add("7");
     list.add("8");
     list.add("9");
-    list.add(".");
+    list.add("dot");
     list.add("0");
-    list.add("元");
+    list.add("yuan");
 
 
     speakChineseNum(list);
@@ -130,9 +131,9 @@ public class AudioActivity extends AppCompatActivity {
   private void speakChineseNum(final List list) {
     String path = String.format("sound/tts_%s.mp3",list.get(counter));
     try {
-      FileDescriptor fd = FileUtils.getAssetFileDescription(path).getFileDescriptor();
-      player.setDataSource(fd, FileUtils.getAssetFileDescription(path).getStartOffset(),
-          FileUtils.getAssetFileDescription(path).getLength());
+      AssetFileDescriptor fd = FileUtils.getAssetFileDescription(path);
+      player.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(),
+          fd.getLength());
       player.prepare();
       player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
         @Override public void onPrepared(MediaPlayer mp) {
@@ -145,7 +146,8 @@ public class AudioActivity extends AppCompatActivity {
           counter++;
           if (counter < list.size()){
             try {
-              mp.setDataSource(FileUtils.getAssetFileDescription(String.format("sound/tts_%s.mp3",list.get(counter))).getFileDescriptor());
+              AssetFileDescriptor fileDescriptor = FileUtils.getAssetFileDescription(String.format("sound/tts_%s.mp3",list.get(counter)));
+              mp.setDataSource(fileDescriptor.getFileDescriptor(),fileDescriptor.getStartOffset(),fileDescriptor.getLength());
               mp.prepare();
             } catch (IOException e) {
               e.printStackTrace();

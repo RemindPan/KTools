@@ -26,6 +26,12 @@
             android:background="#E91E63"
             />
 
+        <Button
+            android:id="@+id/btn_write_string_to_file"
+            style="@style/KButton"
+            android:background="#9C27B0"
+            android:text="将字符串写入文件" />
+
     </LinearLayout>
 
 

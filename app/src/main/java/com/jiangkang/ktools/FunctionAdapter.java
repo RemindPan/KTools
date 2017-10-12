@@ -41,7 +41,7 @@ public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHo
         functionList.add(new FunctionEntity("Security",SecurityActivity.class,R.drawable.ic_security));
         functionList.add(new FunctionEntity("Download",DownloadActivity.class,R.drawable.ic_download));
         functionList.add(new FunctionEntity("Image",ImageActivity.class,R.drawable.ic_image));
-//        functionList.add(new FunctionEntity("File",FileSystemActivity.class,R.drawable.ic_file_system));
+        functionList.add(new FunctionEntity("File",FileSystemActivity.class,R.drawable.ic_file_system));
         functionList.add(new FunctionEntity("Scan",ScanActivity.class,R.drawable.ic_scan));
         functionList.add(new FunctionEntity("Audio",AudioActivity.class,R.drawable.ic_audio));
         functionList.add(new FunctionEntity("RxJava", RxJavaActivity.class,R.drawable.ic_rx_java));
