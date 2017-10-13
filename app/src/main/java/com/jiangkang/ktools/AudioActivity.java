@@ -110,19 +110,19 @@ public class AudioActivity extends AppCompatActivity {
   @OnClick(R.id.btn_play_multi_sounds) public void onBtnPlayMultiSoundsClicked() {
 
     final List<String> list = new ArrayList<>();
+    list.add("success");
     list.add("1");
+    list.add("ten_thousand");
     list.add("2");
+    list.add("thousand");
     list.add("3");
+    list.add("hundred");
     list.add("4");
+    list.add("ten");
     list.add("5");
-    list.add("6");
-    list.add("7");
-    list.add("8");
-    list.add("9");
     list.add("dot");
-    list.add("0");
+    list.add("6");
     list.add("yuan");
-
 
     speakChineseNum(list);
 

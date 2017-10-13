@@ -1,6 +1,7 @@
 package com.jiangkang.ktools;
 
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -10,10 +11,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 
 import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ToastUtils;
@@ -27,6 +32,8 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,7 +88,6 @@ public class FileSystemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_file_system);
         ButterKnife.bind(this);
         assetManager = getAssets();
-
     }
 
 
@@ -116,13 +122,13 @@ public class FileSystemActivity extends AppCompatActivity {
             player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    mp.start();
+                   showPlayerDialog(mp);
                 }
             });
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ToastUtils.showShortToast("暂时还没有实现");
     }
 
     @OnClick(R.id.btn_get_json_from_assets)
@@ -213,6 +219,80 @@ public class FileSystemActivity extends AppCompatActivity {
     @OnClick(R.id.btn_decrypt_file)
     public void onBtnDecryptFileClicked() {
         ToastUtils.showShortToast("暂时还没有实现");
+    }
+
+
+    private void showPlayerDialog(final MediaPlayer player){
+        final int duration = player.getDuration();
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_dialog_music_player,null);
+        final SeekBar seekBar = (SeekBar) view.findViewById(R.id.seek_bar_music);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //此处干扰正常播放，声音抖动
+                int max = seekBar.getMax();
+                int destPosition = progress * duration / max;
+                player.seekTo(destPosition);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        view.findViewById(R.id.iv_play).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.start();
+            }
+        });
+        view.findViewById(R.id.iv_pause).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.pause();
+            }
+        });
+        view.findViewById(R.id.iv_stop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.stop();
+            }
+        });
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int currentPosition = player.getCurrentPosition();
+                        int progress = currentPosition * 100 / duration;
+                        seekBar.setProgress(progress);
+                    }
+                });
+            }
+        },0,100);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false)
+                .setTitle("播放器")
+                .setView(view)
+                .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (player.isPlaying()){
+                            player.stop();
+                        }
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
 }
