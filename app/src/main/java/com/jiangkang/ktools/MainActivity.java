@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
     initViews();
+    ToastUtils.showShortToast("最高可用内存=" + Runtime.getRuntime().maxMemory() / (1024 * 1024) + "M");
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {

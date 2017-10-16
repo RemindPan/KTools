@@ -20,7 +20,7 @@ ext {
             constraintLayoutVersion   :  '1.0.2',
 
             //glide
-            glideVersion              :  '4.0.0-RC1',
+            glideVersion              :  '4.2.0',
 
             //greendao
             greendaoVersion           : '3.2.2',

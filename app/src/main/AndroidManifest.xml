@@ -97,9 +97,10 @@
         <activity android:name=".video.VideoActivity" />
         <activity
             android:name=".widget.BottomNavigationActivity"
-            android:label="@string/title_activity_bottom_navigation"></activity>
-
+            android:label="@string/title_activity_bottom_navigation" />
         <activity android:name=".rxjava.RxJavaActivity" />
+        <activity android:name=".effect.EffectActivity" />
+        <activity android:name=".image.GalleryActivity"></activity>
     </application>
 
 </manifest>
