@@ -8,9 +8,13 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.jiangkang.ktools.audio.MoneyConvert;
+import com.jiangkang.ktools.audio.VoiceSpeaker;
+import com.jiangkang.ktools.audio.VoiceTemplate;
 import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
@@ -103,60 +107,29 @@ public class AudioActivity extends AppCompatActivity {
     @OnClick(R.id.btn_play_multi_sounds)
     public void onBtnPlayMultiSoundsClicked() {
 
-        final List<String> list = new ArrayList<>();
-        list.add("success");
-        list.add("1");
-        list.add("ten_thousand");
-        list.add("2");
-        list.add("thousand");
-        list.add("3");
-        list.add("hundred");
-        list.add("4");
-        list.add("ten");
-        list.add("5");
-        list.add("dot");
-        list.add("6");
-        list.add("yuan");
+        String numString = "697834214.23";
 
-        speakChineseNum(list);
+//        String content = MoneyConvert.arabNumToChineseRMB(108);
+//        ToastUtils.showShortToast(content);
+//
+        List<String> list = new VoiceTemplate()
+                .setPrefix("success")
+                .setNumString(numString)
+                .setSuffix("voucher")
+                .gen();
+
+        List<String> secondList = new VoiceTemplate()
+                .setPrefix("koubei_daibo")
+                .setNumString(numString)
+                .setSuffix("yuan")
+                .gen();
+
+        List<String> defaultList = VoiceTemplate.defalut.setNumString(numString).setSuffix("yuan").gen();
+
+        VoiceSpeaker.getInstance().speak(list);
+        VoiceSpeaker.getInstance().speak(secondList);
+        VoiceSpeaker.getInstance().speak(defaultList);
 
     }
 
-    private void speakChineseNum(final List list) {
-        final int[] counter = {0};
-        String path = String.format("sound/tts_%s.mp3", list.get(counter[0]));
-        try {
-            AssetFileDescriptor fd = FileUtils.getAssetFileDescription(path);
-            if (player.isPlaying()) return;
-            player.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(),
-                    fd.getLength());
-            player.prepare();
-            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mp.start();
-                }
-            });
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    mp.reset();
-                    counter[0]++;
-                    if (counter[0] < list.size()) {
-                        try {
-                            AssetFileDescriptor fileDescriptor = FileUtils.getAssetFileDescription(String.format("sound/tts_%s.mp3", list.get(counter[0])));
-                            mp.setDataSource(fileDescriptor.getFileDescriptor(), fileDescriptor.getStartOffset(), fileDescriptor.getLength());
-                            mp.prepare();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        mp.reset();
-                    }
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
