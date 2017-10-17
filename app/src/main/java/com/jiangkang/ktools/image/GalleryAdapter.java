@@ -11,13 +11,8 @@ import android.widget.ImageView;
 
 import com.jiangkang.ktools.GlideApp;
 import com.jiangkang.ktools.R;
-import com.jiangkang.tools.utils.DownloadUtils;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * Created by jiangkang on 2017/10/16.

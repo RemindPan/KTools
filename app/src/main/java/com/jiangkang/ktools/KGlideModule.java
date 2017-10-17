@@ -18,9 +18,9 @@ public final class KGlideModule extends AppGlideModule{
         return false;
     }
 
-
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
         super.applyOptions(context, builder);
     }
+
 }
