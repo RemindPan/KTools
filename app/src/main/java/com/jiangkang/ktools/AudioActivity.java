@@ -2,31 +2,35 @@ package com.jiangkang.ktools;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.jiangkang.ktools.audio.MoneyConvert;
+import com.jiangkang.ktools.audio.VoiceBroadcastReceiver;
 import com.jiangkang.ktools.audio.VoiceSpeaker;
 import com.jiangkang.ktools.audio.VoiceTemplate;
-import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.Subject;
 
+/**
+ * @author jiangkang
+ */
 public class AudioActivity extends AppCompatActivity {
 
     private static final String TAG = "AudioActivity";
@@ -90,7 +94,12 @@ public class AudioActivity extends AppCompatActivity {
                         if (!TextUtils.isEmpty(etTextContent.getText().toString())) {
                             content = etTextContent.getText().toString();
                         }
-                        speech.speak(content, TextToSpeech.QUEUE_FLUSH, null);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            speech.speak(content, TextToSpeech.QUEUE_FLUSH, null, null);
+                        } else {
+                            speech.speak(content, TextToSpeech.QUEUE_FLUSH, null);
+                        }
+
                     }
                 }
             }
@@ -106,30 +115,8 @@ public class AudioActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_play_multi_sounds)
     public void onBtnPlayMultiSoundsClicked() {
-
-        String numString = "697834214.23";
-
-//        String content = MoneyConvert.arabNumToChineseRMB(108);
-//        ToastUtils.showShortToast(content);
-//
-        List<String> list = new VoiceTemplate()
-                .setPrefix("success")
-                .setNumString(numString)
-                .setSuffix("voucher")
-                .gen();
-
-        List<String> secondList = new VoiceTemplate()
-                .setPrefix("koubei_daibo")
-                .setNumString(numString)
-                .setSuffix("yuan")
-                .gen();
-
-        List<String> defaultList = VoiceTemplate.defalut.setNumString(numString).setSuffix("yuan").gen();
-
-        VoiceSpeaker.getInstance().speak(list);
-        VoiceSpeaker.getInstance().speak(secondList);
-        VoiceSpeaker.getInstance().speak(defaultList);
-
+        sendBroadcast(new Intent(this, VoiceBroadcastReceiver.class));
     }
+
 
 }

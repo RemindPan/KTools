@@ -32,27 +32,6 @@ public final class ImagePool {
             "https://pic1.zhimg.com/50/v2-7fb0675beedabf2fa8c9068e1a34c118_hd.jpg",
             "https://pic4.zhimg.com/50/v2-7d86182ee7c52b71985aa059f27f48e7_hd.jpg",
             "https://pic3.zhimg.com/50/v2-97e9a3e3856dc8417fa725f7bec6fc0e_hd.jpg",
-            "https://pic2.zhimg.com/50/v2-979503e3a3167e70a558dc343368ebcd_hd.jpg",
-            "https://pic2.zhimg.com/50/v2-26bb3d8ee7f2b66fb0eef44dee0e8b45_hd.jpg",
-            "https://pic1.zhimg.com/50/v2-328264bc86dc5ec671bec98d39871984_hd.jpg",
-            "https://pic2.zhimg.com/50/v2-48338ca696c6b72206dbfd8bc779b209_hd.jpg",
-            "https://pic2.zhimg.com/50/v2-47f6753cbe2a6c0b832d95dd9a27c6b9_hd.jpg",
-            "https://pic3.zhimg.com/50/v2-7ccbc225e72c58ead917b81253a99232_hd.jpg",
-            "https://pic4.zhimg.com/50/v2-5c989503793b42174ee0f1bab4fc6203_hd.jpg",
-            "https://pic1.zhimg.com/50/v2-6380593b45a09703a2520d6a72149934_hd.jpg",
-            "https://pic3.zhimg.com/50/v2-1b2ce5be5c8298776d8d16ce8b2d8066_hd.jpg",
-            "https://pic4.zhimg.com/50/v2-9c9b1a9c592fed8deb1157e11b2235c3_hd.jpg",
-            "https://pic4.zhimg.com/50/v2-35ac000b1bfdfdb03b7215f81cf88b9f_hd.jpg",
-            "https://pic3.zhimg.com/50/v2-89a75d692245ec6271d86a0aeb65a3fa_hd.jpg",
-            "https://pic3.zhimg.com/50/v2-811dd8c491427a17c2d506df41dbe526_hd.jpg",
-            "https://pic4.zhimg.com/50/v2-e2d908a26077f83f8ffcf2f6a4c27ccb_hd.jpg",
-            "https://pic3.zhimg.com/50/v2-3b13c7e7eae1a2af10de3cca6d328522_hd.jpg",
-            "https://pic1.zhimg.com/50/v2-23eb2432d812b2fa8acc7d96eda07a70_hd.jpg",
-            "https://pic2.zhimg.com/50/v2-25009d57457defd52c6c306b6f5a040d_hd.jpg",
-            "https://pic3.zhimg.com/50/v2-cede8115f3fc92651723c72f23c69a32_hd.jpg",
-            "https://pic4.zhimg.com/50/v2-d293cdc11d5ea624d54c36b0352b6a4f_hd.jpg",
-            "https://pic4.zhimg.com/50/v2-56145c51d90f0a09f61802cbfbfbfaaf_hd.jpg",
-            "https://pic2.zhimg.com/50/v2-d7a2e1db5e101dc93fc6b2073525bafd_hd.jpg"
     };
 
 

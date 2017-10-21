@@ -16,7 +16,7 @@
         android:id="@+id/btn_post"
         style="@style/KButton"
         android:background="#E91E63"
-        android:text="Post （Github登录）" />
+        android:text="Post" />
 
 
 </LinearLayout>

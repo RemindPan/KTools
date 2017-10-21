@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    compileSdkVersion libVersion.compileSdkVersion
+    buildToolsVersion libVersion.buildToolsVersion
     defaultConfig {
         applicationId "com.jiangkang.ktools"
         minSdkVersion 19
@@ -11,6 +11,7 @@ android {
         versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
 
     }
     buildTypes {
@@ -24,6 +25,7 @@ android {
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
     }
+
     //    testOptions {
     //        unitTests {
     //            includeAndroidResources = true
@@ -101,4 +103,5 @@ dependencies {
     compile deps["glideOkhttp"]
     annotationProcessor deps["glideCompiler"]
 //    compile 'com.google.android.exoplayer:exoplayer:r2.4.3'
+    compile project(path: ':requests')
 }

@@ -73,6 +73,7 @@
                 <action android:name="com.jiangkang.ktools.ActivityChange" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".audio.VoiceBroadcastReceiver" />
 
         <activity android:name=".requests.LoginActivity" />
         <activity android:name=".widget.MultiTabsActivity" />

@@ -5,25 +5,38 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 
+import com.google.gson.Gson;
 import com.jiangkang.ktools.requests.LoginActivity;
+import com.jiangkang.requests.KRequests;
+import com.jiangkang.requests.zhihu.ZhihuApi;
+import com.jiangkang.requests.zhihu.bean.LatestNews;
+import com.jiangkang.requests.zhihu.bean.StartPageInfo;
+import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.KDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.FlowableSubscriber;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class RequestsActivity extends AppCompatActivity {
 
+    private static final String TAG = "RequestsActivity";
     @BindView(R.id.btn_get_a_url)
     Button btnGetAUrl;
     @BindView(R.id.btn_post)
@@ -81,8 +94,13 @@ public class RequestsActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_post)
     public void onBtnPostClicked() {
-//        LoginActivity.launch(this,null);
-      Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-      startActivity(intent);
+        KRequests.request(ZhihuApi.class).getLatestNews()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<LatestNews>() {
+                    @Override
+                    public void accept(LatestNews latestNews) throws Exception {
+                        KDialog.showMsgDialog(RequestsActivity.this,new Gson().toJson(latestNews));
+                    }
+                });
     }
 }

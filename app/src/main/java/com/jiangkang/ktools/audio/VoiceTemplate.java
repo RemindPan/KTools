@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by jiangkang on 2017/10/17.
+ *
+ * @author jiangkang
+ * @date 2017/10/17
  */
 
 public class VoiceTemplate {
 
-    private String voiceType;
+    private static final String DOT = ".";
 
     private String numString;
 
@@ -19,22 +21,15 @@ public class VoiceTemplate {
 
     private String suffix;
 
-    private List<String> voiceList;
-
-    public static VoiceTemplate defalut = new VoiceTemplate()
-            .setPrefix("success");
-
-
     public VoiceTemplate() {
 
     }
-
 
     public String getPrefix() {
         return prefix;
     }
 
-    public VoiceTemplate setPrefix(String prefix) {
+    public VoiceTemplate prefix(String prefix) {
         this.prefix = prefix;
         return this;
     }
@@ -43,25 +38,17 @@ public class VoiceTemplate {
         return suffix;
     }
 
-    public VoiceTemplate setSuffix(String suffix) {
+    public VoiceTemplate suffix(String suffix) {
         this.suffix = suffix;
         return this;
     }
 
-    public String getVoiceType() {
-        return voiceType;
-    }
-
-    public VoiceTemplate setVoiceType(String voiceType) {
-        this.voiceType = voiceType;
-        return this;
-    }
 
     public String getNumString() {
         return numString;
     }
 
-    public VoiceTemplate setNumString(String numString) {
+    public VoiceTemplate numString(String numString) {
         this.numString = numString;
         return this;
     }
@@ -106,17 +93,19 @@ public class VoiceTemplate {
     private List<String> genReadableMoney(String numString) {
         List<String> result = new ArrayList<>();
         if (!TextUtils.isEmpty(numString)) {
-            if (numString.contains(".")) {
+            if (numString.contains(DOT)) {
                 String integerPart = numString.split("\\.")[0];
                 String decimalPart = numString.split("\\.")[1];
                 List<String> intList = readIntPart(integerPart);
                 List<String> decimalList = readDecimalPart(decimalPart);
                 result.addAll(intList);
-                result.add("dot");
-                result.addAll(decimalList);
+                if (!decimalList.isEmpty()){
+                    result.add("dot");
+                    result.addAll(decimalList);
+                }
             }else {
                 //int
-                result.addAll(genReadableMoney(numString));
+                result.addAll(readIntPart(numString));
             }
         }
         return result;
@@ -124,9 +113,11 @@ public class VoiceTemplate {
 
     private List<String> readDecimalPart(String decimalPart) {
         List<String> result = new ArrayList<>();
-        char[] chars = decimalPart.toCharArray();
-        for (char ch : chars) {
-            result.add(String.valueOf(ch));
+        if (!"00".equals(decimalPart)){
+            char[] chars = decimalPart.toCharArray();
+            for (char ch : chars) {
+                result.add(String.valueOf(ch));
+            }
         }
         return result;
     }
@@ -134,7 +125,7 @@ public class VoiceTemplate {
 
     private List<String> readIntPart(String integerPart) {
         List<String> result = new ArrayList<>();
-        String intString = readIntPart(Integer.parseInt(integerPart));
+        String intString = readInt(Integer.parseInt(integerPart));
         int len = intString.length();
         for (int i =0; i < len;i++){
             char current = intString.charAt(i);
@@ -157,20 +148,30 @@ public class VoiceTemplate {
 
 
 
-    private static final char [] ChineseNum ={'0','1','2','3','4','5','6','7','8','9'};
-    private static final char [] ChineseUnit={'元','拾','佰','仟','万','拾','佰','仟','亿','拾','佰','仟'};
+    private static final char [] NUM ={'0','1','2','3','4','5','6','7','8','9'};
+    private static final char [] CHINESE_UNIT = {'元','拾','佰','仟','万','拾','佰','仟','亿','拾','佰','仟'};
 
     /**
      * 返回关于钱的中文式大写数字,支仅持到亿
      * */
-    public static String readIntPart(int moneyNum){
+    public static String readInt(int moneyNum){
         String res="";
         int i=0;
-        if(moneyNum==0)
-            return "0元";
+        if(moneyNum==0) {
+            return "0";
+        }
+
+        if (moneyNum == 10){
+            return "拾";
+        }
+
+        if (moneyNum > 10 && moneyNum < 20) {
+            return "拾" + moneyNum % 10;
+        }
+
         while(moneyNum>0){
-            res=ChineseUnit[i++]+res;
-            res=ChineseNum[moneyNum%10]+res;
+            res=CHINESE_UNIT[i++]+res;
+            res=NUM[moneyNum%10]+res;
             moneyNum/=10;
         }
         return res.replaceAll("0[拾佰仟]", "0")
