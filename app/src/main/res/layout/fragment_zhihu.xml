@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.jiangkang.ktools.requests.zhihu.ZhihuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="知乎" />
+
+
+
 
 </FrameLayout>

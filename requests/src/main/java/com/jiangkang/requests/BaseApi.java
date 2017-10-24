@@ -3,7 +3,9 @@ package com.jiangkang.requests;
 import android.accounts.NetworkErrorException;
 import android.util.Log;
 
+import com.jiangkang.tools.King;
 import com.jiangkang.tools.utils.NetworkUtils;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -13,7 +15,6 @@ import java.lang.reflect.Type;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -68,9 +69,7 @@ public abstract class BaseApi<Service> {
     }
 
     private Class<Service> getServiceClass() {
-        Log.d(TAG, "getServiceClass:");
         Type superClassType = getClass().getGenericSuperclass();
-        Log.d(TAG, "getServiceClass: type = " + superClassType);
         if (!ParameterizedType.class.isAssignableFrom(superClassType.getClass())) {
             return null;
         }
@@ -83,13 +82,12 @@ public abstract class BaseApi<Service> {
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-                .addInterceptor(new HttpLoggingInterceptor())
+                .addInterceptor(new ChuckInterceptor(King.getApplicationContext()))
+                .addNetworkInterceptor(new HttpLoggingInterceptor())
                 .build();
-
         return client;
     }
 
     protected abstract String getBaseUrl();
-
 
 }

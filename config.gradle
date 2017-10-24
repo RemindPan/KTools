@@ -45,6 +45,8 @@ ext {
 
             retrofitVersion           : '2.3.0',
 
+            loggerVersion             : '2.1.1',
+
 
     ]
 
@@ -105,6 +107,9 @@ ext {
             retrofit           : "com.squareup.retrofit2:retrofit:${libVersion.retrofitVersion}",
             retrofit_converterJson : "com.squareup.retrofit2:converter-gson:${libVersion.retrofitVersion}",
             retrofit_adpter_rxjava2: "com.squareup.retrofit2:adapter-rxjava2:${libVersion.retrofitVersion}",
+
+            "logger"           : "com.orhanobut:logger:${libVersion.loggerVersion}",
+
     ]
 
 }

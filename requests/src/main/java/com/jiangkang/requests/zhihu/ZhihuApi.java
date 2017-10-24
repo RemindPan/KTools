@@ -2,9 +2,9 @@ package com.jiangkang.requests.zhihu;
 
 import com.jiangkang.requests.BaseApi;
 import com.jiangkang.requests.zhihu.bean.LatestNews;
-import com.jiangkang.requests.zhihu.bean.StartPageInfo;
 
 import io.reactivex.Flowable;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by jiangkang on 2017/10/21.

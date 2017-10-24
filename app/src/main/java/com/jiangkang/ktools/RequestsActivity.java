@@ -1,5 +1,6 @@
 package com.jiangkang.ktools;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.jiangkang.annotations.log.DebugLog;
 import com.jiangkang.ktools.requests.gank.GankFragment;
 import com.jiangkang.ktools.requests.juejin.JuejinFragment;
 import com.jiangkang.ktools.requests.wechat.WechatFragment;
@@ -46,17 +48,19 @@ public class RequestsActivity extends AppCompatActivity {
 
     }
 
+    @DebugLog
     private void initViews() {
 
         tabLayoutRequests.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                ((TextView)tab.getCustomView().findViewById(R.id.tv_tab_title)).setTextColor(Color.parseColor("#f44336"));
                 loadFragment(tab.getTag());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                ((TextView)tab.getCustomView().findViewById(R.id.tv_tab_title)).setTextColor(Color.BLACK);
             }
 
             @Override

@@ -45,4 +45,8 @@ dependencies {
     compile deps["retrofit_adpter_rxjava2"]
 
     compile project(path: ':tools')
+
+    debugCompile 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseCompile 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
 }
