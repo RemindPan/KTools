@@ -4,6 +4,7 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.util.Log;
 
+import com.jiangkang.annotations.log.DebugLog;
 import com.jiangkang.tools.utils.FileUtils;
 
 import java.io.IOException;
@@ -35,29 +36,21 @@ public class VoiceSpeaker {
     }
 
 
+    @DebugLog
     public void speak(final List<String> list){
         if (service != null){
             service.execute(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("voice", "run: -> start");
                     start(list);
                 }
             });
         }
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                start(list);
-//            }
-//        }).start();
     }
 
+    @DebugLog
     private void start(final List<String> list) {
-        Log.d("voice", "start: -> 还未进入同步" );
         synchronized (this) {
-            Log.d("voice", "start:  -> 开始初始化播放器" );
             final CountDownLatch latch = new CountDownLatch(1);
             MediaPlayer player = new MediaPlayer();
             if (list != null && list.size() > 0) {
