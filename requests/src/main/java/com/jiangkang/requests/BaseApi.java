@@ -74,7 +74,6 @@ public abstract class BaseApi<Service> {
             return null;
         }
         Class<Service> serviceClass = (Class<Service>) ((ParameterizedType) superClassType).getActualTypeArguments()[0];
-
         return serviceClass;
     }
 

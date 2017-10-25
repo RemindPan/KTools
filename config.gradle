@@ -52,6 +52,12 @@ ext {
 
     deps = [
 
+            okhttp3 : [
+                    'okhttp'             : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
+                    'mockwebserver'      : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
+                    'logginginterceptor': "com.squareup.okhttp3:logging-interceptor:${libVersion.okhttpVersion}",
+            ],
+
             //ButterKnife
             butterKnife        : "com.jakewharton:butterknife:${libVersion.butterKnifeVersion}",
             butterknifeCompiler: "com.jakewharton:butterknife-compiler:${libVersion.butterKnifeVersion}",

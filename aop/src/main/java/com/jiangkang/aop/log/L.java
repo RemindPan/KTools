@@ -16,7 +16,9 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * Created by jiangkang on 2017/10/24.
+ *
+ * @author jiangkang
+ * @date 2017/10/24
  */
 
 @Aspect

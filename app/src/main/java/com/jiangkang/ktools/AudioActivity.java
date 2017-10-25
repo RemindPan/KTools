@@ -11,9 +11,11 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.jiangkang.annotations.Safe;
 import com.jiangkang.ktools.audio.VoiceBroadcastReceiver;
 import com.jiangkang.ktools.audio.VoiceSpeaker;
 import com.jiangkang.ktools.audio.VoiceTemplate;
+import com.jiangkang.tools.utils.LogUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
 import java.util.List;
@@ -107,6 +109,7 @@ public class AudioActivity extends AppCompatActivity {
         speech = new TextToSpeech(this, onInitListener);
     }
 
+    @Safe
     @OnClick(R.id.btn_play_single_sound)
     public void onBtnPlaySingleSoundClicked() {
         MediaPlayer player = MediaPlayer.create(this, R.raw.tts_success);
