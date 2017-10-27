@@ -5,14 +5,11 @@ import android.app.Application;
 import com.jiangkang.tools.King;
 import com.squareup.leakcanary.LeakCanary;
 
-import okhttp3.mockwebserver.MockWebServer;
-
 /**
  *
  * @author jiangkang
  * @date 2017/9/6
  */
-
 public class KApplication extends Application{
 
     @Override

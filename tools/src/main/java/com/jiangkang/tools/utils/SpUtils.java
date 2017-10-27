@@ -2,6 +2,7 @@ package com.jiangkang.tools.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.MainThread;
 
 import com.jiangkang.tools.King;
 
@@ -32,7 +33,6 @@ public class SpUtils {
     public static SpUtils getInstance(Context context,String name){
         return new SpUtils(context,name);
     }
-
 
 
     private SpUtils(Context context, String name) {

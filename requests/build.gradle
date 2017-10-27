@@ -25,6 +25,7 @@ android {
         }
     }
 
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -35,12 +36,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-//    compile deps['okhttp']
-//    compile deps["okhttp-logging-interceptor"]
-//    compile deps['mockwebserver']
-    compile deps.okhttp3.okhttp
-    compile deps.okhttp3.logginginterceptor
-    compile deps.okhttp3.mockwebserver
+    implementation deps.okhttp3.okhttp
+    implementation deps.okhttp3.logginginterceptor
+    implementation deps.okhttp3.mockwebserver
 
     compile deps["retrofit"]
     compile deps["retrofit_converterJson"]

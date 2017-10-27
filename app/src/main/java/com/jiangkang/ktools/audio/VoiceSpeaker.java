@@ -2,6 +2,7 @@ package com.jiangkang.ktools.audio;
 
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.support.annotation.MainThread;
 import android.util.Log;
 
 import com.jiangkang.annotations.log.DebugLog;
