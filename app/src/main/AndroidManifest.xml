@@ -16,6 +16,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <uses-permission android:name="MediaStore.Images.Media.INTERNAL_CONTENT_URI"/>
+    <uses-permission android:name="MediaStore.Images.Media.EXTERNAL_CONTENT_URI"/>
+
     <application
         android:name=".KApplication"
         android:allowBackup="true"
@@ -101,7 +104,15 @@
             android:label="@string/title_activity_bottom_navigation" />
         <activity android:name=".rxjava.RxJavaActivity" />
         <activity android:name=".effect.EffectActivity" />
-        <activity android:name=".image.GalleryActivity"></activity>
+        <activity android:name=".image.GalleryActivity" />
+        <activity android:name=".device.location.LocationActivity" />
+
+        <service
+            android:name=".device.ScreenShotMonitorService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".BaseActivity"></activity>
     </application>
 
 </manifest>

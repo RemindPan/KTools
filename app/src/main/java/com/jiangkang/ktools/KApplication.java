@@ -1,8 +1,10 @@
 package com.jiangkang.ktools;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.jiangkang.tools.King;
+import com.jiangkang.tools.service.ScanMusicService;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -20,6 +22,7 @@ public class KApplication extends Application{
         }
         LeakCanary.install(this);
         King.init(this);
+
     }
 
 

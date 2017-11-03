@@ -12,6 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity android:name=".system.PermissionActivity"></activity>
+        <service android:name=".service.ScanMusicService" />
     </application>
 
 </manifest>
