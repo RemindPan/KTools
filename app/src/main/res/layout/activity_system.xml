@@ -96,5 +96,12 @@
           />
 
 
+    <Button
+        android:id="@+id/btn_hide_app_icon"
+        style="@style/KButton"
+        android:text="隐藏应用图标"
+        android:background="#FF9966"
+        />
+
   </LinearLayout>
 </ScrollView>

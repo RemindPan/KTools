@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,7 +12,6 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,7 +23,6 @@ import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.struct.JsonGenerator;
 import com.jiangkang.tools.system.ContactHelper;
 import com.jiangkang.tools.utils.ClipboardUtils;
-import com.jiangkang.tools.utils.PermissionUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
 import org.json.JSONException;
@@ -74,6 +73,8 @@ public class SystemActivity extends AppCompatActivity {
     RadioButton radioBtnStorage;
     @BindView(R.id.btn_request_permission)
     Button btnRequestPermission;
+    @BindView(R.id.btn_hide_app_icon)
+    Button mBtnHideAppIcon;
 
     private JSONObject jsonObject;
 
@@ -93,9 +94,9 @@ public class SystemActivity extends AppCompatActivity {
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean granted) throws Exception {
-                        if (granted){
+                        if (granted) {
                             gotoContactPage();
-                        }else {
+                        } else {
                             ToastUtils.showShortToast("权限被拒绝");
                         }
                     }
@@ -198,9 +199,9 @@ public class SystemActivity extends AppCompatActivity {
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
-                        if (aBoolean){
+                        if (aBoolean) {
                             getContactList();
-                        }else {
+                        } else {
                             ToastUtils.showShortToast("权限被拒绝");
                         }
                     }
@@ -287,9 +288,9 @@ public class SystemActivity extends AppCompatActivity {
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
-                        if (aBoolean){
+                        if (aBoolean) {
                             ToastUtils.showShortToast("成功了");
-                        }else {
+                        } else {
                             ToastUtils.showShortToast("失败了");
                         }
                     }
@@ -298,4 +299,17 @@ public class SystemActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.btn_hide_app_icon)
+    public void onHideAppIconClicked() {
+        PackageManager manager = getPackageManager();
+        ComponentName componentName = new ComponentName(this, MainActivity.class);
+        int status = manager.getComponentEnabledSetting(componentName);
+        if (status == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT ||
+                status == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+            manager.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
+        }else {
+            manager.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,PackageManager.DONT_KILL_APP);
+        }
+
+    }
 }

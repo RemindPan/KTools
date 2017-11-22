@@ -13,6 +13,7 @@ import java.util.List;
 
 public class LatestNews implements Serializable{
 
+//    private static final long serialVersionUID = 1L;
 
     @SerializedName("date")
     private String date;
@@ -38,4 +39,5 @@ public class LatestNews implements Serializable{
         this.stories = stories;
         return this;
     }
+
 }

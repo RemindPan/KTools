@@ -17,6 +17,9 @@ import com.jiangkang.ktools.web.WebActivity;
 import com.jiangkang.tools.service.ScanMusicService;
 import com.jiangkang.tools.utils.ToastUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,9 +34,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initViews();
-        startService(new Intent(this, ScanMusicService.class));
-//        startService(new Intent(this, ScreenShotMonitorService.class));
-        ToastUtils.showShortToast("最高可用内存=" + Runtime.getRuntime().maxMemory() / (1024 * 1024) + "M");
     }
 
     @Override
@@ -69,10 +69,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initViews() {
-
         mRcFunctionList.setLayoutManager(new GridLayoutManager(this, 4));
         mRcFunctionList.setAdapter(new FunctionAdapter(this));
-
     }
 
 

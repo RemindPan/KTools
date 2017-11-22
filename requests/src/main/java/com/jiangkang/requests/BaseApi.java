@@ -3,6 +3,7 @@ package com.jiangkang.requests;
 import android.accounts.NetworkErrorException;
 import android.util.Log;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.jiangkang.tools.King;
 import com.jiangkang.tools.utils.NetworkUtils;
 import com.readystatesoftware.chuck.ChuckInterceptor;
@@ -83,6 +84,7 @@ public abstract class BaseApi<Service> {
                 .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .addInterceptor(new ChuckInterceptor(King.getApplicationContext()))
                 .addNetworkInterceptor(new HttpLoggingInterceptor())
+                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
         return client;
     }

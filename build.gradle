@@ -10,12 +10,17 @@ buildscript {
             name 'Google'
         }
     }
+
+    repositories.each {
+        println(it.getUrl())
+    }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
         classpath 'org.aspectj:aspectjtools:1.8.10'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
     }
+
 }
 
 
@@ -33,5 +38,21 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+tasks.whenTaskAdded {
+    task ->
+        if (task.name.contains('AndroidTest')) {
+            task.enabled = false
+        }
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ['-Xlint:all',
+                             '-Xlint:-serial',
+                             '-Xlint:-deprecation',
+                             '-Werror']
+}
+
+
 
 

@@ -3,6 +3,7 @@ package com.jiangkang.ktools.web;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.webkit.ConsoleMessage;
+import android.webkit.GeolocationPermissions;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -57,5 +58,9 @@ public class KWebChromeClient extends WebChromeClient {
     }
 
 
-
+    @Override
+    public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+        super.onGeolocationPermissionsShowPrompt(origin, callback);
+        callback.invoke(origin,true,true);
+    }
 }

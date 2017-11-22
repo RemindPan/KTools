@@ -1,20 +1,20 @@
 <!doctype html>
 <html>
-    <head>
-        <title>KTools</title>
+<head>
+    <title>KTools</title>
 
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <h3>Base64 图片编码</h3>
-        <img id="demo" width="320" height="482"/><br>
+<h3>Base64 图片编码</h3>
+<img id="demo" width="320" height="482"/><br>
 
 
-    </body>
+</body>
 
-    <script>
+<script>
         function getImgSrc(){
             var content = "data:image/jpg;base64," + jk.getBase64Img();
             console.log(content)
@@ -27,7 +27,27 @@
         }
 
         exe();
-    </script>
+
+        if (window.navigator.geolocation) {
+            var options = {
+                enableHighAccuracy: true,
+            };
+            window.navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options);
+        } else {
+            alert("浏览器不支持html5来获取地理位置信息");
+        }
+
+        function handleSuccess(position){
+            alert(position);
+            var lng = position.coords.longitude;
+            var lat = position.coords.latitude;
+        }
+
+        function handleError(){
+            alert("error");
+        }
+
+</script>
 
 
 </html>

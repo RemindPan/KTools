@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.jiangkang.tools.utils.LogUtils;
 import com.jiangkang.tools.widget.KDialog;
 
 
@@ -20,7 +19,7 @@ import com.jiangkang.tools.widget.KDialog;
  * description：图片内容变化监听
  */
 
-public class MediaContentObserver extends ContentObserver{
+public class MediaContentObserver extends ContentObserver {
 
 
     private static final String[] FILENAME_FILTER = new String[]{
@@ -66,14 +65,14 @@ public class MediaContentObserver extends ContentObserver{
                 null,
                 MEDIA_SORT_ORDER);
 
-        if (cursor != null && cursor.moveToFirst()){
+        if (cursor != null && cursor.moveToFirst()) {
             Log.d(TAG, "handleChange: cusor count = " + cursor.getCount());
             int dataIndex = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
             int dataTakenIndex = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATE_TAKEN);
             String data = cursor.getString(dataIndex);
             long dataTaken = cursor.getLong(dataTakenIndex);
 
-            handleTheLatestRowData(data,dataTaken);
+            handleTheLatestRowData(data, dataTaken);
         }
 
 
@@ -81,11 +80,11 @@ public class MediaContentObserver extends ContentObserver{
 
     private void handleTheLatestRowData(String data, long dataTaken) {
         Log.d(TAG, "handleTheLatestRowData: \n" + "data = " + data + "\ndataToken = " + dataTaken);
-        if (isScreenShot(data,dataTaken)){
+        if (isScreenShot(data, dataTaken)) {
             Log.d(TAG, "handleTheLatestRowData: data = " + data + "\ntime = " + dataTaken);
             Bitmap bitmap = BitmapFactory.decodeFile(data);
-            KDialog.showImgInDialog(mContext,bitmap);
-        }else {
+            KDialog.showImgInDialog(mContext, bitmap);
+        } else {
             //not
         }
 
@@ -93,8 +92,8 @@ public class MediaContentObserver extends ContentObserver{
 
     private boolean isScreenShot(String data, long dataTaken) {
         data = data.toLowerCase();
-        for (String keyword : FILENAME_FILTER){
-            if (data.contains(keyword)){
+        for (String keyword : FILENAME_FILTER) {
+            if (data.contains(keyword)) {
                 return true;
             }
         }

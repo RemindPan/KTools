@@ -13,17 +13,23 @@
         <Button
             android:id="@+id/btn_check_network_info"
             style="@style/KButton"
-            android:text="查看网络信息"
             android:background="#f44336"
+            android:text="查看网络信息"
 
             />
 
         <Button
             android:id="@+id/btn_check_current_activity"
             style="@style/KButton"
-            android:text="查看当前Activity"
             android:background="#E91E63"
-            />
+            android:text="查看当前Activity" />
+
+        <Button
+            android:id="@+id/btn_adb_wireless"
+            style="@style/KButton"
+            android:background="#E91E63"
+            android:text="无线adb调试" />
+
 
     </LinearLayout>
 

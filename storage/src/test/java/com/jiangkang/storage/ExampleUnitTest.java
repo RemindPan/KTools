@@ -1,6 +1,5 @@
-package com.jiangkang.ktools;
+package com.jiangkang.storage;
 
-import org.json.JSONObject;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,11 +10,8 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-
-    String str = null;
-    JSONObject shit = new JSONObject(str);
-
-    assertEquals(4, 2 + 2);
-  }
+    @Test
+    public void addition_isCorrect() throws Exception {
+        assertEquals(4, 2 + 2);
+    }
 }

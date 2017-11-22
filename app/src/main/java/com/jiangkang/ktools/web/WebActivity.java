@@ -81,6 +81,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
 
         webContainer.getSettings().setJavaScriptEnabled(true);
         webContainer.getSettings().getAllowFileAccessFromFileURLs();
+        webContainer.getSettings().setGeolocationEnabled(true);
 
         webContainer.addJavascriptInterface(new KJavaInterface(this),"jk");
 
