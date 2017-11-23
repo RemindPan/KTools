@@ -4,6 +4,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.renderscript.ScriptGroup;
 
 import com.jiangkang.tools.King;
@@ -11,9 +12,11 @@ import com.jiangkang.tools.King;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.Executors;
 
 /**
  * Created by jiangkang on 2017/9/20.
@@ -44,21 +47,21 @@ public class FileUtils {
     }
 
 
-    public static void writeStringToFile(String string,File file, boolean isAppending){
+    public static void writeStringToFile(String string, File file, boolean isAppending) {
         FileWriter writer = null;
         BufferedWriter bufferedWriter = null;
         try {
             writer = new FileWriter(file);
             bufferedWriter = new BufferedWriter(writer);
-            if (isAppending){
+            if (isAppending) {
                 bufferedWriter.append(string);
-            }else {
+            } else {
                 bufferedWriter.write(string);
             }
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 writer.close();
                 bufferedWriter.close();
@@ -69,8 +72,8 @@ public class FileUtils {
     }
 
 
-    public static void writeStringToFile(String string, String filePath,boolean isAppending){
-        writeStringToFile(string,new File(filePath),isAppending);
+    public static void writeStringToFile(String string, String filePath, boolean isAppending) {
+        writeStringToFile(string, new File(filePath), isAppending);
     }
 
 
@@ -80,6 +83,36 @@ public class FileUtils {
         return BitmapFactory.decodeStream(inputStream);
     }
 
+
+    public static void copyAssetsToFile(final String assetFilename, final String dstName) {
+        Executors.newCachedThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                FileOutputStream fos = null;
+                try {
+                    File dstFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ktools", dstName);
+                    fos = new FileOutputStream(dstFile);
+                    InputStream fileInputStream = getInputStreamFromAssets(assetFilename);
+                    byte[] buffer = new byte[1024 * 2];
+                    int byteCount;
+                    while((byteCount = fileInputStream.read(buffer)) != -1){
+                        fos.write(buffer,0,byteCount);
+                    }
+                    fos.flush();
+                } catch (IOException e) {
+                }finally {
+                    if (fos != null){
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+    }
 
 
 }

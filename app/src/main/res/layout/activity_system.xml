@@ -99,7 +99,14 @@
     <Button
         android:id="@+id/btn_hide_app_icon"
         style="@style/KButton"
-        android:text="隐藏应用图标"
+        android:text="隐藏应用图标（谨慎点击）"
+        android:background="#FF9966"
+        />
+
+    <Button
+        android:id="@+id/btn_load_dex"
+        style="@style/KButton"
+        android:text="加载本地jar包中的dex文件"
         android:background="#FF9966"
         />
 

@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
+    private static final String TAG = "MainActivity";
     @BindView(R.id.rc_function_list)
     RecyclerView mRcFunctionList;
 
@@ -32,6 +34,12 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ClassLoader loader = MainActivity.class.getClassLoader();
+        if (loader != null){
+            Log.d(TAG, "onCreate: classloader:" + loader.toString());
+            Log.d(TAG, "onCreate: classloader:" + loader.getParent().toString());
+        }
+
         ButterKnife.bind(this);
         initViews();
     }

@@ -1,3 +1,6 @@
+def isBuildAsApp = true
+
+
 if (isBuildAsApp.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {

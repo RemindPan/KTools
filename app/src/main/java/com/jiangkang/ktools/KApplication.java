@@ -3,6 +3,7 @@ package com.jiangkang.ktools;
 import android.app.Application;
 import android.content.Intent;
 import android.os.StrictMode;
+import android.support.multidex.MultiDex;
 
 import com.facebook.stetho.Stetho;
 import com.jiangkang.tools.King;
@@ -20,6 +21,8 @@ public class KApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        MultiDex.install(this);
 
         enableStrictMode();
 

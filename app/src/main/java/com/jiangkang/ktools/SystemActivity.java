@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -23,14 +24,18 @@ import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.struct.JsonGenerator;
 import com.jiangkang.tools.system.ContactHelper;
 import com.jiangkang.tools.utils.ClipboardUtils;
+import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import dalvik.system.DexClassLoader;
 import io.reactivex.functions.Consumer;
 
 
@@ -75,6 +80,8 @@ public class SystemActivity extends AppCompatActivity {
     Button btnRequestPermission;
     @BindView(R.id.btn_hide_app_icon)
     Button mBtnHideAppIcon;
+    @BindView(R.id.btn_load_dex)
+    Button mBtnLoadDex;
 
     private JSONObject jsonObject;
 
@@ -84,6 +91,7 @@ public class SystemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_system);
         setTitle("System");
         ButterKnife.bind(this);
+        FileUtils.copyAssetsToFile("code/hello_world_dex.jar","hello_world_dex.jar");
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -306,10 +314,50 @@ public class SystemActivity extends AppCompatActivity {
         int status = manager.getComponentEnabledSetting(componentName);
         if (status == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT ||
                 status == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
-            manager.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
-        }else {
-            manager.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,PackageManager.DONT_KILL_APP);
+            manager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        } else {
+            manager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
         }
+
+    }
+
+    @OnClick(R.id.btn_load_dex)
+    public void onBtnLoadDexClicked() {
+
+        File jarFile = new File(
+                Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ktools",
+                "hello_world_dex.jar"
+        );
+
+        if (!jarFile.exists()) {
+            //todo:这里应该从assets中复制到sdcard中
+            ToastUtils.showShortToast("文件不存在");
+            return;
+        }
+
+        DexClassLoader loader = new DexClassLoader(
+                jarFile.getAbsolutePath(),
+                getExternalCacheDir().getAbsolutePath(),
+                null,
+                getClassLoader()
+        );
+
+        try {
+
+            Class clazz = loader.loadClass("com.jiangkang.ktools.HelloWorld");
+
+            ISayHello iSayHello = (ISayHello) clazz.newInstance();
+
+            ToastUtils.showLongToast("执行dex中方法：" + iSayHello.sayHello());
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
