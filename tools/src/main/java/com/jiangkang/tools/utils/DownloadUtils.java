@@ -2,9 +2,17 @@ package com.jiangkang.tools.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.google.zxing.common.StringUtils;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,7 +34,7 @@ public class DownloadUtils {
 
     private ExecutorService downloadService;
 
-    private DownloadUtils(){
+    private DownloadUtils() {
         client = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor())
                 .build();
@@ -34,16 +42,16 @@ public class DownloadUtils {
     }
 
 
-    public static DownloadUtils getInstance(){
-        if (sInstance == null){
+    public static DownloadUtils getInstance() {
+        if (sInstance == null) {
             sInstance = new DownloadUtils();
         }
         return sInstance;
     }
 
-    public Bitmap downloadImage(@NonNull String url){
+    public Bitmap downloadImage(@NonNull String url) {
         final Bitmap[] result = new Bitmap[1];
-        if (url.startsWith("https://") || url.startsWith("http://")){
+        if (url.startsWith("https://") || url.startsWith("http://")) {
             final Request request = new Request.Builder()
                     .url(url)
                     .build();
@@ -67,10 +75,44 @@ public class DownloadUtils {
                 e.printStackTrace();
             }
             return result[0];
-        }else {
+        } else {
             return null;
         }
 
+    }
+
+
+    public void downloadHtml(@NonNull final String url) {
+        Log.d("Download", "downloadHtml: " + url);
+        final String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ktools" + File.separator + "html";
+        File file = new File(path);
+        if (!file.exists()){
+            file.mkdirs();
+        }
+        if (url.startsWith("https://") || url.startsWith("http://")) {
+            final Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            downloadService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Response response = client.newCall(request).execute();
+                        String content = response.body().string();
+                        Log.d("Download", "run: \n" + content);
+                        File file = new File(path, String.valueOf(url.hashCode()) + ".html");
+                        if (!file.exists()){
+                            file.createNewFile();
+                        }
+                        FileUtils.writeStringToFile(content,file,false);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        }
     }
 
 

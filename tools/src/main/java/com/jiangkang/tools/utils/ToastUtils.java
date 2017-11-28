@@ -1,5 +1,6 @@
 package com.jiangkang.tools.utils;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
@@ -24,6 +25,17 @@ public class ToastUtils {
             }
         });
     }
+
+
+    public static void showShortToast(final Context context, final String msg) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(context.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     public static void showLongToast(final String msg) {
         new Handler(Looper.getMainLooper())

@@ -2,11 +2,23 @@ package com.jiangkang.ktools.web;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.util.Log;
+import android.webkit.MimeTypeMap;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.jiangkang.tools.utils.DownloadUtils;
+import com.jiangkang.tools.utils.FileUtils;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 /**
@@ -27,6 +39,11 @@ public class KWebViewClient extends WebViewClient{
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ktools" + File.separator + "html",String.valueOf(url.hashCode()) + ".html");
+//        if (file.exists()){
+//            view.loadUrl(Uri.fromFile(file).toString());
+//        }
+//        DownloadUtils.getInstance().downloadHtml(url);
         super.onPageStarted(view, url, favicon);
     }
 
@@ -34,7 +51,6 @@ public class KWebViewClient extends WebViewClient{
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        view.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         return super.shouldOverrideUrlLoading(view, request);
     }
 
@@ -47,5 +63,27 @@ public class KWebViewClient extends WebViewClient{
     @Override
     public void onScaleChanged(WebView view, float oldScale, float newScale) {
         super.onScaleChanged(view, oldScale, newScale);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+        //此处对文件资源，js，css等请求资源进行拦截，替换
+        Log.d(TAG, "shouldInterceptRequest: request = \n" +
+                "\nurl = " + request.getUrl().toString() +
+                "\nmethod = " + request.getMethod() +
+                "\nheaders = " + request.getRequestHeaders().toString());
+        String url = request.getUrl().toString();
+        if ((url.startsWith("https://") || url.startsWith("http://")) && (url.endsWith(".png") || url.endsWith(".jpg"))){
+            Log.d(TAG, "拦截资源 :" + url);
+            DownloadUtils.getInstance().downloadImage(url);
+            try {
+                WebResourceResponse response = new WebResourceResponse(MimeTypeMap.getFileExtensionFromUrl(".jpg"),"utf-8", FileUtils.getInputStreamFromAssets("img/dog.jpg"));
+                return response;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return super.shouldInterceptRequest(view, request);
     }
 }

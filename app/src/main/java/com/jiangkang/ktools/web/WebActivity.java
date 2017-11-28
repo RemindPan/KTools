@@ -37,7 +37,6 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
     WebView webContainer;
     private String launchUrl;
 
-
     /*
     * launchUrl : 网址
     *
@@ -82,6 +81,8 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
         webContainer.getSettings().setJavaScriptEnabled(true);
         webContainer.getSettings().getAllowFileAccessFromFileURLs();
         webContainer.getSettings().setGeolocationEnabled(true);
+        webContainer.getSettings().setAllowFileAccess(true);
+        webContainer.getSettings().setAllowFileAccessFromFileURLs(true);
 
         webContainer.addJavascriptInterface(new KJavaInterface(this),"jk");
 

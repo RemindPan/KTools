@@ -110,5 +110,12 @@
         android:background="#FF9966"
         />
 
+    <Button
+        android:id="@+id/btn_exit_app"
+        style="@style/KButton"
+        android:text="退出App"
+        android:background="#FF9966"
+        />
+
   </LinearLayout>
 </ScrollView>

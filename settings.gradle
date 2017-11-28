@@ -1,1 +1,1 @@
-include ':app', ':tools', ':requests', ':annotations', ':aop', ':storage'
+include ':app', ':tools', ':requests', ':annotations', ':aop', ':storage', ':hack'

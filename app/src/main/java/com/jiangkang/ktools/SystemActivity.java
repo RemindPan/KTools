@@ -82,6 +82,8 @@ public class SystemActivity extends AppCompatActivity {
     Button mBtnHideAppIcon;
     @BindView(R.id.btn_load_dex)
     Button mBtnLoadDex;
+    @BindView(R.id.btn_exit_app)
+    Button mBtnExitApp;
 
     private JSONObject jsonObject;
 
@@ -91,7 +93,7 @@ public class SystemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_system);
         setTitle("System");
         ButterKnife.bind(this);
-        FileUtils.copyAssetsToFile("code/hello_world_dex.jar","hello_world_dex.jar");
+        FileUtils.copyAssetsToFile("code/hello_world_dex.jar", "hello_world_dex.jar");
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -257,23 +259,6 @@ public class SystemActivity extends AppCompatActivity {
             }
         }).start();
 
-//        ContactsActivity.launch(this,null);
-//        ContactsLoaderCallback callback = new ContactsLoaderCallback(this);
-//        callback.setQueryListener(new ContactsLoaderCallback.QueryListener() {
-//            @Override
-//            public void success(final JSONObject object) {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        new AlertDialog.Builder(SystemActivity.this)
-//                                .setTitle("通讯录")
-//                                .setMessage(object.toString())
-//                                .show();
-//                    }
-//                });
-//            }
-//        });
-//        getLoaderManager().initLoader(0,null,callback);
     }
 
 
@@ -360,4 +345,16 @@ public class SystemActivity extends AppCompatActivity {
 
 
     }
+
+    @OnClick(R.id.btn_exit_app)
+    public void onBtnExitAppClicked() {
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+
+
+
+
 }

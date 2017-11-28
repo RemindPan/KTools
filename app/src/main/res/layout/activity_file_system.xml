@@ -130,6 +130,11 @@
             android:background="#607D8B"
             android:text="解密文件" />
 
+        <Button
+            android:id="@+id/btn_hide_file"
+            style="@style/KButton"
+            android:background="#607D8B"
+            android:text="隐藏文件" />
 
 
     </LinearLayout>

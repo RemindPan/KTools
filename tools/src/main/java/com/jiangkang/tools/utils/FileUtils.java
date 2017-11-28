@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.os.Handler;
 import android.renderscript.ScriptGroup;
 
 import com.jiangkang.tools.King;
@@ -24,11 +25,9 @@ import java.util.concurrent.Executors;
 
 public class FileUtils {
 
-
     public static String getAssetsPath(String filename) {
         return "file:///android_asset/" + filename;
     }
-
 
     public static InputStream getInputStreamFromAssets(String filename) throws IOException {
         AssetManager manager = King.getApplicationContext().getAssets();
@@ -63,8 +62,12 @@ public class FileUtils {
             e.printStackTrace();
         } finally {
             try {
-                writer.close();
-                bufferedWriter.close();
+                if (writer != null){
+                    writer.close();
+                }
+                if (bufferedWriter != null){
+                    bufferedWriter.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -95,13 +98,13 @@ public class FileUtils {
                     InputStream fileInputStream = getInputStreamFromAssets(assetFilename);
                     byte[] buffer = new byte[1024 * 2];
                     int byteCount;
-                    while((byteCount = fileInputStream.read(buffer)) != -1){
-                        fos.write(buffer,0,byteCount);
+                    while ((byteCount = fileInputStream.read(buffer)) != -1) {
+                        fos.write(buffer, 0, byteCount);
                     }
                     fos.flush();
                 } catch (IOException e) {
-                }finally {
-                    if (fos != null){
+                } finally {
+                    if (fos != null) {
                         try {
                             fos.close();
                         } catch (IOException e) {
@@ -112,6 +115,57 @@ public class FileUtils {
             }
         });
 
+    }
+
+
+    /**
+     * @param filename  filename you will create
+     * @param directory directory where the file exists
+     * @return true if the file created successfully, or return false
+     */
+    public static boolean createFile(String filename, String directory) {
+        boolean isSuccess = false;
+        File file = new File(directory, filename);
+        if (!file.exists()) {
+            try {
+                isSuccess = file.createNewFile();
+            } catch (IOException e) {
+            }
+        } else {
+            file.delete();
+            try {
+                isSuccess = file.createNewFile();
+            } catch (IOException e) {
+            }
+        }
+        return isSuccess;
+    }
+
+
+    public static boolean hideFile(String directory, String filename) {
+        boolean isSuccess;
+        File file = new File(directory, filename);
+        isSuccess = file.renameTo(new File(directory, ".".concat(filename)));
+        if (isSuccess) {
+            file.delete();
+        }
+        return isSuccess;
+    }
+
+
+    public static long getFolderSize(final String folderPath) {
+        long size = 0;
+        File directory = new File(folderPath);
+        if (directory.exists() && directory.isDirectory()) {
+            for (File file : directory.listFiles()) {
+                if (file.isDirectory()) {
+                    size += getFolderSize(file.getAbsolutePath());
+                } else {
+                    size += file.length();
+                }
+            }
+        }
+        return size;
     }
 
 

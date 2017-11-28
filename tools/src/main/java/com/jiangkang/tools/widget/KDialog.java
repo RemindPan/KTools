@@ -163,6 +163,7 @@ public class KDialog {
     }
 
 
+
     public interface SingleSelectedCallback {
         void singleSelected(int index);
     }
