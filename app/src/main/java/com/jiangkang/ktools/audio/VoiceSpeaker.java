@@ -84,7 +84,6 @@ public class VoiceSpeaker {
                                     latch.countDown();
                                 }
                             } else {
-//                            mp.reset();
                                 mp.release();
                                 latch.countDown();
                             }

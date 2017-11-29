@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.jiangkang.tools.utils.ToastUtils;
+import com.jiangkang.tools.widget.KDialog;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -30,7 +31,7 @@ public class HackActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_hook_OnClick)
     public void onBtnHookOnClicked(View view) {
-        ToastUtils.showShortToast(this,"点击了按钮");
+        KDialog.showMsgDialog(this,"点击了按钮");
     }
 
     private void hookOnClickListener(View view) {
@@ -52,7 +53,6 @@ public class HackActivity extends AppCompatActivity {
             View.OnClickListener hookedOnClickListener = new HookOnClickListener(originOnClickListener,this);
 
             mOnClickListener.set(listenerInfo,hookedOnClickListener);
-
 
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

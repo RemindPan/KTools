@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.jiangkang.tools.utils.ToastUtils;
+import com.jiangkang.tools.widget.KDialog;
 
 /**
  * Created by jiangkang on 2017/11/28.
@@ -29,7 +30,7 @@ public class HookOnClickListener implements View.OnClickListener{
 
         //点击之前
         Log.d(TAG, "onClick: before");
-        ToastUtils.showShortToast(context,"点击按钮之前");
+        KDialog.showMsgDialog(context,"点击按钮之前");
 
         if (originListener != null){
             originListener.onClick(v);
@@ -38,7 +39,7 @@ public class HookOnClickListener implements View.OnClickListener{
 
         //点击之后
         Log.d(TAG, "onClick: after");
-        ToastUtils.showShortToast(context,"点击按钮之后");
+        KDialog.showMsgDialog(context,"点击按钮之后");
 
     }
 }

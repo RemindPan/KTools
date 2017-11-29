@@ -44,6 +44,18 @@ android {
     }
 
 
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layout/activity',
+                    'src/main/res/layout/fragment',
+                    'src/main/res/layout/widget',
+                    'src/main/res/layout/item',
+                    'src/main/res'
+            ]
+        }
+    }
+
 }
 
 dependencies {

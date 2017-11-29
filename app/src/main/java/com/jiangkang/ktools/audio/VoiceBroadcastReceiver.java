@@ -24,6 +24,7 @@ public class VoiceBroadcastReceiver extends BroadcastReceiver {
                 .numString("15.00")
                 .suffix("yuan")
                 .gen();
+
         VoiceSpeaker.getInstance().speak(list);
     }
 

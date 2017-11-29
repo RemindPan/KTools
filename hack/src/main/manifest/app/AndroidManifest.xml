@@ -12,6 +12,9 @@
             </intent-filter>
 
         </activity>
+        <activity-alias
+            android:name="Hack"
+            android:targetActivity=".HackActivity"/>
     </application>
 
 </manifest>

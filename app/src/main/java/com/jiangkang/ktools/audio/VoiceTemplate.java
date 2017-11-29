@@ -25,6 +25,14 @@ public class VoiceTemplate {
 
     }
 
+    public static List<String> getDefaultTemplate(String money){
+        return new VoiceTemplate()
+                .prefix("success")
+                .numString(money)
+                .suffix("yuan")
+                .gen();
+    }
+
     public String getPrefix() {
         return prefix;
     }
