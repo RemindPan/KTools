@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -351,6 +352,8 @@ public class SystemActivity extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+
+        
     }
 
 
