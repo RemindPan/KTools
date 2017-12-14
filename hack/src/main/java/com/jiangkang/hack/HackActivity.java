@@ -5,8 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.jiangkang.tools.utils.ToastUtils;
-import com.jiangkang.tools.widget.KDialog;
+import com.alibaba.android.arouter.facade.annotation.Route;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -14,25 +13,26 @@ import java.lang.reflect.Method;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
+
+@Route(path = "/hack/HackActivity")
 public class HackActivity extends AppCompatActivity {
 
-    @BindView(R.id.btn_hook_OnClick)
-    Button mBtnHookOnClick;
+//    @BindView(R2.id.btn_hook_OnClick)
+//    Button mBtnHookOnClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hack);
         ButterKnife.bind(this);
-        hookOnClickListener(mBtnHookOnClick);
+//        hookOnClickListener(mBtnHookOnClick);
     }
 
-    @OnClick(R.id.btn_hook_OnClick)
-    public void onBtnHookOnClicked(View view) {
-        KDialog.showMsgDialog(this,"点击了按钮");
-    }
+//    @OnClick(R.id.btn_hook_OnClick)
+//    public void onBtnHookOnClicked(View view) {
+//        KDialog.showMsgDialog(this,"点击了按钮");
+//    }
 
     private void hookOnClickListener(View view) {
         try {

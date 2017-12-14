@@ -1,4 +1,4 @@
-def isBuildAsApp = true
+def isBuildAsApp = false
 
 
 if (isBuildAsApp.toBoolean()) {
@@ -21,6 +21,13 @@ android {
 
         if (isBuildAsApp.toBoolean()) {
             applicationId 'com.jiangkang.storage'
+        }
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
         }
 
     }
@@ -57,6 +64,13 @@ dependencies {
 
     compile deps["butterKnife"]
     annotationProcessor deps['butterknifeCompiler']
+
+    implementation deps.arouter.arouter_api
+    annotationProcessor deps.arouter.arouter_compiler
+
+    implementation deps.okhttp3.okhttp
+    implementation deps.okhttp3.logginginterceptor
+    implementation deps.okhttp3.mockwebserver
 
 
 }

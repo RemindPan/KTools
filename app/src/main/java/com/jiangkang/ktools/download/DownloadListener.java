@@ -2,13 +2,16 @@ package com.jiangkang.ktools.download;
 
 /**
  * Created by jiangkang on 2017/10/10.
+ *
+ * define the download action and state
  */
 
 public interface DownloadListener {
 
+    void onDownloading(int progress, long contentLength);
 
-    void onDownloading(long bytesRead, long contentLength);
+    void onSuccess();
 
-    void downloadSuccess();
+    void onError(String message);
 
 }

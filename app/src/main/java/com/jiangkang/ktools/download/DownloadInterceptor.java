@@ -16,7 +16,6 @@ public class DownloadInterceptor implements Interceptor{
 
     private DownloadListener listener;
 
-
     public DownloadInterceptor(DownloadListener listener) {
         this.listener = listener;
     }

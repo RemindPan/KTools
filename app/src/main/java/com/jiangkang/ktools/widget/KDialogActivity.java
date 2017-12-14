@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jiangkang.ktools.R;
 import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ToastUtils;
@@ -37,6 +38,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@Route(path = "/app/KDialogActivity")
 public class KDialogActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_create_simple_text_dialog)

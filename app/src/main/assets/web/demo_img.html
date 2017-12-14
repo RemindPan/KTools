@@ -3,7 +3,6 @@
 <head>
     <title>KTools</title>
 
-
 </head>
 
 <body>
@@ -27,25 +26,6 @@
         }
 
         exe();
-
-        if (window.navigator.geolocation) {
-            var options = {
-                enableHighAccuracy: true,
-            };
-            window.navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options);
-        } else {
-            alert("浏览器不支持html5来获取地理位置信息");
-        }
-
-        function handleSuccess(position){
-            alert(position);
-            var lng = position.coords.longitude;
-            var lat = position.coords.latitude;
-        }
-
-        function handleError(){
-            alert("error");
-        }
 
 </script>
 

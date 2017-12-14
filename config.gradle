@@ -2,123 +2,123 @@ ext {
 
     libVersion = [
 
-
             //project settings
-            compileSdkVersion         :   26,
-            buildToolsVersion         :  '26.0.2',
-            minSdkVersion             :  19,
-            targetSdkVersion          :  26,
-            versionCode               :  2,
-            versionName               :  '2.0',
-
+            compileSdkVersion      : 26,
+            buildToolsVersion      : '26.0.2',
+            minSdkVersion          : 19,
+            targetSdkVersion       : 26,
+            versionCode            : 2,
+            versionName            : '2.0',
 
             //ButterKnife
-            butterKnifeVersion        :  '8.2.1',
+            butterKnifeVersion     : '8.2.1',
 
             //android
-            v7Version                 :  '25.3.1',
-            "support-version"         :  '27.0.0',
+            v7Version              : '25.3.1',
+            "support-version"      : '27.0.0',
 
-            constraintLayoutVersion   :  '1.0.2',
+            constraintLayoutVersion: '1.0.2',
 
             //glide
-            glideVersion              :  '4.2.0',
+            glideVersion           : '4.2.0',
 
             //greendao
-            greendaoVersion           : '3.2.2',
+            greendaoVersion        : '3.2.2',
 
-            eventbusVersion           : '3.0.0',
+            eventbusVersion        : '3.0.0',
 
             //amap
-            amapVersion               : '',
-
+            amapVersion            : '',
 
             //leakcanary
-            leakcanaryVersion         : '1.5.1',
+            leakcanaryVersion      : '1.5.1',
 
-            rxJavaVersion             : '2.1.5',
-            rxAndroidVersion          : '2.0.1',
+            rxJavaVersion          : '2.1.5',
+            rxAndroidVersion       : '2.0.1',
 
-            okhttpVersion             : '3.9.0',
+            okhttpVersion          : '3.9.0',
 
-            daggerVersion             : '2.11',
+            daggerVersion          : '2.11',
 
-            retrofitVersion           : '2.3.0',
+            retrofitVersion        : '2.3.0',
 
-            loggerVersion             : '2.1.1',
+            loggerVersion          : '2.1.1',
 
 
     ]
 
     deps = [
 
-            okhttp3 : [
-                    'okhttp'             : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
-                    'mockwebserver'      : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
+            okhttp3                     : [
+                    'okhttp'            : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
+                    'mockwebserver'     : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
                     'logginginterceptor': "com.squareup.okhttp3:logging-interceptor:${libVersion.okhttpVersion}",
             ],
 
+
+            arouter                     : [
+                    'arouter_api'       : "com.alibaba:arouter-api:1.2.4",
+                    'arouter_compiler'  : "com.alibaba:arouter-compiler:1.1.4",
+            ],
+
             //ButterKnife
-            butterKnife        : "com.jakewharton:butterknife:${libVersion.butterKnifeVersion}",
-            butterknifeCompiler: "com.jakewharton:butterknife-compiler:${libVersion.butterKnifeVersion}",
+            butterKnife                 : "com.jakewharton:butterknife:${libVersion.butterKnifeVersion}",
+            butterknifeCompiler         : "com.jakewharton:butterknife-compiler:${libVersion.butterKnifeVersion}",
 
             //android
-            appcompat_v7       : "com.android.support:appcompat-v7:${libVersion.v7Version}",
-            constraint_layout  : "com.android.support.constraint:constraint-layout:${libVersion.constraintLayoutVersion}",
-            recyclerview       : "com.android.support:recyclerview-v7:${libVersion.v7Version}",
-            cardview           : "com.android.support:cardview-v7:${libVersion.v7Version}",
-            'support-annotaions' : "com.android.support:support-annotations:${libVersion.v7Version}",
-            'support-vector-drawable' : "com.android.support:support-vector-drawable:${libVersion.v7Version}",
+            appcompat_v7                : "com.android.support:appcompat-v7:${libVersion.v7Version}",
+            constraint_layout           : "com.android.support.constraint:constraint-layout:${libVersion.constraintLayoutVersion}",
+            recyclerview                : "com.android.support:recyclerview-v7:${libVersion.v7Version}",
+            cardview                    : "com.android.support:cardview-v7:${libVersion.v7Version}",
+            'support-annotaions'        : "com.android.support:support-annotations:${libVersion.v7Version}",
+            'support-vector-drawable'   : "com.android.support:support-vector-drawable:${libVersion.v7Version}",
 
             //glide
-            glide              : "com.github.bumptech.glide:glide:${libVersion.glideVersion}",
-            glideCompiler      : "com.github.bumptech.glide:compiler:${libVersion.glideVersion}",
-            glideOkhttp        : "com.github.bumptech.glide:okhttp3-integration:4.0.0",
-
+            glide                       : "com.github.bumptech.glide:glide:${libVersion.glideVersion}",
+            glideCompiler               : "com.github.bumptech.glide:compiler:${libVersion.glideVersion}",
+            glideOkhttp                 : "com.github.bumptech.glide:okhttp3-integration:4.0.0",
 
             //greendao
-            greendao           : "org.greenrobot:greendao:${libVersion.greendaoVersion}",
-
+            greendao                    : "org.greenrobot:greendao:${libVersion.greendaoVersion}",
 
             //数据库
-            debug_db            : "com.amitshekhar.android:debug-db:1.0.0",
+            debug_db                    : "com.amitshekhar.android:debug-db:1.0.0",
 
             //eventbus
-            eventbus            : "org.greenrobot:eventbus:${libVersion.eventbusVersion}",
+            eventbus                    : "org.greenrobot:eventbus:${libVersion.eventbusVersion}",
 
             //amap
-            amap_3D             : "com.amap.api:3dmap:5.2.1",
-            amap_2D             : "com.amap.api:3dmap:5.2.0",
-            amap_search         : "com.amap.api:search:5.2.1",
-            amap_navi           : "com.amap.api:navi-3dmap:5.2.1",
-            amap_location       : "com.amap.api:location:3.5.0",
+            amap_3D                     : "com.amap.api:3dmap:5.2.1",
+            amap_2D                     : "com.amap.api:3dmap:5.2.0",
+            amap_search                 : "com.amap.api:search:5.2.1",
+            amap_navi                   : "com.amap.api:navi-3dmap:5.2.1",
+            amap_location               : "com.amap.api:location:3.5.0",
 
             //picasso
-            picasso             : "com.squareup.picasso:picasso:2.5.2",
-
+            picasso                     : "com.squareup.picasso:picasso:2.5.2",
 
             //leakcanary
-            leakcanary          : "com.squareup.leakcanary:leakcanary-android:${libVersion.leakcanaryVersion}",
-            leakcanary_no_op    : "com.squareup.leakcanary:leakcanary-android-no-op:${libVersion.leakcanaryVersion}",
+            leakcanary                  : "com.squareup.leakcanary:leakcanary-android:${libVersion.leakcanaryVersion}",
+            leakcanary_no_op            : "com.squareup.leakcanary:leakcanary-android-no-op:${libVersion.leakcanaryVersion}",
 
             //RxJava
-            rxJava             : "io.reactivex.rxjava2:rxjava:${libVersion.rxJavaVersion}",
-            rxAndroid          : "io.reactivex.rxjava2:rxandroid:${libVersion.rxAndroidVersion}",
+            rxJava                      : "io.reactivex.rxjava2:rxjava:${libVersion.rxJavaVersion}",
+            rxAndroid                   : "io.reactivex.rxjava2:rxandroid:${libVersion.rxAndroidVersion}",
 
-            zxing              : "com.google.zxing:core:3.3.0",
+            zxing                       : "com.google.zxing:core:3.3.0",
 
-            okhttp             : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
-            mockwebserver      : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
+            okhttp                      : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
+            mockwebserver               : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
             "okhttp-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${libVersion.okhttpVersion}",
 
-            dagger             : "com.google.dagger:dagger:${libVersion.daggerVersion}",
-            daggerCompiler     : "com.google.dagger:dagger-compiler:${libVersion.daggerVersion}",
+            dagger                      : "com.google.dagger:dagger:${libVersion.daggerVersion}",
+            daggerCompiler              : "com.google.dagger:dagger-compiler:${libVersion.daggerVersion}",
 
-            retrofit           : "com.squareup.retrofit2:retrofit:${libVersion.retrofitVersion}",
-            retrofit_converterJson : "com.squareup.retrofit2:converter-gson:${libVersion.retrofitVersion}",
-            retrofit_adpter_rxjava2: "com.squareup.retrofit2:adapter-rxjava2:${libVersion.retrofitVersion}",
+            retrofit                    : "com.squareup.retrofit2:retrofit:${libVersion.retrofitVersion}",
+            retrofit_converterJson      : "com.squareup.retrofit2:converter-gson:${libVersion.retrofitVersion}",
+            retrofit_adpter_rxjava2     : "com.squareup.retrofit2:adapter-rxjava2:${libVersion.retrofitVersion}",
 
-            "logger"           : "com.orhanobut:logger:${libVersion.loggerVersion}",
+            "logger"                    : "com.orhanobut:logger:${libVersion.loggerVersion}",
 
     ]
 

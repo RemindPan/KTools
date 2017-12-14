@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Button;
 
 import com.jiangkang.ktools.download.DownloadInterceptor;
 import com.jiangkang.ktools.download.DownloadListener;
+import com.jiangkang.ktools.download.DownloadUtils;
 import com.jiangkang.ktools.download.FileDownloadService;
 import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.utils.ToastUtils;
@@ -25,6 +27,9 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,14 +47,12 @@ public class DownloadActivity extends AppCompatActivity {
     private static final String TAG = "DownloadActivity";
     private final String DOWNLOAD_URL = "https://b-ssl.duitang.com/uploads/item/201308/01/20130801112648_cFtsV.jpeg";
 
-    private final String APK_URL = "https://t.alipayobjects.com/L1/71/100/and/alipay_wap_main.apk";
+    private final String APK_URL = "http://bestpay.ctdns.net/bestpay_common_signed.apk";
 
     @BindView(R.id.btn_download_by_download_manager)
     Button btnDownloadByDownloadManager;
     @BindView(R.id.btn_download_by_retrofit)
     Button btnDownloadByRetrofit;
-
-    private long downloadId;
 
     RxPermissions rxPermissions;
 
@@ -69,86 +72,38 @@ public class DownloadActivity extends AppCompatActivity {
         request.setTitle("通过DownloadManager下载APK");
         request.setDescription("简单的演示一下DownloadManager的使用方法");
         request.allowScanningByMediaScanner();
-
-        downloadId = manager.enqueue(request);
-
     }
 
-    private void downloadFileByRetrofit() {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new DownloadInterceptor(new DownloadListener() {
-                    @Override
-                    public void onDownloading(long bytesRead, long contentLength) {
-                        final int progress = (int) (bytesRead * 100 / contentLength );
-                        Log.d(TAG,"progress = " + progress);
-                        new Handler(Looper.getMainLooper())
-                                .post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        KDialog.showProgressDialog(DownloadActivity.this,progress);
-                                    }
-                                });
+    private void downloadFileByRetrofit(){
 
+
+        DownloadUtils.getInstance()
+                .downloadUrl(APK_URL)
+                .downloadFilePath(Environment.getExternalStorageDirectory() + File.separator + "ktools","翼支付.apk")
+                .setDownloadListener(new DownloadListener() {
+                    @Override
+                    public void onDownloading(final int progress, long contentLength) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                KDialog.showProgressDialog(DownloadActivity.this,progress);
+                            }
+                        });
                     }
 
                     @Override
-                    public void downloadSuccess() {
+                    public void onSuccess() {
                         ToastUtils.showShortToast("下载完成");
                     }
-                }))
-                .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("http://jiangkang.github.io")
-                .client(client)
-                .build();
-
-        FileDownloadService service = retrofit.create(FileDownloadService.class);
-
-        service.downloadFile(APK_URL)
-                .observeOn(Schedulers.io())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<ResponseBody>() {
                     @Override
-                    public void accept(ResponseBody responseBody) throws Exception {
-                        storeFile(responseBody.bytes());
+                    public void onError(String message) {
+                        ToastUtils.showShortToast("下载失败");
                     }
-                });
-
+                })
+//                .start();
+                .startByMultiThread(4);
     }
-
-    private void storeFile(byte[] bytes) {
-        File file = new File(getExternalCacheDir(), "支付宝.apk");
-        FileOutputStream fos = null;
-        BufferedOutputStream bos = null;
-        if (file.exists()) {
-            file.exists();
-        }
-        try {
-            file.createNewFile();
-            fos = new FileOutputStream(file);
-            bos = new BufferedOutputStream(fos);
-            bos.write(bytes);
-            bos.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            ToastUtils.showShortToast(file.getAbsolutePath());
-            try {
-                if (fos != null) {
-                    fos.close();
-                }
-                if (bos != null) {
-                    bos.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
 
     @TargetApi(Build.VERSION_CODES.M)
     @OnClick(R.id.btn_download_by_download_manager)
@@ -180,4 +135,6 @@ public class DownloadActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }

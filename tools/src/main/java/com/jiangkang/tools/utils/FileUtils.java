@@ -10,10 +10,13 @@ import android.renderscript.ScriptGroup;
 
 import com.jiangkang.tools.King;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -168,5 +171,23 @@ public class FileUtils {
         return size;
     }
 
+
+    public static String readFromFile(String filename){
+        try {
+            BufferedReader bufferedReader =new BufferedReader(new FileReader(getAssetFileDescription(filename).getFileDescriptor()));
+            StringBuilder stringBuilder=new StringBuilder();
+            String content;
+            while((content=bufferedReader.readLine())!=null){
+                stringBuilder.append(content);
+            }
+            return stringBuilder.toString();
+        }  catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }

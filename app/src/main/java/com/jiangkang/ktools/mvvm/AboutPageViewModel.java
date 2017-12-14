@@ -13,7 +13,6 @@ import com.jiangkang.ktools.web.WebActivity;
 
 public class AboutPageViewModel {
 
-
     private String author;
 
     private String sourceUrl;
@@ -41,6 +40,16 @@ public class AboutPageViewModel {
         this.sourceUrl = sourceUrl;
         return this;
     }
+
+    private boolean findSubString(String dst, String sub){
+        if (dst.contains(sub)){
+            return true;
+        }
+        return false;
+    }
+
+
+
 
 
     public void onClick(View view) {

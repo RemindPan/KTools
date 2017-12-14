@@ -9,6 +9,8 @@ import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import com.jiangkang.tools.widget.KDialog;
+
 
 /**
  * Created by jiangkang on 2017/9/20.
@@ -24,6 +26,11 @@ public class KWebChromeClient extends WebChromeClient {
     }
 
     @Override
+    public void onProgressChanged(WebView view, int newProgress) {
+        
+    }
+
+    @Override
     public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
         Log.d(TAG, "onConsoleMessage:\n " + consoleMessage.message());
         return true;
@@ -32,7 +39,8 @@ public class KWebChromeClient extends WebChromeClient {
 
     @Override
     public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-        return super.onJsAlert(view, url, message, result);
+        KDialog.showMsgDialog(view.getContext(),message);
+        return true;
     }
 
 
@@ -63,4 +71,6 @@ public class KWebChromeClient extends WebChromeClient {
         super.onGeolocationPermissionsShowPrompt(origin, callback);
         callback.invoke(origin,true,true);
     }
+
+
 }

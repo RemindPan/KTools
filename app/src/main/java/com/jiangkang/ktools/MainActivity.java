@@ -1,5 +1,6 @@
 package com.jiangkang.ktools;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +26,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
+
+
+    public static void launch(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
     private static final String TAG = "MainActivity";
     @BindView(R.id.rc_function_list)
@@ -88,9 +95,15 @@ public class MainActivity extends BaseActivity {
     private void initViews() {
         mRcFunctionList.setLayoutManager(new GridLayoutManager(this, 4));
         mRcFunctionList.setAdapter(new FunctionAdapter(this));
+
+        ToastUtils.showShortToast(stringFromJNI());
     }
 
+    private native String stringFromJNI();
 
 
+    static {
+        System.loadLibrary("native-lib");
+    }
 
 }

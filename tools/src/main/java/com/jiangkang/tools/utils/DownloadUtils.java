@@ -82,38 +82,5 @@ public class DownloadUtils {
     }
 
 
-    public void downloadHtml(@NonNull final String url) {
-        Log.d("Download", "downloadHtml: " + url);
-        final String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ktools" + File.separator + "html";
-        File file = new File(path);
-        if (!file.exists()){
-            file.mkdirs();
-        }
-        if (url.startsWith("https://") || url.startsWith("http://")) {
-            final Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-
-            downloadService.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Response response = client.newCall(request).execute();
-                        String content = response.body().string();
-                        Log.d("Download", "run: \n" + content);
-                        File file = new File(path, String.valueOf(url.hashCode()) + ".html");
-                        if (!file.exists()){
-                            file.createNewFile();
-                        }
-                        FileUtils.writeStringToFile(content,file,false);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-        }
-    }
-
 
 }

@@ -63,14 +63,23 @@ public class ProgressResponseBody extends ResponseBody{
                 long bytesRead = super.read(sink, byteCount);
                 if (bytesRead == -1){
                     if (listener != null){
-                        listener.downloadSuccess();
+                        listener.onSuccess();
                     }
                 }else {
                     totalBytesRead += bytesRead;
-                    Log.d(TAG,"totalBytesRead = " + totalBytesRead);
-                    listener.onDownloading(totalBytesRead,responseBody.contentLength());
-                }
 
+
+                    int progress = (int) (totalBytesRead * 100 / responseBody.contentLength());
+
+//                    Log.d(TAG, "read: size = " + responseBody.contentLength() /(1024 * 1024));
+
+
+//                    Log.d(TAG, "read: progress = " + progress);
+
+                    if (listener != null){
+                        listener.onDownloading(progress,responseBody.contentLength());
+                    }
+                }
                 return bytesRead;
             }
         };

@@ -19,6 +19,12 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
     }
     buildTypes {
         release {
@@ -53,6 +59,12 @@ android {
                     'src/main/res/layout/item',
                     'src/main/res'
             ]
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
         }
     }
 
@@ -94,6 +106,7 @@ dependencies {
     compile project(path: ':requests')
     compile project(path: ':annotations')
     compile project(path: ':aop')
+    compile project(path: ':hack')
 
     implementation "android.arch.lifecycle:runtime:1.0.3"
     implementation "android.arch.lifecycle:extensions:1.0.0-rc1"
@@ -101,6 +114,9 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-rc1"
     implementation "android.arch.persistence.room:rxjava2:1.0.0-rc1"
 
+
+    implementation deps.arouter.arouter_api
+    annotationProcessor deps.arouter.arouter_compiler
 
 }
 

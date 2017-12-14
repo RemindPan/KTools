@@ -12,6 +12,12 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+
     }
     buildTypes {
         release {
@@ -54,4 +60,7 @@ dependencies {
     testCompile 'org.robolectric:robolectric:3.1.2'
 
     compile deps["logger"]
+
+    implementation deps.arouter.arouter_api
+    annotationProcessor deps.arouter.arouter_compiler
 }

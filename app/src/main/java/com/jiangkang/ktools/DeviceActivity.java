@@ -3,6 +3,10 @@ package com.jiangkang.ktools;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,14 +16,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.jiangkang.tools.device.DeviceUtils;
 import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.utils.AppUtils;
+import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.NetworkUtils;
 import com.jiangkang.tools.utils.ShellUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.KDialog;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -54,17 +64,26 @@ public class DeviceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_device);
         setTitle("Device");
         unbinder = ButterKnife.bind(this);
-
-
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     @OnClick(R.id.btn_check_network_info)
     public void onBtnCheckNetworkInfoClicked() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(String.format("网络类型: %s\n", NetworkUtils.getNetWorkType()))
-                .append(String.format("Mac地址: %s\n", NetworkUtils.getMacAddress()));
-        KDialog.showMsgDialog(this, builder.toString());
+
+//        StringBuilder builder = new StringBuilder();
+//        builder.append(String.format("网络类型: %s\n", NetworkUtils.getNetWorkType()))
+//                .append(String.format("Mac地址: %s\n", NetworkUtils.getMacAddress()));
+//        KDialog.showMsgDialog(this, builder.toString());
+
+        URL url = getClassLoader().getResource("assets/tt.txt");
+//        URL url = this.getClass().getClassLoader().getResource("assets/tt.txt");
+        if (url != null) {
+            ToastUtils.showShortToast("不为空！" + url.getPath());
+        } else {
+            ToastUtils.showShortToast("为空");
+        }
+
+
     }
 
     @Override

@@ -36,7 +36,6 @@ public class ZhihuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_zhihu, container, false);
     }
 
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -59,4 +58,7 @@ public class ZhihuFragment extends Fragment {
                     }
                 });
     }
+
+
+
 }

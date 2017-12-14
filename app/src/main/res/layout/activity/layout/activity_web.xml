@@ -12,29 +12,26 @@
             android:id="@+id/iv_title_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back"
             android:layout_centerVertical="true"
-            />
+            android:src="@drawable/ic_arrow_back" />
 
         <TextView
             android:id="@+id/tv_title_middle"
             android:layout_width="142dp"
             android:layout_height="wrap_content"
-            android:singleLine="true"
             android:layout_centerInParent="true"
             android:ellipsize="marquee"
             android:focusable="true"
-            android:gravity="center"
             android:focusableInTouchMode="true"
+            android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
-            />
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/tv_title_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
 
     </RelativeLayout>
 
@@ -42,8 +39,7 @@
         android:id="@+id/web_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        />
+        android:scrollbars="none" />
 
 
 </LinearLayout>

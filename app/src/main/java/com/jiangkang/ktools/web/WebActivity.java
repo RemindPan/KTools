@@ -7,15 +7,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.webkit.WebChromeClient;
+import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jiangkang.ktools.KApplication;
 import com.jiangkang.ktools.R;
+import com.jiangkang.tools.utils.FileUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +24,7 @@ import butterknife.OnClick;
 
 import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
 
-public class WebActivity extends AppCompatActivity implements WebContract.IView{
+public class WebActivity extends AppCompatActivity implements WebContract.IView {
 
 
     private static final String TAG = "WebActivity";
@@ -33,14 +34,24 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
     TextView tvTitleMiddle;
     @BindView(R.id.tv_title_right)
     TextView tvTitleRight;
+
     @BindView(R.id.web_container)
     WebView webContainer;
+
+
+    //网址
     private String launchUrl;
 
-    /*
-    * launchUrl : 网址
-    *
-    * */
+
+    /**
+     *
+     * @param bundle
+     *        launchUrl : 网址
+     *        imgClickable : 点击图片是否显示大图
+     *
+     * @return
+     *
+     */
     public static void launch(Context context, Bundle bundle) {
         Intent intent = new Intent(context, WebActivity.class);
         if (bundle != null) {
@@ -56,8 +67,8 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
         setContentView(R.layout.activity_web);
         ButterKnife.bind(this);
         initVar();
-
     }
+
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initVar() {
@@ -69,12 +80,6 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
         webContainer.setWebChromeClient(new KWebChromeClient(this));
         webContainer.setWebViewClient(new KWebViewClient(this));
 
-        //webContainer.setLongClickable(false);
-        //webContainer.setOnLongClickListener(new View.OnLongClickListener() {
-        //  @Override public boolean onLongClick(View v) {
-        //    return true;
-        //  }
-        //});
 
         WebView.setWebContentsDebuggingEnabled(true);
 
@@ -84,7 +89,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
         webContainer.getSettings().setAllowFileAccess(true);
         webContainer.getSettings().setAllowFileAccessFromFileURLs(true);
 
-        webContainer.addJavascriptInterface(new KJavaInterface(this),"jk");
+        webContainer.addJavascriptInterface(new KJavaInterface(this), "jk");
 
         webContainer.loadUrl(launchUrl);
 
@@ -93,9 +98,9 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
 
     @OnClick(R.id.iv_title_left)
     public void onIvTitleLeftClicked() {
-        if (webContainer.canGoBack()){
+        if (webContainer.canGoBack()) {
             webContainer.goBack();
-        }else {
+        } else {
             finish();
         }
     }
@@ -126,4 +131,8 @@ public class WebActivity extends AppCompatActivity implements WebContract.IView{
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

@@ -25,7 +25,7 @@ import java.io.IOException;
  * Created by jiangkang on 2017/9/20.
  */
 
-public class KWebViewClient extends WebViewClient{
+public class KWebViewClient extends WebViewClient {
 
 
     private static final String TAG = "KWebViewClient";
@@ -39,12 +39,8 @@ public class KWebViewClient extends WebViewClient{
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
-//        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ktools" + File.separator + "html",String.valueOf(url.hashCode()) + ".html");
-//        if (file.exists()){
-//            view.loadUrl(Uri.fromFile(file).toString());
-//        }
-//        DownloadUtils.getInstance().downloadHtml(url);
         super.onPageStarted(view, url, favicon);
+        view.getSettings().setBlockNetworkImage(true);
     }
 
 
@@ -57,6 +53,21 @@ public class KWebViewClient extends WebViewClient{
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
+        view.getSettings().setBlockNetworkImage(false);
+        injectJsFile(view);
+    }
+
+    private void injectJsFile(WebView view) {
+//        String js = FileUtils.readFromFile("web/inject.js");
+//        Log.d(TAG, "injectJsFile: \n js = " + js);
+        view.loadUrl("javascript:" + "(function imgOnClick(){\n" +
+                "    var imgs = document.getElementsByTagName(\"img\");\n" +
+                "    for(var i = 0; i < imgs.length;i++){\n" +
+                "            imgs[i].onclick = function(){\n" +
+                "                jk.showBigImage(this.src);\n" +
+                "            };\n" +
+                "    }\n" +
+                "})()");
     }
 
 
@@ -74,11 +85,10 @@ public class KWebViewClient extends WebViewClient{
                 "\nmethod = " + request.getMethod() +
                 "\nheaders = " + request.getRequestHeaders().toString());
         String url = request.getUrl().toString();
-        if ((url.startsWith("https://") || url.startsWith("http://")) && (url.endsWith(".png") || url.endsWith(".jpg"))){
+        if ((url.startsWith("https://") || url.startsWith("http://")) && (url.endsWith(".png") || url.endsWith(".jpg"))) {
             Log.d(TAG, "拦截资源 :" + url);
-            DownloadUtils.getInstance().downloadImage(url);
             try {
-                WebResourceResponse response = new WebResourceResponse(MimeTypeMap.getFileExtensionFromUrl(".jpg"),"utf-8", FileUtils.getInputStreamFromAssets("img/dog.jpg"));
+                WebResourceResponse response = new WebResourceResponse(MimeTypeMap.getFileExtensionFromUrl(".jpg"), "utf-8", FileUtils.getInputStreamFromAssets("img/dog.jpg"));
                 return response;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -86,4 +96,7 @@ public class KWebViewClient extends WebViewClient{
         }
         return super.shouldInterceptRequest(view, request);
     }
+
+
+
 }
