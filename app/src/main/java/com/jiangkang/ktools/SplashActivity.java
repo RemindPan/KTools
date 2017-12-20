@@ -1,5 +1,6 @@
 package com.jiangkang.ktools;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.view.PagerAdapter;
@@ -19,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
     @BindView(R.id.viewpager_splash)
     ViewPager mViewpagerSplash;
 
-    private View item0,item1,item2;
+    private View item0, item1, item2;
 
     private ArrayList<View> views;
 
@@ -37,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void setupTimer() {
-        final CountDownTimer timer = new CountDownTimer(3000,1000) {
+        final CountDownTimer timer = new CountDownTimer(3000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -55,9 +56,9 @@ public class SplashActivity extends AppCompatActivity {
     private void initViewPager() {
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        item0 = inflater.inflate(R.layout.item_splash_image,null);
-        item1 = inflater.inflate(R.layout.item_splash_image,null);
-        item2 = inflater.inflate(R.layout.item_splash_image,null);
+        item0 = inflater.inflate(R.layout.item_splash_image, null);
+        item1 = inflater.inflate(R.layout.item_splash_image, null);
+        item2 = inflater.inflate(R.layout.item_splash_image, null);
 
         views = new ArrayList<>();
 

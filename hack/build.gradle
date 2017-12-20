@@ -64,4 +64,9 @@ dependencies {
 
     implementation deps.arouter.arouter_api
     annotationProcessor deps.arouter.arouter_compiler
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+apply plugin: 'kotlin-android'
+repositories {
+    mavenCentral()
 }

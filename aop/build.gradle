@@ -3,6 +3,7 @@ import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion libVersion.compileSdkVersion
@@ -38,6 +39,7 @@ dependencies {
 
     compile 'org.aspectj:aspectjrt:1.8.10'
     compile project(path:':annotations')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 
@@ -75,4 +77,7 @@ android.libraryVariants.all { variant ->
             }
         }
     }
+}
+repositories {
+    mavenCentral()
 }

@@ -16,6 +16,7 @@ import com.jiangkang.ktools.widget.ScrollingActivity;
 import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.FloatingWindow;
 import com.jiangkang.tools.widget.KNotification;
+import com.jiangkang.widget.ui.UpdateDialogActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,6 +121,8 @@ public class WidgetActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_bottom_nav)
     public void onBottomNavClicked() {
-        BottomNavigationActivity.launch(this,null);
+
+        BottomNavigationActivity.launch(this, null);
+
     }
 }

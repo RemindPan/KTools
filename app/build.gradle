@@ -3,6 +3,8 @@ import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 
 
@@ -117,7 +119,9 @@ dependencies {
 
     implementation deps.arouter.arouter_api
     annotationProcessor deps.arouter.arouter_compiler
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    compile project(path: ':widget')
 }
 
 
@@ -162,4 +166,7 @@ project.android.applicationVariants.all { variant ->
             }
         }
     }
+}
+repositories {
+    mavenCentral()
 }

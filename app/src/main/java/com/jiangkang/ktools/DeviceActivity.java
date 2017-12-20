@@ -95,7 +95,7 @@ public class DeviceActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_check_current_activity)
     public void onBtnCheckCurrentActivityClicked() {
-        KDialog.showMsgDialog(this, AppUtils.getCurrentActivity());
+        KDialog.showMsgDialog(this, AppUtils.INSTANCE.getCurrentActivity());
     }
 
     private void queryRunningService() {

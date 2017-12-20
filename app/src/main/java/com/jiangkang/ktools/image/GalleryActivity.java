@@ -36,6 +36,8 @@ public class GalleryActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initViews();
+
+
     }
 
     private void initViews() {

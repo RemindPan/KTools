@@ -16,7 +16,7 @@ public class ActivityChangeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
        if ("com.jiangkang.ktools.ActivityChange".equals(intent.getAction())){
-           createNotification(context, AppUtils.getCurrentActivity());
+           createNotification(context, AppUtils.INSTANCE.getCurrentActivity());
 //           FloatingWindow.dismiss();
 //           FloatingWindow.show(context,AppUtils.getCurrentActivity());
        }

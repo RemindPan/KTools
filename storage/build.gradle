@@ -7,6 +7,7 @@ if (isBuildAsApp.toBoolean()) {
     apply plugin: 'com.android.library'
 }
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
@@ -71,6 +72,10 @@ dependencies {
     implementation deps.okhttp3.okhttp
     implementation deps.okhttp3.logginginterceptor
     implementation deps.okhttp3.mockwebserver
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
+}
+repositories {
+    mavenCentral()
 }

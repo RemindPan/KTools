@@ -65,4 +65,39 @@ public class ImageUtils {
     }
 
 
+    public static Bitmap convert2Gray(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        int[] pixs = new int[width * height];
+
+        bitmap.getPixels(pixs, 0, width, 0, 0, width, height);
+
+        int alpha = 0xFF << 24;
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                int color = pixs[width * i + j];
+
+                int red = (color & 0x00FF0000) >> 16;
+
+                int green = (color & 0x0000FF00) >> 8;
+
+                int blue = (color & 0x000000FF);
+
+                color = (red + green + blue) / 3;
+
+                color = alpha | (color << 16) | (color << 8)| color;
+
+                pixs[width * i + j] = color;
+
+            }
+        }
+
+        Bitmap result = Bitmap.createBitmap(width,height, Bitmap.Config.RGB_565);
+        result.setPixels(pixs,0,width,0,0,width,height);
+        return result;
+    }
+
+
 }

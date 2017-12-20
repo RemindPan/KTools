@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity {
         mRcFunctionList.setLayoutManager(new GridLayoutManager(this, 4));
         mRcFunctionList.setAdapter(new FunctionAdapter(this));
 
-        ToastUtils.showShortToast(stringFromJNI());
+//        ToastUtils.showShortToast(stringFromJNI());
     }
 
     private native String stringFromJNI();
@@ -105,5 +105,8 @@ public class MainActivity extends BaseActivity {
     static {
         System.loadLibrary("native-lib");
     }
+
+
+
 
 }

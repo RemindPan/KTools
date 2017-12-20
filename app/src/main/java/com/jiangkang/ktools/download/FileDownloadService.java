@@ -23,5 +23,4 @@ public interface FileDownloadService {
     Flowable<ResponseBody> downloadFile(@Url String url, @Header("Range") String range);
 
 
-
 }

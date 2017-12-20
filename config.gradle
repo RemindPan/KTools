@@ -44,6 +44,8 @@ ext {
 
             loggerVersion          : '2.1.1',
 
+            anko_version           : '0.10.3',
+
 
     ]
 
@@ -119,6 +121,8 @@ ext {
             retrofit_adpter_rxjava2     : "com.squareup.retrofit2:adapter-rxjava2:${libVersion.retrofitVersion}",
 
             "logger"                    : "com.orhanobut:logger:${libVersion.loggerVersion}",
+
+            "anko"                      : "org.jetbrains.anko:anko:${libVersion.anko_version}",
 
     ]
 
