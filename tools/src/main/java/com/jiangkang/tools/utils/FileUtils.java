@@ -22,6 +22,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.Executors;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+
 /**
  * Created by jiangkang on 2017/9/20.
  */
@@ -65,10 +69,10 @@ public class FileUtils {
             e.printStackTrace();
         } finally {
             try {
-                if (writer != null){
+                if (writer != null) {
                     writer.close();
                 }
-                if (bufferedWriter != null){
+                if (bufferedWriter != null) {
                     bufferedWriter.close();
                 }
             } catch (IOException e) {
@@ -172,16 +176,16 @@ public class FileUtils {
     }
 
 
-    public static String readFromFile(String filename){
+    public static String readFromFile(String filename) {
         try {
-            BufferedReader bufferedReader =new BufferedReader(new FileReader(getAssetFileDescription(filename).getFileDescriptor()));
-            StringBuilder stringBuilder=new StringBuilder();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(getAssetFileDescription(filename).getFileDescriptor()));
+            StringBuilder stringBuilder = new StringBuilder();
             String content;
-            while((content=bufferedReader.readLine())!=null){
+            while ((content = bufferedReader.readLine()) != null) {
                 stringBuilder.append(content);
             }
             return stringBuilder.toString();
-        }  catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;
         } catch (IOException e) {

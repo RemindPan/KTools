@@ -1,9 +1,14 @@
 package com.jiangkang.ktools;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.ScrollView;
@@ -15,8 +20,10 @@ import com.jiangkang.ktools.widget.KDialogActivity;
 import com.jiangkang.ktools.widget.ScrollingActivity;
 import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.FloatingWindow;
+import com.jiangkang.tools.widget.KDialog;
 import com.jiangkang.tools.widget.KNotification;
 import com.jiangkang.widget.ui.UpdateDialogActivity;
+import com.jiangkang.widget.view.TaiChiView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -123,6 +130,8 @@ public class WidgetActivity extends AppCompatActivity {
     public void onBottomNavClicked() {
 
         BottomNavigationActivity.launch(this, null);
+
+
 
     }
 }

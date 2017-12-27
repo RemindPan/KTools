@@ -102,4 +102,8 @@ public class RxJavaFragment extends Fragment {
     public void onBtnPollingClicked() {
         handleClick(new PollingFragment());
     }
+
+
+
+
 }

@@ -25,7 +25,8 @@
             android:focusableInTouchMode="true"
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true" />
+            android:singleLine="true"
+            />
 
         <TextView
             android:id="@+id/tv_title_right"

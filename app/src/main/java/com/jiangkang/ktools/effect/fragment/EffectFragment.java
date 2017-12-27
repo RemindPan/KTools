@@ -1,6 +1,7 @@
 package com.jiangkang.ktools.effect.fragment;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.jiangkang.ktools.R;
+import com.jiangkang.tools.widget.KDialog;
+import com.jiangkang.widget.view.TaiChiView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +28,8 @@ public class EffectFragment extends Fragment {
     @BindView(R.id.effect_shape)
     Button effectShape;
     Unbinder unbinder;
+    @BindView(R.id.tai_chi)
+    Button mTaiChi;
 
     public EffectFragment() {
         // Required empty public constructor
@@ -59,5 +64,25 @@ public class EffectFragment extends Fragment {
     @OnClick(R.id.effect_shape)
     public void onEffectShapeClicked() {
         handleClick(new ShapeViewFragment());
+    }
+
+    @OnClick(R.id.tai_chi)
+    public void onTaichiViewClicked() {
+        final TaiChiView taiChiView = new TaiChiView(this.getActivity());
+
+        taiChiView.startRotate();
+
+
+        KDialog.showCustomViewDialog(this.getActivity(), "太极图", taiChiView, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
     }
 }

@@ -17,6 +17,14 @@
             android:background="#f44336"
              />
 
+
+        <Button
+            android:id="@+id/tai_chi"
+            style="@style/KButton"
+            android:text="太极图"
+            android:background="#f44336"
+            />
+
     </LinearLayout>
 
 </ScrollView>
