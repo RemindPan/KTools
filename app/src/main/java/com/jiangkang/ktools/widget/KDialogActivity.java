@@ -6,14 +6,17 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -74,6 +77,12 @@ public class KDialogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //转场动画
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            getWindow().setEnterTransition(new Fade());
+            getWindow().setExitTransition(new Fade());
+        }
         setContentView(R.layout.activity_kdialog);
         ButterKnife.bind(this);
     }
@@ -274,5 +283,14 @@ public class KDialogActivity extends AppCompatActivity {
         dialog.setCancelable(true);
         dialog.setContentView(webView);
         dialog.show();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAfterTransition();
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.jiangkang.ktools;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -9,9 +10,11 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 import com.jiangkang.ktools.device.MediaContentObserver;
 import com.jiangkang.ktools.device.ScreenShotMonitorService;
@@ -40,6 +43,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //转场动画
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            getWindow().setEnterTransition(new Explode());
+            getWindow().setExitTransition(new Explode());
+        }
         setContentView(R.layout.activity_main);
         ClassLoader loader = MainActivity.class.getClassLoader();
         if (loader != null){
@@ -107,6 +116,11 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAfterTransition();
+        }
+    }
 }

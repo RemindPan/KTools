@@ -4,9 +4,11 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -64,6 +66,10 @@ public class DeviceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_device);
         setTitle("Device");
         unbinder = ButterKnife.bind(this);
+        // ATTENTION: This was auto-generated to handle app links.
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
     }
 
     @TargetApi(Build.VERSION_CODES.M)

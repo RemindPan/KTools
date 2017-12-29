@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jiangkang.ktools">
 
     <!-- 获取通讯录权限 -->
@@ -59,7 +60,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SystemActivity" />
-        <activity android:name=".DeviceActivity" />
+        <activity android:name=".DeviceActivity">
+        </activity>
         <activity android:name=".RequestsActivity" />
         <activity android:name=".WidgetActivity" />
         <activity android:name=".StorageActivity" />

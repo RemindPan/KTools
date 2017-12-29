@@ -1,12 +1,18 @@
 package com.jiangkang.ktools;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
@@ -72,6 +78,13 @@ public class WidgetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //转场动画
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            getWindow().setEnterTransition(new Fade());
+            getWindow().setExitTransition(new Fade());
+        }
+
         setContentView(R.layout.activity_widget);
         ButterKnife.bind(this);
     }
@@ -128,10 +141,15 @@ public class WidgetActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_bottom_nav)
     public void onBottomNavClicked() {
-
         BottomNavigationActivity.launch(this, null);
+    }
 
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAfterTransition();
+        }
     }
 }
