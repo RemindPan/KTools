@@ -56,12 +56,12 @@
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".SystemActivity" />
-        <activity android:name=".DeviceActivity">
-        </activity>
+        <activity android:name=".DeviceActivity"></activity>
         <activity android:name=".RequestsActivity" />
         <activity android:name=".WidgetActivity" />
         <activity android:name=".StorageActivity" />
@@ -142,12 +142,19 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
 
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+        <activity
+            android:name=".system.KLauncherActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_klauncher"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
