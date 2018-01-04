@@ -12,7 +12,6 @@ import android.widget.Button;
 
 import com.jiangkang.ktools.R;
 import com.jiangkang.tools.widget.KDialog;
-import com.jiangkang.widget.view.AnimatedShapeView;
 import com.jiangkang.widget.view.TaiChiView;
 
 import butterknife.BindView;
@@ -31,6 +30,8 @@ public class EffectFragment extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.tai_chi)
     Button mTaiChi;
+    @BindView(R.id.animated_shape_view)
+    Button mAnimatedShapeView;
 
     public EffectFragment() {
         // Required empty public constructor
@@ -69,23 +70,24 @@ public class EffectFragment extends Fragment {
 
     @OnClick(R.id.tai_chi)
     public void onTaichiViewClicked() {
-//        final TaiChiView taiChiView = new TaiChiView(this.getActivity());
-//        taiChiView.startRotate();
-//        KDialog.showCustomViewDialog(this.getActivity(), "太极图", taiChiView, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        }, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        });
-
-        handleClick(new AnimatedShapeViewFragment());
-
+        final TaiChiView taiChiView = new TaiChiView(this.getActivity());
+        taiChiView.startRotate();
+        KDialog.showCustomViewDialog(this.getActivity(), "太极图", taiChiView, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
     }
 
 
+    @OnClick(R.id.animated_shape_view)
+    public void onAnimatedShapeViewClicked() {
+        handleClick(new AnimatedShapeViewFragment());
+    }
 }

@@ -25,6 +25,13 @@
             android:background="#f44336"
             />
 
+        <Button
+            android:id="@+id/animated_shape_view"
+            style="@style/KButton"
+            android:text="View + Animation"
+            android:background="#f44336"
+            />
+
     </LinearLayout>
 
 </ScrollView>
