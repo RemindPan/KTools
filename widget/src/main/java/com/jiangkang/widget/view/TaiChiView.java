@@ -1,5 +1,6 @@
 package com.jiangkang.widget.view;
 
+import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,6 +13,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 /**
  * Created by jiangkang on 2017/12/27.
@@ -25,17 +27,7 @@ public class TaiChiView extends View {
     private Paint mPaintBlack;
 
     //旋转角度
-    private float mDegrees;
-
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            mDegrees += 6;
-            setDegrees(mDegrees);
-            sendEmptyMessageDelayed(0, 60);
-        }
-    };
+    private int mDegrees;
 
     public TaiChiView(Context context) {
         super(context);
@@ -79,7 +71,8 @@ public class TaiChiView extends View {
 
         canvas.drawColor(Color.GRAY);
 
-        canvas.rotate(mDegrees);
+        //因为已经移动了坐标原点
+        canvas.rotate(mDegrees,0,0);
 
         int radius = Math.min(width, height) / 2 - 40;
         RectF rectF = new RectF(-radius, -radius, radius, radius);
@@ -100,14 +93,22 @@ public class TaiChiView extends View {
     }
 
 
-    public void setDegrees(float mDegrees) {
-        this.mDegrees = mDegrees;
-        this.invalidate();
-    }
-
-
+    /*
+    * 让太极图动起来
+    * */
     public void startRotate() {
-        mHandler.sendEmptyMessageDelayed(0, 20);
+        ValueAnimator animator = ValueAnimator.ofInt(0,360);
+        animator.setDuration(2000);
+        animator.setInterpolator(new LinearInterpolator());
+        animator.setRepeatCount(ValueAnimator.INFINITE);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mDegrees = (int) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+        animator.start();
     }
 
 

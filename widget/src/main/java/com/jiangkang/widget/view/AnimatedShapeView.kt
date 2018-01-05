@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.BounceInterpolator
+import android.view.animation.LinearInterpolator
 
 /**
  * Created by jiangkang on 2018/1/4.
@@ -51,10 +52,6 @@ open class AnimatedShapeView : View {
         val rightBottomX = viewWidth + 300
         val rightBottomY = viewHeight + 300
 
-        println(viewHeight)
-        println(viewWidth)
-        println(mRadius)
-
         canvas!!.rotate(mRotate.toFloat(), viewWidth.toFloat(), viewHeight.toFloat())
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -67,7 +64,7 @@ open class AnimatedShapeView : View {
 
     fun start() {
         var animator = ValueAnimator.ofInt(0, 300)
-        animator.duration = 3000
+        animator.duration = 2000
         animator.addUpdateListener({ animation ->
             mRadius = animation.animatedValue as Int
             invalidate()
@@ -82,8 +79,10 @@ open class AnimatedShapeView : View {
 
         var animator = ValueAnimator()
         animator.setValues(propertyRadius, propertyRotate)
-        animator.duration = 3000
-        animator.interpolator = BounceInterpolator(context, null)
+        animator.duration = 2000
+        animator.interpolator = LinearInterpolator()
+        animator.repeatCount = ValueAnimator.INFINITE
+        animator.repeatMode = ValueAnimator.REVERSE
         animator.addUpdateListener { animation ->
             mRadius = animation.getAnimatedValue("PropertyRadius") as Int
             mRotate = animation.getAnimatedValue("PropertyRotate") as Int

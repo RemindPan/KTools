@@ -24,7 +24,6 @@ import butterknife.Unbinder;
  */
 public class EffectFragment extends Fragment {
 
-
     @BindView(R.id.effect_shape)
     Button effectShape;
     Unbinder unbinder;
