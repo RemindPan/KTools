@@ -9,13 +9,11 @@ import android.graphics.Paint
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.BounceInterpolator
 import android.view.animation.LinearInterpolator
 
 /**
  * Created by jiangkang on 2018/1/4.
- * description：
+ * description：简单的自定义View + 动画
  */
 open class AnimatedShapeView : View {
 
@@ -58,7 +56,6 @@ open class AnimatedShapeView : View {
             canvas!!.drawRoundRect(leftTopX.toFloat(), leftTopY.toFloat(), rightBottomX.toFloat(), rightBottomY.toFloat(), mRadius.toFloat(), mRadius.toFloat(), mBackgroundPaint)
         }
 
-
     }
 
 
@@ -89,7 +86,6 @@ open class AnimatedShapeView : View {
             invalidate()
         }
         animator.start()
-
     }
 
 

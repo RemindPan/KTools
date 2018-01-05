@@ -13,9 +13,9 @@ import com.jiangkang.widget.R
 
 open class ConstraintLinearLayout : LinearLayout {
 
-    var mMaxHeight: Int = 0
+    private var mMaxHeight: Int = 0
 
-    var mMinHeight: Int = 0
+    private var mMinHeight: Int = 0
 
     constructor(context: Context?) : super(context) {
         initAttributes(context, null)

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_animated_shape_view.*
 
 
 /**
- * A simple [Fragment] subclass.
+ * View + Animation
  */
 class AnimatedShapeViewFragment : Fragment() {
 
