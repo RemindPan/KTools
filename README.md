@@ -23,6 +23,10 @@ Android常用功能的封装库
 
 [RxJava实例-线程切换](http://www.jianshu.com/p/6620c9651dc9)
 
+[Android 语音播报实现方案（无SDK)](https://www.jianshu.com/p/df2022b3937d)
+
+[今天上班忘带Android数据线了](https://www.jianshu.com/p/15a59440ec2b)
+
 
 #### 问题反馈
 ---

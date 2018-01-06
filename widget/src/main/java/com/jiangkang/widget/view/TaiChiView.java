@@ -88,10 +88,7 @@ public class TaiChiView extends View {
         canvas.drawCircle(0, -smallRadius, dotRadius, mPaintWhite);
         canvas.drawCircle(0, smallRadius, dotRadius, mPaintBlack);
 
-
-
     }
-
 
     /*
     * 让太极图动起来

@@ -63,22 +63,16 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         Executors.newCachedThreadPool().execute(new Runnable() {
             @Override
             public void run() {
-//                Bitmap bitmap = DownloadUtils.getInstance().downloadImage(urlList.get(position));
-                Bitmap bitmap = null;
-                try {
-                    bitmap = FileUtils.getBitmapFromAssets("img/dog.jpg");
-                    final Bitmap result = ImageUtils.convert2Gray(bitmap);
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            GlideApp.with(context)
-                                    .load(result)
-                                    .into(holder.ivContent);
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Bitmap bitmap = DownloadUtils.getInstance().downloadImage(urlList.get(position));
+                final Bitmap result = ImageUtils.convert2Gray(bitmap);
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        GlideApp.with(context)
+                                .load(result)
+                                .into(holder.ivContent);
+                    }
+                });
 
             }
         });

@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_constraint_layout.*
 
 
 /**
- * A simple [Fragment] subclass.
+ * 约束布局相关的Demo
  */
 class ConstraintLayoutFragment : Fragment() {
 
@@ -33,7 +33,7 @@ class ConstraintLayoutFragment : Fragment() {
     private fun addAnimationOperations() {
         var set = false
         val constraint1 = ConstraintSet()
-        constraint1.clone(constraint_root)
+        constraint1.clone(context,R.layout.fragment_constraint_layout)
         val constraint2 = ConstraintSet()
         constraint2.clone(context, R.layout.activity_constraint_layout_img_alt)
 
