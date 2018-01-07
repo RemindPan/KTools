@@ -37,7 +37,7 @@
     </RelativeLayout>
 
     <WebView
-        android:id="@+id/web_container"
+        android:id="@+id/webContainer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:scrollbars="none" />

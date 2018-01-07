@@ -70,7 +70,7 @@ public class EffectFragment extends Fragment {
     @OnClick(R.id.tai_chi)
     public void onTaichiViewClicked() {
         final TaiChiView taiChiView = new TaiChiView(this.getActivity());
-        taiChiView.startRotate();
+
         KDialog.showCustomViewDialog(this.getActivity(), "太极图", taiChiView, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -82,6 +82,8 @@ public class EffectFragment extends Fragment {
                 dialog.dismiss();
             }
         });
+
+        taiChiView.startRotate();
     }
 
 

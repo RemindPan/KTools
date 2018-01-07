@@ -84,16 +84,16 @@ public class KWebViewClient extends WebViewClient {
                 "\nurl = " + request.getUrl().toString() +
                 "\nmethod = " + request.getMethod() +
                 "\nheaders = " + request.getRequestHeaders().toString());
-        String url = request.getUrl().toString();
-        if ((url.startsWith("https://") || url.startsWith("http://")) && (url.endsWith(".png") || url.endsWith(".jpg"))) {
-            Log.d(TAG, "拦截资源 :" + url);
-            try {
-                WebResourceResponse response = new WebResourceResponse(MimeTypeMap.getFileExtensionFromUrl(".jpg"), "utf-8", FileUtils.getInputStreamFromAssets("img/dog.jpg"));
-                return response;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        String url = request.getUrl().toString();
+//        if ((url.startsWith("https://") || url.startsWith("http://")) && (url.endsWith(".png") || url.endsWith(".jpg"))) {
+//            Log.d(TAG, "拦截资源 :" + url);
+//            try {
+//                WebResourceResponse response = new WebResourceResponse(MimeTypeMap.getFileExtensionFromUrl(".jpg"), "utf-8", FileUtils.getInputStreamFromAssets("img/dog.jpg"));
+//                return response;
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
         return super.shouldInterceptRequest(view, request);
     }
 

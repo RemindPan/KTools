@@ -59,6 +59,6 @@ public class AboutPageViewModel {
         }else {
             bundle.putString("launchUrl", "https://github.com/jiangkang/KTools");
         }
-        WebActivity.launch(mContext, bundle);
+        WebActivity.Companion.launch(mContext, bundle);
     }
 }

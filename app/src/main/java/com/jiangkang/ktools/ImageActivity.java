@@ -347,7 +347,7 @@ public class ImageActivity extends AppCompatActivity {
     public void onBtnShowBase64ImgInWebClicked() {
         Bundle bundle = new Bundle();
         bundle.putString("launchUrl", FileUtils.getAssetsPath("web/demo_img.html"));
-        WebActivity.launch(this, bundle);
+        WebActivity.Companion.launch(this, bundle);
     }
 
 
