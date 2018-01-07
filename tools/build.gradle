@@ -64,6 +64,8 @@ dependencies {
 
     compile deps["logger"]
 
+    compile deps['glide']
+
     implementation deps.arouter.arouter_api
     annotationProcessor deps.arouter.arouter_compiler
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

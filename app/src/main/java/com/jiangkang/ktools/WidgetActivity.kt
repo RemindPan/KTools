@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.transition.Fade
 import android.view.Window
 import android.widget.RemoteViews
 import com.jiangkang.ktools.widget.*
+import com.jiangkang.tools.extend.launch
 import com.jiangkang.tools.utils.ToastUtils
 import com.jiangkang.tools.widget.FloatingWindow
 import com.jiangkang.tools.widget.KNotification
@@ -70,7 +70,8 @@ class WidgetActivity : AppCompatActivity() {
 
 
         btn_widget_dialog.onClick {
-            KDialogActivity.launch(mContext, null)
+            launch(KDialogActivity::class.java,null)
+//            KDialogActivity.launch(mContext, null)
         }
 
 

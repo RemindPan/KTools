@@ -390,6 +390,7 @@ public class SystemActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_hide_virtual_navbar)
     public void onBtnHideVirtualNavbarClicked() {
+        
         hideVirtualNavbar(this);
     }
 }
