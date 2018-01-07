@@ -20,7 +20,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 自定义View相关的Demo
  */
 public class EffectFragment extends Fragment {
 
@@ -70,7 +70,6 @@ public class EffectFragment extends Fragment {
     @OnClick(R.id.tai_chi)
     public void onTaichiViewClicked() {
         final TaiChiView taiChiView = new TaiChiView(this.getActivity());
-
         KDialog.showCustomViewDialog(this.getActivity(), "太极图", taiChiView, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

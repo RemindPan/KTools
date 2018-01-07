@@ -117,5 +117,19 @@
         android:background="#FF9966"
         />
 
+    <Button
+        android:id="@+id/btn_hide_status_bar"
+        style="@style/KButton"
+        android:text="隐藏状态栏"
+        android:background="#FF9966"
+        />
+
+    <Button
+        android:id="@+id/btn_hide_virtual_navbar"
+        style="@style/KButton"
+        android:text="隐藏虚拟导航栏（再次点击会消耗事件）"
+        android:background="#FF9966"
+        />
+
   </LinearLayout>
 </ScrollView>

@@ -2,6 +2,7 @@ package com.jiangkang.ktools;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
@@ -15,8 +16,8 @@ import android.os.Environment;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -85,6 +86,10 @@ public class SystemActivity extends AppCompatActivity {
     Button mBtnLoadDex;
     @BindView(R.id.btn_exit_app)
     Button mBtnExitApp;
+    @BindView(R.id.btn_hide_status_bar)
+    Button mBtnHideStatusBar;
+    @BindView(R.id.btn_hide_virtual_navbar)
+    Button mBtnHideVirtualNavbar;
 
     private JSONObject jsonObject;
 
@@ -349,15 +354,42 @@ public class SystemActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_exit_app)
     public void onBtnExitAppClicked() {
-        Intent intent = new Intent(this,MainActivity.class);
+
+        Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
-        
+        hideVirtualNavbar(this);
     }
 
 
+    private void hideVirtualNavbar(Activity activity) {
+        View decroView = activity.getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decroView.setSystemUiVisibility(uiOptions);
+    }
+
+    private void hideStatusBar() {
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+        // Remember that you should never show the action bar if the
+        // status bar is hidden, so hide that too if necessary.
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+    }
 
 
+    @OnClick(R.id.btn_hide_status_bar)
+    public void onBtnHideStatusBarClicked() {
+        hideStatusBar();
+    }
 
+    @OnClick(R.id.btn_hide_virtual_navbar)
+    public void onBtnHideVirtualNavbarClicked() {
+        hideVirtualNavbar(this);
+    }
 }
