@@ -53,7 +53,6 @@ public class AudioActivity extends AppCompatActivity {
 
     private TextToSpeech speech;
 
-
     private MediaPlayer.OnCompletionListener onCompletionListener;
 
     private MediaPlayer player = new MediaPlayer();
@@ -120,6 +119,5 @@ public class AudioActivity extends AppCompatActivity {
     public void onBtnPlayMultiSoundsClicked() {
         sendBroadcast(new Intent(this, VoiceBroadcastReceiver.class));
     }
-
 
 }

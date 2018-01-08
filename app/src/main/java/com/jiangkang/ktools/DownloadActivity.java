@@ -4,6 +4,10 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
@@ -56,6 +60,8 @@ public class DownloadActivity extends AppCompatActivity {
 
     RxPermissions rxPermissions;
 
+    private long downloadId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,11 +78,21 @@ public class DownloadActivity extends AppCompatActivity {
         request.setTitle("通过DownloadManager下载APK");
         request.setDescription("简单的演示一下DownloadManager的使用方法");
         request.allowScanningByMediaScanner();
+        downloadId = manager.enqueue(request);
+
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID,-1);
+                if (id == downloadId){
+                    ToastUtils.showShortToast("下载完成");
+
+                }
+            }
+        },new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
     }
 
     private void downloadFileByRetrofit(){
-
-
         DownloadUtils.getInstance()
                 .downloadUrl(APK_URL)
                 .downloadFilePath(Environment.getExternalStorageDirectory() + File.separator + "ktools","翼支付.apk")
@@ -101,8 +117,8 @@ public class DownloadActivity extends AppCompatActivity {
                         ToastUtils.showShortToast("下载失败");
                     }
                 })
-//                .start();
-                .startByMultiThread(4);
+                .start();
+//                .startByMultiThread(4);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
