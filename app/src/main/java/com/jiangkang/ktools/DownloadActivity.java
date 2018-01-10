@@ -83,26 +83,26 @@ public class DownloadActivity extends AppCompatActivity {
         registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID,-1);
-                if (id == downloadId){
+                long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                if (id == downloadId) {
                     ToastUtils.showShortToast("下载完成");
 
                 }
             }
-        },new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        }, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
     }
 
-    private void downloadFileByRetrofit(){
+    private void downloadFileByRetrofit() {
         DownloadUtils.getInstance()
                 .downloadUrl(APK_URL)
-                .downloadFilePath(Environment.getExternalStorageDirectory() + File.separator + "ktools","翼支付.apk")
+                .downloadFilePath(Environment.getExternalStorageDirectory() + File.separator + "ktools", "翼支付.apk")
                 .setDownloadListener(new DownloadListener() {
                     @Override
                     public void onDownloading(final int progress, long contentLength) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                KDialog.showProgressDialog(DownloadActivity.this,progress);
+                                KDialog.showProgressDialog(DownloadActivity.this, progress);
                             }
                         });
                     }
@@ -151,6 +151,13 @@ public class DownloadActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+
+
+
+
+
 
 
 }

@@ -1,1 +1,1 @@
-include ':app', ':tools', ':requests', ':annotations', ':aop', ':storage', ':hack', ':widget'
+include ':app', ':tools', ':requests', ':annotations', ':aop', ':storage', ':hack', ':widget', ':kdownloader'
