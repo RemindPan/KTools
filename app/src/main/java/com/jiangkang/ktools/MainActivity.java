@@ -98,6 +98,7 @@ public class MainActivity extends BaseActivity {
     private void openBrowser(String url) {
         Bundle bundle = new Bundle();
         bundle.putString("launchUrl", url);
+        
         WebActivity.Companion.launch(this, bundle);
     }
 

@@ -23,6 +23,8 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
     private var launchUrl: String? = null
 
 
+    private var mContext = this
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web)
@@ -37,22 +39,25 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
 
         Log.d(TAG, "initVar: launchUrl = " + launchUrl!!)
 
-        webContainer!!.settings.mixedContentMode = MIXED_CONTENT_ALWAYS_ALLOW
-        webContainer!!.webChromeClient = KWebChromeClient(this)
-        webContainer!!.webViewClient = KWebViewClient(this)
+        webContainer?.apply {
+            webChromeClient = KWebChromeClient(mContext)
+            webViewClient = KWebViewClient(mContext)
+            addJavascriptInterface(KJavaInterface(mContext), "jk")
+        }
+
+        webContainer?.settings?.apply {
+            mixedContentMode = MIXED_CONTENT_ALWAYS_ALLOW
+            javaScriptEnabled = true
+            allowFileAccessFromFileURLs = true
+            setGeolocationEnabled(true)
+            allowFileAccess = true
+            allowFileAccessFromFileURLs = true
+        }
 
 
         WebView.setWebContentsDebuggingEnabled(true)
 
-        webContainer!!.settings.javaScriptEnabled = true
-        webContainer!!.settings.allowFileAccessFromFileURLs
-        webContainer!!.settings.setGeolocationEnabled(true)
-        webContainer!!.settings.allowFileAccess = true
-        webContainer!!.settings.allowFileAccessFromFileURLs = true
-
-        webContainer!!.addJavascriptInterface(KJavaInterface(this), "jk")
-
-        webContainer!!.loadUrl(launchUrl)
+        webContainer?.loadUrl(launchUrl)
 
     }
 

@@ -31,6 +31,8 @@ public class EffectFragment extends Fragment {
     Button mTaiChi;
     @BindView(R.id.animated_shape_view)
     Button mAnimatedShapeView;
+    @BindView(R.id.shape_path_view)
+    Button mShapePathView;
 
     public EffectFragment() {
         // Required empty public constructor
@@ -89,5 +91,11 @@ public class EffectFragment extends Fragment {
     @OnClick(R.id.animated_shape_view)
     public void onAnimatedShapeViewClicked() {
         handleClick(new AnimatedShapeViewFragment());
+    }
+
+
+    @OnClick(R.id.shape_path_view)
+    public void onShapePathViewClicked() {
+        handleClick(new ShapePathViewFragment());
     }
 }

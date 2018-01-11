@@ -32,6 +32,14 @@
             android:background="#f44336"
             />
 
+
+        <Button
+            android:id="@+id/shape_path_view"
+            style="@style/KButton"
+            android:text="Shape + Path"
+            android:background="#f44336"
+            />
+
     </LinearLayout>
 
 </ScrollView>
