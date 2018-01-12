@@ -11,7 +11,6 @@ import android.view.View
  */
 class ShapePathView : View {
 
-
     private var centerX = 0
 
     private var centerY = 0

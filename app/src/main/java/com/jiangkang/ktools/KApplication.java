@@ -40,10 +40,11 @@ public class KApplication extends Application {
 
         }
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-        LeakCanary.install(this);
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            return;
+//        }
+//        LeakCanary.install(this);
+
         King.init(this);
 
         initARouter();
