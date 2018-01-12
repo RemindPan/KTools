@@ -64,26 +64,31 @@ public class TaiChiView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+
         int width = getWidth();
         int height = getHeight();
 
+        //平移画布到View的中间
         canvas.translate(width / 2, height / 2);
 
+        //底色
         canvas.drawColor(Color.GRAY);
 
-        //因为已经移动了坐标原点
+        //旋转，这里mDegrees与动画相关联
         canvas.rotate(mDegrees,0,0);
 
+        //两个半圆
         int radius = Math.min(width, height) / 2 - 40;
         RectF rectF = new RectF(-radius, -radius, radius, radius);
         canvas.drawArc(rectF, 90, 180, true, mPaintBlack);
         canvas.drawArc(rectF, -90, 180, true, mPaintWhite);
 
-        //小圆
+        //两个小圆
         int smallRadius = radius / 2;
         canvas.drawCircle(0, -smallRadius, smallRadius, mPaintBlack);
         canvas.drawCircle(0, smallRadius, smallRadius, mPaintWhite);
 
+        //两个小点
         int dotRadius = smallRadius / 4;
         canvas.drawCircle(0, -smallRadius, dotRadius, mPaintWhite);
         canvas.drawCircle(0, smallRadius, dotRadius, mPaintBlack);
@@ -91,7 +96,7 @@ public class TaiChiView extends View {
     }
 
     /*
-    * 让太极图动起来
+    * ，添加动画，让太极图动起来
     * */
     public void startRotate() {
         ValueAnimator animator = ValueAnimator.ofInt(0,360);
