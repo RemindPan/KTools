@@ -20,5 +20,4 @@ class WechatFragment : Fragment() {
         return inflater!!.inflate(R.layout.fragment_wechat, container, false)
     }
 
-    
 }

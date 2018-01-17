@@ -16,7 +16,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
  * description：知乎API相关
  */
 
-class ZhiHuAdaper(val data: ArrayList<Story>) : RecyclerView.Adapter<ZhiHuAdaper.ViewHolder>() {
+class ZhiHuAdapter(val data: ArrayList<Story>) : RecyclerView.Adapter<ZhiHuAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
