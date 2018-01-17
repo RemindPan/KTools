@@ -28,9 +28,7 @@ class WidgetActivity : AppCompatActivity() {
             window.enterTransition = Fade()
             window.exitTransition = Fade()
         }
-
         setContentView(R.layout.activity_widget)
-
         handleOnClick()
     }
 
@@ -39,7 +37,6 @@ class WidgetActivity : AppCompatActivity() {
         btn_coordinator_layout.onClick {
             CoordinatorActivity.launch(mContext, null)
         }
-
 
         btn_show_floating_window.onClick {
             FloatingWindow.show(mContext, "来来来，看这里\n这是一个悬浮框")
@@ -52,7 +49,7 @@ class WidgetActivity : AppCompatActivity() {
 
 
         btn_set_toast_show_time.onClick {
-            ToastUtils.showToast("测试自定义显示时间Toast:9s", 9000)
+            ToastUtils.showToast("测试自定义显示时间Toast:20s", 1000 * 20)
         }
 
 

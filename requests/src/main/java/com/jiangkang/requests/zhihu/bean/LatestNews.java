@@ -1,8 +1,11 @@
 package com.jiangkang.requests.zhihu.bean;
 
+import android.widget.ArrayAdapter;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +22,7 @@ public class LatestNews implements Serializable{
     private String date;
 
     @SerializedName("stories")
-    private List<Story> stories;
+    private ArrayList<Story> stories;
 
 
     public String getDate() {
@@ -31,11 +34,11 @@ public class LatestNews implements Serializable{
         return this;
     }
 
-    public List<Story> getStories() {
+    public ArrayList<Story> getStories() {
         return stories;
     }
 
-    public LatestNews setStories(List<Story> stories) {
+    public LatestNews setStories(ArrayList<Story> stories) {
         this.stories = stories;
         return this;
     }

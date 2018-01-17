@@ -45,7 +45,6 @@ public class ToastUtils {
                         Toast.makeText(King.getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     }
                 });
-
     }
 
 
@@ -57,7 +56,7 @@ public class ToastUtils {
             public void run() {
                 toast.show();
             }
-        }, 0, 3500);
+        }, 0, 1000);
 
         new Timer().schedule(new TimerTask() {
             @Override
