@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.jiangkang.ktools.service.AIDLDemoActivity;
 import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.struct.JsonGenerator;
 import com.jiangkang.tools.system.ContactHelper;
@@ -90,6 +91,8 @@ public class SystemActivity extends AppCompatActivity {
     Button mBtnHideStatusBar;
     @BindView(R.id.btn_hide_virtual_navbar)
     Button mBtnHideVirtualNavbar;
+    @BindView(R.id.btn_aidl)
+    Button mBtnAidl;
 
     private JSONObject jsonObject;
 
@@ -390,7 +393,13 @@ public class SystemActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_hide_virtual_navbar)
     public void onBtnHideVirtualNavbarClicked() {
-        
+
         hideVirtualNavbar(this);
+    }
+
+
+    @OnClick(R.id.btn_aidl)
+    public void onAIDLClicked() {
+        AIDLDemoActivity.launch(this,null);
     }
 }

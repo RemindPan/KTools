@@ -138,6 +138,9 @@
             android:name=".device.step.StepRecordingService"
             android:enabled="true"
             android:exported="true" />
+        <service
+            android:name=".service.ComputationService"
+            android:process=":computation" />
 
         <activity
             android:name=".SplashActivity"
@@ -150,12 +153,13 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity
-            android:name=".system.KLauncherActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_klauncher"
-            android:theme="@style/FullscreenTheme" />
-        <activity android:name=".widget.ConstraintLayoutActivity"></activity>
+        <!-- <activity -->
+        <!-- android:name=".system.KLauncherActivity" -->
+        <!-- android:configChanges="orientation|keyboardHidden|screenSize" -->
+        <!-- android:label="@string/title_activity_klauncher" -->
+        <!-- android:theme="@style/FullscreenTheme" /> -->
+        <activity android:name=".widget.ConstraintLayoutActivity" />
+        <activity android:name=".service.AIDLDemoActivity"></activity>
     </application>
 
 </manifest>

@@ -131,5 +131,12 @@
         android:background="#FF9966"
         />
 
+    <Button
+        android:id="@+id/btn_aidl"
+        style="@style/KButton"
+        android:text="AIDL使用"
+        android:background="#FF9966"
+        />
+
   </LinearLayout>
 </ScrollView>
