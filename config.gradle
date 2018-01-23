@@ -4,7 +4,7 @@ ext {
 
             //project settings
             compileSdkVersion      : 26,
-            buildToolsVersion      : '26.0.2',
+            buildToolsVersion      : '26.0.3',
             minSdkVersion          : 19,
             targetSdkVersion       : 26,
             versionCode            : 2,
@@ -45,6 +45,8 @@ ext {
             loggerVersion          : '2.1.1',
 
             anko_version           : '0.10.3',
+
+            weex_version           : '0.17.0',
 
 
     ]
@@ -124,7 +126,11 @@ ext {
 
             "anko"                      : "org.jetbrains.anko:anko:${libVersion.anko_version}",
 
+            weex                        : "com.taobao.android:weex_sdk:${libVersion.weex_version}"
+
     ]
+
+
 
 }
 

@@ -45,7 +45,6 @@ class ZhihuFragment : Fragment() {
 
         val viewModel = ViewModelProviders.of(this).get(ZhihuListViewModel::class.java)
 
-
         observeViewModel(viewModel)
 
 //        loadData()

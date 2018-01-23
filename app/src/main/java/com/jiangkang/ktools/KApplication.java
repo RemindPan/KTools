@@ -11,6 +11,8 @@ import com.facebook.stetho.Stetho;
 import com.jiangkang.tools.King;
 import com.jiangkang.tools.service.ScanMusicService;
 import com.squareup.leakcanary.LeakCanary;
+import com.taobao.weex.InitConfig;
+import com.taobao.weex.WXSDKEngine;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -48,6 +50,17 @@ public class KApplication extends Application {
         King.init(this);
 
         initARouter();
+
+        initWeex();
+
+    }
+
+    private void initWeex() {
+
+        InitConfig config = new InitConfig.Builder()
+                .build();
+
+        WXSDKEngine.initialize(this, config);
 
     }
 

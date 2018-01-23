@@ -1,12 +1,7 @@
 apply plugin: 'com.android.library'
 
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
-
 android {
-    compileSdkVersion 26
-
+    compileSdkVersion libVersion.get("compileSdkVersion")
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 26
@@ -14,6 +9,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
 
     }
 
@@ -29,15 +25,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation deps.appcompat_v7
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile deps.appcompat_v7
-    compile deps.cardview
-    compile deps['anko']
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile project(path: ':tools')
+
+    compile deps.weex
+    compile 'com.alibaba:fastjson:1.1.67.android'
 
 
 }

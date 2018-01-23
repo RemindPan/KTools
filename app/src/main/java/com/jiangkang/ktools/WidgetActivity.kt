@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.transition.Fade
 import android.view.Window
 import android.widget.RemoteViews
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jiangkang.ktools.widget.*
 import com.jiangkang.tools.extend.launch
 import com.jiangkang.tools.utils.ToastUtils
@@ -69,6 +70,7 @@ class WidgetActivity : AppCompatActivity() {
         btn_widget_dialog.onClick {
             launch(KDialogActivity::class.java,null)
 //            KDialogActivity.launch(mContext, null)
+//            ARouter.getInstance().build("/hack/HackActivity").navigation()
         }
 
 
