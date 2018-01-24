@@ -31,5 +31,9 @@ dependencies {
     compile deps.weex
     compile 'com.alibaba:fastjson:1.1.67.android'
 
+    compile deps["glide"]
+    compile deps["glideOkhttp"]
+    annotationProcessor deps["glideCompiler"]
+
 
 }

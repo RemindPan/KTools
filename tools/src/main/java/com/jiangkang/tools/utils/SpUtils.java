@@ -22,7 +22,6 @@ import java.util.Set;
 
 public class SpUtils {
 
-
     private SharedPreferences preferences;
 
     private static final String DEFAULT_PREF_NAME = "ktools_pref";
@@ -55,6 +54,7 @@ public class SpUtils {
         }else {
             throw new IllegalArgumentException("value can not support");
         }
+        editor.apply();
         return this;
     }
 
@@ -131,6 +131,7 @@ public class SpUtils {
     public Map<String,?> getAll(){
         return preferences.getAll();
     }
+
 
 
 }

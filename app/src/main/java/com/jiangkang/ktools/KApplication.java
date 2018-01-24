@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.stetho.Stetho;
 import com.jiangkang.tools.King;
 import com.jiangkang.tools.service.ScanMusicService;
+import com.jiangkang.weex.ImageAdapter;
 import com.squareup.leakcanary.LeakCanary;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
@@ -58,6 +59,7 @@ public class KApplication extends Application {
     private void initWeex() {
 
         InitConfig config = new InitConfig.Builder()
+                .setImgAdapter(new ImageAdapter())
                 .build();
 
         WXSDKEngine.initialize(this, config);
