@@ -1,5 +1,6 @@
 package com.jiangkang.ktools;
 
+import android.app.Activity;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import java.io.Serializable;
@@ -13,15 +14,16 @@ public class FunctionEntity implements Serializable{
 
   private String name;
 
-  private Class<? extends AppCompatActivity> activity;
+  private Class<? extends Activity> activity;
 
   @IdRes private int resId;
 
-  public FunctionEntity(String name, Class<? extends AppCompatActivity> activity, int resId) {
+  public FunctionEntity(String name, Class<? extends Activity> activity, int resId) {
     this.name = name;
     this.activity = activity;
     this.resId = resId;
   }
+
 
   public FunctionEntity() {
   }
@@ -35,7 +37,7 @@ public class FunctionEntity implements Serializable{
     return this;
   }
 
-  public Class<? extends AppCompatActivity> getActivity() {
+  public Class<? extends Activity> getActivity() {
     return activity;
   }
 

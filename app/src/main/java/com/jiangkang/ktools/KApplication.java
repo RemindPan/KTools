@@ -7,6 +7,10 @@ import android.support.multidex.MultiDex;
 import android.webkit.WebView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactNativeHost;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.shell.MainReactPackage;
 import com.facebook.stetho.Stetho;
 import com.jiangkang.tools.King;
 import com.jiangkang.tools.service.ScanMusicService;
@@ -15,13 +19,30 @@ import com.squareup.leakcanary.LeakCanary;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author jiangkang
  * @date 2017/9/6
  */
-public class KApplication extends Application {
+public class KApplication extends Application implements ReactApplication {
+
+
+    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+            return BuildConfig.DEBUG;
+        }
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+            return Arrays.<ReactPackage>asList(
+                    new MainReactPackage()
+            );
+        }
+    };
 
     @Override
     public void onCreate() {
@@ -43,10 +64,8 @@ public class KApplication extends Application {
 
         }
 
-//        if (LeakCanary.isInAnalyzerProcess(this)) {
-//            return;
-//        }
-//        LeakCanary.install(this);
+
+        initLeakCanary();
 
         King.init(this);
 
@@ -54,6 +73,13 @@ public class KApplication extends Application {
 
         initWeex();
 
+    }
+
+    private void initLeakCanary() {
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            return;
+//        }
+//        LeakCanary.install(this);
     }
 
     private void initWeex() {
@@ -100,4 +126,8 @@ public class KApplication extends Application {
     }
 
 
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return mReactNativeHost;
+    }
 }

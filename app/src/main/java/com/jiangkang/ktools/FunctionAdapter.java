@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.jiangkang.kdownloader.KDownloaderActivity;
 import com.jiangkang.ktools.effect.EffectActivity;
 import com.jiangkang.ktools.rxjava.RxJavaActivity;
+import com.jiangkang.rn.RNActivity;
 import com.jiangkang.weex.WeexActivity;
 
 import butterknife.BindView;
