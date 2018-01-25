@@ -1,0 +1,18 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile project(':annotations')
+
+    implementation deps.auto.common
+
+    //帮助我们通过类调用的形式来生成代码
+    api deps.javapoet
+
+    //注解 processor 类，并对其生成 META-INF 的配置信息
+    compileOnly deps.auto.service
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

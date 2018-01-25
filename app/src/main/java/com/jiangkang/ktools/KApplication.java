@@ -1,48 +1,21 @@
 package com.jiangkang.ktools;
 
 import android.app.Application;
-import android.content.Intent;
 import android.os.StrictMode;
 import android.support.multidex.MultiDex;
-import android.webkit.WebView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.facebook.react.ReactApplication;
-import com.facebook.react.ReactNativeHost;
-import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.stetho.Stetho;
 import com.jiangkang.tools.King;
-import com.jiangkang.tools.service.ScanMusicService;
 import com.jiangkang.weex.ImageAdapter;
-import com.squareup.leakcanary.LeakCanary;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author jiangkang
  * @date 2017/9/6
  */
-public class KApplication extends Application implements ReactApplication {
-
-
-    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-        @Override
-        public boolean getUseDeveloperSupport() {
-            return BuildConfig.DEBUG;
-        }
-
-        @Override
-        protected List<ReactPackage> getPackages() {
-            return Arrays.<ReactPackage>asList(
-                    new MainReactPackage()
-            );
-        }
-    };
+public class KApplication extends Application{
 
     @Override
     public void onCreate() {
@@ -126,8 +99,4 @@ public class KApplication extends Application implements ReactApplication {
     }
 
 
-    @Override
-    public ReactNativeHost getReactNativeHost() {
-        return mReactNativeHost;
-    }
 }

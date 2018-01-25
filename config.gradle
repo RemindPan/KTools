@@ -48,6 +48,8 @@ ext {
 
             weex_version           : '0.17.0',
 
+            javapoet_version       : '1.9.0'
+
 
     ]
 
@@ -61,8 +63,8 @@ ext {
 
 
             arouter                     : [
-                    'arouter_api'       : "com.alibaba:arouter-api:1.2.4",
-                    'arouter_compiler'  : "com.alibaba:arouter-compiler:1.1.4",
+                    'arouter_api'     : "com.alibaba:arouter-api:1.2.4",
+                    'arouter_compiler': "com.alibaba:arouter-compiler:1.1.4",
             ],
 
             //ButterKnife
@@ -126,10 +128,18 @@ ext {
 
             "anko"                      : "org.jetbrains.anko:anko:${libVersion.anko_version}",
 
-            weex                        : "com.taobao.android:weex_sdk:${libVersion.weex_version}"
+            weex                        : "com.taobao.android:weex_sdk:${libVersion.weex_version}",
+
+            javapoet                    : "com.squareup:javapoet:${libVersion.javapoet_version}",
+
+            'auto'                      : [
+                    'service': 'com.google.auto.service:auto-service:1.0-rc4',
+                    'common' : 'com.google.auto:auto-common:0.9',
+            ],
+
+            'guava': 'com.google.guava:guava:23.6-jre',
 
     ]
-
 
 
 }
