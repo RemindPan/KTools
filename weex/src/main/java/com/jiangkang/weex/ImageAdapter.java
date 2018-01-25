@@ -12,10 +12,10 @@ import com.taobao.weex.dom.WXImageQuality;
 
 /**
  * Created by jiangkang on 2018/1/24.
- * description：
+ * description：Weex的ImageAdapter
  */
 
-public class ImageAdapter implements IWXImgLoaderAdapter{
+public class ImageAdapter implements IWXImgLoaderAdapter {
 
 
     @Override
@@ -25,7 +25,7 @@ public class ImageAdapter implements IWXImgLoaderAdapter{
             @Override
             public void run() {
 
-                if(view==null||view.getLayoutParams()==null){
+                if (view == null || view.getLayoutParams() == null) {
                     return;
                 }
                 if (TextUtils.isEmpty(url)) {
@@ -45,11 +45,10 @@ public class ImageAdapter implements IWXImgLoaderAdapter{
                         .apply(options)
                         .into(view);
             }
-        },0);
+        }, 0);
 
 
     }
-
 
 
 }
