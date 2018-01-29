@@ -12,6 +12,8 @@ import java.lang.reflect.Proxy;
 
 public class ReflectionUtil {
 
+    private ReflectionUtil() {
+    }
 
     /**
      * @param clazz 类，如Object.class
@@ -49,7 +51,7 @@ public class ReflectionUtil {
 
     public static <T> T newProxy(@NonNull Class<T> interfaceType, InvocationHandler handler) {
         Object object = Proxy.newProxyInstance(
-                interfaceType.getClassLoader(),new Class[]{interfaceType},handler
+                interfaceType.getClassLoader(), new Class[]{interfaceType}, handler
         );
         //转换对象
         return interfaceType.cast(object);
