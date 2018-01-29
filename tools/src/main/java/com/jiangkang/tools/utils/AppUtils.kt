@@ -10,6 +10,7 @@ import com.jiangkang.tools.King
 import org.json.JSONObject
 
 import java.util.ArrayList
+import kotlin.jvm.internal.Reflection
 
 /**
  * Created by jiangkang on 2017/9/8.
@@ -29,7 +30,6 @@ object AppUtils {
             } catch (e: PackageManager.NameNotFoundException) {
                 e.printStackTrace()
             }
-
             return "unknown"
         }
 
