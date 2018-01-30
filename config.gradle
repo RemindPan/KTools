@@ -137,8 +137,11 @@ ext {
                     'common' : 'com.google.auto:auto-common:0.9',
             ],
 
-            'guava': 'com.google.guava:guava:23.6-jre',
+            'guava'                     : 'com.google.guava:guava:23.6-jre',
 
+            robolectric                 : "org.robolectric:robolectric:3.6.1",
+
+            mockito                     : "org.mockito:mockito-core:2.+",
     ]
 
 

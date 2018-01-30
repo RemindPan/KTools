@@ -326,32 +326,29 @@ public class SystemActivity extends AppCompatActivity {
         if (!jarFile.exists()) {
             //todo:这里应该从assets中复制到sdcard中
             ToastUtils.showShortToast("文件不存在");
-            return;
+        }else {
+            DexClassLoader loader = new DexClassLoader(
+                    jarFile.getAbsolutePath(),
+                    getExternalCacheDir().getAbsolutePath(),
+                    null,
+                    getClassLoader()
+            );
+            try {
+
+                Class clazz = loader.loadClass("com.jiangkang.ktools.HelloWorld");
+
+                ISayHello iSayHello = (ISayHello) clazz.newInstance();
+
+                ToastUtils.showLongToast("执行dex中方法：" + iSayHello.sayHello());
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            }
         }
-
-        DexClassLoader loader = new DexClassLoader(
-                jarFile.getAbsolutePath(),
-                getExternalCacheDir().getAbsolutePath(),
-                null,
-                getClassLoader()
-        );
-
-        try {
-
-            Class clazz = loader.loadClass("com.jiangkang.ktools.HelloWorld");
-
-            ISayHello iSayHello = (ISayHello) clazz.newInstance();
-
-            ToastUtils.showLongToast("执行dex中方法：" + iSayHello.sayHello());
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
-
 
     }
 
@@ -393,7 +390,6 @@ public class SystemActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_hide_virtual_navbar)
     public void onBtnHideVirtualNavbarClicked() {
-
         hideVirtualNavbar(this);
     }
 

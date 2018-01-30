@@ -21,6 +21,7 @@ public class KApplication extends Application{
     public void onCreate() {
         super.onCreate();
 
+        // TODO: 2018/1/30 测试框架与MultiDex不兼容，待处理
         MultiDex.install(this);
 
         enableStrictMode();

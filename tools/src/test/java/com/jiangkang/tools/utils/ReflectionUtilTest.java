@@ -26,10 +26,8 @@ public class ReflectionUtilTest {
         assertEquals("java.lang", ReflectionUtil.getPackageName(Object.class.getName()));
         assertEquals("java.lang", ReflectionUtil.getPackageName("java.lang.Object"));
 
-
         //no package
         assertEquals("", ReflectionUtil.getPackageName("No Package"));
-
 
     }
 
@@ -90,6 +88,5 @@ public class ReflectionUtilTest {
         }
 
     }
-
 
 }
