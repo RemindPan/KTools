@@ -1,0 +1,33 @@
+class FileDemoTask extends DefaultTask {
+
+    def dst
+
+    File getDst() {
+        project.file(dst)
+    }
+
+
+    @TaskAction
+    def writeToFile() {
+        def file = getDst()
+
+        file.parentFile.mkdirs()
+
+        file.write 'Hello World'
+    }
+
+}
+
+task setFile(type: FileDemoTask) {
+    dst = {
+        project.filename
+    }
+}
+
+task printFileText(dependsOn: setFile) {
+    doLast {
+        println file(filename).text
+    }
+}
+
+ext.filename = "$buildDir/hello.txt"
