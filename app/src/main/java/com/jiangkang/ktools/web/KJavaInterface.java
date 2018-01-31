@@ -8,10 +8,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 
-import com.jiangkang.ktools.GlideApp;
 import com.jiangkang.ktools.R;
 import com.jiangkang.tools.utils.ImageUtils;
-import com.jiangkang.tools.widget.KDialog;
 
 /**
  * Created by jiangkang on 2017/9/20.

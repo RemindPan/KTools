@@ -82,65 +82,81 @@ android {
             includeAndroidResources = true
         }
     }
+
+    dexOptions {
+        javaMaxHeapSize='4g'
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile deps['support-vector-drawable']
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps['support-vector-drawable']
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     testImplementation deps.robolectric
 
-    debugCompile deps["leakcanary"]
-    releaseCompile deps["leakcanary_no_op"]
+    debugImplementation deps["leakcanary"]
+    releaseImplementation deps["leakcanary_no_op"]
 
-    debugCompile deps['debug_db']
+    debugImplementation deps['debug_db']
 
-    compile deps["butterKnife"]
+    implementation deps["butterKnife"]
     annotationProcessor deps['butterknifeCompiler']
 
-    compile project(path: ':tools')
+    implementation deps['rxAndroid']
+    implementation deps['rxJava']
 
-    compile deps.appcompat_v7
-    compile deps.recyclerview
-    compile deps.cardview
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
-    debugCompile 'com.readystatesoftware.chuck:library:1.1.0'
-    releaseCompile 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+    implementation deps.appcompat_v7
+    implementation deps.recyclerview
+    implementation deps.cardview
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    compile deps['dagger']
+    implementation deps["retrofit"]
+    implementation deps["retrofit_converterJson"]
+    implementation deps["retrofit_adpter_rxjava2"]
+
+    implementation deps.weex
+    implementation 'com.alibaba:fastjson:1.1.67.android'
+
+    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
+    implementation deps['dagger']
     annotationProcessor deps['daggerCompiler']
 
-    compile deps["glide"]
-    compile deps["glideOkhttp"]
+    implementation deps["glide"]
+    implementation deps["glideOkhttp"]
     annotationProcessor deps["glideCompiler"]
-//    compile 'com.google.android.exoplayer:exoplayer:r2.4.3'
-    compile project(path: ':requests')
-    compile project(path: ':annotations')
-    compile project(path: ':aop')
-    compile project(path: ':hack')
 
-    implementation "android.arch.lifecycle:runtime:1.0.3"
-    implementation "android.arch.lifecycle:extensions:1.0.0"
+    implementation deps['okhttp']
+    implementation deps["okhttp-logging-interceptor"]
+
+    implementation "android.arch.lifecycle:runtime:1.1.0"
+    implementation "android.arch.lifecycle:extensions:1.1.0"
     implementation "android.arch.persistence.room:runtime:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
     implementation "android.arch.persistence.room:rxjava2:1.0.0"
-
-
     implementation deps.arouter.arouter_api
     annotationProcessor deps.arouter.arouter_compiler
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.anko:anko:$anko_version"
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation deps.multidex
 
-    compile project(path: ':widget')
+    implementation project(path: ':widget')
+    implementation project(path: ':requests')
+    implementation project(path: ':annotations')
+    implementation project(path: ':aop')
+    implementation project(path: ':hack')
+    implementation project(path: ':tools')
+    implementation project(path: ':kdownloader')
+    implementation project(path: ':weex')
 
-
-    compile "org.jetbrains.anko:anko:$anko_version"
-    compile project(path: ':kdownloader')
-    compile project(path: ':weex')
 }
 
 

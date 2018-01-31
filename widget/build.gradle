@@ -30,14 +30,13 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile deps.appcompat_v7
-    compile deps.cardview
-    compile deps['anko']
+    implementation deps.appcompat_v7
+    implementation deps.cardview
+    implementation deps['anko']
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile project(path: ':tools')
-
+    implementation project(path: ':tools')
 
 }

@@ -41,7 +41,7 @@ dependencies {
     implementation deps.okhttp3.mockwebserver
 
 
-    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile project(path: ':tools')
+    implementation project(path: ':tools')
 }

@@ -71,10 +71,10 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
         }
     }
 
-    @OnClick(R.id.tv_title_right)
-    fun onTvTitleRightClicked(): TextView {
-        return tv_title_right
-    }
+//    @OnClick(R.id.tv_title_right)
+//    fun onTvTitleRightClicked(): TextView {
+//        return tv_title_right
+//    }
 
     override fun onBackPressed() {
         if (webContainer!!.canGoBack()) {

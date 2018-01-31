@@ -35,9 +35,9 @@ allprojects {
             url 'https://maven.google.com/'
             name 'Google'
         }
-        maven {
-            url "$rootDir/node_modules/react-native/android"
-        }
+//        maven {
+//            url "$rootDir/node_modules/react-native/android"
+//        }
     }
 }
 

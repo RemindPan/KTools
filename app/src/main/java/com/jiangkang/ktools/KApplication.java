@@ -1,6 +1,7 @@
 package com.jiangkang.ktools;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.StrictMode;
 import android.support.multidex.MultiDex;
 
@@ -17,12 +18,19 @@ import com.taobao.weex.WXSDKEngine;
  */
 public class KApplication extends Application{
 
+
     @Override
-    public void onCreate() {
-        super.onCreate();
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
 
         // TODO: 2018/1/30 测试框架与MultiDex不兼容，待处理
         MultiDex.install(this);
+
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
 
         enableStrictMode();
 

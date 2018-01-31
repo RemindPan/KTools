@@ -2,9 +2,10 @@
 <layout>
 
     <data>
+
         <variable
             name="vm"
-            type="com.jiangkang.ktools.mvvm.AboutPageViewModel"/>
+            type="com.jiangkang.ktools.mvvm.AboutPageViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -50,11 +51,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_author"
                     android:layout_centerHorizontal="true"
+                    android:onClick="@{vm::onClick}"
                     android:text="Github源代码"
                     android:textColor="@android:color/holo_red_light"
-                    android:textSize="18sp"
-                    android:onClick="@{vm.onClick}"
-                    />
+                    android:textSize="18sp" />
 
 
             </RelativeLayout>

@@ -142,6 +142,8 @@ ext {
             robolectric                 : "org.robolectric:robolectric:3.6.1",
 
             mockito                     : "org.mockito:mockito-core:2.+",
+
+            multidex                    : "com.android.support:multidex:1.0.1",
     ]
 
 

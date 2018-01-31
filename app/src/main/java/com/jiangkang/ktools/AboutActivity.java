@@ -4,20 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
 import com.jiangkang.ktools.databinding.ActivityAboutBinding;
 import com.jiangkang.ktools.mvvm.AboutPageViewModel;
-import com.jiangkang.ktools.web.WebActivity;
-
-import java.util.Iterator;
-import java.util.function.Consumer;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class AboutActivity extends AppCompatActivity {
 

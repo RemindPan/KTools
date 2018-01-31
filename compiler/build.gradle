@@ -3,7 +3,7 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(':annotations')
+    implementation project(':annotations')
 
     implementation deps.auto.common
 

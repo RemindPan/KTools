@@ -57,26 +57,24 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testImplementation deps.robolectric
 
-    compile deps['zxing']
+    implementation deps['zxing']
 
-    compile deps['rxAndroid']
-    compile deps['rxJava']
+    implementation deps['rxAndroid']
+    implementation deps['rxJava']
 
-    compile deps['okhttp']
-    compile deps["okhttp-logging-interceptor"]
+    implementation deps['okhttp']
+    implementation deps["okhttp-logging-interceptor"]
+
+    implementation deps['support-annotaions']
+    implementation deps.appcompat_v7
 
 
-    compile deps['support-annotaions']
-    compile deps.appcompat_v7
-
-
-    compile deps["logger"]
-
-    compile deps['glide']
+    implementation deps["logger"]
+    implementation deps['glide']
 
     implementation deps.arouter.arouter_api
     annotationProcessor deps.arouter.arouter_compiler
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()

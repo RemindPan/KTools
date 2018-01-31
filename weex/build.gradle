@@ -28,11 +28,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile deps.weex
-    compile 'com.alibaba:fastjson:1.1.67.android'
+    implementation deps.weex
+    implementation 'com.alibaba:fastjson:1.1.67.android'
 
-    compile deps["glide"]
-    compile deps["glideOkhttp"]
+    implementation deps["glide"]
+    implementation deps["glideOkhttp"]
     annotationProcessor deps["glideCompiler"]
 
 

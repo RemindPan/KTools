@@ -60,7 +60,7 @@ dependencies {
     implementation deps["butterKnife"]
     annotationProcessor deps['butterknifeCompiler']
 
-    compile project(path: ':tools')
+    implementation project(path: ':tools')
 
     implementation deps.arouter.arouter_api
     annotationProcessor deps.arouter.arouter_compiler
