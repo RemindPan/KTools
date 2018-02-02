@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
@@ -16,20 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-import com.jiangkang.ktools.device.MediaContentObserver;
-import com.jiangkang.ktools.device.ScreenShotMonitorService;
-import com.jiangkang.ktools.web.WebActivity;
-import com.jiangkang.tools.service.ScanMusicService;
-import com.jiangkang.tools.utils.ToastUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.jiangkang.hybrid.Khybrid;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
-
 
     public static void launch(Context context){
         Intent intent = new Intent(context, MainActivity.class);
@@ -96,10 +84,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void openBrowser(String url) {
-        Bundle bundle = new Bundle();
-        bundle.putString("launchUrl", url);
-        
-        WebActivity.Companion.launch(this, bundle);
+        Khybrid.INSTANCE.loadUrl(this,url);
     }
 
     private void initViews() {
@@ -109,12 +94,12 @@ public class MainActivity extends BaseActivity {
 //        ToastUtils.showShortToast(stringFromJNI());
     }
 
-    private native String stringFromJNI();
-
-
-    static {
-        System.loadLibrary("native-lib");
-    }
+//    private native String stringFromJNI();
+//
+//
+//    static {
+//        System.loadLibrary("native-lib");
+//    }
 
 
     @Override

@@ -76,7 +76,7 @@
         <activity android:name=".ScanActivity" />
         <activity android:name=".AboutActivity" />
         <activity
-            android:name=".web.WebActivity"
+            android:name="com.jiangkang.hybrid.web.WebActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <service
@@ -130,7 +130,7 @@
 
         <activity android:name=".BaseActivity" />
         <activity
-            android:name=".web.BigImageActivity"
+            android:name="com.jiangkang.hybrid.web.BigImageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".device.step.StepRecorderActivity" />
 
@@ -159,7 +159,8 @@
         <!-- android:label="@string/title_activity_klauncher" -->
         <!-- android:theme="@style/FullscreenTheme" /> -->
         <activity android:name=".widget.ConstraintLayoutActivity" />
-        <activity android:name=".service.AIDLDemoActivity"></activity>
+        <activity android:name=".service.AIDLDemoActivity" />
+        <activity android:name=".web.HybridActivity"></activity>
     </application>
 
 </manifest>

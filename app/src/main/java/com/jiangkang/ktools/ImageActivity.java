@@ -21,8 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.VideoView;
 
+import com.jiangkang.hybrid.Khybrid;
 import com.jiangkang.ktools.image.GalleryActivity;
-import com.jiangkang.ktools.web.WebActivity;
 import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ImageUtils;
@@ -345,9 +345,7 @@ public class ImageActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_show_base64_img_in_web)
     public void onBtnShowBase64ImgInWebClicked() {
-        Bundle bundle = new Bundle();
-        bundle.putString("launchUrl", FileUtils.getAssetsPath("web/demo_img.html"));
-        WebActivity.Companion.launch(this, bundle);
+        Khybrid.INSTANCE.loadUrl(this,FileUtils.getAssetsPath("web/demo_img.html"));
     }
 
 

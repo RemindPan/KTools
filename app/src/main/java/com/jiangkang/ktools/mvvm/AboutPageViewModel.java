@@ -1,10 +1,9 @@
 package com.jiangkang.ktools.mvvm;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 
-import com.jiangkang.ktools.web.WebActivity;
+import com.jiangkang.hybrid.Khybrid;
 
 /**
  * Created by jiangkang on 2017/11/29.
@@ -50,15 +49,11 @@ public class AboutPageViewModel {
 
 
 
-
-
     public void onClick(View view) {
-        Bundle bundle = new Bundle();
         if (sourceUrl != null){
-            bundle.putString("launchUrl", sourceUrl);
+            Khybrid.INSTANCE.loadUrl(mContext,sourceUrl);
         }else {
-            bundle.putString("launchUrl", "https://github.com/jiangkang/KTools");
+            Khybrid.INSTANCE.loadUrl(mContext,"https://github.com/jiangkang/KTools");
         }
-        WebActivity.Companion.launch(mContext, bundle);
     }
 }
