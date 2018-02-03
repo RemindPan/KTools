@@ -17,6 +17,15 @@ import kotlinx.android.synthetic.main.activity_web.*
 
 class WebActivity : AppCompatActivity(), WebContract.IView {
 
+    override val tvTitle: TextView
+        get() {
+            return tv_title_middle
+        }
+    override val ivBack: ImageView
+        get() {
+            return iv_title_left
+        }
+
     //网址
     private var launchUrl: String? = null
 
@@ -79,14 +88,6 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
         } else {
             super.onBackPressed()
         }
-    }
-
-    override fun getTvTitle(): TextView? {
-        return tv_title_middle
-    }
-
-    override fun getIvBack(): ImageView? {
-        return iv_title_left
     }
 
 

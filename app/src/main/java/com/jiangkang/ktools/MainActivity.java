@@ -90,17 +90,7 @@ public class MainActivity extends BaseActivity {
     private void initViews() {
         mRcFunctionList.setLayoutManager(new GridLayoutManager(this, 4));
         mRcFunctionList.setAdapter(new FunctionAdapter(this));
-
-//        ToastUtils.showShortToast(stringFromJNI());
     }
-
-//    private native String stringFromJNI();
-//
-//
-//    static {
-//        System.loadLibrary("native-lib");
-//    }
-
 
     @Override
     public void onBackPressed() {
