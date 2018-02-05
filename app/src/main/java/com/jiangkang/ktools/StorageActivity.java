@@ -112,6 +112,6 @@ public class StorageActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_write_string_to_file)
     public void onBtnWriteStringToFileClicked() {
-
+        ToastUtils.showShortToast("暂未实现");
     }
 }

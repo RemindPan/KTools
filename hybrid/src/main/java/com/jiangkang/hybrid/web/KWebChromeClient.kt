@@ -2,6 +2,7 @@ package com.jiangkang.hybrid.web
 
 import android.graphics.Bitmap
 import android.util.Log
+import android.view.View
 import android.webkit.ConsoleMessage
 import android.webkit.GeolocationPermissions
 import android.webkit.JsPromptResult
@@ -20,7 +21,7 @@ class KWebChromeClient : WebChromeClient {
 
     private val mContext: WebContract.IView
 
-    constructor(context: WebContract.IView) : super(){
+    constructor(context: WebContract.IView) : super() {
         mContext = context
     }
 
@@ -61,6 +62,16 @@ class KWebChromeClient : WebChromeClient {
     override fun onGeolocationPermissionsShowPrompt(origin: String, callback: GeolocationPermissions.Callback) {
         super.onGeolocationPermissionsShowPrompt(origin, callback)
         callback.invoke(origin, true, true)
+    }
+
+
+    override fun getDefaultVideoPoster(): Bitmap {
+        return super.getDefaultVideoPoster()
+    }
+
+
+    override fun getVideoLoadingProgressView(): View {
+        return super.getVideoLoadingProgressView()
     }
 
     companion object {

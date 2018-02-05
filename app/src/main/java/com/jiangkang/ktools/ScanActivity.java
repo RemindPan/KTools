@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.jiangkang.tools.utils.QRCodeUtils;
+import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.KDialog;
 
 import butterknife.BindView;
@@ -33,7 +34,7 @@ public class ScanActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_scan_qr)
     public void onBtnScanQrClicked() {
-//        Intent intent = new Intent(this, EncodeHintType)
+        ToastUtils.showShortToast("暂未实现");
     }
 
     @OnClick(R.id.btn_gen_qr_code)
@@ -47,6 +48,8 @@ public class ScanActivity extends AppCompatActivity {
             if (bitmap != null) {
                 KDialog.showImgInDialog(this, bitmap);
             }
+        }else {
+            ToastUtils.showShortToast("请在输入框输入url");
         }
 
     }
