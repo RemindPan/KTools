@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.util.Log
 import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 
@@ -73,25 +74,25 @@ class KWebViewClient : WebViewClient {
         super.onScaleChanged(view, oldScale, newScale)
     }
 
-//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-//    override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
-//        //此处对文件资源，js，css等请求资源进行拦截，替换
-//        Log.d(TAG, "shouldInterceptRequest: request = \n" +
-//                "\nurl = " + request.url.toString() +
-//                "\nmethod = " + request.method +
-//                "\nheaders = " + request.requestHeaders.toString())
-//        //        String url = request.getUrl().toString();
-//        //        if ((url.startsWith("https://") || url.startsWith("http://")) && (url.endsWith(".png") || url.endsWith(".jpg"))) {
-//        //            Log.d(TAG, "拦截资源 :" + url);
-//        //            try {
-//        //                WebResourceResponse response = new WebResourceResponse(MimeTypeMap.getFileExtensionFromUrl(".jpg"), "utf-8", FileUtils.getInputStreamFromAssets("img/dog.jpg"));
-//        //                return response;
-//        //            } catch (IOException e) {
-//        //                e.printStackTrace();
-//        //            }
-//        //        }
-//        return super.shouldInterceptRequest(view, request)
-//    }
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
+        //此处对文件资源，js，css等请求资源进行拦截，替换
+        Log.d(TAG, "shouldInterceptRequest: request = \n" +
+                "\nurl = " + request.url.toString() +
+                "\nmethod = " + request.method +
+                "\nheaders = " + request.requestHeaders.toString())
+        //        String url = request.getUrl().toString();
+        //        if ((url.startsWith("https://") || url.startsWith("http://")) && (url.endsWith(".png") || url.endsWith(".jpg"))) {
+        //            Log.d(TAG, "拦截资源 :" + url);
+        //            try {
+        //                WebResourceResponse response = new WebResourceResponse(MimeTypeMap.getFileExtensionFromUrl(".jpg"), "utf-8", FileUtils.getInputStreamFromAssets("img/dog.jpg"));
+        //                return response;
+        //            } catch (IOException e) {
+        //                e.printStackTrace();
+        //            }
+        //        }
+        return super.shouldInterceptRequest(view, request)
+    }
 
     companion object {
         private val TAG = "KWebViewClient"

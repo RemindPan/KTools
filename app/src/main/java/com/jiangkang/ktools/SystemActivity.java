@@ -28,6 +28,7 @@ import com.jiangkang.tools.struct.JsonGenerator;
 import com.jiangkang.tools.system.ContactHelper;
 import com.jiangkang.tools.utils.ClipboardUtils;
 import com.jiangkang.tools.utils.FileUtils;
+import com.jiangkang.tools.utils.SpUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
 import org.json.JSONException;
@@ -93,6 +94,8 @@ public class SystemActivity extends AppCompatActivity {
     Button mBtnHideVirtualNavbar;
     @BindView(R.id.btn_aidl)
     Button mBtnAidl;
+    @BindView(R.id.btn_change_icon)
+    Button mBtnChangeIcon;
 
     private JSONObject jsonObject;
 
@@ -326,7 +329,7 @@ public class SystemActivity extends AppCompatActivity {
         if (!jarFile.exists()) {
             //todo:这里应该从assets中复制到sdcard中
             ToastUtils.showShortToast("文件不存在");
-        }else {
+        } else {
             DexClassLoader loader = new DexClassLoader(
                     jarFile.getAbsolutePath(),
                     getExternalCacheDir().getAbsolutePath(),
@@ -396,6 +399,56 @@ public class SystemActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_aidl)
     public void onAIDLClicked() {
-        AIDLDemoActivity.launch(this,null);
+        AIDLDemoActivity.launch(this, null);
+    }
+
+    @OnClick(R.id.btn_change_icon)
+    public void onBtnChangeIconClicked() {
+        changeLauncherIcon();
+    }
+
+    private void changeLauncherIcon() {
+        PackageManager packageManager = getPackageManager();
+
+        ComponentName componentName0 = new ComponentName(getBaseContext(),"com.jiangkang.ktools.MainActivity");
+        ComponentName componentName1 = new ComponentName(getBaseContext(),"com.jiangkang.ktools.MainActivity1");
+
+        if ("1".equals(SpUtils.getInstance(this,"Launcher").getString("icon_type","0"))){
+
+            packageManager.setComponentEnabledSetting(
+                    componentName1,
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP
+            );
+
+            packageManager.setComponentEnabledSetting(
+                    componentName0,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP
+            );
+
+            SpUtils.getInstance(this,"Launcher")
+                    .putString("icon_type","0");
+
+        }else {
+
+            packageManager.setComponentEnabledSetting(
+                    componentName0,
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP
+            );
+
+            packageManager.setComponentEnabledSetting(
+                    componentName1,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP
+            );
+
+            SpUtils.getInstance(this,"Launcher")
+                    .putString("icon_type","1");
+        }
+
+        ToastUtils.showShortToast("Icon替换成功，稍等一段时间方可看到效果");
+
     }
 }

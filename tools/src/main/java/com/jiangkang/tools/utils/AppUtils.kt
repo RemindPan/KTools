@@ -1,6 +1,7 @@
 package com.jiangkang.tools.utils
 
 import android.app.Activity
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.util.Log
@@ -60,6 +61,15 @@ object AppUtils {
             return list
         }
 
+
+    val isDebug: Boolean
+        get() {
+            val appInfo: ApplicationInfo = King.getApplicationContext().applicationInfo
+            if ((appInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
+                return true
+            }
+            return false
+        }
 
 
 }

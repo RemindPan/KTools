@@ -114,4 +114,5 @@ public class StorageActivity extends AppCompatActivity {
     public void onBtnWriteStringToFileClicked() {
         ToastUtils.showShortToast("暂未实现");
     }
+
 }

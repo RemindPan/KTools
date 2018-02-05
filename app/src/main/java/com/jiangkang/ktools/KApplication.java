@@ -12,6 +12,8 @@ import com.jiangkang.weex.ImageAdapter;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 
+import java.util.concurrent.Executors;
+
 /**
  * @author jiangkang
  * @date 2017/9/6
@@ -34,24 +36,22 @@ public class KApplication extends Application{
 
         enableStrictMode();
 
-        if (BuildConfig.DEBUG) {
-            new Thread(
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            Stetho.initializeWithDefaults(KApplication.this);
-                        }
-                    }
-            ).start();
-
-        }
-
 
         initLeakCanary();
 
         King.init(this);
 
-        initARouter();
+
+        Executors.newCachedThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                if (BuildConfig.DEBUG){
+                    Stetho.initializeWithDefaults(KApplication.this);
+                }
+                initARouter();
+            }
+        });
+
 
         initWeex();
 
