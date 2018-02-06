@@ -4,6 +4,7 @@ import android.accounts.NetworkErrorException;
 import android.util.Log;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.jiangkang.requests.interceptors.LogInterceptor;
 import com.jiangkang.tools.King;
 import com.jiangkang.tools.utils.NetworkUtils;
 import com.readystatesoftware.chuck.ChuckInterceptor;
@@ -45,13 +46,10 @@ public abstract class BaseApi<Service> {
                 .baseUrl(getBaseUrl())
                 .client(createClient())
                 .build();
-
         initService();
-
     }
 
     protected void initService() {
-
         mService = createProxyService(mRetrofit.create(getServiceClass()));
     }
 
@@ -80,15 +78,20 @@ public abstract class BaseApi<Service> {
 
     protected OkHttpClient createClient() {
 
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .addInterceptor(new ChuckInterceptor(King.getApplicationContext()))
-                .addNetworkInterceptor(new HttpLoggingInterceptor())
-                .addNetworkInterceptor(new StethoInterceptor())
+                .addNetworkInterceptor(new LogInterceptor(King.getApplicationContext()))
+//                .addNetworkInterceptor(loggingInterceptor)
+//                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
         return client;
     }
 
     protected abstract String getBaseUrl();
+
 
 }

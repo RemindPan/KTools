@@ -29,5 +29,7 @@ class JNIActivity : AppCompatActivity() {
 
     private external fun helloWorld(): String
 
+    private external fun sumInt(a: Int, b: Int): Int
+
 
 }

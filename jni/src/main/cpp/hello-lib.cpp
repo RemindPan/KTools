@@ -12,3 +12,12 @@ JNICALL Java_com_jiangkang_jni_JNIActivity_helloWorld(JNIEnv *env, jobject insta
     std::string hello = "Hello World From JNI!";
     return env->NewStringUTF(hello.c_str());
 }
+
+
+
+extern "C"
+JNIEXPORT jint JNICALL
+JAVA_com_jiangkang_jni_JNIActivity_sumInt(JNIEnv *env, jobject pThis, jint a, jint b) {
+    return a + b;
+}
+

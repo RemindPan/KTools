@@ -47,11 +47,10 @@ class KWebViewClient : WebViewClient {
         if (historyList != null) {
             val size = historyList.size
             val currentIndex = historyList.currentIndex
-
-            (0..(size-1))
+            (0..(size - 1))
                     .map { "$it-${historyList.getItemAtIndex(it)?.title}-${historyList.getItemAtIndex(it)?.url}" }
                     .forEach {
-                        Log.d(TAG,it)
+                        Log.d(TAG, it)
                     }
         }
     }
@@ -59,14 +58,29 @@ class KWebViewClient : WebViewClient {
     private fun injectJsFile(view: WebView) {
         //        String js = FileUtils.readFromFile("web/inject.js");
         //        Log.d(TAG, "injectJsFile: \n js = " + js);
-        view.loadUrl("javascript:" + "(function imgOnClick(){\n" +
-                "    var imgs = document.getElementsByTagName(\"img\");\n" +
-                "    for(var i = 0; i < imgs.length;i++){\n" +
-                "            imgs[i].onclick = function(){\n" +
-                "                jk.showBigImage(this.src);\n" +
-                "            };\n" +
-                "    }\n" +
-                "})()")
+//        view.loadUrl("javascript:" + "(function imgOnClick(){\n" +
+//                "    var imgs = document.getElementsByTagName(\"img\");\n" +
+//                "    for(var i = 0; i < imgs.length;i++){\n" +
+//                "            imgs[i].onclick = function(){\n" +
+//                "                jk.showBigImage(this.src);\n" +
+//                "            };\n" +
+//                "    }\n" +
+//                "})()")
+
+
+        val jsString = """
+            (function imgOnClick() {
+              var imgs = documents.getElementsByTagName('img');
+              for(var i = 0; i < imgs.length;i++){
+                imgs[i].onclick = function(){
+                    jk.showBigImage(this.src);
+                };
+              }
+            })()
+            """
+        view.loadUrl("javascript:$jsString")
+
+
     }
 
 
