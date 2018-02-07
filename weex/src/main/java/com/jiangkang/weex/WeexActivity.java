@@ -28,12 +28,9 @@ public class WeexActivity extends AppCompatActivity implements IWXRenderListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_weex);
-
         mWXSDKInstance = new WXSDKInstance(this);
         mWXSDKInstance.registerRenderListener(this);
-
-        mWXSDKInstance.render("WXSample", WXFileUtils.loadFileOrAsset("weex/hello.js", this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
+        mWXSDKInstance.render("WXSample", WXFileUtils.loadFileOrAsset("weex/index.js", this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
     }
 
 
