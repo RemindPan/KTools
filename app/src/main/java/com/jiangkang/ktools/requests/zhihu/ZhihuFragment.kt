@@ -14,6 +14,7 @@ import android.widget.LinearLayout
 import com.google.gson.Gson
 import com.jiangkang.ktools.R
 import com.jiangkang.requests.KRequests
+import com.jiangkang.requests.dsl.RequestWrapper
 import com.jiangkang.requests.zhihu.ZhihuApi
 import com.jiangkang.requests.zhihu.bean.Story
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -75,6 +76,11 @@ class ZhihuFragment : Fragment() {
                     }
                 }
     }
+
+    private val TAG: String = "Zhihu"
+
+
+
 
 
 }
