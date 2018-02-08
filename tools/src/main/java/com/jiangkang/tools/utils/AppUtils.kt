@@ -4,14 +4,8 @@ import android.app.Activity
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.util.Log
-
 import com.jiangkang.tools.King
-
-import org.json.JSONObject
-
-import java.util.ArrayList
-import kotlin.jvm.internal.Reflection
+import java.util.*
 
 /**
  * Created by jiangkang on 2017/9/8.
@@ -21,7 +15,8 @@ import kotlin.jvm.internal.Reflection
 
 object AppUtils {
 
-    private val TAG = AppUtils::class.java!!.simpleName
+    private val TAG = AppUtils::class.java.simpleName
+    
 
     val appVersionName: String
         get() {

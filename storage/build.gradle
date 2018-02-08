@@ -1,4 +1,4 @@
-def isBuildAsApp = false
+def isBuildAsApp = true
 
 
 if (isBuildAsApp.toBoolean()) {

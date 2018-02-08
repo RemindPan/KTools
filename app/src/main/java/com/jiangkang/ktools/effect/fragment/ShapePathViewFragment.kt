@@ -6,9 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
-
 import com.jiangkang.ktools.R
+import com.jiangkang.tools.extend.widget.addOnChangeListener
 import kotlinx.android.synthetic.main.fragment_shape_path_view.*
 
 
@@ -28,38 +27,22 @@ class ShapePathViewFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        seekBarSides.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
 
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
-            }
-
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                shapePathView.post {
-                    shapePathView.updateSides(sides = progress)
+        seekBarSides.addOnChangeListener(
+                onProgressChanged = { _, progress, _ ->
+                    shapePathView.post {
+                        shapePathView.updateSides(sides = progress)
+                    }
                 }
-            }
-        })
+        )
 
-
-        seekBarProgress.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
-            }
-
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                shapePathView.post {
-                    shapePathView.updateProgress(progress = progress.toFloat())
+        seekBarProgress.addOnChangeListener(
+                onProgressChanged = { _, progress, _ ->
+                    shapePathView.post {
+                        shapePathView.updateProgress(progress = progress.toFloat())
+                    }
                 }
-            }
-        })
+        )
 
     }
 
