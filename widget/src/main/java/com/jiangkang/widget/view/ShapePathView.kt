@@ -1,7 +1,9 @@
 package com.jiangkang.widget.view
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.*
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 
@@ -35,6 +37,7 @@ class ShapePathView : View {
         initVar()
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
         initVar()
     }

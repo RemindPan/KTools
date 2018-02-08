@@ -19,7 +19,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class WidgetActivity : AppCompatActivity() {
 
-    val mContext = this
+    private val mContext = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,10 +69,7 @@ class WidgetActivity : AppCompatActivity() {
 
         btn_widget_dialog.onClick {
             launch(KDialogActivity::class.java,null)
-//            KDialogActivity.launch(mContext, null)
-//            ARouter.getInstance().build("/hack/HackActivity").navigation()
         }
-
 
 
         btn_floating_action_button.onClick {

@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_check_network_info"
+            android:id="@+id/btnCheckNetworkInfo"
             style="@style/KButton"
             android:background="#f44336"
             android:text="查看网络信息"
@@ -19,13 +19,13 @@
             />
 
         <Button
-            android:id="@+id/btn_check_current_activity"
+            android:id="@+id/btnCheckCurrentActivity"
             style="@style/KButton"
             android:background="#E91E63"
             android:text="查看当前Activity" />
 
         <Button
-            android:id="@+id/btn_adb_wireless"
+            android:id="@+id/btnAdbWireless"
             style="@style/KButton"
             android:background="#E91E63"
             android:text="无线adb调试" />

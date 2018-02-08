@@ -99,7 +99,6 @@ public class KDialog {
                 .show();
     }
 
-
     public static void showMultiChoicesDialog(final Context context, final String title, CharSequence[] items, final MultiSelectedCallback callback) {
         final int[] selectedItems;
         final boolean[] selected = new boolean[items.length];
@@ -141,7 +140,6 @@ public class KDialog {
                 .show();
     }
 
-
     private static ProgressDialog progressDialog;
 
     public static void showProgressDialog(final Context context, int progress){
@@ -161,8 +159,6 @@ public class KDialog {
             }
         }
     }
-
-
 
     public interface SingleSelectedCallback {
         void singleSelected(int index);
