@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import com.jiangkang.ktools.service.AIDLDemoActivity
+import com.jiangkang.ktools.share.ShareActivity
 import com.jiangkang.tools.permission.RxPermissions
 import com.jiangkang.tools.struct.JsonGenerator
 import com.jiangkang.tools.system.ContactHelper
@@ -23,6 +24,7 @@ import com.jiangkang.tools.utils.SpUtils
 import com.jiangkang.tools.utils.ToastUtils
 import dalvik.system.DexClassLoader
 import kotlinx.android.synthetic.main.activity_system.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.wallpaperManager
 import org.json.JSONException
 import org.json.JSONObject
@@ -323,6 +325,10 @@ class SystemActivity : AppCompatActivity() {
     fun onBtnChangeWallpaper(view: View) {
         wallpaperManager.setResource(R.raw.wallpaper)
         ToastUtils.showShortToast("壁纸更换成功！")
+    }
+
+    fun onBtnShare(view: View){
+        startActivity<ShareActivity>()
     }
 
     companion object {

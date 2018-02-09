@@ -127,6 +127,13 @@
             android:text="更换桌面壁纸"
             android:onClick="onBtnChangeWallpaper"/>
 
+        <Button
+            android:id="@+id/btnShare"
+            style="@style/KButton"
+            android:background="#FF9966"
+            android:text="分享"
+            android:onClick="onBtnShare"/>
+
 
     </LinearLayout>
 </ScrollView>

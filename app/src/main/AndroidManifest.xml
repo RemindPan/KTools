@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <!-- 地理位置 -->
     <uses-permission android:name="android.permissions.ACCESS_FINE_LOCATION" />
@@ -61,21 +61,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <activity-alias
             android:name=".MainActivity1"
-            android:targetActivity=".MainActivity"
-            android:label="KTools"
             android:enabled="false"
             android:icon="@drawable/ic_web"
-            >
+            android:label="KTools"
+            android:targetActivity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-        
+
         <activity android:name=".SystemActivity" />
         <activity android:name=".DeviceActivity" />
         <activity android:name=".RequestsActivity" />
@@ -93,8 +92,7 @@
         <activity android:name=".AboutActivity" />
         <activity
             android:name="com.jiangkang.hybrid.web.WebActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <service
             android:name=".device.CheckCurrentActivityService"
@@ -158,11 +156,11 @@
 
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".widget.ConstraintLayoutActivity" />
         <activity android:name=".service.AIDLDemoActivity" />
-        <activity android:name=".web.HybridActivity"></activity>
+        <activity android:name=".web.HybridActivity" />
+        <activity android:name=".share.ShareActivity"></activity>
     </application>
 
 </manifest>
