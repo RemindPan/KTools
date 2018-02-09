@@ -53,10 +53,6 @@ import io.reactivex.functions.Consumer;
 
 public class SystemActivity extends AppCompatActivity {
 
-    private static final int REQUEST_PERMISSION_PICK_CONTACT = 1001;
-
-    private static final int REQUEST_PERMISSION_GET_CONTACTS = 1002;
-
     private static final int REQUEST_PICK_CONTACT = 1112;
 
     private static final String TAG = SystemActivity.class.getSimpleName();

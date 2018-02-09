@@ -24,8 +24,6 @@ public class GalleryActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-
-
     @BindView(R.id.rc_gallery)
     RecyclerView rcGallery;
 
@@ -36,7 +34,6 @@ public class GalleryActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initViews();
-
 
     }
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.jiangkang.ktools.GlideApp;
 import com.jiangkang.ktools.R;
 import com.jiangkang.tools.utils.DownloadUtils;
@@ -60,23 +61,24 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        Executors.newCachedThreadPool().execute(new Runnable() {
-            @Override
-            public void run() {
-                Bitmap bitmap = DownloadUtils.getInstance().downloadImage(urlList.get(position));
-                final Bitmap result = ImageUtils.convert2Gray(bitmap);
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        GlideApp.with(context)
-                                .load(result)
-                                .into(holder.ivContent);
-                    }
-                });
-
-            }
-        });
-
+        GlideApp.with(context)
+                .load(urlList.get(position))
+                .into(holder.ivContent);
+//        Executors.newCachedThreadPool().execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                Bitmap bitmap = DownloadUtils.getInstance().downloadImage(urlList.get(position));
+//                final Bitmap result = ImageUtils.convert2Gray(bitmap);
+//                new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        GlideApp.with(context)
+//                                .load(result)
+//                                .into(holder.ivContent);
+//                    }
+//                });
+//            }
+//        });
     }
 
     @Override
@@ -89,7 +91,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     static class ViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView ivContent;
+         ImageView ivContent;
 
         public ViewHolder(View itemView) {
             super(itemView);

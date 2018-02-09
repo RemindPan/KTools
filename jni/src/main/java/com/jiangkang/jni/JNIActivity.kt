@@ -22,8 +22,10 @@ class JNIActivity : AppCompatActivity() {
     private fun handleClick() {
 
         btnJniHelloWorld.setOnClickListener {
-            ToastUtils.showShortToast(helloWorld()!!)
+            ToastUtils.showShortToast(helloWorld())
+//            ToastUtils.showShortToast(sumInt(1,2).toString())
         }
+
 
     }
 
