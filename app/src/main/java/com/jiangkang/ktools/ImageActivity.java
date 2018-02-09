@@ -368,6 +368,6 @@ public class ImageActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_image_gallery)
     public void onImageGalleryClicked() {
-        GalleryActivity.launch(this,null);
+        GalleryActivity.Companion.launch(this,null);
     }
 }

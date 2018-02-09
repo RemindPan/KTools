@@ -1,14 +1,13 @@
-package com.jiangkang.ktools.image;
-
-import java.util.ArrayList;
+package com.jiangkang.ktools.image
 
 /**
  * Created by jiangkang on 2017/10/16.
+ * Image 资源池
  */
 
-public final class ImagePool {
+object ImagePool {
 
-    public static String[] urls = new String[]{
+    var urls = arrayOf(
             "https://pic1.zhimg.com/50/v2-b649c4855e6efcc96ccb933b6d987a58_hd.jpg",
             "https://pic4.zhimg.com/50/v2-3567e6a006d6df51060391decea2c9af_hd.jpg",
             "https://pic2.zhimg.com/50/v2-7805187574c390673559f6384a144cf9_hd.jpg",
@@ -31,10 +30,7 @@ public final class ImagePool {
             "https://pic2.zhimg.com/50/v2-6156d3932b81ba06276755b7c0cb80a5_hd.jpg",
             "https://pic1.zhimg.com/50/v2-7fb0675beedabf2fa8c9068e1a34c118_hd.jpg",
             "https://pic4.zhimg.com/50/v2-7d86182ee7c52b71985aa059f27f48e7_hd.jpg",
-            "https://pic3.zhimg.com/50/v2-97e9a3e3856dc8417fa725f7bec6fc0e_hd.jpg",
-    };
-
-
+            "https://pic3.zhimg.com/50/v2-97e9a3e3856dc8417fa725f7bec6fc0e_hd.jpg")
 
 
 }

@@ -17,8 +17,9 @@ import butterknife.OnClick;
 
 public class ScanActivity extends AppCompatActivity {
 
-    @BindView(R.id.btn_scan_qr)
-    Button btnScanQr;
+//    @BindView(R.id.btn_scan_qr)
+//    Button btnScanQr;
+
     @BindView(R.id.et_url)
     EditText etUrl;
     @BindView(R.id.btn_gen_qr_code)
@@ -32,10 +33,10 @@ public class ScanActivity extends AppCompatActivity {
     }
 
 
-    @OnClick(R.id.btn_scan_qr)
-    public void onBtnScanQrClicked() {
-        ToastUtils.showShortToast("暂未实现");
-    }
+//    @OnClick(R.id.btn_scan_qr)
+//    public void onBtnScanQrClicked() {
+//        ToastUtils.showShortToast("暂未实现");
+//    }
 
     @OnClick(R.id.btn_gen_qr_code)
     public void onBtnGenQrCodeClicked() {

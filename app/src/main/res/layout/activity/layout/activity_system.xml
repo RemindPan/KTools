@@ -13,13 +13,16 @@
             android:id="@+id/btn_open_contacts"
             style="@style/KButton"
             android:background="#FFCC99"
-            android:text="打开通讯录" />
+            android:text="打开通讯录"
+            android:onClick="onOpenContactsClicked"/>
 
         <Button
             android:id="@+id/btn_get_all_contacts"
             style="@style/KButton"
             android:background="#FFCC66"
-            android:text="获取所有联系人" />
+            android:text="获取所有联系人"
+            android:onClick="onBtnGetAllContactsClicked"
+            />
 
         <View
             android:layout_width="match_parent"
@@ -44,14 +47,18 @@
                 style="@style/KButton"
                 android:layout_weight="1"
                 android:background="#FF99CC"
-                android:text="设置剪贴板数据" />
+                android:text="设置剪贴板数据"
+                android:onClick="onBtnSetClipboardClicked"
+                />
 
             <Button
                 android:id="@+id/btn_get_clipboard"
                 style="@style/KButton"
                 android:layout_weight="1"
                 android:background="#FF99CC"
-                android:text="获取剪贴板数据" />
+                android:text="获取剪贴板数据"
+                android:onClick="onBtnGetClipboardClicked"
+                />
 
         </LinearLayout>
 
@@ -60,75 +67,66 @@
             android:layout_height="1dp"
             android:background="@color/colorPrimary" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/radio_btn_contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="读取通讯录权限" />
-
-            <RadioButton
-                android:id="@+id/radio_btn_storage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="存储权限" />
-
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/btn_request_permission"
-            style="@style/KButton"
-            android:background="#FF9966"
-            android:text="请求权限" />
-
-
         <Button
             android:id="@+id/btn_hide_app_icon"
             style="@style/KButton"
             android:background="#FF9966"
-            android:text="隐藏应用图标（谨慎点击）" />
+            android:text="隐藏应用图标（谨慎点击）"
+            android:onClick="onHideAppIconClicked"/>
 
         <Button
             android:id="@+id/btn_load_dex"
             style="@style/KButton"
             android:background="#FF9966"
-            android:text="加载本地jar包中的dex文件" />
+            android:text="加载本地jar包中的dex文件"
+            android:onClick="onBtnLoadDexClicked"
+            />
 
         <Button
             android:id="@+id/btn_exit_app"
             style="@style/KButton"
             android:background="#FF9966"
-            android:text="退出App" />
+            android:text="退出App"
+            android:onClick="onClickBtnExitApp"
+            />
 
         <Button
             android:id="@+id/btn_hide_status_bar"
             style="@style/KButton"
             android:background="#FF9966"
-            android:text="隐藏状态栏" />
+            android:text="隐藏状态栏"
+            android:onClick="onBtnHideStatusBarClicked"
+            />
 
         <Button
             android:id="@+id/btn_hide_virtual_navbar"
             style="@style/KButton"
             android:background="#FF9966"
-            android:text="隐藏虚拟导航栏（再次点击会消耗事件）" />
+            android:text="隐藏虚拟导航栏（再次点击会消耗事件）"
+            android:onClick="onBtnHideVirtualNavbarClicked"
+            />
 
         <Button
             android:id="@+id/btn_aidl"
             style="@style/KButton"
             android:background="#FF9966"
-            android:text="AIDL使用" />
+            android:text="AIDL使用"
+            android:onClick="onAIDLClicked"/>
 
         <Button
             android:id="@+id/btn_change_icon"
             style="@style/KButton"
             android:background="#FF9966"
-            android:text="更换桌面图标" />
+            android:text="更换桌面图标"
+            android:onClick="onBtnChangeIconClicked"/>
+
+        <Button
+            android:id="@+id/btn_change_wallpaper"
+            style="@style/KButton"
+            android:background="#FF9966"
+            android:text="更换桌面壁纸"
+            android:onClick="onBtnChangeWallpaper"/>
+
 
     </LinearLayout>
 </ScrollView>
