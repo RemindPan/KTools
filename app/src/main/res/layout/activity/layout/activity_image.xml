@@ -83,10 +83,10 @@
         />
 
     <Button
-        android:id="@+id/btn_image_gallery"
+        android:id="@+id/btnPrintBitmap"
         style="@style/KButton"
-        android:text="Image Gallery"
-        android:background="#4CAF50"
+        android:background="#8BC34A"
+        android:text="打印图片"
         />
 
 

@@ -34,6 +34,10 @@
         android:name="android.hardware.sensor.stepdetector"
         android:required="true" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:name=".KApplication"
         android:allowBackup="true"
@@ -160,7 +164,24 @@
         <activity android:name=".widget.ConstraintLayoutActivity" />
         <activity android:name=".service.AIDLDemoActivity" />
         <activity android:name=".web.HybridActivity" />
-        <activity android:name=".share.ShareActivity"></activity>
+        <activity android:name=".share.ShareActivity">
+            <!--用于接收外部分享调用-->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -40,6 +40,21 @@
             android:background="#f44336"
             />
 
+        <Button
+            android:id="@+id/btnSlideDemos"
+            style="@style/KButton"
+            android:text="滑动"
+            android:background="#f44336"
+            />
+
+        <!--<Button-->
+            <!--android:id="@+id/btnOpenGL"-->
+            <!--style="@style/KButton"-->
+            <!--android:background="#CDDC39"-->
+            <!--android:text="OpenGL"-->
+            <!--/>-->
+
+
     </LinearLayout>
 
 </ScrollView>

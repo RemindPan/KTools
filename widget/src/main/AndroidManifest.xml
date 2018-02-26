@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jiangkang.widget">
 
+
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+
     <application>
-        <activity
-            android:name=".ui.UpdateDialogActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+        <activity android:name=".opengl.OpenGLES20Activity" />
     </application>
 
 </manifest>

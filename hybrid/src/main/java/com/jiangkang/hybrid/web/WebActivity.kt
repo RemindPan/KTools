@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.print.PrintAttributes
+import android.print.PrintManager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.webkit.WebSettings
@@ -35,7 +37,6 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web)
         initVar()
-
         handleClick()
     }
 
@@ -49,6 +50,23 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
             }
         }
 
+        iv_title_right.setOnClickListener {
+            printPage()
+        }
+
+    }
+
+    private fun printPage() {
+        val printManager = getSystemService(Context.PRINT_SERVICE) as PrintManager
+        val printAdapter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webContainer.createPrintDocumentAdapter("KTools_Doc_" + System.currentTimeMillis().toString())
+        } else {
+            webContainer.createPrintDocumentAdapter()
+        }
+
+        val printJob = printManager.print("Print_"+System.currentTimeMillis().toString(),
+                printAdapter,
+                PrintAttributes.Builder().build())
     }
 
 

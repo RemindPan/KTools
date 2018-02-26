@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.transition.Fade
 import android.view.Window
 import android.widget.RemoteViews
-import com.alibaba.android.arouter.launcher.ARouter
 import com.jiangkang.ktools.widget.*
 import com.jiangkang.tools.extend.launch
 import com.jiangkang.tools.utils.ToastUtils
@@ -88,6 +87,7 @@ class WidgetActivity : AppCompatActivity() {
         btn_constraint_layout.onClick {
             ConstraintLayoutActivity.launch(mContext,null)
         }
+
 
     }
 

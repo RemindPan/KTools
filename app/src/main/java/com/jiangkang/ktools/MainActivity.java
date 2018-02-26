@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ShareActionProvider;
 import android.transition.Explode;
 import android.util.Log;
 import android.view.Menu;
@@ -25,6 +26,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private static final String TAG = "MainActivity";
+
     @BindView(R.id.rc_function_list)
     RecyclerView mRcFunctionList;
 
@@ -38,12 +40,6 @@ public class MainActivity extends BaseActivity {
             getWindow().setExitTransition(new Explode());
         }
         setContentView(R.layout.activity_main);
-        ClassLoader loader = MainActivity.class.getClassLoader();
-        if (loader != null){
-            Log.d(TAG, "onCreate: classloader:" + loader.toString());
-            Log.d(TAG, "onCreate: classloader:" + loader.getParent().toString());
-        }
-
         ButterKnife.bind(this);
         initViews();
     }

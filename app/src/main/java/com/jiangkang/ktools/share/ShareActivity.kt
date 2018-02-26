@@ -1,14 +1,19 @@
 package com.jiangkang.ktools.share
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.jiangkang.ktools.BuildConfig
 import com.jiangkang.ktools.R
 import com.jiangkang.tools.utils.FileUtils
+import com.jiangkang.tools.utils.ToastUtils
+import com.jiangkang.tools.widget.KDialog
 import kotlinx.android.synthetic.main.activity_share.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -17,9 +22,13 @@ import java.io.File
 
 class ShareActivity : AppCompatActivity() {
 
+    val TAG:String = "Share"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share)
+
+        receiveIntent()
 
         FileUtils.copyAssetsToFile("img/dog.jpg", "share0.jpg")
         FileUtils.copyAssetsToFile("img/demo.jpeg", "share1.jpeg")
@@ -27,8 +36,59 @@ class ShareActivity : AppCompatActivity() {
         handleClick()
     }
 
-    private fun handleClick() {
+    private fun receiveIntent() {
+        val action = intent?.action
+        val type = intent?.type
 
+        type?.let {
+            when (action) {
+                Intent.ACTION_SEND -> {
+                    if ("text/plain" == type) {
+                        handleSendText(intent)
+                    }else if (type.startsWith("image/")){
+                        handleSendImage(intent)
+                    }
+                }
+
+                Intent.ACTION_SEND_MULTIPLE -> {
+                    if (type.startsWith("image/")){
+                        handleMultiImage(intent)
+                    }
+                }
+
+            }
+        }
+
+
+    }
+
+    private fun handleSendText(intent: Intent) {
+        val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+        sharedText?.let {
+            ToastUtils.showShortToast(it)
+        }
+    }
+
+    private fun handleMultiImage(intent: Intent) {
+        val imageUris:ArrayList<Uri> = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM)
+        imageUris?.let {
+            imageUris.map {
+                Log.d(TAG,it.toString())
+            }
+        }
+    }
+
+    private fun handleSendImage(intent: Intent) {
+        val imageUri:Uri = intent.getParcelableExtra(Intent.EXTRA_STREAM)
+        imageUri?.let {
+            Log.d(TAG,it.toString())
+            ToastUtils.showShortToast(it.toString())
+        }
+    }
+
+
+
+    private fun handleClick() {
         btnShareText.onClick {
             shareText()
         }

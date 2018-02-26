@@ -23,7 +23,6 @@ class JNIActivity : AppCompatActivity() {
 
         btnJniHelloWorld.setOnClickListener {
             ToastUtils.showShortToast(helloWorld())
-//            ToastUtils.showShortToast(sumInt(1,2).toString())
         }
 
 

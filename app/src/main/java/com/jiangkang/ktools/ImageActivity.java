@@ -22,7 +22,6 @@ import android.widget.EditText;
 import android.widget.VideoView;
 
 import com.jiangkang.hybrid.Khybrid;
-import com.jiangkang.ktools.image.GalleryActivity;
 import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ImageUtils;
@@ -54,6 +53,7 @@ public class ImageActivity extends AppCompatActivity {
     Button btnChoosePictureFromAlbum;
 
     Unbinder unbinder;
+
     @BindView(R.id.btn_take_picture)
     Button btnTakePicture;
 
@@ -67,14 +67,18 @@ public class ImageActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_show_base64_img_in_web)
     Button btnShowBase64ImgInWeb;
+
     @BindView(R.id.btn_scale_image_by_max_width_and_height)
     Button btnScaleImageByMaxWidthAndHeight;
+
     @BindView(R.id.et_max_width)
     EditText etMaxWidth;
+
     @BindView(R.id.et_max_height)
     EditText etMaxHeight;
-    @BindView(R.id.btn_image_gallery)
-    Button btnImageGallery;
+
+    @BindView(R.id.btnPrintBitmap)
+    Button mBtnPrintBitmap;
 
     private File outputImageFile;
 
@@ -90,8 +94,8 @@ public class ImageActivity extends AppCompatActivity {
         setTitle("Image");
 
         initVar();
-
         unbinder = ButterKnife.bind(this);
+
     }
 
     private void initVar() {
@@ -185,12 +189,24 @@ public class ImageActivity extends AppCompatActivity {
     }
 
     private void handleImageCaptureWithoutCompress(Intent data) {
+
         final Bitmap bitmap = BitmapFactory.decodeFile(outputImageFile.getAbsolutePath());
+
+        //让媒体扫描器扫描
+        galleryAddPic(outputImageFile);
+
         KDialog.showImgInDialog(this, bitmap);
     }
 
+    private void galleryAddPic(File file) {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        Uri imgUri = Uri.fromFile(file);
+        mediaScanIntent.setData(imgUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
+
     private void handleImageCaptureData(Intent data) {
-        //这张图是经过压缩的，清晰度低
+        //这张图是thumbnail,清晰度低，当做Icon还可以，但是作为图片显示并不合适
         Bitmap bitmap = (Bitmap) data.getExtras().get("data");
         KDialog.showImgInDialog(this, bitmap);
     }
@@ -242,7 +258,10 @@ public class ImageActivity extends AppCompatActivity {
 
     private void openCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+        //返回第一个可以处理该Intent的组件
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+        }
     }
 
     @OnClick(R.id.btn_take_video)
@@ -334,18 +353,22 @@ public class ImageActivity extends AppCompatActivity {
                 BuildConfig.APPLICATION_ID,
                 outputImageFile
         );
+
+
         Log.d(TAG, "openCameraWithOutput: uri = " + contentUri.toString());
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(Intent.EXTRA_MIME_TYPES, MimeTypeMap.getSingleton().getMimeTypeFromExtension("png"));
         //指定输出路径
         intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
-        startActivityForResult(intent, REQUEST_CODE_CAPTURE_IMAGE_WITHOUT_COMPRESS);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_CODE_CAPTURE_IMAGE_WITHOUT_COMPRESS);
+        }
     }
 
 
     @OnClick(R.id.btn_show_base64_img_in_web)
     public void onBtnShowBase64ImgInWebClicked() {
-        Khybrid.INSTANCE.loadUrl(this,FileUtils.getAssetsPath("web/demo_img.html"));
+        Khybrid.INSTANCE.loadUrl(this, FileUtils.getAssetsPath("web/demo_img.html"));
     }
 
 
@@ -366,8 +389,11 @@ public class ImageActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.btn_image_gallery)
-    public void onImageGalleryClicked() {
-        GalleryActivity.Companion.launch(this,null);
+
+    @OnClick(R.id.btnPrintBitmap)
+    public void onBtnPrintBitmapClicked() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.demo);
+        ImageUtils.printBitmap(this, bitmap);
     }
+
 }

@@ -1,9 +1,13 @@
 package com.jiangkang.tools.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.support.v4.print.PrintHelper;
 import android.util.Base64;
 import android.util.Log;
+
+import com.jiangkang.tools.King;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -17,12 +21,12 @@ public class ImageUtils {
 
     private static final String TAG = "ImageUtils";
 
-    public static byte[] bitmap2Bytes(Bitmap bitmap, int quality, Bitmap.CompressFormat format){
-        if (bitmap == null){
+    public static byte[] bitmap2Bytes(Bitmap bitmap, int quality, Bitmap.CompressFormat format) {
+        if (bitmap == null) {
             return null;
-        }else {
+        } else {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            bitmap.compress(format,quality,outputStream);
+            bitmap.compress(format, quality, outputStream);
             try {
                 outputStream.flush();
                 outputStream.close();
@@ -33,37 +37,33 @@ public class ImageUtils {
         }
     }
 
-
-    public static String bitmap2Base64(Bitmap bitmap, int quality, Bitmap.CompressFormat format){
-        byte[] bytes = bitmap2Bytes(bitmap,quality,format);
-        return Base64.encodeToString(bytes,Base64.DEFAULT)
-                .replace("\n","")
-                .replace("\r","")
-                .replace("\t","");
+    public static String bitmap2Base64(Bitmap bitmap, int quality, Bitmap.CompressFormat format) {
+        byte[] bytes = bitmap2Bytes(bitmap, quality, format);
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
+                .replace("\n", "")
+                .replace("\r", "")
+                .replace("\t", "");
     }
 
-
-
-    public static Bitmap scaleBitmap(Bitmap srcBitmap, int maxWidth, int maxHeight){
+    public static Bitmap scaleBitmap(Bitmap srcBitmap, int maxWidth, int maxHeight) {
 
         int width = srcBitmap.getWidth();
         int height = srcBitmap.getHeight();
 
         Log.d(TAG, "scaleBitmap: \nwidth = " + width + "\nheight = " + height);
 
-        int desiredWidth = Math.min(width,maxWidth);
-        int desiredHeight = Math.min(height,maxHeight);
+        int desiredWidth = Math.min(width, maxWidth);
+        int desiredHeight = Math.min(height, maxHeight);
 
         float scaleWidth = ((float) desiredWidth / width);
         float scaleHeight = ((float) desiredHeight / height);
 
-        float scaled = Math.min(scaleHeight,scaleWidth);
+        float scaled = Math.min(scaleHeight, scaleWidth);
 
         Matrix matrix = new Matrix();
-        matrix.postScale(scaled,scaled);
-        return Bitmap.createBitmap(srcBitmap,0,0,width,height,matrix,true);
+        matrix.postScale(scaled, scaled);
+        return Bitmap.createBitmap(srcBitmap, 0, 0, width, height, matrix, true);
     }
-
 
     public static Bitmap convert2Gray(Bitmap bitmap) {
         int width = bitmap.getWidth();
@@ -87,16 +87,22 @@ public class ImageUtils {
 
                 color = (red + green + blue) / 3;
 
-                color = alpha | (color << 16) | (color << 8)| color;
+                color = alpha | (color << 16) | (color << 8) | color;
 
                 pixs[width * i + j] = color;
 
             }
         }
 
-        Bitmap result = Bitmap.createBitmap(width,height, Bitmap.Config.RGB_565);
-        result.setPixels(pixs,0,width,0,0,width,height);
+        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        result.setPixels(pixs, 0, width, 0, 0, width, height);
         return result;
+    }
+
+    public static void printBitmap(Context context, Bitmap bitmap) {
+        PrintHelper helper = new PrintHelper(context);
+        helper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
+        helper.printBitmap("print_" + String.valueOf(System.currentTimeMillis()),bitmap);
     }
 
 
