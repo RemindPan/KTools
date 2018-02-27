@@ -51,9 +51,9 @@ public class AboutPageViewModel {
 
     public void onClick(View view) {
         if (sourceUrl != null){
-            Khybrid.INSTANCE.loadUrl(mContext,sourceUrl);
+            new Khybrid().loadUrl(mContext,sourceUrl);
         }else {
-            Khybrid.INSTANCE.loadUrl(mContext,"https://github.com/jiangkang/KTools");
+            new Khybrid().loadUrl(mContext,"https://github.com/jiangkang/KTools");
         }
     }
 }

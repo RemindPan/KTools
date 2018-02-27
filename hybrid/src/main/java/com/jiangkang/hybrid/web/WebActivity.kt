@@ -72,13 +72,16 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private fun initVar() {
+
         launchUrl = intent.getStringExtra("launchUrl")
+
+        var webArgs = initWebArgs()
 
         Log.d(TAG, "initVar: launchUrl = " + launchUrl!!)
 
         webContainer?.apply {
             webChromeClient = KWebChromeClient(mContext)
-            webViewClient = KWebViewClient(mContext)
+            webViewClient = KWebViewClient(mContext,webArgs)
             addJavascriptInterface(KJavaInterface(mContext), "jk")
         }
 
@@ -96,6 +99,13 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
 
         webContainer?.loadUrl(launchUrl)
 
+    }
+
+    private fun initWebArgs():WebArgs {
+        var webArgs = WebArgs()
+        webArgs.isLoadImgLazy = intent.getBooleanExtra(WebArgs.IS_LOAD_IMG_LAZY,false)
+        webArgs.isInterceptResources = intent.getBooleanExtra(WebArgs.IS_INTERCEPT_RESOURCES,false)
+        return webArgs
     }
 
 

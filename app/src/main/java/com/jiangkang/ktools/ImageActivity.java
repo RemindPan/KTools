@@ -368,7 +368,7 @@ public class ImageActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_show_base64_img_in_web)
     public void onBtnShowBase64ImgInWebClicked() {
-        Khybrid.INSTANCE.loadUrl(this, FileUtils.getAssetsPath("web/demo_img.html"));
+        new Khybrid().loadUrl(this, FileUtils.getAssetsPath("web/demo_img.html"));
     }
 
 

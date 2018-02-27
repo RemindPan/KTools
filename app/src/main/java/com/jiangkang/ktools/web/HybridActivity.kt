@@ -2,6 +2,7 @@ package com.jiangkang.ktools.web
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.jiangkang.hybrid.Khybrid
 import com.jiangkang.ktools.R
 import com.jiangkang.tools.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_hybrid.*
@@ -19,13 +20,16 @@ class HybridActivity : AppCompatActivity() {
     private fun handleClick() {
 
         btnResourceInterceptor.setOnClickListener {
-            ToastUtils.showShortToast("待开发")
+            Khybrid()
+                    .isInterceptResouces(true)
+                    .loadUrl(this,"http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=%E5%A4%A9%E6%B4%A5%E5%A4%A7%E5%AD%A6")
         }
 
         btnImgLazyLoading.setOnClickListener {
-            ToastUtils.showShortToast("待开发")
+            Khybrid()
+                    .isLoadImgLazy(true)
+                    .loadUrl(this,"https://movie.douban.com/subject/2210031/all_photos")
         }
-
 
         btnCertificateVerify.setOnClickListener {
             ToastUtils.showShortToast("待开发")

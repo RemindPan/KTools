@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void openBrowser(String url) {
-        Khybrid.INSTANCE.loadUrl(this,url);
+        new Khybrid().loadUrl(this,url);
     }
 
     private void initViews() {
