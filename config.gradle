@@ -44,7 +44,7 @@ ext {
 
             loggerVersion          : '2.1.1',
 
-            anko_version           : '0.10.3',
+            anko_version           : '0.10.4',
 
             weex_version           : '0.17.0',
 

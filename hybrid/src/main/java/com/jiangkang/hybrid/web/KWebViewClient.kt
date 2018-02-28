@@ -68,6 +68,7 @@ class KWebViewClient : WebViewClient {
               for(var i = 0; i < imgs.length;i++){
                 console.log(imgs[i].src)
                 imgs[i].addEventListener("click",function(e){
+                    alert(e.target.src);
                     jk.showBigImage(e.target.src);
                 });
               }
@@ -92,5 +93,5 @@ class KWebViewClient : WebViewClient {
         }
         return super.shouldInterceptRequest(view, request)
     }
-    
+
 }
