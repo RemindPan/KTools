@@ -97,7 +97,10 @@
         <activity android:name=".AboutActivity" />
         <activity
             android:name="com.jiangkang.hybrid.web.WebActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:process=":web"
+            />
 
         <service
             android:name=".device.CheckCurrentActivityService"
