@@ -22,26 +22,26 @@ class HybridActivity : AppCompatActivity() {
         btnResourceInterceptor.setOnClickListener {
             Khybrid()
                     .isInterceptResources(true)
-                    .loadUrl(this,"http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=%E5%A4%A9%E6%B4%A5%E5%A4%A7%E5%AD%A6")
+                    .loadUrl(this, "http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=%E5%A4%A9%E6%B4%A5%E5%A4%A7%E5%AD%A6")
         }
 
         btnImgLazyLoading.setOnClickListener {
             Khybrid()
                     .isLoadImgLazy(true)
-                    .loadUrl(this,"https://movie.douban.com/subject/2210031/all_photos")
+                    .loadUrl(this, "https://movie.douban.com/subject/2210031/all_photos")
         }
 
-        btnCertificateVerify.setOnClickListener {
-            ToastUtils.showShortToast("待开发")
-        }
-
-        btnGeoRequest.setOnClickListener {
-            ToastUtils.showShortToast("待开发")
-        }
-
-        btnPageCache.setOnClickListener {
-            ToastUtils.showShortToast("待开发")
-        }
+//        btnCertificateVerify.setOnClickListener {
+//            ToastUtils.showShortToast("待开发")
+//        }
+//
+//        btnGeoRequest.setOnClickListener {
+//            ToastUtils.showShortToast("待开发")
+//        }
+//
+//        btnPageCache.setOnClickListener {
+//            ToastUtils.showShortToast("待开发")
+//        }
 
         btnJsInject.setOnClickListener {
             val jsString = """
@@ -51,7 +51,7 @@ class HybridActivity : AppCompatActivity() {
                 """
             Khybrid()
                     .injectJs(jsString)
-                    .loadUrl(this,"https://github.com/jiangkang/KTools")
+                    .loadUrl(this, "https://github.com/jiangkang/KTools")
         }
 
 
