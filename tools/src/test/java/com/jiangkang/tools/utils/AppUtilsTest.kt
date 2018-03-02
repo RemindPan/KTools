@@ -15,9 +15,7 @@ class AppUtilsTest {
 
     @Test
     fun isDebug() {
-
         assertEquals(true,AppUtils.isDebug)
-
     }
 
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bestpay.design">
+
+    <application>
+        <activity android:name=".transition.SignInActivity"
+            android:theme="@style/Transition"
+            ></activity>
+    </application>
+
+</manifest>

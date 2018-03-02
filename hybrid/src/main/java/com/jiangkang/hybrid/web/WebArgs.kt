@@ -17,7 +17,11 @@ class WebArgs {
 
         val IS_INTERCEPT_RESOURCES = "IS_INTERCEPT_RESOURCES"
 
+        val STR_INJECTED_JS = "str_injected_js"
+
     }
+
+    var jsInjected: String = ""
 
 
 }

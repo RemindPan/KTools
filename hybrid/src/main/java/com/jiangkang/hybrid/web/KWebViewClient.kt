@@ -3,6 +3,7 @@ package com.jiangkang.hybrid.web
 import android.annotation.TargetApi
 import android.graphics.Bitmap
 import android.os.Build
+import android.text.TextUtils
 import android.util.Log
 import android.webkit.*
 import com.jiangkang.tools.utils.FileUtils
@@ -44,8 +45,11 @@ class KWebViewClient : WebViewClient {
         if (mWebArgs.isLoadImgLazy) {
             view.settings.blockNetworkImage = false
         }
-        injectJsFile(view)
-        queryHistoryList(view)
+
+        if (!TextUtils.isEmpty(mWebArgs.jsInjected)){
+            injectJsFile(view,mWebArgs.jsInjected)
+        }
+
     }
 
     private fun queryHistoryList(view: WebView) {
@@ -61,19 +65,7 @@ class KWebViewClient : WebViewClient {
         }
     }
 
-    private fun injectJsFile(view: WebView) {
-        val jsString = """
-            (function imgOnClick() {
-              var imgs = document.getElementsByTagName('img');
-              for(var i = 0; i < imgs.length;i++){
-                console.log(imgs[i].src)
-                imgs[i].addEventListener("click",function(e){
-                    alert(e.target.src);
-                    jk.showBigImage(e.target.src);
-                });
-              }
-            })()
-            """
+    private fun injectJsFile(view: WebView, jsString: String) {
         view.loadUrl("javascript:$jsString")
     }
 
@@ -85,7 +77,7 @@ class KWebViewClient : WebViewClient {
     override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
         //此处对文件资源，js，css等请求资源进行拦截，替换
         Log.d(TAG, "shouldInterceptRequest: request = \n\nurl = ${request.url}\nmethod = ${request.method}\nheaders = ${request.requestHeaders}")
-        if (mWebArgs.isInterceptResources){
+        if (mWebArgs.isInterceptResources) {
             val url = request.url.toString()
             if ((url.startsWith("https://") || url.startsWith("http://")) && (url.endsWith(".png") or url.endsWith(".jpg"))) {
                 return WebResourceResponse(MimeTypeMap.getFileExtensionFromUrl(".jpg"), "utf-8", FileUtils.getInputStreamFromAssets("img/dog.jpg"))
@@ -93,5 +85,16 @@ class KWebViewClient : WebViewClient {
         }
         return super.shouldInterceptRequest(view, request)
     }
+
+
+    fun changeBgColor(webView:WebView){
+        val changeBodyBg = """
+            (function(){
+                document.body.style.backgroundColor = "rgba(0,0,0,125)"
+            })();
+            """
+        injectJsFile(webView,changeBodyBg)
+    }
+
 
 }

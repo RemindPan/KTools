@@ -16,11 +16,14 @@ class Khybrid{
 
     private var mIsInterceptResources:Boolean = false
 
+    private var jsInjected:String = ""
+
     fun loadUrl(context: Context, url: String){
         val data = Bundle()
         data.putString("launchUrl", url)
         data.putBoolean(WebArgs.IS_LOAD_IMG_LAZY,mIsLoadImgLazy)
         data.putBoolean(WebArgs.IS_INTERCEPT_RESOURCES,mIsInterceptResources)
+        data.putString(WebArgs.STR_INJECTED_JS,jsInjected)
         WebActivity.launch(context, data)
     }
 
@@ -31,6 +34,11 @@ class Khybrid{
 
     fun isInterceptResouces(isInterceptResources:Boolean):Khybrid{
         mIsInterceptResources = isInterceptResources
+        return this
+    }
+
+    fun injectJs(jsString:String):Khybrid{
+        jsInjected = jsString
         return this
     }
 

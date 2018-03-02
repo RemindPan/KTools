@@ -17,14 +17,12 @@ import java.util.List;
 /**
  * Created by jiangkang on 2017/9/22.
  */
-
 public class NetworkUtils {
 
     private static final String TAG = DeviceUtils.class.getSimpleName();
     private static final String NETWORK_TYPE_WIFI = "wifi";
     private static final String NETWORK_TYPE_MOBILE = "mobile";
     private static final String NETWORK_TYPE_OTHER = "other";
-
 
     private static final String MAC_ADDRESS_DEFAULT = "02:00:00:00:00:00";
 
@@ -33,7 +31,6 @@ public class NetworkUtils {
     private static ConnectivityManager sConnectivityManager;
 
     public static final String NETWORK_TYPE_OFFLINE = "offline";
-
 
     static {
         sWifiManager = (WifiManager) King.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -133,5 +130,6 @@ public class NetworkUtils {
         return sConnectivityManager.getActiveNetworkInfo() != null;
     }
 
+    
 
 }

@@ -46,7 +46,7 @@
     <Button
         android:id="@+id/btnJsInject"
         style="@style/KButton"
-        android:text="H5 Js注入"
+        android:text="H5 Js注入(改变网页背景色)"
         android:background="#2196F3"
         />
 

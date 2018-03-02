@@ -44,7 +44,14 @@ class HybridActivity : AppCompatActivity() {
         }
 
         btnJsInject.setOnClickListener {
-            ToastUtils.showShortToast("待开发")
+            val jsString = """
+            (function(){
+                document.body.style.backgroundColor = "rgba(0,0,0,125)"
+            })();
+                """
+            Khybrid()
+                    .injectJs(jsString)
+                    .loadUrl(this,"https://github.com/jiangkang/KTools")
         }
 
 

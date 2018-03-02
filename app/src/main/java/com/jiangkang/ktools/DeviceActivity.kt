@@ -13,6 +13,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class DeviceActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
@@ -27,7 +28,6 @@ class DeviceActivity : AppCompatActivity() {
             builder.append(String.format("网络类型: %s\n", NetworkUtils.getNetWorkType()))
                     .append(String.format("Mac地址: %s\n", NetworkUtils.getMacAddress()))
             KDialog.showMsgDialog(this@DeviceActivity, builder.toString())
-
         }
 
         btnCheckCurrentActivity.onClick {

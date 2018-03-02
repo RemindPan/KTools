@@ -105,6 +105,7 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
         var webArgs = WebArgs()
         webArgs.isLoadImgLazy = intent.getBooleanExtra(WebArgs.IS_LOAD_IMG_LAZY,false)
         webArgs.isInterceptResources = intent.getBooleanExtra(WebArgs.IS_INTERCEPT_RESOURCES,false)
+        webArgs.jsInjected = intent.getStringExtra(WebArgs.STR_INJECTED_JS)
         return webArgs
     }
 

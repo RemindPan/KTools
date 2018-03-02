@@ -1,1 +1,1 @@
-include ':app', ':tools', ':requests', ':annotations', ':aop', ':storage', ':hack', ':widget', ':kdownloader', ':weex', ':compiler', ':hybrid', ':jni'
+include ':app', ':tools', ':requests', ':annotations', ':aop', ':storage', ':hack', ':widget', ':kdownloader', ':weex', ':compiler', ':hybrid', ':jni', ':design'
