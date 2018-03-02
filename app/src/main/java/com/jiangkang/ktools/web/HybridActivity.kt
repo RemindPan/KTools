@@ -21,7 +21,7 @@ class HybridActivity : AppCompatActivity() {
 
         btnResourceInterceptor.setOnClickListener {
             Khybrid()
-                    .isInterceptResouces(true)
+                    .isInterceptResources(true)
                     .loadUrl(this,"http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=%E5%A4%A9%E6%B4%A5%E5%A4%A7%E5%AD%A6")
         }
 

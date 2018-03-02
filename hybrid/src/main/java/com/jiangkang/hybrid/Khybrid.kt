@@ -32,7 +32,7 @@ class Khybrid{
         return this
     }
 
-    fun isInterceptResouces(isInterceptResources:Boolean):Khybrid{
+    fun isInterceptResources(isInterceptResources:Boolean):Khybrid{
         mIsInterceptResources = isInterceptResources
         return this
     }
