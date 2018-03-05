@@ -59,11 +59,14 @@ class EffectFragment : Fragment() {
 
     private fun handleClick(fragment: Fragment) {
         val tag = fragment.javaClass.toString()
-        this.activity.supportFragmentManager
-                .beginTransaction()
-                .addToBackStack(tag)
-                .replace(android.R.id.content, fragment, tag)
-                .commit()
+
+        this.activity?.apply {
+            supportFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(tag)
+                    .replace(android.R.id.content, fragment, tag)
+                    .commit()
+        }
     }
 
     override fun onDestroyView() {

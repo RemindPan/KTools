@@ -17,14 +17,13 @@ class JuejinFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity.title = "掘金"
+        activity?.title = "掘金"
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_juejin, container, false)
+        return inflater.inflate(R.layout.fragment_juejin, container, false)
     }
 
 }// Required empty public constructor

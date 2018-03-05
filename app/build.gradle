@@ -114,6 +114,7 @@ dependencies {
     implementation deps.recyclerview
     implementation deps.cardview
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation deps.degisn
 
     implementation deps["retrofit"]
     implementation deps["retrofit_converterJson"]
