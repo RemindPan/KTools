@@ -1,5 +1,6 @@
 package com.jiangkang.hack;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,8 +19,11 @@ import butterknife.ButterKnife;
 @Route(path = "/hack/HackActivity")
 public class HackActivity extends AppCompatActivity {
 
-//    @BindView(R2.id.btn_hook_OnClick)
-//    Button mBtnHookOnClick;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,19 +33,16 @@ public class HackActivity extends AppCompatActivity {
 //        hookOnClickListener(mBtnHookOnClick);
     }
 
-//    @OnClick(R.id.btn_hook_OnClick)
-//    public void onBtnHookOnClicked(View view) {
-//        KDialog.showMsgDialog(this,"点击了按钮");
-//    }
 
-    private void hookOnClickListener(View view) {
+
+    private void hookOnClickListener() {
         try {
             //getListenerInfo()
-            Method getListenerInfo = View.class.getDeclaredMethod("getListenerInfo");
-            getListenerInfo.setAccessible(true);
+            Method getListenerInfoMethod = View.class.getDeclaredMethod("getListenerInfo");
+            getListenerInfoMethod.setAccessible(true);
 
             //得到ListenerInfo
-            Object listenerInfo = getListenerInfo.invoke(view);
+            Object listenerInfo = getListenerInfoMethod.invoke(View.class);
 
             //得到mOnClickListener对象
             Class<?> listenerInfoClz = Class.forName("android.view.View$ListenerInfo");

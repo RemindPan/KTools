@@ -7,6 +7,7 @@ import android.support.multidex.MultiDex
 
 import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.stetho.Stetho
+import com.jiangkang.hack.HookUtils
 import com.jiangkang.tools.King
 import com.jiangkang.weex.ImageAdapter
 import com.taobao.weex.InitConfig
@@ -26,6 +27,12 @@ class KApplication : Application() {
 
         // TODO: 2018/1/30 测试框架与MultiDex不兼容，待处理
         MultiDex.install(this)
+
+        try {
+            HookUtils.attachBaseContext()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
     }
 

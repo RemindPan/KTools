@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.ContactsContract
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import com.jiangkang.ktools.service.AIDLDemoActivity
@@ -24,6 +25,7 @@ import com.jiangkang.tools.utils.SpUtils
 import com.jiangkang.tools.utils.ToastUtils
 import dalvik.system.DexClassLoader
 import kotlinx.android.synthetic.main.activity_system.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.wallpaperManager
 import org.json.JSONException
@@ -43,25 +45,46 @@ class SystemActivity : AppCompatActivity() {
 
     private var jsonObject: JSONObject? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_system)
         title = "System"
-        FileUtils.copyAssetsToFile("code/hello_world_dex.jar", "hello_world_dex.jar")
+
+        handleClick()
+
     }
 
-    fun onOpenContactsClicked() {
-        val rxPermissions = RxPermissions(this)
-        rxPermissions.request(Manifest.permission.READ_CONTACTS)
-                .subscribe { granted ->
-                    if (granted!!) {
-                        gotoContactPage()
-                    } else {
-                        ToastUtils.showShortToast("权限被拒绝")
+    private fun handleClick() {
+
+        btn_open_contacts.onClick {
+            val rxPermissions = RxPermissions(this@SystemActivity)
+            rxPermissions.request(Manifest.permission.READ_CONTACTS)
+                    .subscribe { granted ->
+                        if (granted!!) {
+                            gotoContactPage()
+                        } else {
+                            ToastUtils.showShortToast("权限被拒绝")
+                        }
                     }
-                }
+        }
+
+
+        btn_get_all_contacts.onClick {
+            onBtnGetAllContactsClicked()
+        }
+
+        btn_set_clipboard.onClick {
+            onBtnSetClipboardClicked()
+        }
+
+        btn_exit_app.onClick {
+            onClickBtnExitApp()
+        }
+
 
     }
+
 
     private fun gotoContactPage() {
         val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
@@ -137,7 +160,7 @@ class SystemActivity : AppCompatActivity() {
         return result
     }
 
-    fun onBtnGetAllContactsClicked() {
+    private fun onBtnGetAllContactsClicked() {
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.READ_CONTACTS)
                 .subscribe { aBoolean ->
@@ -178,10 +201,15 @@ class SystemActivity : AppCompatActivity() {
 
     }
 
-    fun onBtnSetClipboardClicked() {
-        val content = et_content.text.toString()
-        ClipboardUtils.putStringToClipboard(content)
-        ToastUtils.showShortToast("设置成功")
+    private fun onBtnSetClipboardClicked() {
+        if (!TextUtils.isEmpty(et_content.text)) {
+            val content = et_content.text.toString()
+            ClipboardUtils.putStringToClipboard(content)
+            ToastUtils.showShortToast("设置成功")
+        } else {
+            ToastUtils.showShortToast("内容不能为空")
+        }
+
     }
 
     private fun hideVirtualNavbar(activity: Activity) {
@@ -246,7 +274,7 @@ class SystemActivity : AppCompatActivity() {
 
     }
 
-    fun onClickBtnExitApp(view: View) {
+    private fun onClickBtnExitApp() {
         exitApp()
     }
 
@@ -327,7 +355,7 @@ class SystemActivity : AppCompatActivity() {
         ToastUtils.showShortToast("壁纸更换成功！")
     }
 
-    fun onBtnShare(view: View){
+    fun onBtnShare(view: View) {
         startActivity<ShareActivity>()
     }
 

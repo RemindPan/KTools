@@ -14,14 +14,13 @@
             style="@style/KButton"
             android:background="#FFCC99"
             android:text="打开通讯录"
-            android:onClick="onOpenContactsClicked"/>
+            />
 
         <Button
             android:id="@+id/btn_get_all_contacts"
             style="@style/KButton"
             android:background="#FFCC66"
             android:text="获取所有联系人"
-            android:onClick="onBtnGetAllContactsClicked"
             />
 
         <View
@@ -48,7 +47,6 @@
                 android:layout_weight="1"
                 android:background="#FF99CC"
                 android:text="设置剪贴板数据"
-                android:onClick="onBtnSetClipboardClicked"
                 />
 
             <Button
@@ -87,7 +85,6 @@
             style="@style/KButton"
             android:background="#FF9966"
             android:text="退出App"
-            android:onClick="onClickBtnExitApp"
             />
 
         <Button

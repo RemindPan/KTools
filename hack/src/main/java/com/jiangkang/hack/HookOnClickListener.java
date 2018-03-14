@@ -36,7 +36,6 @@ public class HookOnClickListener implements View.OnClickListener{
             originListener.onClick(v);
         }
 
-
         //点击之后
         Log.d(TAG, "onClick: after");
         KDialog.showMsgDialog(context,"点击按钮之后");
