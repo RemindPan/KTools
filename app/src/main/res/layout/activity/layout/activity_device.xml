@@ -15,7 +15,21 @@
             style="@style/KButton"
             android:background="#f44336"
             android:text="查看网络信息"
+            />
 
+        <Button
+            android:id="@+id/btnScreenBrightness"
+            style="@style/KButton"
+            android:background="#f44336"
+            android:text="查看并修改系统屏幕亮度"
+            />
+
+
+        <Button
+            android:id="@+id/btnCurrentWindowBrightness"
+            style="@style/KButton"
+            android:background="#f44336"
+            android:text="修改当前页面屏幕亮度"
             />
 
         <Button

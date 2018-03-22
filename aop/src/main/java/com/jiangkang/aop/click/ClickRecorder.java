@@ -1,15 +1,11 @@
 package com.jiangkang.aop.click;
 
-import android.os.Looper;
 import android.util.Log;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.CodeSignature;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jiangkang on 2018/3/14.
