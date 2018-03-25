@@ -118,7 +118,7 @@
         </receiver>
         <receiver android:name=".audio.VoiceBroadcastReceiver" />
 
-        <activity android:name=".requests.LoginActivity" />
+        <activity android:name="com.jiangkang.widget.ui.LoginActivity" />
         <activity android:name=".widget.MultiTabsActivity" />
         <activity android:name=".widget.KDialogActivity" />
         <activity

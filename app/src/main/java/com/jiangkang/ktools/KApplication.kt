@@ -28,11 +28,11 @@ class KApplication : Application() {
         // TODO: 2018/1/30 测试框架与MultiDex不兼容，待处理
         MultiDex.install(this)
 
-        try {
-            HookUtils.attachBaseContext()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+//        try {
+//            HookUtils.attachBaseContext()
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
 
     }
 

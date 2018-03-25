@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.jiangkang.ktools.requests.LoginActivity"
+    tools:context=".sqlite.LoginDbActivity"
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="登录Github"
+        android:text="登录Demo"
         android:textSize="32sp"
         android:gravity="center"
         android:layout_marginTop="100dp"
@@ -37,7 +37,7 @@
             />
 
         <EditText
-            android:id="@+id/et_github_username"
+            android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="请输入用户名"
@@ -63,7 +63,7 @@
             />
 
         <EditText
-            android:id="@+id/et_github_password"
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="请输入密码"
@@ -74,14 +74,25 @@
 
 
     <Button
-        android:id="@+id/btn_login_github"
+        android:id="@+id/btn_login_db"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="42dp"
         android:text="登录"
-        android:background="@drawable/selector_round_corner_button"
+        android:background="@color/colorAccent"
+        />
+
+    <Button
+        android:id="@+id/btn_register_db"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:text="注册"
+        android:background="@color/colorAccent"
         />
 
 

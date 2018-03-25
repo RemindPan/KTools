@@ -8,6 +8,7 @@ import android.provider.Settings
 import android.support.v7.app.AppCompatActivity
 import com.jiangkang.tools.device.DeviceUtils
 import com.jiangkang.tools.device.ScreenUtils
+import com.jiangkang.tools.service.WatchingTopActivityService
 import com.jiangkang.tools.utils.AppUtils
 import com.jiangkang.tools.utils.NetworkUtils
 import com.jiangkang.tools.utils.ShellUtils
@@ -58,7 +59,8 @@ class DeviceActivity : AppCompatActivity() {
 
 
         btnCheckCurrentActivity.onClick {
-            KDialog.showMsgDialog(this@DeviceActivity, AppUtils.currentActivity)
+//            KDialog.showMsgDialog(this@DeviceActivity, AppUtils.currentActivity)
+            startService(Intent(this@DeviceActivity,WatchingTopActivityService::class.java))
         }
 
 

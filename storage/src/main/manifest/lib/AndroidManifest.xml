@@ -6,6 +6,7 @@
         <activity android:name=".ui.GreenDaoDemoActivity">
 
         </activity>
+        <activity android:name=".sqlite.LoginDbActivity"></activity>
     </application>
 
 </manifest>

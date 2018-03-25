@@ -27,10 +27,10 @@
             />
 
         <Button
-            android:id="@+id/btn_write_string_to_file"
+            android:id="@+id/btn_sqlite"
             style="@style/KButton"
             android:background="#9C27B0"
-            android:text="将字符串写入文件" />
+            android:text="SQLite Demo" />
 
     </LinearLayout>
 
