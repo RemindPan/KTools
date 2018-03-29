@@ -6,18 +6,20 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.jiangkang.annotations.apt.Router;
 import com.jiangkang.ktools.databinding.ActivityAboutBinding;
 import com.jiangkang.ktools.mvvm.AboutPageViewModel;
 
+@Router
 public class AboutActivity extends AppCompatActivity {
 
-    public static void launch(Context context, Bundle bundle) {
-        Intent intent = new Intent(context, AboutActivity.class);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        context.startActivity(intent);
-    }
+//    public static void launch(Context context, Bundle bundle) {
+//        Intent intent = new Intent(context, AboutActivity.class);
+//        if (bundle != null) {
+//            intent.putExtras(bundle);
+//        }
+//        context.startActivity(intent);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
