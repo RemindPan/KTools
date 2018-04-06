@@ -12,6 +12,7 @@ import com.jiangkang.tools.King
 import com.jiangkang.weex.ImageAdapter
 import com.taobao.weex.InitConfig
 import com.taobao.weex.WXSDKEngine
+import org.greenrobot.eventbus.EventBus
 
 import java.util.concurrent.Executors
 
@@ -54,6 +55,8 @@ class KApplication : Application() {
 
 
         initWeex()
+
+        EventBus.builder().addIndex(KEventBusIndex()).installDefaultEventBus()
 
     }
 

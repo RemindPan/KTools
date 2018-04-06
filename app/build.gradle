@@ -11,7 +11,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion libVersion.compileSdkVersion
-    buildToolsVersion libVersion.buildToolsVersion
     defaultConfig {
         applicationId "com.jiangkang.ktools"
         minSdkVersion libVersion.minSdkVersion
@@ -24,7 +23,10 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+                arguments = [
+                        moduleName: project.getName(),
+                        eventBusIndex : 'com.jiangkang.ktools.KEventBusIndex'
+                ]
             }
         }
 
@@ -85,6 +87,7 @@ android {
             path 'CMakeLists.txt'
         }
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
@@ -157,12 +160,14 @@ dependencies {
     implementation project(path: ':kdownloader')
     implementation project(path: ':weex')
 
-    compile project(path: ':hybrid')
-    compile project(path: ':jni')
-    compile project(path: ':storage')
-    compile project(path: ':storage')
+    implementation project(path: ':hybrid')
+    implementation project(path: ':jni')
+    implementation project(path: ':storage')
+    implementation project(path: ':storage')
     annotationProcessor project(path: ':compiler')
 
+    implementation deps.eventbus
+    annotationProcessor deps.eventbusCompiler
 
 }
 

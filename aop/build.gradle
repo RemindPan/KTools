@@ -7,7 +7,6 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion libVersion.compileSdkVersion
-    buildToolsVersion libVersion.buildToolsVersion
 
 
     defaultConfig {
@@ -27,17 +26,18 @@ android {
         }
     }
 
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'org.aspectj:aspectjrt:1.8.10'
-    compile project(path:':annotations')
+    implementation 'org.aspectj:aspectjrt:1.8.10'
+    implementation project(path:':annotations')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }

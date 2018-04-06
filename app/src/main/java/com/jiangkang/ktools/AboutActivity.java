@@ -8,18 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.jiangkang.annotations.apt.Router;
 import com.jiangkang.ktools.databinding.ActivityAboutBinding;
+import com.jiangkang.ktools.event.DemoEvent;
 import com.jiangkang.ktools.mvvm.AboutPageViewModel;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 @Router
 public class AboutActivity extends AppCompatActivity {
-
-//    public static void launch(Context context, Bundle bundle) {
-//        Intent intent = new Intent(context, AboutActivity.class);
-//        if (bundle != null) {
-//            intent.putExtras(bundle);
-//        }
-//        context.startActivity(intent);
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +25,20 @@ public class AboutActivity extends AppCompatActivity {
         AboutPageViewModel viewModel = new AboutPageViewModel(this);
         viewModel.setAuthor("姜康").setSourceUrl("https://github.com/jiangkang/KTools");
         binding.setVm(viewModel);
+
+        EventBus.getDefault().register(this);
+
     }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(DemoEvent event){
+
+    }
+
+
+
+
 
 
 }

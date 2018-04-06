@@ -14,6 +14,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -71,6 +72,8 @@ public class KDialogActivity extends AppCompatActivity {
         if (bundle != null) {
             intent.putExtras(bundle);
         }
+
+
         context.startActivity(intent);
     }
 

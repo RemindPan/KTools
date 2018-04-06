@@ -3,10 +3,10 @@ ext {
     libVersion = [
 
             //project settings
-            compileSdkVersion      : 26,
-            buildToolsVersion      : '26.0.3',
+            compileSdkVersion      : 27,
+            buildToolsVersion      : '27.0.3',
             minSdkVersion          : 19,
-            targetSdkVersion       : 26,
+            targetSdkVersion       : 27,
             versionCode            : 3,
             versionName            : '3.0',
 
@@ -25,7 +25,7 @@ ext {
             //greendao
             greendaoVersion        : '3.2.2',
 
-            eventbusVersion        : '3.0.0',
+            eventbusVersion        : '3.1.1',
 
             //amap
             amapVersion            : '',
@@ -108,6 +108,7 @@ ext {
 
             //eventbus
             eventbus                    : "org.greenrobot:eventbus:${libVersion.eventbusVersion}",
+            eventbusCompiler            : "org.greenrobot:eventbus-annotation-processor:${libVersion.eventbusVersion}",
 
             //amap
             amap_3D                     : "com.amap.api:3dmap:5.2.1",
