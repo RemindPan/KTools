@@ -1,5 +1,6 @@
 package com.jiangkang.ktools
 
+import android.app.ActivityManager
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -14,6 +15,7 @@ import com.jiangkang.tools.utils.NetworkUtils
 import com.jiangkang.tools.utils.ShellUtils
 import com.jiangkang.tools.widget.KDialog
 import kotlinx.android.synthetic.main.activity_device.*
+import org.jetbrains.anko.activityManager
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.toast
@@ -76,6 +78,29 @@ class DeviceActivity : AppCompatActivity() {
             }
         }
 
+        btnGetMaxMemory.onClick {
+            val maxMemory = Runtime.getRuntime().maxMemory() / (1024 * 1024)
+            val memoryInfo = getAvailableMemory()
+
+            val lowMemory = memoryInfo.lowMemory
+            val availableMemory = memoryInfo.availMem / (1024 * 1024)
+            val totalMem = memoryInfo.totalMem / (1024 * 1024)
+            val threshold = memoryInfo.threshold / (1024 * 1024)
+
+            val msg = "分配给App的最大堆内存为：$maxMemory M \n" +
+                    "是否处于低内存状态：$lowMemory \n" +
+                    "系统可用内存：$availableMemory M\n" +
+                    "系统总运行内存： $totalMem M\n" +
+                    "低内存阈值：$threshold M"
+            KDialog.showMsgDialog(this@DeviceActivity,msg)
+        }
+
+    }
+
+    private fun getAvailableMemory(): ActivityManager.MemoryInfo {
+        var memoryInfo = ActivityManager.MemoryInfo()
+        activityManager.getMemoryInfo(memoryInfo)
+        return memoryInfo
     }
 
 

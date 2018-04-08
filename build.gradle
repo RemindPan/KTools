@@ -5,7 +5,7 @@ apply from: "config.gradle"
 apply from: "plugins/file.gradle"
 
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.31'
     ext.anko_version = '0.10.4'
 
     repositories {

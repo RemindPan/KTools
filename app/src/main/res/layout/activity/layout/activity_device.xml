@@ -44,6 +44,12 @@
             android:background="#E91E63"
             android:text="无线adb调试" />
 
+        <Button
+            android:id="@+id/btnGetMaxMemory"
+            style="@style/KButton"
+            android:background="#E91E63"
+            android:text="获取内存信息" />
+
 
     </LinearLayout>
 

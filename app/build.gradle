@@ -24,8 +24,8 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
-                        moduleName: project.getName(),
-                        eventBusIndex : 'com.jiangkang.ktools.KEventBusIndex'
+                        moduleName: project.getName()
+//                        eventBusIndex : 'com.jiangkang.ktools.KEventBusIndex'
                 ]
             }
         }
@@ -167,7 +167,6 @@ dependencies {
     annotationProcessor project(path: ':compiler')
 
     implementation deps.eventbus
-    annotationProcessor deps.eventbusCompiler
 
 }
 

@@ -56,8 +56,6 @@ class KApplication : Application() {
 
         initWeex()
 
-        EventBus.builder().addIndex(KEventBusIndex()).installDefaultEventBus()
-
     }
 
     private fun initLeakCanary() {
