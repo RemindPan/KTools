@@ -1,5 +1,6 @@
 package com.jiangkang.ktools.share
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -22,7 +23,7 @@ import java.io.File
 
 class ShareActivity : AppCompatActivity() {
 
-    val TAG:String = "Share"
+    val TAG: String = "Share"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,22 +38,26 @@ class ShareActivity : AppCompatActivity() {
     }
 
     private fun receiveIntent() {
+
         val action = intent?.action
         val type = intent?.type
+
 
         type?.let {
             when (action) {
                 Intent.ACTION_SEND -> {
                     if ("text/plain" == type) {
                         handleSendText(intent)
-                    }else if (type.startsWith("image/")){
+                    } else if (type.startsWith("image/")) {
                         handleSendImage(intent)
+                        setResult(Activity.RESULT_OK)
                     }
                 }
 
                 Intent.ACTION_SEND_MULTIPLE -> {
-                    if (type.startsWith("image/")){
+                    if (type.startsWith("image/")) {
                         handleMultiImage(intent)
+                        setResult(Activity.RESULT_OK)
                     }
                 }
 
@@ -70,22 +75,21 @@ class ShareActivity : AppCompatActivity() {
     }
 
     private fun handleMultiImage(intent: Intent) {
-        val imageUris:ArrayList<Uri> = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM)
+        val imageUris: ArrayList<Uri> = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM)
         imageUris?.let {
             imageUris.map {
-                Log.d(TAG,it.toString())
+                Log.d(TAG, it.toString())
             }
         }
     }
 
     private fun handleSendImage(intent: Intent) {
-        val imageUri:Uri = intent.getParcelableExtra(Intent.EXTRA_STREAM)
+        val imageUri: Uri = intent.getParcelableExtra(Intent.EXTRA_STREAM)
         imageUri?.let {
-            Log.d(TAG,it.toString())
+            Log.d(TAG, it.toString())
             ToastUtils.showShortToast(it.toString())
         }
     }
-
 
 
     private fun handleClick() {
@@ -102,6 +106,39 @@ class ShareActivity : AppCompatActivity() {
             shareMultiImages()
         }
 
+        btnShareToQQ.onClick {
+            val packageName = "com.tencent.mobileqq"
+            shareToTarget(packageName)
+        }
+
+        btnShareToWeChat.onClick {
+            val packageName = "com.tencent.mm"
+            shareToTarget(packageName)
+        }
+
+
+        btnRouter.onClick {
+            val intentString = et_intent.text.toString()
+            intentString?.let {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.addCategory(Intent.CATEGORY_DEFAULT)
+                intent.data = Uri.parse(intentString)
+                startActivity(intent)
+            }
+        }
+    }
+
+
+    private fun shareToTarget(packageName:String){
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.apply {
+            `package` = packageName
+            intent.type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, "来自于KTools")
+        }
+        if (intent.resolveActivity(packageManager) != null){
+            startActivity(intent)
+        }
     }
 
     private fun shareMultiImages() {
@@ -159,6 +196,8 @@ class ShareActivity : AppCompatActivity() {
         sendIntent.type = "text/plain"
         startActivity(Intent.createChooser(sendIntent, "分享内容到指定App"))
     }
+
+
 
 
 }

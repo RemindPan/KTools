@@ -48,3 +48,7 @@
     **[] $VALUES;
     public *;
 }
+
+-keep public class *extends java.lang.annotation.Annotation {
+  *;
+}

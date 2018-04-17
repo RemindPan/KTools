@@ -47,9 +47,12 @@ public class RouterProcessor extends AbstractProcessor {
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
+
+        //初始化一些帮助类
         maps = new HashMap<>();
         elements = processingEnvironment.getElementUtils();
         filer = processingEnvironment.getFiler();
+
     }
 
 
@@ -57,25 +60,30 @@ public class RouterProcessor extends AbstractProcessor {
 
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
 
+        //遍历
         for (Element element : roundEnvironment.getElementsAnnotatedWith(Router.class)) {
             if (!SuperficialValidation.validateElement(element)) continue;
 
+            //得到类信息
             TypeElement typeElement = (TypeElement) element;
 
             if (!maps.containsKey(typeElement.getSimpleName().toString())) {
-            maps.put(
-                    typeElement.getSimpleName().toString(),
-                    elements.getPackageOf(typeElement).getQualifiedName().toString()
-            );
+                //存入Map
+                maps.put(
+                        typeElement.getSimpleName().toString(),
+                        elements.getPackageOf(typeElement).getQualifiedName().toString()
+                );
             }
         }
 
+        //生成类
         TypeSpec.Builder routerHelperClass = TypeSpec
                 .classBuilder("RouterHelper")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
 
 
         for (Map.Entry<String, String> map : maps.entrySet()) {
+
             String activityName = map.getKey();
             String packageName = map.getValue();
 
@@ -83,12 +91,14 @@ public class RouterProcessor extends AbstractProcessor {
 
             String statement1 = "$T intent = new $T($L,$L);";
             String statement2 = "context.startActivity(intent);";
+
+            //生成方法
             MethodSpec method = MethodSpec
                     .methodBuilder(METHOD_PREFIX + activityName)
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                     .returns(void.class)
                     .addParameter(classContext, "context")
-                    .addStatement(statement1, classIntent,classIntent, "context", activityClass + ".class")
+                    .addStatement(statement1, classIntent, classIntent, "context", activityClass + ".class")
                     .addStatement(statement2)
                     .build();
 

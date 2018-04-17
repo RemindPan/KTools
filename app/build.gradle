@@ -167,6 +167,7 @@ dependencies {
     annotationProcessor project(path: ':compiler')
 
     implementation deps.eventbus
+    implementation deps.anrwatchdog
 
 }
 

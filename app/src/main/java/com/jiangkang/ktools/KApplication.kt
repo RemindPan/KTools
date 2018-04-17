@@ -2,14 +2,17 @@ package com.jiangkang.ktools
 
 import android.app.Application
 import android.content.Context
+import android.os.Debug
 import android.os.StrictMode
 import android.support.multidex.MultiDex
 
 import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.stetho.Stetho
+import com.github.anrwatchdog.ANRWatchDog
 import com.jiangkang.hack.HookUtils
 import com.jiangkang.tools.King
 import com.jiangkang.weex.ImageAdapter
+import com.squareup.leakcanary.LeakCanary
 import com.taobao.weex.InitConfig
 import com.taobao.weex.WXSDKEngine
 import org.greenrobot.eventbus.EventBus
@@ -38,6 +41,7 @@ class KApplication : Application() {
     }
 
     override fun onCreate() {
+        Debug.startMethodTracing()
         super.onCreate()
 
         enableStrictMode()
@@ -56,13 +60,21 @@ class KApplication : Application() {
 
         initWeex()
 
+        initANRWatchDog()
+
+        Debug.stopMethodTracing()
+
+    }
+
+    private fun initANRWatchDog() {
+        ANRWatchDog().start()
     }
 
     private fun initLeakCanary() {
-        //        if (LeakCanary.isInAnalyzerProcess(this)) {
-        //            return;
-        //        }
-        //        LeakCanary.install(this);
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return
+        }
+        LeakCanary.install(this)
     }
 
     private fun initWeex() {

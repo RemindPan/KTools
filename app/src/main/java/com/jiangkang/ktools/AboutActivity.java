@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.jiangkang.annotations.apt.BindLayout;
 import com.jiangkang.annotations.apt.Router;
 import com.jiangkang.ktools.databinding.ActivityAboutBinding;
 import com.jiangkang.ktools.event.DemoEvent;
@@ -16,6 +17,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 @Router
+@BindLayout
 public class AboutActivity extends AppCompatActivity {
 
     @Override

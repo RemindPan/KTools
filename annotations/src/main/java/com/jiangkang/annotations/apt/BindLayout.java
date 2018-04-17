@@ -16,6 +16,6 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 @Target(TYPE)
 public @interface BindLayout {
 
-    @LayoutRes int value();
+//    @LayoutRes int value();
 
 }

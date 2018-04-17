@@ -29,5 +29,32 @@
             android:background="#9C27B0"
             android:text="分享多张图片" />
 
+
+        <Button
+            android:id="@+id/btnShareToQQ"
+            style="@style/KButton"
+            android:background="#9C27B0"
+            android:text="指定分享到QQ" />
+
+
+        <Button
+            android:id="@+id/btnShareToWeChat"
+            style="@style/KButton"
+            android:background="#9C27B0"
+            android:text="指定分享到微信" />
+
+        <EditText
+            android:id="@+id/et_intent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入路由"
+            />
+
+        <Button
+            android:id="@+id/btnRouter"
+            style="@style/KButton"
+            android:background="#9C27B0"
+            android:text="路由跳转" />
+
     </LinearLayout>
 </ScrollView>
