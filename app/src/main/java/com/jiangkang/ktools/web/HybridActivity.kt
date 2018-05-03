@@ -42,11 +42,11 @@ class HybridActivity : AppCompatActivity() {
 //        }
 
         btnJsInject.setOnClickListener {
-            val jsString = """
-            (function(){
-                document.body.style.backgroundColor = "rgba(0,0,0,125)"
-            })();
-                """
+//            val jsString = """
+//            (function(){
+//                document.body.style.backgroundColor = "rgba(0,0,0,125)"
+//            })();
+//                """
 
 
             val jsAttack = """

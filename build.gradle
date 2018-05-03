@@ -22,16 +22,18 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath 'com.android.tools.build:gradle:3.1.2'
         classpath 'org.aspectj:aspectjtools:1.8.10'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.4.0"
 //        classpath 'com.google.3gms:google-services:3.1.0'
     }
 
 
 }
 
+apply plugin: "com.vanniktech.dependency.graph.generator"
 
 allprojects {
     repositories {
@@ -45,7 +47,6 @@ allprojects {
 //        }
     }
 }
-
 
 task clean(type: Delete) {
     delete rootProject.buildDir

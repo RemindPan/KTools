@@ -119,7 +119,7 @@ class ShareActivity : AppCompatActivity() {
 
         btnRouter.onClick {
             val intentString = et_intent.text.toString()
-            intentString?.let {
+            intentString.let {
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.addCategory(Intent.CATEGORY_DEFAULT)
                 intent.data = Uri.parse(intentString)

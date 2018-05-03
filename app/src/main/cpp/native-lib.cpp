@@ -20,3 +20,5 @@ Java_com_jiangkang_ktools_MainActivity_stringFromJNI(JNIEnv *env, jobject instan
     std::string hello = "Hello World!";
     return env->NewStringUTF(hello.c_str());
 }
+
+

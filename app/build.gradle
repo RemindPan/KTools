@@ -129,8 +129,9 @@ dependencies {
     debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
     releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 
-    implementation deps['dagger']
-    annotationProcessor deps['daggerCompiler']
+    implementation deps.dagger['dagger-android']
+    implementation deps.dagger['dagger-android-support']
+    annotationProcessor deps.dagger['dagger-compiler']
 
     implementation deps["glide"]
     implementation deps["glideOkhttp"]

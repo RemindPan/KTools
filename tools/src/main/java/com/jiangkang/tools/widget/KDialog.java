@@ -10,6 +10,7 @@ import android.support.annotation.LayoutRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.webkit.JsResult;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -56,6 +57,27 @@ public class KDialog {
                 });
 
     }
+
+
+    public static void showJsAlertDialog(final Context context, final String content, final JsResult result){
+        new android.os.Handler(Looper.getMainLooper())
+                .post(new Runnable() {
+                    @Override
+                    public void run() {
+                        new AlertDialog.Builder(context)
+                                .setMessage(content)
+                                .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        result.confirm();
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                });
+    }
+
 
     public static void showCustomViewDialog(final Context context, final String title, final View view,
                                             final DialogInterface.OnClickListener positiveListener, final DialogInterface.OnClickListener negativeListener) {

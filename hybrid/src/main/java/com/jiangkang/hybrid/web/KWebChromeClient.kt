@@ -3,13 +3,7 @@ package com.jiangkang.hybrid.web
 import android.graphics.Bitmap
 import android.util.Log
 import android.view.View
-import android.webkit.ConsoleMessage
-import android.webkit.GeolocationPermissions
-import android.webkit.JsPromptResult
-import android.webkit.JsResult
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-
+import android.webkit.*
 import com.jiangkang.tools.widget.KDialog
 
 
@@ -36,7 +30,7 @@ class KWebChromeClient : WebChromeClient {
 
 
     override fun onJsAlert(view: WebView, url: String, message: String, result: JsResult): Boolean {
-        KDialog.showMsgDialog(view.context, message)
+        KDialog.showJsAlertDialog(view.context, message,result)
         return true
     }
 

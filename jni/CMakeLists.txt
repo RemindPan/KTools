@@ -21,6 +21,13 @@ add_library( # 设置库的名字
              # 提供一个到你源文件的相对路径（可包含多个文件）.
              src/main/cpp/hello-lib.cpp )
 
+add_library(
+        basic
+        SHARED
+        src/main/cpp/basic.cpp
+        src/main/cpp/basic.h
+)
+
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library

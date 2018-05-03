@@ -53,7 +53,7 @@ public class BindLayoutProcessor extends AbstractProcessor {
 
             //生成类
             TypeSpec.Builder routerHelperClass = TypeSpec
-                    .classBuilder("RouterHelper")
+                    .classBuilder("BinderHelper")
                     .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
 
         }
