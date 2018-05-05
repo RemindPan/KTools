@@ -1,7 +1,6 @@
 ext {
 
     libVersion = [
-
             //project settings
             compileSdkVersion      : 27,
             buildToolsVersion      : '27.0.3',
@@ -14,10 +13,9 @@ ext {
             butterKnifeVersion     : '8.2.1',
 
             //android
-            v7Version              : '26.1.0',
-            supportVersion         : '27.0.0',
+            supportVersion         : '27.1.1',
 
-            constraintLayoutVersion: '1.0.2',
+            constraintLayoutVersion: '1.1.0',
 
             //glide
             glideVersion           : '4.2.0',
@@ -52,122 +50,123 @@ ext {
 
             'androidPlugin'        : '3.0.1',
 
-
     ]
 
     deps = [
 
-
-            android                     : [
+            android    : [
                     'runtime'     : 'com.google.android:android:4.1.1.4',
                     'gradlePlugin': "com.android.tools.build:gradle:${libVersion.androidPlugin}",
             ],
-            'support'                   : [
-                    'compat'     : "com.android.support:support-compat:${libVersion.supportVersion}",
-                    'annotations': "com.android.support:support-annotations:${libVersion.supportVersion}",
-                    'test'       : [
-                            'runner': 'com.android.support.test:runner:1.0.1',
+
+            support    : [
+                    compat             : "com.android.support:support-compat:${libVersion.supportVersion}",
+                    v4                 : "com.android.support:support-v4:${libVersion.supportVersion}",
+                    v7                 : "com.android.support:appcompat-v7:${libVersion.supportVersion}",
+                    degisn             : "com.android.support:design:${libVersion.supportVersion}",
+                    annotations        : "com.android.support:support-annotations:${libVersion.supportVersion}",
+                    test               : [
+                            runner  : 'com.android.support.test:runner:1.0.2',
+                            espresso: 'com.android.support.test.espresso:espresso-core:3.0.2'
                     ],
+                    recyclerview       : "com.android.support:recyclerview-v7:${libVersion.supportVersion}",
+                    cardview           : "com.android.support:cardview-v7:${libVersion.supportVersion}",
+                    'constraint-layout': "com.android.support.constraint:constraint-layout:${libVersion.constraintLayoutVersion}",
+                    'vector-drawable'  : "com.android.support:support-vector-drawable:${libVersion.supportVersion}",
+                    multidex           : "com.android.support:multidex:1.0.1",
+
             ],
 
-            okhttp3                     : [
-                    'okhttp'            : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
-                    'mockwebserver'     : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
-                    'logginginterceptor': "com.squareup.okhttp3:logging-interceptor:${libVersion.okhttpVersion}",
+            retrofit   : [
+                    retrofit        : "com.squareup.retrofit2:retrofit:${libVersion.retrofitVersion}",
+                    'converter-json': "com.squareup.retrofit2:converter-gson:${libVersion.retrofitVersion}",
+                    'adpter-rxjava2': "com.squareup.retrofit2:adapter-rxjava2:${libVersion.retrofitVersion}",
+
             ],
 
+            okhttp     : [
+                    okhttp3           : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
+                    mockwebserver     : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
+                    logginginterceptor: "com.squareup.okhttp3:logging-interceptor:${libVersion.okhttpVersion}",
+            ],
 
-            arouter                     : [
+            dagger     : [
+                    'dagger-android'        : "com.google.dagger:dagger-android:${libVersion.daggerVersion}",
+                    'dagger-android-support': "com.google.dagger:dagger-android-support:${libVersion.daggerVersion}",
+                    'dagger-compiler'       : "com.google.dagger:dagger-android-processor:${libVersion.daggerVersion}",
+            ],
+
+            arouter    : [
                     'arouter_api'     : "com.alibaba:arouter-api:1.2.4",
                     'arouter_compiler': "com.alibaba:arouter-compiler:1.1.4",
             ],
 
-            //ButterKnife
-            butterKnife                 : "com.jakewharton:butterknife:${libVersion.butterKnifeVersion}",
-            butterknifeCompiler         : "com.jakewharton:butterknife-compiler:${libVersion.butterKnifeVersion}",
-
-            //android
-            appcompat_v7                : "com.android.support:appcompat-v7:${libVersion.v7Version}",
-            constraint_layout           : "com.android.support.constraint:constraint-layout:${libVersion.constraintLayoutVersion}",
-            recyclerview                : "com.android.support:recyclerview-v7:${libVersion.v7Version}",
-            cardview                    : "com.android.support:cardview-v7:${libVersion.v7Version}",
-            'support-annotaions'        : "com.android.support:support-annotations:${libVersion.v7Version}",
-            'support-vector-drawable'   : "com.android.support:support-vector-drawable:${libVersion.v7Version}",
-            degisn                      : "com.android.support:design:${libVersion.supportVersion}",
-
-            //glide
-            glide                       : "com.github.bumptech.glide:glide:${libVersion.glideVersion}",
-            glideCompiler               : "com.github.bumptech.glide:compiler:${libVersion.glideVersion}",
-            glideOkhttp                 : "com.github.bumptech.glide:okhttp3-integration:4.0.0",
-
-            //greendao
-            greendao                    : "org.greenrobot:greendao:${libVersion.greendaoVersion}",
-
-            //数据库
-            debug_db                    : "com.amitshekhar.android:debug-db:1.0.0",
-
-            //eventbus
-            eventbus                    : "org.greenrobot:eventbus:${libVersion.eventbusVersion}",
-            eventbusCompiler            : "org.greenrobot:eventbus-annotation-processor:${libVersion.eventbusVersion}",
-
-            //amap
-            amap_3D                     : "com.amap.api:3dmap:5.2.1",
-            amap_2D                     : "com.amap.api:3dmap:5.2.0",
-            amap_search                 : "com.amap.api:search:5.2.1",
-            amap_navi                   : "com.amap.api:navi-3dmap:5.2.1",
-            amap_location               : "com.amap.api:location:3.5.0",
-
-            //picasso
-            picasso                     : "com.squareup.picasso:picasso:2.5.2",
-
-            //leakcanary
-            leakcanary                  : "com.squareup.leakcanary:leakcanary-android:${libVersion.leakcanaryVersion}",
-            leakcanary_no_op            : "com.squareup.leakcanary:leakcanary-android-no-op:${libVersion.leakcanaryVersion}",
-
-            //RxJava
-            rxJava                      : "io.reactivex.rxjava2:rxjava:${libVersion.rxJavaVersion}",
-            rxAndroid                   : "io.reactivex.rxjava2:rxandroid:${libVersion.rxAndroidVersion}",
-
-            zxing                       : "com.google.zxing:core:3.3.0",
-
-            okhttp                      : "com.squareup.okhttp3:okhttp:${libVersion.okhttpVersion}",
-            mockwebserver               : "com.squareup.okhttp3:mockwebserver:${libVersion.okhttpVersion}",
-            "okhttp-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${libVersion.okhttpVersion}",
-
-            dagger                      : [
-                    'dagger-android'        : "com.google.dagger:dagger-android:${libVersion.daggerVersion}",
-                    'dagger-android-support': "com.google.dagger:dagger-android-support:${libVersion.daggerVersion}",
-                    'dagger-compiler'        : "com.google.dagger:dagger-android-processor:${libVersion.daggerVersion}",
-            ],
-
-
-
-            retrofit                    : "com.squareup.retrofit2:retrofit:${libVersion.retrofitVersion}",
-            retrofit_converterJson      : "com.squareup.retrofit2:converter-gson:${libVersion.retrofitVersion}",
-            retrofit_adpter_rxjava2     : "com.squareup.retrofit2:adapter-rxjava2:${libVersion.retrofitVersion}",
-
-            "logger"                    : "com.orhanobut:logger:${libVersion.loggerVersion}",
-
-            "anko"                      : "org.jetbrains.anko:anko:${libVersion.anko_version}",
-
-            weex                        : "com.taobao.android:weex_sdk:${libVersion.weex_version}",
-
-            javapoet                    : "com.squareup:javapoet:${libVersion.javapoet_version}",
-
-            'auto'                      : [
+            auto       : [
                     'service': 'com.google.auto.service:auto-service:1.0-rc4',
                     'common' : 'com.google.auto:auto-common:0.9',
             ],
 
-            'guava'                     : 'com.google.guava:guava:23.6-jre',
+            butterKnife: [
+                    butterKnife: "com.jakewharton:butterknife:${libVersion.butterKnifeVersion}",
+                    compiler   : "com.jakewharton:butterknife-compiler:${libVersion.butterKnifeVersion}",
+            ],
 
-            robolectric                 : "org.robolectric:robolectric:3.6.1",
+            glide      : [
+                    glide   : "com.github.bumptech.glide:glide:${libVersion.glideVersion}",
+                    compiler: "com.github.bumptech.glide:compiler:${libVersion.glideVersion}",
+                    okhttp  : "com.github.bumptech.glide:okhttp3-integration:4.0.0",
 
-            mockito                     : "org.mockito:mockito-core:2.+",
+            ],
 
-            multidex                    : "com.android.support:multidex:1.0.1",
+            eventbus   : [
+                    eventbus: "org.greenrobot:eventbus:${libVersion.eventbusVersion}",
+                    compiler: "org.greenrobot:eventbus-annotation-processor:${libVersion.eventbusVersion}",
+            ],
 
-            anrwatchdog                 : "com.github.anrwatchdog:anrwatchdog:1.3.0",
+            amap       : [
+                    '3D'    : "com.amap.api:3dmap:5.2.1",
+                    '2D'    : "com.amap.api:3dmap:5.2.0",
+                    search  : "com.amap.api:search:5.2.1",
+                    navi    : "com.amap.api:navi-3dmap:5.2.1",
+                    location: "com.amap.api:location:3.5.0",
+            ],
+
+            leakcanary : [
+                    leakcanary      : "com.squareup.leakcanary:leakcanary-android:${libVersion.leakcanaryVersion}",
+                    leakcanary_no_op: "com.squareup.leakcanary:leakcanary-android-no-op:${libVersion.leakcanaryVersion}",
+
+            ],
+
+            //greendao
+            greendao   : "org.greenrobot:greendao:${libVersion.greendaoVersion}",
+
+            //数据库
+            debug_db   : "com.amitshekhar.android:debug-db:1.0.0",
+
+            //picasso
+            picasso    : "com.squareup.picasso:picasso:2.5.2",
+
+            //RxJava
+            rxJava     : "io.reactivex.rxjava2:rxjava:${libVersion.rxJavaVersion}",
+            rxAndroid  : "io.reactivex.rxjava2:rxandroid:${libVersion.rxAndroidVersion}",
+
+            zxing      : "com.google.zxing:core:3.3.0",
+
+            logger     : "com.orhanobut:logger:${libVersion.loggerVersion}",
+
+            anko       : "org.jetbrains.anko:anko:${libVersion.anko_version}",
+
+            weex       : "com.taobao.android:weex_sdk:${libVersion.weex_version}",
+
+            javapoet   : "com.squareup:javapoet:${libVersion.javapoet_version}",
+
+            guava      : 'com.google.guava:guava:23.6-jre',
+
+            robolectric: "org.robolectric:robolectric:3.6.1",
+
+            mockito    : "org.mockito:mockito-core:2.+",
+
+            anrwatchdog: "com.github.anrwatchdog:anrwatchdog:1.3.0",
     ]
 
 

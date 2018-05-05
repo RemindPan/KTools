@@ -22,18 +22,18 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation deps.appcompat_v7
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation deps.support.v7
+    implementation deps.support['constraint-layout']
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation deps.support.test.runner
+    androidTestImplementation deps.support.test.espresso
 
     implementation deps.weex
     implementation 'com.alibaba:fastjson:1.1.67.android'
 
-    implementation deps["glide"]
-    implementation deps["glideOkhttp"]
-    annotationProcessor deps["glideCompiler"]
+    implementation deps.glide.glide
+    implementation deps.glide.okhttp
+    annotationProcessor deps.glide.compiler
 
 
 }

@@ -52,13 +52,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation deps.appcompat_v7
+    implementation deps.support.v7
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation deps.support.test.runner
+    androidTestImplementation deps.support.test.espresso
 
-    implementation deps["butterKnife"]
-    annotationProcessor deps['butterknifeCompiler']
+    implementation deps.butterKnife.butterKnife
+    annotationProcessor deps.butterKnife.compiler
 
     implementation project(path: ':tools')
 

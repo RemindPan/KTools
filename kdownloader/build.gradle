@@ -26,16 +26,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation deps.support.v7
+    implementation deps.support['constraint-layout']
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    androidTestImplementation deps.support.test.runner
+    androidTestImplementation deps.support.test.espresso
 
-    implementation deps.okhttp3.okhttp
-    implementation deps.okhttp3.logginginterceptor
-    implementation deps.okhttp3.mockwebserver
+    implementation deps.okhttp.okhttp3
+    implementation deps.okhttp.logginginterceptor
+    implementation deps.okhttp.mockwebserver
 
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21'

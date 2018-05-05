@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion libVersion.compileSdkVersion
-
+    buildToolsVersion libVersion.buildToolsVersion
 
     defaultConfig {
         minSdkVersion libVersion.minSdkVersion
@@ -31,7 +31,6 @@ android {
         }
     }
 
-    buildToolsVersion '27.0.3'
 }
 
 dependencies {
@@ -41,13 +40,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation deps.okhttp3.okhttp
-    implementation deps.okhttp3.logginginterceptor
-    implementation deps.okhttp3.mockwebserver
+    implementation deps.okhttp.okhttp3
+    implementation deps.okhttp.logginginterceptor
+    implementation deps.okhttp.mockwebserver
 
-    implementation deps["retrofit"]
-    implementation deps["retrofit_converterJson"]
-    implementation deps["retrofit_adpter_rxjava2"]
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit["converter-json"]
+    implementation deps.retrofit["adpter-rxjava2"]
 
     implementation project(path: ':tools')
 

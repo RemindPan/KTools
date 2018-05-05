@@ -55,24 +55,24 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation deps.appcompat_v7
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation deps.support.v7
+    implementation deps.support['constraint-layout']
     testImplementation 'junit:junit:4.12'
 
     //orm library
     implementation deps['greendao']
 
-    implementation deps.recyclerview
+    implementation deps.support.recyclerview
 
-    implementation deps["butterKnife"]
-    annotationProcessor deps['butterknifeCompiler']
+    implementation deps.butterKnife.butterKnife
+    annotationProcessor deps.butterKnife.compiler
 
     implementation deps.arouter.arouter_api
     annotationProcessor deps.arouter.arouter_compiler
 
-    implementation deps.okhttp3.okhttp
-    implementation deps.okhttp3.logginginterceptor
-    implementation deps.okhttp3.mockwebserver
+    implementation deps.okhttp.okhttp3
+    implementation deps.okhttp.logginginterceptor
+    implementation deps.okhttp.mockwebserver
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.anko:anko:$anko_version"
 
