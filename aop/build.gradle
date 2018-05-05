@@ -8,10 +8,9 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion libVersion.compileSdkVersion
 
-
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion libVersion.minSdkVersion
+        targetSdkVersion libVersion.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

@@ -11,6 +11,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion libVersion.compileSdkVersion
+    buildToolsVersion libVersion.buildToolsVersion
     defaultConfig {
         applicationId "com.jiangkang.ktools"
         minSdkVersion libVersion.minSdkVersion
@@ -87,7 +88,7 @@ android {
             path 'CMakeLists.txt'
         }
     }
-    buildToolsVersion '27.0.3'
+
 }
 
 dependencies {

@@ -49,6 +49,6 @@
     public *;
 }
 
--keep public class *extends java.lang.annotation.Annotation {
+-keep public class * implements java.lang.annotation.Annotation {
   *;
 }
