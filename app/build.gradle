@@ -141,11 +141,12 @@ dependencies {
     implementation deps.okhttp.okhttp3
     implementation deps.okhttp.logginginterceptor
 
-    implementation "android.arch.lifecycle:runtime:1.1.1"
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    implementation "android.arch.persistence.room:runtime:1.0.0"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
-    implementation "android.arch.persistence.room:rxjava2:1.0.0"
+    implementation deps.arch.lifecycle.extensions
+    implementation deps.arch.lifecycle.runtime
+    implementation deps.arch.room.runtime
+    annotationProcessor deps.arch.room.compiler
+    implementation deps.arch.room.rxjava2
+
     implementation deps.arouter.arouter_api
     annotationProcessor deps.arouter.arouter_compiler
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

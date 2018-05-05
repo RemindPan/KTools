@@ -50,6 +50,13 @@ ext {
 
             'androidPlugin'        : '3.0.1',
 
+            //arch
+            arch                   : [
+                    lifecycle  : '1.1.1',
+                    persistence: '1.0.0',
+                    paging     : '1.0.0-rc1'
+            ]
+
     ]
 
     deps = [
@@ -57,6 +64,35 @@ ext {
             android    : [
                     'runtime'     : 'com.google.android:android:4.1.1.4',
                     'gradlePlugin': "com.android.tools.build:gradle:${libVersion.androidPlugin}",
+            ],
+
+            arch       : [
+                    lifecycle: [
+                            //Lifecycles only (no ViewModel or LiveData)
+                            runtime : "android.arch.lifecycle:runtime:${libVersion.arch.lifecycle}",
+
+                            compiler  : "android.arch.lifecycle:compiler:${libVersion.arch.lifecycle}",
+
+                            // ViewModel and LiveData
+                            extensions: "android.arch.lifecycle:extensions:${libVersion.arch.lifecycle}",
+
+                            viewmodel : "android.arch.lifecycle:viewmodel:${libVersion.arch.lifecycle}",
+
+                            livedata  : "android.arch.lifecycle:livedata:${libVersion.arch.lifecycle}",
+
+
+                    ],
+
+                    room     : [
+                            runtime : "android.arch.persistence.room:runtime:${libVersion.arch.persistence}",
+                            compiler: "android.arch.persistence.room:compiler:${libVersion.arch.persistence}",
+                            rxjava2 : "android.arch.persistence.room:rxjava2:${libVersion.arch.persistence}"
+                    ],
+
+                    paging   : [
+                            runtime: "android.arch.paging:runtime:${libVersion.arch.paging}"
+                    ]
+
             ],
 
             support    : [
