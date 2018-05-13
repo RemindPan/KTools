@@ -172,6 +172,10 @@ dependencies {
     implementation deps.eventbus.eventbus
     implementation deps.anrwatchdog
 
+    implementation deps.arch.navigation.fragment
+    implementation deps.arch.navigation.ui
+    compile project(path: ':jetpack')
+
 }
 
 

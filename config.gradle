@@ -54,7 +54,9 @@ ext {
             arch                   : [
                     lifecycle  : '1.1.1',
                     persistence: '1.0.0',
-                    paging     : '1.0.0-rc1'
+                    paging     : '1.0.0-rc1',
+                    navigation : '1.0.0-alpha01',
+                    work       : '1.0.0-alpha01'
             ]
 
     ]
@@ -67,9 +69,9 @@ ext {
             ],
 
             arch       : [
-                    lifecycle: [
+                    lifecycle : [
                             //Lifecycles only (no ViewModel or LiveData)
-                            runtime : "android.arch.lifecycle:runtime:${libVersion.arch.lifecycle}",
+                            runtime   : "android.arch.lifecycle:runtime:${libVersion.arch.lifecycle}",
 
                             compiler  : "android.arch.lifecycle:compiler:${libVersion.arch.lifecycle}",
 
@@ -83,15 +85,24 @@ ext {
 
                     ],
 
-                    room     : [
+                    room      : [
                             runtime : "android.arch.persistence.room:runtime:${libVersion.arch.persistence}",
                             compiler: "android.arch.persistence.room:compiler:${libVersion.arch.persistence}",
                             rxjava2 : "android.arch.persistence.room:rxjava2:${libVersion.arch.persistence}"
                     ],
 
-                    paging   : [
+                    paging    : [
                             runtime: "android.arch.paging:runtime:${libVersion.arch.paging}"
-                    ]
+                    ],
+
+                    navigation: [
+                            fragment: "android.arch.navigation:navigation-fragment:${libVersion.arch.navigation}",
+                            ui      : "android.arch.navigation:navigation-ui:${libVersion.arch.navigation}"
+                    ],
+
+                    work : [
+                            runtime : "android.arch.work:work-runtime:${libVersion.arch.work}"
+                    ],
 
             ],
 
@@ -172,6 +183,8 @@ ext {
                     leakcanary_no_op: "com.squareup.leakcanary:leakcanary-android-no-op:${libVersion.leakcanaryVersion}",
 
             ],
+
+            gson       : "com.google.code.gson:gson:2.8.4",
 
             //greendao
             greendao   : "org.greenrobot:greendao:${libVersion.greendaoVersion}",

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jiangkang.jetpack.JetpackMainActivity;
 import com.jiangkang.jni.JNIActivity;
 import com.jiangkang.kdownloader.KDownloaderActivity;
 import com.jiangkang.ktools.effect.EffectActivity;
@@ -54,6 +55,7 @@ public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHo
         functionList.add(new FunctionEntity("Weex", WeexActivity.class, R.drawable.ic_weex));
         functionList.add(new FunctionEntity("Web", HybridActivity.class, R.drawable.ic_web));
         functionList.add(new FunctionEntity("JNI", JNIActivity.class, R.drawable.ic_jni));
+        functionList.add(new FunctionEntity("Jetpack", JetpackMainActivity.class, R.drawable.ic_jetpack));
     }
 
     @Override

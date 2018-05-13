@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/jetpack_fragment_main">
+
+    <fragment
+        android:id="@+id/jetpack_fragment_main"
+        android:name="com.jiangkang.jetpack.ui.main.JetpackMainFragment"
+        android:label="JetpackMainFragment"
+        tools:layout="@layout/jetpack_main_fragment"
+        >
+
+        <action
+            android:id="@+id/action_jetpack_main_to_work_manager"
+            app:destination="@id/jetpack_work_manager"/>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/jetpack_work_manager"
+        android:name="com.jiangkang.jetpack.ui.architecture.workmanager.WorkManagerDemoFragment"
+        android:label="JetpackMainFragment"
+        tools:layout="@layout/work_manager_demo_fragment">
+
+    </fragment>
+
+</navigation>
