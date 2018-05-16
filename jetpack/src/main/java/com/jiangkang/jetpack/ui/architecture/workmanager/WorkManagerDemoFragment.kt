@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.jiangkang.jetpack.R
+import kotlinx.android.synthetic.main.work_manager_demo_fragment.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class WorkManagerDemoFragment : Fragment() {
 
@@ -26,6 +28,14 @@ class WorkManagerDemoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(WorkManagerDemoViewModel::class.java)
         // TODO: Use the ViewModel
+
+        btn_typical?.onClick {
+            viewModel.downloadWhenWifi()
+        }
+
+
+
+
     }
 
 }

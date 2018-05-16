@@ -10,11 +10,21 @@ apply plugin: 'kotlin-android-extensions'
 
 
 android {
+
+    //仅仅在编译的时候起作用，建议总是使用最新版本，值是一个API Level
     compileSdkVersion libVersion.compileSdkVersion
+
+    //构建工具的版本，在build-tools中的那些(aapt,dexdump,zipalign,apksigner)，一般是API-Level.x.x
     buildToolsVersion libVersion.buildToolsVersion
+
     defaultConfig {
         applicationId "com.jiangkang.ktools"
+
+        //支持的最早版本，Lint会检查这之上的API的使用进行提示，app的minSdkVersion至少要和依赖的library一样大
         minSdkVersion libVersion.minSdkVersion
+
+        //提供向前兼容的主要方式，除非targetSdkVersion更新，不应用新的行为变化，使你在应用新的行为变化之前可以使用新的API（compileSdkVersion）
+        //更新targetSdkVersion的时候应该进行充分的测试
         targetSdkVersion libVersion.targetSdkVersion
         versionCode libVersion.versionCode
         versionName libVersion.versionName
@@ -174,7 +184,8 @@ dependencies {
 
     implementation deps.arch.navigation.fragment
     implementation deps.arch.navigation.ui
-    compile project(path: ':jetpack')
+
+    implementation project(path: ':jetpack')
 
 }
 

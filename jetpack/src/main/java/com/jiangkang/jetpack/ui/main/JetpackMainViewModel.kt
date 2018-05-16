@@ -4,4 +4,7 @@ import android.arch.lifecycle.ViewModel
 
 class JetpackMainViewModel : ViewModel() {
     // TODO: Implement the ViewModel
+
+
+
 }
