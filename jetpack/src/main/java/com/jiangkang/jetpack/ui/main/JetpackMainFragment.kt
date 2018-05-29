@@ -33,6 +33,10 @@ class JetpackMainFragment : Fragment() {
             Navigation.findNavController(it!!).navigate(R.id.action_jetpack_main_to_work_manager)
         }
 
+        btn_paging_demo?.onClick {
+            Navigation.findNavController(it!!).navigate(R.id.action_jetpack_fragment_main_to_paging_demo_fragment)
+        }
+
 
     }
 

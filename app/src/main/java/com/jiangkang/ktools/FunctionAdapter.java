@@ -9,13 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jiangkang.anko.AnkoMainActivity;
 import com.jiangkang.jetpack.JetpackMainActivity;
 import com.jiangkang.jni.JNIActivity;
 import com.jiangkang.kdownloader.KDownloaderActivity;
 import com.jiangkang.ktools.effect.EffectActivity;
 import com.jiangkang.ktools.rxjava.RxJavaActivity;
 import com.jiangkang.ktools.web.HybridActivity;
-import com.jiangkang.weex.WeexActivity;
 
 import java.util.ArrayList;
 
@@ -32,6 +32,7 @@ public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHo
     private Context mContext;
 
     private ArrayList<FunctionEntity> functionList = new ArrayList<>();
+
 
     public FunctionAdapter(Context mContext) {
         this.mContext = mContext;
@@ -52,10 +53,11 @@ public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHo
         functionList.add(new FunctionEntity("Audio", AudioActivity.class, R.drawable.ic_audio));
         functionList.add(new FunctionEntity("Effect", EffectActivity.class, R.drawable.ic_effect));
         functionList.add(new FunctionEntity("RxJava", RxJavaActivity.class, R.drawable.ic_rx_java));
-        functionList.add(new FunctionEntity("Weex", WeexActivity.class, R.drawable.ic_weex));
+//        functionList.add(new FunctionEntity("Weex", WeexActivity.class, R.drawable.ic_weex));
         functionList.add(new FunctionEntity("Web", HybridActivity.class, R.drawable.ic_web));
         functionList.add(new FunctionEntity("JNI", JNIActivity.class, R.drawable.ic_jni));
         functionList.add(new FunctionEntity("Jetpack", JetpackMainActivity.class, R.drawable.ic_jetpack));
+        functionList.add(new FunctionEntity("Anko", AnkoMainActivity.class, R.drawable.ic_anko));
     }
 
     @Override

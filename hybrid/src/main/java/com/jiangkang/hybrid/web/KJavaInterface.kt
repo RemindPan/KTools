@@ -38,7 +38,7 @@ class KJavaInterface(private val mContext: Context) {
         get() {
             val bitmap = BitmapFactory.decodeResource(mContext.resources, R.drawable.demo)
             val content = ImageUtils.bitmap2Base64(bitmap, 80, Bitmap.CompressFormat.JPEG)
-            Log.d(TAG, "getBase64Img: \n" + content)
+            Log.d(TAG, "getBase64Img: \n$content")
             return content
         }
 

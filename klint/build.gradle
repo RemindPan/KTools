@@ -1,0 +1,22 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //官方给出的API,这里必须用compileOnly，使用implementation和api都会报错
+    compileOnly 'com.android.tools.lint:lint-api:26.1.2'
+
+    //已有的检查
+    compileOnly 'com.android.tools.lint:lint-checks:26.1.2'
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+jar {
+
+    manifest {
+        attributes("Lint-Registry-v2" : "com.jiangkang.klint.KLintRegistry")
+    }
+
+}

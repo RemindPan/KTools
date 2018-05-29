@@ -11,26 +11,15 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jiangkang.annotations.Safe;
-import com.jiangkang.annotations.apt.Router;
 import com.jiangkang.ktools.audio.VoiceBroadcastReceiver;
-import com.jiangkang.ktools.audio.VoiceSpeaker;
-import com.jiangkang.ktools.audio.VoiceTemplate;
-import com.jiangkang.tools.utils.LogUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 
-import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.Subject;
 
 /**
  * @author jiangkang

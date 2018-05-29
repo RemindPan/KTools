@@ -32,17 +32,17 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [
-                        moduleName: project.getName()
-//                        eventBusIndex : 'com.jiangkang.ktools.KEventBusIndex'
-                ]
-            }
-        }
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [
+//                        moduleName: project.getName()
+////                        eventBusIndex : 'com.jiangkang.ktools.KEventBusIndex'
+//                ]
+//            }
+//        }
 
         ndk {
-            abiFilters "x86", "armeabi"
+            abiFilters "x86", "armeabi-v7a"
 //            abiFilters "armeabi-v7a"
         }
 
@@ -93,11 +93,35 @@ android {
     dexOptions {
         javaMaxHeapSize = '4g'
     }
+
+    lintOptions {
+
+        //关闭检查指定的Issue Id
+        disable 'TypographyFractions','TypographyQuotes'
+
+        //打开指定的Issue的检查
+        enable 'RtlHardcoded','RtlCompat', 'RtlEnabled'
+
+        //仅仅只检查这些的子集，其他的不检查，这个选项会覆盖上面的disable，enable配置
+        check 'NewApi', 'InlinedApi'
+
+        //如果设置为true，则会关闭lint的分析进度
+        quiet false
+
+        //如果设置为true(默认)，如果发现错误就停止构建
+        abortOnError false
+
+        //如果设置为true，则只报告error
+        ignoreWarnings false
+    }
+
     externalNativeBuild {
         cmake {
             path 'CMakeLists.txt'
         }
     }
+
+
 
 }
 
@@ -157,8 +181,8 @@ dependencies {
     annotationProcessor deps.arch.room.compiler
     implementation deps.arch.room.rxjava2
 
-    implementation deps.arouter.arouter_api
-    annotationProcessor deps.arouter.arouter_compiler
+//    implementation deps.arouter.arouter_api
+//    annotationProcessor deps.arouter.arouter_compiler
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.anko:anko:$anko_version"
 
@@ -171,7 +195,7 @@ dependencies {
     implementation project(path: ':hack')
     implementation project(path: ':tools')
     implementation project(path: ':kdownloader')
-    implementation project(path: ':weex')
+//    implementation project(path: ':weex')
 
     implementation project(path: ':hybrid')
     implementation project(path: ':jni')
@@ -186,6 +210,9 @@ dependencies {
     implementation deps.arch.navigation.ui
 
     implementation project(path: ':jetpack')
+    implementation project(path: ':anko')
+
+    lintChecks project(path: ':klint')
 
 }
 

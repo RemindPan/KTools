@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/jetpack_fragment_main">
+
 
     <fragment
         android:id="@+id/jetpack_fragment_main"
         android:name="com.jiangkang.jetpack.ui.main.JetpackMainFragment"
         android:label="JetpackMainFragment"
-        tools:layout="@layout/jetpack_main_fragment"
-        >
+        tools:layout="@layout/jetpack_main_fragment">
+
 
         <action
             android:id="@+id/action_jetpack_main_to_work_manager"
-            app:destination="@id/jetpack_work_manager"/>
+            app:destination="@id/jetpack_work_manager" />
+        <action
+            android:id="@+id/action_jetpack_fragment_main_to_paging_demo_fragment"
+            app:destination="@id/paging_demo_fragment" />
+
 
     </fragment>
 
@@ -23,8 +27,14 @@
         android:id="@+id/jetpack_work_manager"
         android:name="com.jiangkang.jetpack.ui.architecture.workmanager.WorkManagerDemoFragment"
         android:label="JetpackMainFragment"
-        tools:layout="@layout/work_manager_demo_fragment">
+        tools:layout="@layout/work_manager_demo_fragment"/>
 
-    </fragment>
+
+    <fragment
+        android:id="@+id/paging_demo_fragment"
+        android:name="com.jiangkang.jetpack.ui.architecture.paging.PagingDemoFragment"
+        android:label="PagingDemoFragment"
+        tools:layout="@layout/jetpack_fragment_paging"/>
+
 
 </navigation>

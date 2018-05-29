@@ -85,7 +85,7 @@ class ShareActivity : AppCompatActivity() {
 
     private fun handleSendImage(intent: Intent) {
         val imageUri: Uri = intent.getParcelableExtra(Intent.EXTRA_STREAM)
-        imageUri?.let {
+        imageUri.let {
             Log.d(TAG, it.toString())
             ToastUtils.showShortToast(it.toString())
         }

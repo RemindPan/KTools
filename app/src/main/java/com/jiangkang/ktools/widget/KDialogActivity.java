@@ -26,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jiangkang.annotations.apt.Router;
 import com.jiangkang.ktools.R;
 import com.jiangkang.tools.utils.FileUtils;

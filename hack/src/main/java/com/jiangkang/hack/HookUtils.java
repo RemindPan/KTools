@@ -3,8 +3,10 @@ package com.jiangkang.hack;
 import android.app.Instrumentation;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.jiangkang.hack.activity.LogInstrumentation;
+import com.jiangkang.tools.utils.LogUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
@@ -59,11 +61,13 @@ public class HookUtils {
                     @Override
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-                        Log.d(TAG, "点击按钮之前");
+
+
+                        LogUtils.d(TAG, "点击按钮之前");
 
                         Object result = method.invoke(proxy, args);
 
-                        Log.d(TAG, "点击按钮之后");
+                        LogUtils.d(TAG, "点击按钮之后");
 
                         return result;
                     }

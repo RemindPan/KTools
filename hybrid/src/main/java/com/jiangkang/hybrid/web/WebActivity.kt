@@ -22,6 +22,7 @@ import android.widget.TextView
 import com.jiangkang.hybrid.R
 import com.jiangkang.tools.utils.DownloadUtils
 import com.jiangkang.tools.utils.FileUtils
+import com.jiangkang.tools.utils.LogUtils
 import com.jiangkang.tools.utils.ToastUtils
 import com.jiangkang.tools.widget.KDialog
 import kotlinx.android.synthetic.main.activity_web.*
@@ -64,7 +65,7 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
                     menu.add(0, CONTEXT_MENU_ID_DOWNLOAD_IMAGE, 0, "下载图片")
                 }
                 else -> {
-                    Log.d(TAG, "long pressed type : ${it.type}")
+                    LogUtils.d(TAG, "long pressed type : ${it.type}")
                 }
             }
         }
