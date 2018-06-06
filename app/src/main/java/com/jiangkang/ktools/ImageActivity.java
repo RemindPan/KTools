@@ -25,6 +25,7 @@ import com.jiangkang.hybrid.Khybrid;
 import com.jiangkang.tools.permission.RxPermissions;
 import com.jiangkang.tools.utils.FileUtils;
 import com.jiangkang.tools.utils.ImageUtils;
+import com.jiangkang.tools.utils.LogUtils;
 import com.jiangkang.tools.utils.ToastUtils;
 import com.jiangkang.tools.widget.KDialog;
 
@@ -355,7 +356,7 @@ public class ImageActivity extends AppCompatActivity {
         );
 
 
-        Log.d(TAG, "openCameraWithOutput: uri = " + contentUri.toString());
+        LogUtils.d(TAG, "openCameraWithOutput: uri = " + contentUri.toString());
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(Intent.EXTRA_MIME_TYPES, MimeTypeMap.getSingleton().getMimeTypeFromExtension("png"));
         //指定输出路径

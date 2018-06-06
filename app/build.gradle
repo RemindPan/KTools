@@ -200,7 +200,6 @@ dependencies {
     implementation project(path: ':hybrid')
     implementation project(path: ':jni')
     implementation project(path: ':storage')
-    implementation project(path: ':storage')
     annotationProcessor project(path: ':compiler')
 
     implementation deps.eventbus.eventbus
@@ -211,8 +210,11 @@ dependencies {
 
     implementation project(path: ':jetpack')
     implementation project(path: ':anko')
+    implementation project(path: ':image')
 
     lintChecks project(path: ':klint')
+
+
 
 }
 

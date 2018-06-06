@@ -1,4 +1,4 @@
-package com.jiangkang.ktools.image
+package com.jiangkang.tools.bean
 
 /**
  * Created by jiangkang on 2017/10/16.
@@ -31,6 +31,5 @@ object ImagePool {
             "https://pic1.zhimg.com/50/v2-7fb0675beedabf2fa8c9068e1a34c118_hd.jpg",
             "https://pic4.zhimg.com/50/v2-7d86182ee7c52b71985aa059f27f48e7_hd.jpg",
             "https://pic3.zhimg.com/50/v2-97e9a3e3856dc8417fa725f7bec6fc0e_hd.jpg")
-
 
 }

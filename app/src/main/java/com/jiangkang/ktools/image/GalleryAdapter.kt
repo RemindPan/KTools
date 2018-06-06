@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.jiangkang.ktools.R
+import com.jiangkang.tools.bean.ImagePool
 import java.util.*
 
 /**
