@@ -7,12 +7,6 @@ import kotlinx.android.synthetic.main.activity_jni.*
 
 class JNIActivity : AppCompatActivity() {
 
-    companion object {
-        init {
-            System.loadLibrary("hello-lib")
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jni)
@@ -22,15 +16,10 @@ class JNIActivity : AppCompatActivity() {
     private fun handleClick() {
 
         btnJniHelloWorld.setOnClickListener {
-            ToastUtils.showShortToast(helloWorld())
+            ToastUtils.showShortToast("not done!")
         }
 
 
     }
-
-    private external fun helloWorld(): String
-
-    private external fun sumInt(a: Int, b: Int): Int
-
 
 }

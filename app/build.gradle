@@ -42,21 +42,20 @@ android {
 //        }
 
         ndk {
-            abiFilters "x86", "armeabi-v7a"
-//            abiFilters "armeabi-v7a"
+            abiFilters  "armeabi-v7a"
         }
 
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -119,7 +118,7 @@ android {
         abortOnError false
 
         //如果设置为true，则只报告error
-        ignoreWarnings false
+        ignoreWarnings true
     }
 
     externalNativeBuild {
@@ -164,9 +163,6 @@ dependencies {
     implementation deps.retrofit.retrofit
     implementation deps.retrofit["converter-json"]
     implementation deps.retrofit["adpter-rxjava2"]
-
-    implementation deps.weex
-    implementation 'com.alibaba:fastjson:1.1.67.android'
 
     debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
     releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'

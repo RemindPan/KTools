@@ -15,7 +15,7 @@ ext {
             //android
             supportVersion         : '27.1.1',
 
-            constraintLayoutVersion: '1.1.0',
+            constraintLayoutVersion: '1.1.1',
 
             //glide
             glideVersion           : '4.2.0',
