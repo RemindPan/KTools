@@ -31,4 +31,4 @@ Android常用功能的封装库
 #### 说明
 ---
 本项目使用了Java和Kotlin，请使用Android Studio 3.0及以上版本
-如果遇到问题请联系QQ：1356385951
+如果遇到问题请在Issue中沟通
