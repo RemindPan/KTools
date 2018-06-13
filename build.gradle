@@ -22,7 +22,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.1.3'
         classpath 'org.aspectj:aspectjtools:1.8.10'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -70,7 +70,7 @@ tasks.withType(JavaCompile) {
 }
 
 subprojects {
-    if(project.name != "annotations"){
+    if(project.name != "annotations" || project.name != "compiler"){
         apply from: "${project.rootDir}/plugins/quality.gradle"
     }
 

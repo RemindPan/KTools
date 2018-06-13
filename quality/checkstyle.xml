@@ -6,17 +6,11 @@
     <property name="charset" value="UTF-8"/>
     <property name="severity" value="warning"/>
 
-    <!-- Checks for Size Violations.  -->
     <!-- 检查文件的长度（行） default max=2000 -->
     <module name="FileLength">
         <property name="max" value="2500"/>
     </module>
 
-    <!-- Checks that property files contain the same keys. -->
-    <!-- 检查**.properties配置文件 是否有相同的key
-    <module name="Translation">
-    </module>
-    -->
 
     <module name="TreeWalker">
 

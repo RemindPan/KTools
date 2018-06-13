@@ -4,7 +4,7 @@ apply plugin: 'findbugs'
 
 
 findbugs {
-    ignoreFailures = false
+    ignoreFailures = true
 
     effort = "max"
     // This selects what level of bugs to report: low means low priority issues will be reported
@@ -57,6 +57,11 @@ task checkstyle(type: Checkstyle) {
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 
     classpath = files()
 }
