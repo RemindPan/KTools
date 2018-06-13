@@ -3,8 +3,6 @@ import com.jiangkang.gradle.TaskExecuteTimeMonitor
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: "config.gradle"
 
-//apply from: "plugins/script.gradle"
-apply from: "plugins/quality.gradle"
 
 buildscript {
     ext.kotlin_version = '1.2.41'
@@ -69,6 +67,13 @@ tasks.withType(JavaCompile) {
                              '-Xlint:-serial',
                              '-Xlint:-deprecation',
                              '-Werror']
+}
+
+subprojects {
+    if(project.name != "annotations"){
+        apply from: "${project.rootDir}/plugins/quality.gradle"
+    }
+
 }
 
 //subprojects {
