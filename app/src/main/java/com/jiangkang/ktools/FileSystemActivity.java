@@ -272,7 +272,7 @@ public class FileSystemActivity extends AppCompatActivity {
     private void showPlayerDialog(final MediaPlayer player) {
         final int duration = player.getDuration();
         View view = LayoutInflater.from(this).inflate(R.layout.layout_dialog_music_player, null);
-        final SeekBar seekBar = (SeekBar) view.findViewById(R.id.seek_bar_music);
+        final SeekBar seekBar = view.findViewById(R.id.seek_bar_music);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

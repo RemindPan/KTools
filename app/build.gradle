@@ -72,11 +72,6 @@ android {
     }
 
 
-    dataBinding {
-        enabled = true
-    }
-
-
     sourceSets {
         main {
             res.srcDirs = [
@@ -127,6 +122,9 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
 
 
 }
@@ -144,6 +142,7 @@ dependencies {
     releaseImplementation deps.leakcanary.leakcanary_no_op
 
     debugImplementation deps['debug_db']
+//    debugImplementation 'com.facebook.sonar:sonar:0.0.1'
 
     implementation deps.butterKnife.butterKnife
     annotationProcessor deps.butterKnife.compiler
@@ -151,8 +150,8 @@ dependencies {
     implementation deps['rxAndroid']
     implementation deps['rxJava']
 
-    implementation 'com.facebook.stetho:stetho:1.5.0'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+//    implementation 'com.facebook.stetho:stetho:1.5.0'
+//    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
     implementation deps.support.v7
     implementation deps.support.recyclerview

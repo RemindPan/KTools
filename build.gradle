@@ -4,7 +4,7 @@ import com.jiangkang.gradle.TaskExecuteTimeMonitor
 apply from: "config.gradle"
 
 //apply from: "plugins/script.gradle"
-apply from: "plugins/file.gradle"
+apply from: "plugins/quality.gradle"
 
 buildscript {
     ext.kotlin_version = '1.2.41'
@@ -39,6 +39,8 @@ buildscript {
 apply plugin: "com.vanniktech.dependency.graph.generator"
 
 allprojects {
+
+
     repositories {
         jcenter()
         maven {
@@ -68,6 +70,14 @@ tasks.withType(JavaCompile) {
                              '-Xlint:-deprecation',
                              '-Werror']
 }
+
+//subprojects {
+//    apply plugin: 'kotlin-android'
+//    apply plugin: 'kotlin-android-extensions'
+//    android {
+//
+//    }
+//}
 
 //subprojects {
 //

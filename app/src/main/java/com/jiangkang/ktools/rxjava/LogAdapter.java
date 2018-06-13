@@ -53,7 +53,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.ViewHolder>{
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvLog = (TextView) itemView.findViewById(R.id.tv_item_log);
+            tvLog = itemView.findViewById(R.id.tv_item_log);
         }
 
     }

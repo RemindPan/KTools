@@ -89,7 +89,7 @@ public class RequestsActivity extends AppCompatActivity {
 
     private View getTabItemView(int i) {
         View itemView = LayoutInflater.from(this).inflate(R.layout.tab_item_text, tabLayoutRequests, false);
-        TextView tvTabTitle = (TextView) itemView.findViewById(R.id.tv_tab_title);
+        TextView tvTabTitle = itemView.findViewById(R.id.tv_tab_title);
         tvTabTitle.setAllCaps(false);
         tvTabTitle.setText(TABS[i]);
         itemView.setTag(i);

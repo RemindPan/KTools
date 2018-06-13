@@ -6,11 +6,9 @@ import android.os.Debug
 import android.os.StrictMode
 import android.support.multidex.MultiDex
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.facebook.stetho.Stetho
 import com.github.anrwatchdog.ANRWatchDog
 import com.jiangkang.tools.King
 import com.squareup.leakcanary.LeakCanary
-import java.util.concurrent.Executors
 
 /**
  * @author jiangkang
@@ -42,16 +40,6 @@ open class KApplication : Application() {
         initLeakCanary()
 
         King.init(this)
-
-        Executors.newCachedThreadPool().execute {
-            if (BuildConfig.DEBUG) {
-                Stetho.initializeWithDefaults(this@KApplication)
-            }
-//            initARouter()
-        }
-
-
-//        initWeex()
 
         initANRWatchDog()
 
