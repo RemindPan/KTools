@@ -1,3 +1,1 @@
 include ':app', ':tools', ':requests', ':annotations', ':aop', ':storage', ':hack', ':widget', ':kdownloader',  ':compiler', ':hybrid', ':jni', ':design', ':jetpack', ':image', ':audio', ':video', ':anko', ':klint'
-
-//':weex',

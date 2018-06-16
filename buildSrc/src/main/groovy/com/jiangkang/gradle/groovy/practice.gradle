@@ -1,0 +1,23 @@
+package com.jiangkang.gradle.groovy
+
+import com.jiangkang.gradle.kotlin.Deps
+
+buildscript {
+
+    buildscript {
+        repositories {
+            jcenter()
+        }
+        dependencies {
+            classpath Deps.androidPlugin
+        }
+    }
+
+}
+
+
+project.afterEvaluate {
+
+    println(this.getName())
+
+}
