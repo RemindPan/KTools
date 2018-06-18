@@ -76,5 +76,6 @@ dependencies {
     implementation deps.retrofit.retrofit
     implementation deps.retrofit["converter-json"]
     implementation deps.retrofit["adpter-rxjava2"]
+    implementation project(path: ':hybrid')
 
 }

@@ -1,5 +1,6 @@
 package com.jiangkang.jetpack.adapter
 
+import android.content.Context
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
@@ -9,11 +10,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.jiangkang.hybrid.Khybrid
 import com.jiangkang.jetpack.R
 import com.jiangkang.jetpack.data.Item
-import kotlinx.android.synthetic.main.item_github_trend.view.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
-class GithubTrendAdapter : ListAdapter<Item, GithubTrendAdapter.ViewHolder>(GithubTrendDiffCallback()) {
+class GithubTrendAdapter(context:Context) : ListAdapter<Item, GithubTrendAdapter.ViewHolder>(GithubTrendDiffCallback()) {
+
+    private val mContext:Context = context
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -35,7 +39,7 @@ class GithubTrendAdapter : ListAdapter<Item, GithubTrendAdapter.ViewHolder>(Gith
 
         holder.apply {
 
-            Glide.with(holder.itemView.context)
+            Glide.with(mContext)
                     .load(data.owner.avatar_url)
                     .into(ivIcon)
 
@@ -45,7 +49,12 @@ class GithubTrendAdapter : ListAdapter<Item, GithubTrendAdapter.ViewHolder>(Gith
             tvStars.text = data.stargazers_count.toString()
             tvForks.text = data.forks_count.toString()
 
+            itemView.onClick {
+                Khybrid().loadUrl(mContext,data.html_url)
+            }
         }
+
+
     }
 
 
