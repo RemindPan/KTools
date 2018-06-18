@@ -2,6 +2,8 @@ package com.jiangkang.gradle.groovy
 
 import com.jiangkang.gradle.kotlin.Deps
 
+
+
 buildscript {
 
     buildscript {
@@ -12,6 +14,7 @@ buildscript {
             classpath Deps.androidPlugin
         }
     }
+
 
 }
 

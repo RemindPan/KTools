@@ -27,8 +27,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api 'com.android.support:appcompat-v7:27.1.0'
-    api 'com.android.support.constraint:constraint-layout:1.1.0'
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support.constraint:constraint-layout:1.1.1'
     api 'android.arch.lifecycle:extensions:1.1.1'
     api 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'
@@ -46,6 +46,7 @@ dependencies {
     api deps.arch.room.rxjava2
 
     api deps.arch.paging.runtime
+    implementation "android.arch.paging:rxjava2:1.0.0-rc1"
 
     api deps.arch.navigation.fragment
     api deps.arch.navigation.ui
@@ -66,5 +67,14 @@ dependencies {
 
     implementation deps.support.cardview
     implementation deps.glide.glide
+
+
+    implementation deps.okhttp.okhttp3
+    implementation deps.okhttp.logginginterceptor
+    implementation deps.okhttp.mockwebserver
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit["converter-json"]
+    implementation deps.retrofit["adpter-rxjava2"]
 
 }

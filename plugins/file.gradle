@@ -1,33 +1,38 @@
-class FileDemoTask extends DefaultTask {
-
-    def dst
-
-    File getDst() {
-        project.file(dst)
-    }
-
-
-    @TaskAction
-    def writeToFile() {
-        def file = getDst()
-
-        file.parentFile.mkdirs()
-
-        file.write 'Hello World'
-    }
-
-}
-
-task setFile(type: FileDemoTask) {
-    dst = {
-        project.filename
+project("app") {
+    task myCopy(type: Copy, dependsOn: ":app:assembleDebug") {
+        println("path = ${buildDir.path}")
+        from "${buildDir.path}/outputs/apk/debug"
+        into "${buildDir.path}/outputs/apk/"
+        include "*.apk"
     }
 }
 
-task printFileText(dependsOn: setFile) {
-    doLast {
-        println file(filename).text
+
+task subProjectInfo {
+    println(projectDir.path)
+    project.getSubprojects().each {
+        sub ->
+            println(sub.name)
+            println(sub.projectDir)
     }
 }
 
-ext.filename = "$buildDir/hello.txt"
+tasks.create("listJars") {
+    project.getSubprojects().each {
+        sub ->
+            println("Jars ---")
+    }
+}
+
+subProjectInfo.onlyIf {
+    project.hasProperty('skip')
+}
+
+tasks.findByName("listJars").onlyIf {
+    project.hasProperty('skip')
+}
+
+
+
+
+

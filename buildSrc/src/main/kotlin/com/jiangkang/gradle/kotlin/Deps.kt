@@ -12,6 +12,7 @@ import org.gradle.api.artifacts.query.ArtifactResolutionQuery
 import org.gradle.api.artifacts.transform.VariantTransform
 import org.gradle.api.artifacts.type.ArtifactTypeContainer
 import org.gradle.api.attributes.AttributesSchema
+import org.gradle.api.initialization.Settings
 import org.omg.CORBA.Object
 
 
@@ -28,6 +29,10 @@ object Deps {
 
     }
 
+
+    fun getDeps(project:Project){
+//        project.dependencies.
+    }
 
 }
 

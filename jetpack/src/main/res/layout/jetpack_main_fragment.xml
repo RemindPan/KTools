@@ -41,4 +41,15 @@
         android:text="Paging"
         />
 
+    <Button
+        android:id="@+id/btn_github_trend"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Github Trend"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/btn_paging_demo"
+        app:layout_constraintStart_toStartOf="@+id/btn_paging_demo"
+        app:layout_constraintTop_toBottomOf="@+id/btn_paging_demo" />
+
 </android.support.constraint.ConstraintLayout>

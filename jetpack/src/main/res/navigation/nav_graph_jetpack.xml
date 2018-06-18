@@ -18,7 +18,9 @@
         <action
             android:id="@+id/action_jetpack_fragment_main_to_paging_demo_fragment"
             app:destination="@id/paging_demo_fragment" />
-
+        <action
+            android:id="@+id/action_jetpack_fragment_main_to_githubTrendFragment"
+            app:destination="@id/githubTrendFragment" />
 
     </fragment>
 
@@ -35,6 +37,12 @@
         android:name="com.jiangkang.jetpack.ui.architecture.paging.PagingDemoFragment"
         android:label="PagingDemoFragment"
         tools:layout="@layout/jetpack_fragment_paging"/>
+    <fragment
+        android:id="@+id/githubTrendFragment"
+        android:name="com.jiangkang.jetpack.ui.GithubTrendFragment"
+        android:label="GithubTrendFragment"
+        tools:layout="@layout/github_trend_fragment"
+        />
 
 
 </navigation>
