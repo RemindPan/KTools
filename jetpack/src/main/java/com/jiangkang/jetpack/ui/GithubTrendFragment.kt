@@ -54,9 +54,11 @@ class GithubTrendFragment : Fragment() {
                 Observer { item ->
                     if (item == null) {
                         UI {
+                            loadingProgressBar.visibility = View.VISIBLE
                             toast("正在请求数据，请耐心等待！")
                         }
                     } else {
+                        loadingProgressBar.visibility = View.GONE
                         adapter.submitList(item)
                     }
                 })
