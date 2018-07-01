@@ -2,7 +2,7 @@ import com.jiangkang.gradle.TaskExecuteTimeMonitor
 import com.jiangkang.gradle.kotlin.Deps
 
 apply from: "config.gradle"
-apply from: "./plugins/file.gradle"
+//apply from: "./plugins/file.gradle"
 
 buildscript {
     ext.kotlin_version = '1.2.41'

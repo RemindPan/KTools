@@ -1,24 +1,11 @@
 package com.jiangkang.gradle.kotlin
 
-import groovy.lang.Closure
-import jdk.internal.dynalink.linker.LinkerServices
-import org.gradle.api.Action
-import org.gradle.api.Project
-import org.gradle.api.artifacts.Dependency
-import org.gradle.api.artifacts.dsl.ComponentMetadataHandler
-import org.gradle.api.artifacts.dsl.ComponentModuleMetadataHandler
-import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.api.artifacts.query.ArtifactResolutionQuery
-import org.gradle.api.artifacts.transform.VariantTransform
-import org.gradle.api.artifacts.type.ArtifactTypeContainer
-import org.gradle.api.attributes.AttributesSchema
-import org.gradle.api.initialization.Settings
-import org.omg.CORBA.Object
-
 
 object Deps {
 
     const val androidPlugin = "com.android.tools.build:gradle:${Versions.androidPluginVersion}"
+
+    const val lottie = "com.airbnb.android:lottie:2.5.1"
 
     object Arch {
 
@@ -29,10 +16,28 @@ object Deps {
 
     }
 
+    object Support {
+        const val compact = "com.android.support:support-compat:${Versions.supportVersion}"
+        const val v4 = "com.android.support:support-v4:"
+        const val v7 = "com.android.support:appcompat-v7:"
+        const val degisn = "com.android.support:design:${Versions.supportVersion}"
+        const val annotations = "com.android.support:support-annotations:${Versions.supportVersion}"
+        const val recyclerview = "com.android.support:recyclerview-v7:${Versions.supportVersion}"
+        const val cardview = "com.android.support:cardview-v7:${Versions.supportVersion}"
+        const val constraint_layout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayoutVersion}"
+        const val vector_drawable = "com.android.support:support-vector-drawable:${Versions.supportVersion}"
+        const val multidex = "com.android.support:multidex:1.0.1"
 
-    fun getDeps(project:Project){
-//        project.dependencies.
+
+        object Test {
+
+            const val runner = "com.android.support.test:runner:1.0.2"
+            const val espresso = "com.android.support.test.espresso:espresso-core:3.0.2"
+        }
+
+
     }
+
 
 }
 

@@ -17,20 +17,8 @@ task subProjectInfo {
     }
 }
 
-tasks.create("listJars") {
-    project.getSubprojects().each {
-        sub ->
-            println("Jars ---")
-    }
-}
 
-subProjectInfo.onlyIf {
-    project.hasProperty('skip')
-}
 
-tasks.findByName("listJars").onlyIf {
-    project.hasProperty('skip')
-}
 
 
 

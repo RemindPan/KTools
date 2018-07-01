@@ -56,10 +56,13 @@ public class TaskExecuteTimeMonitor implements TaskExecutionListener, BuildListe
 
     @Override
     public void buildFinished(BuildResult buildResult) {
-        System.out.println("执行时间大于100ms的任务");
-        for (Map.Entry<String, String> entry : taskInfoMap.entrySet()
-                ) {
-            System.out.println("       " + entry.getValue() + "  " + entry.getKey());
+        if (!taskInfoMap.isEmpty()){
+            System.out.println("执行时间大于100ms的任务");
+            for (Map.Entry<String, String> entry : taskInfoMap.entrySet()
+                    ) {
+                System.out.println("       " + entry.getValue() + "  " + entry.getKey());
+            }
         }
+
     }
 }

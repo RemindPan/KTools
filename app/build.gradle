@@ -134,6 +134,7 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support['vector-drawable']
+
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -146,8 +147,6 @@ dependencies {
     debugImplementation deps['debug_db']
 //    debugImplementation('com.facebook.sonar:sonar:0.0.1') {
 //        exclude group: 'android.arch.lifecycle', module: 'runtime'
-//        exclude group: 'okhttp3',module: 'okhttp3'
-//        exclude module: 'okhttp3'
 //    }
 
     implementation deps.butterKnife.butterKnife
@@ -221,6 +220,7 @@ dependencies {
     implementation project(path: ':image')
 
     lintChecks project(path: ':klint')
+    implementation project(path: ':design')
 
 }
 

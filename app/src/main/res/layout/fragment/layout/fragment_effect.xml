@@ -55,6 +55,15 @@
             <!--/>-->
 
 
+        <Button
+            android:id="@+id/btnLottie"
+            style="@style/KButton"
+            android:text="Lottie"
+            android:background="#f44336"
+            android:textAllCaps="false"
+            />
+
+
     </LinearLayout>
 
 </ScrollView>

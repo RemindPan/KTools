@@ -6,12 +6,14 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jiangkang.design.lottie.LottieDemoActivity
 import com.jiangkang.ktools.R
 import com.jiangkang.tools.widget.KDialog
 import com.jiangkang.widget.ui.SlideDemosFragment
 import com.jiangkang.widget.view.TaiChiView
 import kotlinx.android.synthetic.main.fragment_effect.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
 
 /**
  * 自定义View相关的Demo
@@ -53,6 +55,10 @@ class EffectFragment : Fragment() {
 
         btnSlideDemos.onClick {
             handleClick(SlideDemosFragment())
+        }
+
+        btnLottie.onClick {
+            this@EffectFragment.activity?.startActivity<LottieDemoActivity>()
         }
 
     }

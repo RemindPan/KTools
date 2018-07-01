@@ -3,9 +3,10 @@
     package="com.bestpay.design">
 
     <application>
-        <activity android:name=".transition.SignInActivity"
-            android:theme="@style/Transition"
-            ></activity>
+        <activity
+            android:name=".transition.SignInActivity"
+            android:theme="@style/Transition" />
+        <activity android:name="com.jiangkang.design.lottie.LottieDemoActivity"></activity>
     </application>
 
 </manifest>

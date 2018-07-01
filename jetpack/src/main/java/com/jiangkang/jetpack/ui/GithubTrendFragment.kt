@@ -13,6 +13,7 @@ import com.jiangkang.jetpack.adapter.GithubTrendAdapter
 import com.jiangkang.jetpack.repository.GithubRepository
 import com.jiangkang.jetpack.viewmodel.GithubTrendViewModel
 import com.jiangkang.jetpack.viewmodel.GithubTrendViewModelFactory
+import kotlinx.android.synthetic.main.github_trend_fragment.*
 import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.toast
 
