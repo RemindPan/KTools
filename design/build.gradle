@@ -29,14 +29,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation Deps.Support.v7
-    implementation Deps.Support.constraint_layout
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
+    testImplementation Deps.junit
     androidTestImplementation Deps.Support.Test.runner
     androidTestImplementation Deps.Support.Test.espresso
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Deps.kotlin
+
+    implementation Deps.Support.constraint_layout
 
     implementation Deps.lottie
-    compile project(path: ':tools')
+    implementation project(path: ':tools')
 
 }

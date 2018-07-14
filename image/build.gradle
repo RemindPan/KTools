@@ -41,7 +41,7 @@ dependencies {
     api deps.fresco.webpsupport
     api deps.fresco['animated-webp']
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
 
 }

@@ -1,3 +1,5 @@
+import com.jiangkang.gradle.kotlin.Deps
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -33,12 +35,12 @@ dependencies {
     androidTestImplementation deps.support.test.runner
     androidTestImplementation deps.support.test.espresso
 
-    implementation deps.okhttp.okhttp3
-    implementation deps.okhttp.logginginterceptor
-    implementation deps.okhttp.mockwebserver
+    implementation Deps.OkHttp.okhttp3
+    testImplementation Deps.OkHttp.mockwebserver
+    implementation Deps.OkHttp.logginginterceptor
 
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.23.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(path: ':tools')
 }

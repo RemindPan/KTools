@@ -5,6 +5,8 @@ object Versions {
 
     const val androidPluginVersion = "3.1.3"
 
+    const val kotlin_version = "1.2.51"
+
     //project settings
     const val compileSdkVersion = 27
     const val buildToolsVersion = "27.0.3"
@@ -37,7 +39,7 @@ object Versions {
     const val rxJavaVersion = "2.1.5"
     const val rxAndroidVersion = "2.0.1"
 
-    const val okhttpVersion = "3.9.0"
+    const val okhttpVersion = "3.10.0"
 
     const val daggerVersion = "2.15"
 

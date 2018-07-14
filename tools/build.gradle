@@ -1,3 +1,5 @@
+import com.jiangkang.gradle.kotlin.Deps
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -61,8 +63,9 @@ dependencies {
     implementation deps['rxAndroid']
     implementation deps['rxJava']
 
-    implementation deps.okhttp.okhttp3
-    implementation deps.okhttp.logginginterceptor
+    implementation Deps.OkHttp.okhttp3
+    testImplementation Deps.OkHttp.mockwebserver
+    implementation Deps.OkHttp.logginginterceptor
 
     implementation deps.support.annotations
     implementation deps.support.v7

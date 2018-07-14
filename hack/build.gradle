@@ -1,3 +1,5 @@
+import com.jiangkang.gradle.kotlin.Deps
+
 def isBuildAsApp = false
 
 
@@ -54,19 +56,19 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation deps.support.v7
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation deps.support.test.runner
-    androidTestImplementation deps.support.test.espresso
+    implementation Deps.Support.v7
+    testImplementation Deps.junit
+    androidTestImplementation Deps.Support.Test.runner
+    androidTestImplementation Deps.Support.Test.espresso
 
-    implementation deps.butterKnife.butterKnife
-    annotationProcessor deps.butterKnife.compiler
+    implementation Deps.ButterKnife.butterknife
+    annotationProcessor Deps.ButterKnife.compiler
 
     implementation project(path: ':tools')
 
-    implementation deps.arouter.arouter_api
-    annotationProcessor deps.arouter.arouter_compiler
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Deps.ARouter.api
+    annotationProcessor Deps.ARouter.compiler
+    implementation Deps.kotlin
 
     lintChecks project(path: ':klint')
 }

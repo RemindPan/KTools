@@ -133,67 +133,69 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.support['vector-drawable']
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation Deps.Support.vector_drawable
+
+    androidTestImplementation(Deps.Support.Test.espresso){
         exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
-    testImplementation deps.robolectric
+    }
 
-    debugImplementation deps.leakcanary.leakcanary
-    releaseImplementation deps.leakcanary.leakcanary_no_op
+    testImplementation Deps.junit
+    testImplementation Deps.robolectric
 
-    debugImplementation deps['debug_db']
+    debugImplementation Deps.LeakCanary.leakcanary
+    releaseImplementation Deps.LeakCanary.leakcanary_no_op
+
+    debugImplementation Deps.debug_db
 //    debugImplementation('com.facebook.sonar:sonar:0.0.1') {
 //        exclude group: 'android.arch.lifecycle', module: 'runtime'
 //    }
 
-    implementation deps.butterKnife.butterKnife
-    annotationProcessor deps.butterKnife.compiler
+    implementation Deps.ButterKnife.butterknife
+    annotationProcessor Deps.ButterKnife.compiler
 
-    implementation deps['rxAndroid']
-    implementation deps['rxJava']
+    implementation Deps.RxJava.rxjava
+    implementation Deps.RxJava.rxanroid
 
 //    implementation 'com.facebook.stetho:stetho:1.5.0'
 //    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
-    implementation deps.support.v7
-    implementation deps.support.recyclerview
-    implementation deps.support.cardview
-    implementation deps.support['constraint-layout']
-    implementation deps.support.degisn
+    implementation Deps.Support.v7
+    implementation Deps.Support.recyclerview
+    implementation Deps.Support.cardview
+    implementation Deps.Support.constraint_layout
+    implementation Deps.Support.design
 
-    implementation deps.retrofit.retrofit
-    implementation deps.retrofit["converter-json"]
-    implementation deps.retrofit["adpter-rxjava2"]
+    implementation Deps.Retrofit.retrofit
+    implementation Deps.Retrofit.convert_json
+    implementation Deps.Retrofit.adapter_rxjava2
 
-    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
-    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+    debugImplementation Deps.OkHttp.chuck
+    releaseImplementation Deps.OkHttp.chuck_no_op
 
-    implementation deps.dagger['dagger-android']
-    implementation deps.dagger['dagger-android-support']
-    annotationProcessor deps.dagger['dagger-compiler']
+    implementation Deps.Dagger.dagger_android
+    implementation Deps.Dagger.dagger_android_support
+    annotationProcessor Deps.Dagger.compiler
 
-    implementation deps.glide.glide
-    implementation deps.glide.okhttp
-    annotationProcessor deps.glide.compiler
+    implementation Deps.Glide.glide
+    implementation Deps.Glide.okhttp
+    annotationProcessor Deps.Glide.compiler
 
-    implementation deps.okhttp.okhttp3
-    implementation deps.okhttp.logginginterceptor
+    implementation Deps.OkHttp.okhttp3
+    testImplementation Deps.OkHttp.mockwebserver
+    implementation Deps.OkHttp.logginginterceptor
 
-    implementation deps.arch.lifecycle.extensions
-    implementation deps.arch.lifecycle.runtime
-    implementation deps.arch.room.runtime
-    annotationProcessor deps.arch.room.compiler
-    implementation deps.arch.room.rxjava2
+    implementation Deps.Arch.Lifecycle.runtime
+    implementation Deps.Arch.Lifecycle.extentions
 
-//    implementation deps.arouter.arouter_api
-//    annotationProcessor deps.arouter.arouter_compiler
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation Deps.Arch.Room.runtime
+    implementation Deps.Arch.Room.rxjava2
+    annotationProcessor Deps.Arch.Room.compiler
 
-    implementation deps.support.multidex
+    implementation Deps.kotlin
+    implementation Deps.anko
+
+    implementation Deps.Support.multidex
 
     implementation project(path: ':widget')
     implementation project(path: ':requests')
@@ -202,18 +204,17 @@ dependencies {
     implementation project(path: ':hack')
     implementation project(path: ':tools')
     implementation project(path: ':kdownloader')
-//    implementation project(path: ':weex')
 
     implementation project(path: ':hybrid')
     implementation project(path: ':jni')
     implementation project(path: ':storage')
     annotationProcessor project(path: ':compiler')
 
-    implementation deps.eventbus.eventbus
-    implementation deps.anrwatchdog
+    implementation Deps.EventBus.eventbus
+    implementation Deps.anrwatchdog
 
-    implementation deps.arch.navigation.fragment
-    implementation deps.arch.navigation.ui
+    implementation Deps.Arch.Navigation.fragment
+    implementation Deps.Arch.Navigation.ui
 
     implementation project(path: ':jetpack')
     implementation project(path: ':anko')

@@ -1,3 +1,5 @@
+import com.jiangkang.gradle.kotlin.Deps
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -27,14 +29,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api 'com.android.support:appcompat-v7:27.1.1'
-    api 'com.android.support.constraint:constraint-layout:1.1.2'
-    api 'android.arch.lifecycle:extensions:1.1.1'
-    api 'com.android.support:support-v4:27.1.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation Deps.Support.v7
+    implementation Deps.Support.constraint_layout
+    implementation Deps.Arch.Lifecycle.extentions
 
+    testImplementation Deps.junit
+    androidTestImplementation Deps.Support.Test.runner
+    androidTestImplementation Deps.Support.Test.espresso
+    
     //ViewModel & LiveData
     api deps.arch.lifecycle.extensions
 
@@ -68,10 +70,9 @@ dependencies {
     implementation deps.support.cardview
     implementation deps.glide.glide
 
-
-    implementation deps.okhttp.okhttp3
-    implementation deps.okhttp.logginginterceptor
-    implementation deps.okhttp.mockwebserver
+    implementation Deps.OkHttp.okhttp3
+    testImplementation Deps.OkHttp.mockwebserver
+    implementation Deps.OkHttp.logginginterceptor
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit["converter-json"]

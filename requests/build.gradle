@@ -1,3 +1,5 @@
+import com.jiangkang.gradle.kotlin.Deps
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
@@ -40,9 +42,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation deps.okhttp.okhttp3
-    implementation deps.okhttp.logginginterceptor
-    implementation deps.okhttp.mockwebserver
+
+    implementation Deps.OkHttp.okhttp3
+    testImplementation Deps.OkHttp.mockwebserver
+    implementation Deps.OkHttp.logginginterceptor
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit["converter-json"]
