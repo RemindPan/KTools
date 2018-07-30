@@ -147,9 +147,9 @@ dependencies {
     releaseImplementation Deps.LeakCanary.leakcanary_no_op
 
     debugImplementation Deps.debug_db
-//    debugImplementation('com.facebook.sonar:sonar:0.0.1') {
+    debugImplementation('com.facebook.sonar:sonar:0.6.13') {
 //        exclude group: 'android.arch.lifecycle', module: 'runtime'
-//    }
+    }
 
     implementation Deps.ButterKnife.butterknife
     annotationProcessor Deps.ButterKnife.compiler

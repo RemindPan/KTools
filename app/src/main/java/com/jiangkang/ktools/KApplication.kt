@@ -6,6 +6,10 @@ import android.os.Debug
 import android.os.StrictMode
 import android.support.multidex.MultiDex
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.soloader.SoLoader
+import com.facebook.sonar.android.AndroidSonarClient
+import com.facebook.sonar.android.utils.SonarUtils
+import com.facebook.sonar.plugins.sharedpreferences.SharedPreferencesSonarPlugin
 import com.github.anrwatchdog.ANRWatchDog
 import com.jiangkang.tools.King
 import com.squareup.leakcanary.LeakCanary
@@ -50,6 +54,17 @@ open class KApplication : Application() {
 
         Fresco.initialize(this)
 
+        initSonar()
+
+    }
+
+    private fun initSonar() {
+        if (BuildConfig.DEBUG && SonarUtils.shouldEnableSonar(this)) {
+            SoLoader.init(this, false)
+            val client = AndroidSonarClient.getInstance(this)
+            client.addPlugin(SharedPreferencesSonarPlugin(this.applicationContext))
+            client.start()
+        }
     }
 
 //    private fun initTool() {
