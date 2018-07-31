@@ -9,7 +9,8 @@ object Deps {
 
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_version}"
 
-    const val aspectj = "org.aspectj:aspectjtools:1.8.10"
+    const val aspectj = "org.aspectj:aspectjtools:1.9.1"
+    const val aspectj_weaver = "org.aspectj:aspectjweaver:1.9.1"
 
     const val greendaoPlugin = "org.greenrobot:greendao-gradle-plugin:3.2.2"
 
@@ -125,8 +126,8 @@ object Deps {
     object Glide {
 
         const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
-        const val okhttp = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
-        const val compiler = "com.github.bumptech.glide:okhttp3-integration:4.0.0"
+        const val okhttp = "com.github.bumptech.glide:okhttp3-integration:4.0.0"
+        const val compiler = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
 
     }
 

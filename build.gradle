@@ -23,7 +23,6 @@ buildscript {
 
     dependencies {
         classpath Deps.androidPlugin
-        classpath Deps.aspectj
         classpath Deps.greendaoPlugin
         classpath Deps.kotlinPlugin
         classpath Deps.gradle_dependencies_graph_plugin
@@ -62,13 +61,9 @@ tasks.withType(JavaCompile) {
 }
 
 subprojects {
-    if (project.name != "annotations" || project.name != "compiler") {
-        apply from: "${project.rootDir}/plugins/quality.gradle"
-    }
+//    if (project.name != "annotations" || project.name != "compiler") {
+//        apply from: "${project.rootDir}/plugins/quality.gradle"
+//    }
 
 }
 
-
-if (hasProperty('king')){
-    println("king = ${getProperty("king")}")
-}

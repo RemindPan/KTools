@@ -1,13 +1,7 @@
 import com.jiangkang.gradle.kotlin.Deps
-import org.aspectj.bridge.IMessage
-import org.aspectj.bridge.MessageHandler
-import org.aspectj.tools.ajc.Main
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
-//apply plugin: 'com.google.gms.google-services'
 
 
 android {
@@ -200,7 +194,6 @@ dependencies {
     implementation project(path: ':widget')
     implementation project(path: ':requests')
     implementation project(path: ':annotations')
-    implementation project(path: ':aop')
     implementation project(path: ':hack')
     implementation project(path: ':tools')
     implementation project(path: ':kdownloader')
@@ -233,41 +226,6 @@ task copy(type: Copy) {
     delete "build/outputs/apk/debug/*"
 }
 
-project.android.applicationVariants.all { variant ->
-    JavaCompile javaCompile = variant.javaCompile
-    javaCompile.doLast {
-        String[] args = [
-                "-showWeaveInfo",
-                "-1.5",
-                "-inpath", javaCompile.destinationDir.toString(),
-                "-aspectpath", javaCompile.classpath.asPath,
-                "-d", javaCompile.destinationDir.toString(),
-                "-classpath", javaCompile.classpath.asPath,
-                "-bootclasspath", android.bootClasspath.join(File.pathSeparator)
-        ]
-
-        MessageHandler handler = new MessageHandler(true);
-        new Main().run(args, handler)
-
-        def log = project.logger
-        for (IMessage message : handler.getMessages(null, true)) {
-            switch (message.getKind()) {
-                case IMessage.ABORT:
-                case IMessage.ERROR:
-                case IMessage.FAIL:
-                    log.error message.message, message.thrown
-                    break
-                case IMessage.WARNING:
-                case IMessage.INFO:
-                    log.info message.message, message.thrown
-                    break
-                case IMessage.DEBUG:
-                    log.debug message.message, message.thrown
-                    break
-            }
-        }
-    }
-}
 
 repositories {
     mavenCentral()
