@@ -11,7 +11,7 @@ findbugs {
     // (in addition to medium+high), which corresponds to warning about everything.
     reportLevel = "medium"
 
-    excludeFilter = new File("${project.rootDir}/quality/findbugs-exclude.xml")
+    excludeFilter = new File("${project.rootDir}/quality/findbugs/findbugs-exclude.xml")
 }
 
 task findbugs(type: FindBugs, dependsOn: "assemble", group: 'verification') {
@@ -31,7 +31,7 @@ task findbugs(type: FindBugs, dependsOn: "assemble", group: 'verification') {
 pmd {
     toolVersion = '5.5.2'
     ignoreFailures = true
-    ruleSetFiles = files("${project.rootDir}/quality/pmd-rules.xml")
+    ruleSetFiles = files("${project.rootDir}/quality/pmd/pmd-rules.xml")
     ruleSets = []
 }
 
@@ -53,10 +53,12 @@ task pmd(type: Pmd, group: 'verification') {
 }
 
 task checkstyle(type: Checkstyle) {
-    configFile file("${project.rootDir}/quality/checkstyle.xml")
+    configFile file("${project.rootDir}/quality/checkstyle/checkstyle.xml")
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
 
     reports {
         xml.enabled = false

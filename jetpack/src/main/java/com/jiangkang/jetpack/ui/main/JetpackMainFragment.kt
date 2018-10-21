@@ -37,9 +37,7 @@ class JetpackMainFragment : Fragment() {
             Navigation.findNavController(it!!).navigate(R.id.action_jetpack_fragment_main_to_paging_demo_fragment)
         }
 
-        btn_github_trend?.onClick {
-            Navigation.findNavController(it!!).navigate(R.id.action_jetpack_fragment_main_to_githubTrendFragment)
-        }
+        btn_github_trend.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_jetpack_fragment_main_to_githubTrendFragment))
 
     }
 

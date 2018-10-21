@@ -16,7 +16,6 @@ public class KLintRegistry extends IssueRegistry {
     public List<Issue> getIssues() {
         return Arrays.asList(
                 LogUtilsDetector.ISSUE
-//                ToastUsageDetector.Companion.getISSUE()
         );
     }
 }

@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/jetpack_fragment_main">
 
-
+    <!--start fragment-->
     <fragment
         android:id="@+id/jetpack_fragment_main"
         android:name="com.jiangkang.jetpack.ui.main.JetpackMainFragment"
         android:label="JetpackMainFragment"
         tools:layout="@layout/jetpack_main_fragment">
-
 
         <action
             android:id="@+id/action_jetpack_main_to_work_manager"
@@ -37,6 +36,7 @@
         android:name="com.jiangkang.jetpack.ui.architecture.paging.PagingDemoFragment"
         android:label="PagingDemoFragment"
         tools:layout="@layout/jetpack_fragment_paging"/>
+
     <fragment
         android:id="@+id/githubTrendFragment"
         android:name="com.jiangkang.jetpack.ui.GithubTrendFragment"

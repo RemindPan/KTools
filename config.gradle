@@ -1,3 +1,5 @@
+import com.jiangkang.gradle.kotlin.Deps
+
 ext {
 
     libVersion = [
@@ -167,16 +169,16 @@ ext {
             ],
 
             fresco     : [
-                    fresco: "com.facebook.fresco:fresco:${libVersion.frescoVersion}",
+                    fresco         : "com.facebook.fresco:fresco:${libVersion.frescoVersion}",
 
                     //GIF
                     'animated-gif' : "com.facebook.fresco:animated-gif:${libVersion.frescoVersion}",
 
                     //WebP静态图
-                    webpsupport   : "com.facebook.fresco:webpsupport:${libVersion.frescoVersion}",
+                    webpsupport    : "com.facebook.fresco:webpsupport:${libVersion.frescoVersion}",
 
                     //WebP动态图
-                    'animated-webp' : "com.facebook.fresco:animated-webp:${libVersion.frescoVersion}",
+                    'animated-webp': "com.facebook.fresco:animated-webp:${libVersion.frescoVersion}",
 
 
             ],
@@ -234,6 +236,6 @@ ext {
             anrwatchdog: "com.github.anrwatchdog:anrwatchdog:1.3.0",
     ]
 
-
 }
+
 

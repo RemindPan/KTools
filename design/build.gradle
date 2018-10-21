@@ -29,6 +29,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation Deps.Support.v7
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation Deps.junit
     androidTestImplementation Deps.Support.Test.runner
     androidTestImplementation Deps.Support.Test.espresso

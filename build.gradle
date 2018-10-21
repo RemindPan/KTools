@@ -61,9 +61,9 @@ tasks.withType(JavaCompile) {
 }
 
 subprojects {
-//    if (project.name != "annotations" || project.name != "compiler") {
-//        apply from: "${project.rootDir}/plugins/quality.gradle"
-//    }
+    if (project.name != "annotations" || project.name != "compiler") {
+        apply from: "${project.rootDir}/plugins/quality.gradle"
+    }
 
 }
 
