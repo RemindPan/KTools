@@ -17,7 +17,7 @@ import com.jiangkang.tools.widget.KDialog
 import kotlinx.android.synthetic.main.activity_device.*
 import org.jetbrains.anko.activityManager
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.toast
 
 class DeviceActivity : AppCompatActivity() {

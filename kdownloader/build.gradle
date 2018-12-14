@@ -1,3 +1,4 @@
+import com.jiangkang.gradle.kotlin.Versions
 import com.jiangkang.gradle.kotlin.Deps
 
 apply plugin: 'com.android.library'
@@ -5,10 +6,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion libVersion.compileSdkVersion
+    compileSdkVersion Versions.compileSdkVersion
     defaultConfig {
-        minSdkVersion libVersion.minSdkVersion
-        targetSdkVersion libVersion.targetSdkVersion
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -28,19 +29,19 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation deps.support.v7
-    implementation deps.support['constraint-layout']
+    implementation Deps.Support.v7
+    implementation Deps.Support.constraint_layout
     testImplementation 'junit:junit:4.12'
 
-    androidTestImplementation deps.support.test.runner
-    androidTestImplementation deps.support.test.espresso
+    androidTestImplementation Deps.Support.Test.runner
+    androidTestImplementation Deps.Support.Test.espresso
 
     implementation Deps.OkHttp.okhttp3
     testImplementation Deps.OkHttp.mockwebserver
     implementation Deps.OkHttp.logginginterceptor
 
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.23.3'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Deps.coroutine
+    implementation Deps.kotlin
     implementation project(path: ':tools')
 }

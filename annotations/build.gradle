@@ -1,9 +1,11 @@
+import com.jiangkang.gradle.kotlin.Deps
+
 apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly deps.android.runtime
-    api deps.support.annotations
+    compileOnly Deps.androidRuntime
+    api Deps.Support.supportAnnotations
 }
 
 sourceCompatibility = "1.7"

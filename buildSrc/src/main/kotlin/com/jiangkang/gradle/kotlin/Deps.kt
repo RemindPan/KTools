@@ -1,12 +1,13 @@
 package com.jiangkang.gradle.kotlin
 
 import com.jiangkang.gradle.kotlin.Versions.frescoVersion
-import org.gradle.api.artifacts.Configuration
 
 
 object Deps {
 
-    val androidPlugin = "com.android.tools.build:gradle:${Versions.androidPluginVersion}"
+    const val androidPlugin = "com.android.tools.build:gradle:${Versions.androidPluginVersion}"
+
+    const val androidRuntime = "com.google.android:android:4.1.1.4"
 
     val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_version}"
 
@@ -19,7 +20,9 @@ object Deps {
 
     val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin_version}"
 
-    val anko = "org.jetbrains.anko:anko:0.10.4"
+    val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1"
+
+    val anko = "org.jetbrains.anko:anko:${Versions.anko_version}"
 
     val lottie = "com.airbnb.android:lottie:2.5.1"
 
@@ -32,6 +35,14 @@ object Deps {
     val anrwatchdog = "com.github.anrwatchdog:anrwatchdog:1.3.0"
 
     val gson = "com.google.code.gson:gson:2.8.4"
+
+    val javapoet = "com.squareup:javapoet:${Versions.javapoet_version}"
+
+    val greendao = "org.greenrobot:greendao:${Versions.greendaoVersion}"
+
+    val zxing = "com.google.zxing:core:3.3.0"
+
+    val logger = "com.orhanobut:logger:${Versions.loggerVersion}"
 
     object Arch {
 
@@ -54,7 +65,7 @@ object Deps {
             val fragment = "android.arch.navigation:navigation-fragment:${Versions.Arch.navigation}"
         }
 
-        val workmanager = "ndroid.arch.work:work-runtime:${Versions.Arch.work}"
+        val workmanager = "android.arch.work:work-runtime:${Versions.Arch.work}"
 
         val paging = "android.arch.paging:runtime:${Versions.Arch.paging}"
 
@@ -65,7 +76,7 @@ object Deps {
         val v4 = "com.android.support:support-v4:${Versions.supportVersion}"
         val v7 = "com.android.support:appcompat-v7:${Versions.supportVersion}"
         val design = "com.android.support:design:${Versions.supportVersion}"
-        val annotations = "com.android.support:support-annotations:${Versions.supportVersion}"
+        val supportAnnotations = "com.android.support:support-annotations:${Versions.supportVersion}"
         val recyclerview = "com.android.support:recyclerview-v7:${Versions.supportVersion}"
         val cardview = "com.android.support:cardview-v7:${Versions.supportVersion}"
         val constraint_layout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayoutVersion}"
@@ -163,9 +174,11 @@ object Deps {
         val mockito = "org.mockito:mockito-core:2.10.0"
     }
 
-
-    fun depGlide(configuration: Configuration) {
+    object Auto {
+        val service = "com.google.auto.service:auto-service:1.0-rc4"
+        val common = "com.google.auto:auto-common:0.9"
     }
+
 
 }
 

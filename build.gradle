@@ -1,12 +1,9 @@
 import com.jiangkang.gradle.TaskExecuteTimeMonitor
 import com.jiangkang.gradle.kotlin.Deps
 
-apply from: "config.gradle"
 //apply from: "./plugins/file.gradle"
 
 buildscript {
-    ext.kotlin_version = '1.2.50'
-    ext.anko_version = '0.10.4'
 
     repositories {
         jcenter()
@@ -37,14 +34,12 @@ apply plugin: "com.vanniktech.dependency.graph.generator"
 allprojects {
 
     repositories {
+        google()
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
 //        maven {
 //            url "$rootDir/node_modules/react-native/android"
 //        }
+
     }
 }
 
@@ -61,7 +56,9 @@ tasks.withType(JavaCompile) {
 }
 
 subprojects {
-    if (project.name != "annotations" || project.name != "compiler") {
+    if (project.name != "annotations"
+            || project.name != "compiler"
+            || project.name != "anko") {
         apply from: "${project.rootDir}/plugins/quality.gradle"
     }
 

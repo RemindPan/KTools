@@ -1,15 +1,16 @@
 import com.jiangkang.gradle.kotlin.Deps
+import com.jiangkang.gradle.kotlin.Versions
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion libVersion.compileSdkVersion
-    buildToolsVersion libVersion.buildToolsVersion
+    compileSdkVersion Versions.compileSdkVersion
+    buildToolsVersion Versions.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion libVersion.minSdkVersion
-        targetSdkVersion libVersion.targetSdkVersion
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -47,9 +48,9 @@ dependencies {
     testImplementation Deps.OkHttp.mockwebserver
     implementation Deps.OkHttp.logginginterceptor
 
-    implementation deps.retrofit.retrofit
-    implementation deps.retrofit["converter-json"]
-    implementation deps.retrofit["adpter-rxjava2"]
+    implementation Deps.Retrofit.retrofit
+    implementation Deps.Retrofit.convert_json
+    implementation Deps.Retrofit.adapter_rxjava2
 
     implementation project(path: ':tools')
 
@@ -59,9 +60,9 @@ dependencies {
     implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
-    implementation deps.arouter.arouter_api
-    annotationProcessor deps.arouter.arouter_compiler
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Deps.ARouter.api
+    annotationProcessor Deps.ARouter.compiler
+    implementation Deps.kotlin
 
 
 }

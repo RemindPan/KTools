@@ -10,7 +10,6 @@ import android.text.TextUtils
 import com.jiangkang.storage.R
 import kotlinx.android.synthetic.main.activity_login_db.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.toast
 
 class LoginDbActivity : AppCompatActivity() {
@@ -74,7 +73,7 @@ class LoginDbActivity : AppCompatActivity() {
 
 
     private fun handleClick() {
-        btn_login_db.onClick {
+        btn_login_db.setOnClickListener {
             handleLogic(
                     present = {
                         with(it) {
@@ -102,7 +101,7 @@ class LoginDbActivity : AppCompatActivity() {
         }
 
 
-        btn_register_db.onClick {
+        btn_register_db.setOnClickListener {
             handleLogic(
                     present = {
                         runOnUiThread {
@@ -114,7 +113,6 @@ class LoginDbActivity : AppCompatActivity() {
                         insertDb(dbHelper.readableDatabase)
                     }
             )
-
         }
 
     }

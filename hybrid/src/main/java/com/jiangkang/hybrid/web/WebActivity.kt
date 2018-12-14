@@ -21,12 +21,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.jiangkang.hybrid.R
 import com.jiangkang.tools.utils.DownloadUtils
-import com.jiangkang.tools.utils.FileUtils
 import com.jiangkang.tools.utils.LogUtils
 import com.jiangkang.tools.utils.ToastUtils
 import com.jiangkang.tools.widget.KDialog
 import kotlinx.android.synthetic.main.activity_web.*
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 
 class WebActivity : AppCompatActivity(), WebContract.IView {
 
@@ -77,7 +77,7 @@ class WebActivity : AppCompatActivity(), WebContract.IView {
             val url = it.extra
             if (CONTEXT_MENU_ID_DOWNLOAD_IMAGE == item.itemId) {
                 if (isHttpUrl(url) or isHttpsUrl(url)) {
-                    async {
+                    GlobalScope.async {
                         val bmpDownloaded = DownloadUtils.getInstance().downloadImage(url)
                         runOnUiThread {
                             ToastUtils.showShortToast("图片下载成功")

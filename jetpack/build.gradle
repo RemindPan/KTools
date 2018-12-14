@@ -5,11 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -32,51 +32,48 @@ dependencies {
     implementation Deps.Support.v7
     implementation Deps.Support.constraint_layout
     implementation Deps.Arch.Lifecycle.extentions
+    implementation Deps.Support.recyclerview
 
     testImplementation Deps.junit
     androidTestImplementation Deps.Support.Test.runner
     androidTestImplementation Deps.Support.Test.espresso
     
     //ViewModel & LiveData
-    api deps.arch.lifecycle.extensions
+    implementation Deps.Arch.Lifecycle.extentions
+    implementation Deps.Arch.paging
 
     //support library
-    api deps.arch.lifecycle.runtime
+    implementation Deps.Arch.Lifecycle.runtime
 
-    api deps.arch.room.runtime
-    annotationProcessor deps.arch.room.compiler
-    api deps.arch.room.rxjava2
+    implementation Deps.Arch.Room.runtime
+    annotationProcessor Deps.Arch.Room.compiler
+    implementation Deps.Arch.Room.rxjava2
 
-    api deps.arch.paging.runtime
-    implementation "android.arch.paging:rxjava2:1.0.0-rc1"
+    implementation Deps.Arch.workmanager
+    implementation Deps.Arch.Navigation.ui
 
-    api deps.arch.navigation.fragment
-    api deps.arch.navigation.ui
-
-    api deps.arch.work.runtime
-
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation Deps.kotlin
+    implementation Deps.anko
     implementation project(path: ':storage')
     implementation project(path: ':tools')
     implementation project(path: ':requests')
 
-    implementation deps.gson
+    implementation Deps.gson
 
 
-    implementation deps['rxAndroid']
-    implementation deps['rxJava']
+    implementation Deps.RxJava.rxanroid
+    implementation Deps.RxJava.rxjava
 
-    implementation deps.support.cardview
-    implementation deps.glide.glide
+    implementation Deps.Support.cardview
+    implementation Deps.Glide.glide
 
     implementation Deps.OkHttp.okhttp3
     testImplementation Deps.OkHttp.mockwebserver
     implementation Deps.OkHttp.logginginterceptor
 
-    implementation deps.retrofit.retrofit
-    implementation deps.retrofit["converter-json"]
-    implementation deps.retrofit["adpter-rxjava2"]
+    implementation Deps.Retrofit.retrofit
+    implementation Deps.Retrofit.convert_json
+    implementation Deps.Retrofit.adapter_rxjava2
     implementation project(path: ':hybrid')
 
 }

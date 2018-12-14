@@ -1,15 +1,16 @@
+import com.jiangkang.gradle.kotlin.Deps
+import com.jiangkang.gradle.kotlin.Versions
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
-
-
+    compileSdkVersion Versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -29,19 +30,20 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation Deps.Support.v7
+    implementation Deps.Support.v4
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    api deps.fresco.fresco
-    api deps.fresco['animated-gif']
-    api deps.fresco.webpsupport
-    api deps.fresco['animated-webp']
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    api Deps.Fresco.fresco
+    api Deps.Fresco.animated_gif
+    api Deps.Fresco.webpsupport
+    api Deps.Fresco.animated_webp
+
+    implementation Deps.kotlin
+    implementation Deps.Support.constraint_layout
 
 
 }

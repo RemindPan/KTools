@@ -1,3 +1,6 @@
+import com.jiangkang.gradle.kotlin.Deps
+import com.jiangkang.gradle.kotlin.Versions
+
 apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
@@ -5,11 +8,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion libVersion.compileSdkVersion
+    compileSdkVersion Versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion libVersion.minSdkVersion
-        targetSdkVersion libVersion.targetSdkVersion
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -29,16 +32,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation deps.support["constraint-layout"]
+    implementation Deps.Support.constraint_layout
 
-    implementation deps.support.v7
-    implementation deps.support.cardview
-    implementation deps['anko']
+    implementation Deps.anko
 
-    implementation deps.support.v4
+    implementation Deps.Support.v7
+    implementation Deps.Support.cardview
+    implementation Deps.Support.v4
 
-    androidTestImplementation deps.support.test.runner
-    androidTestImplementation deps.support.test.espresso
+    androidTestImplementation Deps.Support.Test.runner
+    androidTestImplementation Deps.Support.Test.espresso
 
     implementation project(path: ':tools')
 

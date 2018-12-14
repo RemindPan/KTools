@@ -1,3 +1,4 @@
+import com.jiangkang.gradle.kotlin.Versions
 import com.jiangkang.gradle.kotlin.Deps
 
 def isBuildAsApp = false
@@ -10,11 +11,11 @@ if (isBuildAsApp.toBoolean()) {
 }
 
 android {
-    compileSdkVersion libVersion.compileSdkVersion
+    compileSdkVersion Versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion libVersion.minSdkVersion
-        targetSdkVersion libVersion.targetSdkVersion
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

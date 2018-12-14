@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.jiangkang.jetpack.R
 import kotlinx.android.synthetic.main.jetpack_main_fragment.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class JetpackMainFragment : Fragment() {
 

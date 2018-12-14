@@ -25,7 +25,7 @@ import com.jiangkang.tools.utils.SpUtils
 import com.jiangkang.tools.utils.ToastUtils
 import dalvik.system.DexClassLoader
 import kotlinx.android.synthetic.main.activity_system.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.wallpaperManager
 import org.json.JSONException

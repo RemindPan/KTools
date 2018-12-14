@@ -13,7 +13,7 @@ import com.jiangkang.tools.utils.SpUtils
 import com.jiangkang.tools.utils.ToastUtils
 import com.jiangkang.tools.widget.KDialog
 import kotlinx.android.synthetic.main.activity_storage.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 
 class StorageActivity : AppCompatActivity() {

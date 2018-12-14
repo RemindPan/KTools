@@ -1,4 +1,5 @@
 import com.jiangkang.gradle.kotlin.Deps
+import com.jiangkang.gradle.kotlin.Versions
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -7,22 +8,22 @@ apply plugin: 'kotlin-android-extensions'
 android {
 
     //仅仅在编译的时候起作用，建议总是使用最新版本，值是一个API Level
-    compileSdkVersion libVersion.compileSdkVersion
+    compileSdkVersion Versions.compileSdkVersion
 
     //构建工具的版本，在build-tools中的那些(aapt,dexdump,zipalign,apksigner)，一般是API-Level.x.x
-    buildToolsVersion libVersion.buildToolsVersion
+    buildToolsVersion Versions.buildToolsVersion
 
     defaultConfig {
         applicationId "com.jiangkang.ktools"
 
         //支持的最早版本，Lint会检查这之上的API的使用进行提示，app的minSdkVersion至少要和依赖的library一样大
-        minSdkVersion libVersion.minSdkVersion
+        minSdkVersion Versions.minSdkVersion
 
         //提供向前兼容的主要方式，除非targetSdkVersion更新，不应用新的行为变化，使你在应用新的行为变化之前可以使用新的API（compileSdkVersion）
         //更新targetSdkVersion的时候应该进行充分的测试
-        targetSdkVersion libVersion.targetSdkVersion
-        versionCode libVersion.versionCode
-        versionName libVersion.versionName
+        targetSdkVersion Versions.targetSdkVersion
+        versionCode Versions.versionCode
+        versionName Versions.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -132,15 +133,15 @@ dependencies {
 
         implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-        implementation Deps.Support.vector_drawable
+        implementation Deps.Support.v4
 
         androidTestImplementation(Deps.Support.Test.espresso) {
             exclude group: 'com.android.support', module: 'support-annotations'
         }
 
-        androidTestImplementation 'com.android.support:support-annotations:27.1.1'
-        androidTestImplementation 'com.android.support.test:runner:1.0.2'
-        androidTestImplementation 'com.android.support.test:rules:1.0.2'
+        androidTestImplementation Deps.Support.supportAnnotations
+//        androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//        androidTestImplementation 'com.android.support.test:rules:1.0.2'
         // Optional -- Hamcrest library
         androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
         // Optional -- UI testing with UI Automator

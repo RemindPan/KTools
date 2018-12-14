@@ -1,3 +1,6 @@
+import com.jiangkang.gradle.kotlin.Versions
+import com.jiangkang.gradle.kotlin.Deps
+
 def isBuildAsApp = false
 
 
@@ -10,11 +13,11 @@ apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion libVersion.compileSdkVersion
+    compileSdkVersion Versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion libVersion.minSdkVersion
-        targetSdkVersion libVersion.targetSdkVersion
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -55,26 +58,26 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation deps.support.v7
-    implementation deps.support['constraint-layout']
+    implementation Deps.Support.v7
+    implementation Deps.Support.constraint_layout
     testImplementation 'junit:junit:4.12'
 
     //orm library
-    implementation deps['greendao']
+    implementation Deps.greendao
 
-    implementation deps.support.recyclerview
+    implementation Deps.Support.recyclerview
 
-    implementation deps.butterKnife.butterKnife
-    annotationProcessor deps.butterKnife.compiler
+    implementation Deps.ButterKnife.butterknife
+    annotationProcessor Deps.ButterKnife.compiler
 
-    implementation deps.arouter.arouter_api
-    annotationProcessor deps.arouter.arouter_compiler
+    implementation Deps.ARouter.api
+    annotationProcessor Deps.ARouter.compiler
 
-    implementation deps.okhttp.okhttp3
-    implementation deps.okhttp.logginginterceptor
-    implementation deps.okhttp.mockwebserver
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation Deps.OkHttp.okhttp3
+    implementation Deps.OkHttp.logginginterceptor
+    implementation Deps.OkHttp.mockwebserver
+    implementation Deps.kotlin
+    implementation Deps.anko
 
 
 }

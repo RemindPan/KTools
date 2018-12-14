@@ -1,17 +1,15 @@
+import com.jiangkang.gradle.kotlin.Deps
+
 apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':annotations')
-
-    implementation deps.auto.common
-
+    implementation Deps.Auto.common
     //帮助我们通过类调用的形式来生成代码
-    api deps.javapoet
-
+    api Deps.javapoet
     //注解 processor 类，并对其生成 META-INF 的配置信息
-    compileOnly deps.auto.service
+    compileOnly Deps.Auto.service
 }
 
 sourceCompatibility = "1.7"

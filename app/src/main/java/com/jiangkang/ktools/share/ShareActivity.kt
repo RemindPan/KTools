@@ -2,8 +2,6 @@ package com.jiangkang.ktools.share
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -14,10 +12,9 @@ import com.jiangkang.ktools.BuildConfig
 import com.jiangkang.ktools.R
 import com.jiangkang.tools.utils.FileUtils
 import com.jiangkang.tools.utils.ToastUtils
-import com.jiangkang.tools.widget.KDialog
 import kotlinx.android.synthetic.main.activity_share.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.io.File
 
 

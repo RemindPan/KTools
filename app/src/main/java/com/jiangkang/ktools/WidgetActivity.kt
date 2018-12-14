@@ -14,7 +14,7 @@ import com.jiangkang.tools.utils.ToastUtils
 import com.jiangkang.tools.widget.FloatingWindow
 import com.jiangkang.tools.widget.KNotification
 import kotlinx.android.synthetic.main.activity_widget.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class WidgetActivity : AppCompatActivity() {
 

@@ -13,11 +13,11 @@ import com.bumptech.glide.Glide
 import com.jiangkang.hybrid.Khybrid
 import com.jiangkang.jetpack.R
 import com.jiangkang.jetpack.data.Item
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class GithubTrendAdapter(context:Context) : ListAdapter<Item, GithubTrendAdapter.ViewHolder>(GithubTrendDiffCallback()) {
+class GithubTrendAdapter(context: Context) : ListAdapter<Item, GithubTrendAdapter.ViewHolder>(GithubTrendDiffCallback()) {
 
-    private val mContext:Context = context
+    private val mContext: Context = context
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -50,7 +50,7 @@ class GithubTrendAdapter(context:Context) : ListAdapter<Item, GithubTrendAdapter
             tvForks.text = data.forks_count.toString()
 
             itemView.onClick {
-                Khybrid().loadUrl(mContext,data.html_url)
+                Khybrid().loadUrl(mContext, data.html_url)
             }
         }
 
@@ -62,12 +62,20 @@ class GithubTrendAdapter(context:Context) : ListAdapter<Item, GithubTrendAdapter
 
 class GithubTrendDiffCallback : DiffUtil.ItemCallback<Item>() {
 
-    override fun areItemsTheSame(oldItem: Item?, newItem: Item?): Boolean {
-        return oldItem?.id == newItem?.id
+    override fun areItemsTheSame(p0: Item, p1: Item): Boolean {
+        return p0.id == p1.id
     }
 
-    override fun areContentsTheSame(oldItem: Item?, newItem: Item?): Boolean {
-        return oldItem == newItem
+    override fun areContentsTheSame(p0: Item, p1: Item): Boolean {
+        return p0 == p1
     }
+
+//    override fun areItemsTheSame(oldItem: Item?, newItem: Item?): Boolean {
+//        return oldItem?.id == newItem?.id
+//    }
+//
+//    override fun areContentsTheSame(oldItem: Item?, newItem: Item?): Boolean {
+//        return oldItem == newItem
+//    }
 
 }

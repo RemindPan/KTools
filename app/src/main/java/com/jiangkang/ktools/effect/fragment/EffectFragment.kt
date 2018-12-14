@@ -12,7 +12,7 @@ import com.jiangkang.tools.widget.KDialog
 import com.jiangkang.widget.ui.SlideDemosFragment
 import com.jiangkang.widget.view.TaiChiView
 import kotlinx.android.synthetic.main.fragment_effect.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 
 /**

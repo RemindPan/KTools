@@ -5,13 +5,13 @@ object Versions {
 
     const val androidPluginVersion = "3.1.3"
 
-    const val kotlin_version = "1.2.51"
+    const val kotlin_version = "1.3.11"
 
     //project settings
-    const val compileSdkVersion = 27
-    const val buildToolsVersion = "27.0.3"
+    const val compileSdkVersion = 28
+    const val buildToolsVersion = "28.0.3"
     const val minSdkVersion = 21
-    const val targetSdkVersion = 27
+    const val targetSdkVersion = 28
     const val versionCode = 3
     const val versionName = "3.0"
 
@@ -19,7 +19,7 @@ object Versions {
     const val butterKnifeVersion = "8.2.1"
 
     //android
-    const val supportVersion = "27.1.1"
+    const val supportVersion = "28.0.0"
 
     const val constraintLayoutVersion = "1.1.2"
 
@@ -47,7 +47,7 @@ object Versions {
 
     const val loggerVersion = "2.1.1"
 
-    const val anko_version = "0.10.4"
+    const val anko_version = "0.10.8"
 
     const val weex_version = "0.17.0"
 

@@ -3,12 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 import com.jiangkang.gradle.kotlin.Deps
+import com.jiangkang.gradle.kotlin.Versions
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion Versions.compileSdkVersion
     defaultConfig {
-        minSdkVersion libVersion.minSdkVersion
-        targetSdkVersion libVersion.targetSdkVersion
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -29,7 +30,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation Deps.Support.v7
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation Deps.junit
     androidTestImplementation Deps.Support.Test.runner
     androidTestImplementation Deps.Support.Test.espresso

@@ -9,7 +9,7 @@ import com.jiangkang.ktools.R
 import com.jiangkang.requests.zhihu.bean.Story
 import com.jiangkang.tools.utils.ToastUtils
 import kotlinx.android.synthetic.main.item_article.view.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 /**
  * Created by jiangkang on 2018/1/17.

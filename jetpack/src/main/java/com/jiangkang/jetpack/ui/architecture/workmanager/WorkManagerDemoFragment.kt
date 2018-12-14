@@ -9,7 +9,7 @@ import android.view.ViewGroup
 
 import com.jiangkang.jetpack.R
 import kotlinx.android.synthetic.main.work_manager_demo_fragment.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class WorkManagerDemoFragment : Fragment() {
 
@@ -32,10 +32,6 @@ class WorkManagerDemoFragment : Fragment() {
         btn_typical?.onClick {
             viewModel.downloadWhenWifi()
         }
-
-
-
-
     }
 
 }
