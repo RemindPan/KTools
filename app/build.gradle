@@ -244,6 +244,7 @@ dependencies {
         implementation project(path: ':image')
         lintChecks project(path: ':klint')
         implementation project(path: ':design')
+        implementation project(path: ":container")
 
 }
 

@@ -7,61 +7,53 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/effect_shape"
             style="@style/KButton"
-            android:text="Shape"
             android:background="#f44336"
-             />
+            android:text="Shape" />
 
 
         <Button
             android:id="@+id/tai_chi"
             style="@style/KButton"
-            android:text="太极图"
             android:background="#f44336"
-            />
+            android:text="太极图" />
 
         <Button
             android:id="@+id/animated_shape_view"
             style="@style/KButton"
-            android:text="View + Animation"
             android:background="#f44336"
-            />
+            android:text="View + Animation" />
 
 
         <Button
             android:id="@+id/shape_path_view"
             style="@style/KButton"
-            android:text="Shape + Path"
             android:background="#f44336"
-            />
+            android:text="Shape + Path" />
 
         <Button
-            android:id="@+id/btnSlideDemos"
+            android:id="@+id/btnAutoLayoutAnimation"
             style="@style/KButton"
-            android:text="滑动"
             android:background="#f44336"
-            />
-
-        <!--<Button-->
-            <!--android:id="@+id/btnOpenGL"-->
-            <!--style="@style/KButton"-->
-            <!--android:background="#CDDC39"-->
-            <!--android:text="OpenGL"-->
-            <!--/>-->
-
+            android:text="Auto Animation Layout Updates" />
 
         <Button
             android:id="@+id/btnLottie"
             style="@style/KButton"
-            android:text="Lottie"
             android:background="#f44336"
-            android:textAllCaps="false"
-            />
+            android:text="Lottie"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnVectorDrawable"
+            style="@style/KButton"
+            android:background="#f44336"
+            android:text="Vector Drawable"
+            android:textAllCaps="false" />
 
 
     </LinearLayout>

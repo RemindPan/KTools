@@ -2,8 +2,11 @@ package com.jiangkang.tools.device
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Point
+import android.os.Build
 import android.provider.Settings
 import android.view.WindowManager
+import org.jetbrains.anko.windowManager
 
 /**
  * Created by jiangkang on 2018/3/22.
@@ -75,3 +78,15 @@ object ScreenUtils {
 
 
 }
+
+
+val Context.screenWidth: Int
+    get() {
+        val point = Point()
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            windowManager.defaultDisplay.getRealSize(point)
+        } else {
+            windowManager.defaultDisplay.getSize(point)
+        }
+        return point.x
+    }

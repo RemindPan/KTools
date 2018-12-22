@@ -3,7 +3,10 @@
     package="com.bestpay.design">
 
     <application>
-        <activity android:name="com.jiangkang.design.drawable.DrawableDemoActivity"></activity>
+        <activity
+            android:name="com.jiangkang.design.drawable.DrawableDemoActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

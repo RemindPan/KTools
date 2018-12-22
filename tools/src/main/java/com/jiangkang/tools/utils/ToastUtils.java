@@ -65,7 +65,6 @@ public class ToastUtils {
                 timer.cancel();
             }
         }, duration);
-
     }
 
 }

@@ -1,10 +1,10 @@
 import com.jiangkang.gradle.TaskExecuteTimeMonitor
 import com.jiangkang.gradle.kotlin.Deps
+import com.jiangkang.gradle.kotlin.HelloWorldPlugin
 
 //apply from: "./plugins/file.gradle"
 
 buildscript {
-
     repositories {
         jcenter()
         maven {
@@ -24,8 +24,6 @@ buildscript {
         classpath Deps.kotlinPlugin
         classpath Deps.gradle_dependencies_graph_plugin
     }
-
-    project.gradle.addListener(new TaskExecuteTimeMonitor())
 
 }
 
@@ -57,8 +55,8 @@ tasks.withType(JavaCompile) {
 
 subprojects {
     if (project.name != "annotations"
-            || project.name != "compiler"
-            || project.name != "anko") {
+            && project.name != "compiler"
+            && project.name != "anko") {
         apply from: "${project.rootDir}/plugins/quality.gradle"
     }
 

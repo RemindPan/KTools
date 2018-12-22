@@ -5,26 +5,20 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
-import android.os.Handler;
-import android.renderscript.ScriptGroup;
 
 import com.jiangkang.tools.King;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.concurrent.Executors;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 
 /**
  * Created by jiangkang on 2017/9/20.
@@ -192,6 +186,17 @@ public class FileUtils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static String getJsonStringFromAssets(String filename) throws IOException {
+        InputStreamReader inputStreamReader = new InputStreamReader(getInputStreamFromAssets(filename));
+        BufferedReader reader = new BufferedReader(inputStreamReader);
+        StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+        }
+        return builder.toString();
     }
 
 }
