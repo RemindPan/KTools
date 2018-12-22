@@ -19,6 +19,7 @@ import com.jiangkang.container.fragment.ViewDataBinder
 import com.jiangkang.container.loadFragment
 import com.jiangkang.design.lottie.LottieDemoActivity
 import com.jiangkang.ktools.R
+import com.jiangkang.tools.device.screenSize
 import com.jiangkang.tools.device.screenWidth
 import com.jiangkang.tools.utils.ToastUtils
 import com.jiangkang.tools.widget.KDialog
@@ -83,6 +84,7 @@ class EffectFragment : Fragment() {
 
         shape_path_view.setOnClickListener {
             handleClick(ShapePathViewFragment())
+            val (x, y) = mContext.screenSize
         }
 
         btnAutoLayoutAnimation.setOnClickListener {

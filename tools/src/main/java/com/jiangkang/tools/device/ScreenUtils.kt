@@ -2,10 +2,14 @@ package com.jiangkang.tools.device
 
 import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Point
 import android.os.Build
 import android.provider.Settings
 import android.view.WindowManager
+import org.jetbrains.anko.keyguardManager
 import org.jetbrains.anko.windowManager
 
 /**
@@ -14,7 +18,6 @@ import org.jetbrains.anko.windowManager
  */
 
 object ScreenUtils {
-
 
     /*
     * 获取系统的屏幕亮度，值在0~255之间，0最暗，255最亮
@@ -90,3 +93,46 @@ val Context.screenWidth: Int
         }
         return point.x
     }
+
+val Context.screenHeight: Int
+    get() {
+        val point = Point()
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            windowManager.defaultDisplay.getRealSize(point)
+        } else {
+            windowManager.defaultDisplay.getSize(point)
+        }
+        return point.y
+    }
+
+val Context.screenSize: Pair<Int, Int>
+    get() {
+        val point = Point()
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            windowManager.defaultDisplay.getRealSize(point)
+        } else {
+            windowManager.defaultDisplay.getSize(point)
+        }
+        return Pair(point.x, point.y)
+    }
+
+val screenDensity: Float = Resources.getSystem().displayMetrics.density
+
+fun Activity.setScreenPortrait() {
+    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+}
+
+fun Activity.setScreenLanscape() {
+    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+}
+
+val Context.isScreenLandscape: Boolean
+    get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+val Context.isScreenPortrait: Boolean
+    get() = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+
+val Context.isScreenLocked: Boolean
+    get() = keyguardManager.isKeyguardLocked
+
+
