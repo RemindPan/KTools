@@ -82,6 +82,7 @@ object Deps {
         val constraint_layout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayoutVersion}"
         val vector_drawable = "com.android.support:support-vector-drawable:${Versions.supportVersion}"
         val multidex = "com.android.support:multidex:1.0.1"
+        val dynamic_animation = "com.android.support:support-dynamic-animation:${Versions.supportVersion}"
 
         object Test {
             val runner = "com.android.support.test:runner:1.0.2"

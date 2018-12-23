@@ -21,7 +21,9 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:text="+"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:stateListAnimator="@xml/animate_scale"
+            />
 
 
         <Button
@@ -31,7 +33,9 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:text="-"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:stateListAnimator="@xml/animate_scale"
+            />
 
 
     </LinearLayout>

@@ -1,9 +1,9 @@
 package com.jiangkang.ktools.effect.fragment
 
-import android.animation.LayoutTransition
-import android.animation.ObjectAnimator
+import android.animation.*
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
@@ -12,13 +12,14 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.view.animation.BounceInterpolator
+import android.widget.*
 import com.jiangkang.container.fragment.ViewDataBinder
 import com.jiangkang.container.loadFragment
-import com.jiangkang.design.lottie.LottieDemoActivity
 import com.jiangkang.ktools.R
+import com.jiangkang.ktools.animation.CardFlipActivity
+import com.jiangkang.ktools.animation.SpringAnimationActivity
+import com.jiangkang.tools.device.screenHeight
 import com.jiangkang.tools.device.screenSize
 import com.jiangkang.tools.device.screenWidth
 import com.jiangkang.tools.utils.ToastUtils
@@ -26,7 +27,6 @@ import com.jiangkang.tools.widget.KDialog
 import com.jiangkang.widget.view.TaiChiView
 import kotlinx.android.synthetic.main.fragment_effect.*
 import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.startActivity
 
 
 val colors = arrayOf(
@@ -64,6 +64,61 @@ class EffectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleViewClicked()
+        handleCrossFadeView()
+        handleFlipCard()
+        handleSpringAnimation()
+    }
+
+    /**
+     * Spring Animation
+     */
+    private fun handleSpringAnimation() {
+        btnSpringAnim.setOnClickListener {
+            activity?.startActivity(Intent(activity, SpringAnimationActivity::class.java))
+        }
+    }
+
+    private fun handleFlipCard() {
+        btnCardFlip.setOnClickListener {
+            activity?.startActivity(Intent(activity, CardFlipActivity::class.java))
+        }
+    }
+
+    //实际上就是淡入淡出效果，调整透明度动画
+    private fun handleCrossFadeView() {
+        btnCrossFadeAnimator.setOnClickListener {
+            activity?.loadFragment(
+                    R.layout.layout_crossfade,
+                    "CrossFade Animator",
+                    object : ViewDataBinder {
+                        override fun bindView(view: View) {
+                            val contentView = view.findViewById<ScrollView>(R.id.content)
+                            val loadingView = view.findViewById<ProgressBar>(R.id.loading_spinner)
+                            var animDuration = 2000
+                            contentView.visibility = View.GONE
+
+                            contentView.apply {
+                                alpha = 0f
+                                visibility = View.VISIBLE
+                                animate()
+                                        .alpha(1.0f)
+                                        .setDuration(animDuration.toLong())
+                                        .setListener(null)
+                            }
+
+                            loadingView.animate()
+                                    .alpha(0f)
+                                    .setDuration(animDuration.toLong())
+                                    .setListener(object : AnimatorListenerAdapter() {
+                                        override fun onAnimationEnd(animation: Animator) {
+                                            loadingView.visibility = View.GONE
+                                        }
+                                    })
+                        }
+                    }
+            )
+        }
+
     }
 
     private fun handleViewClicked() {
@@ -87,6 +142,7 @@ class EffectFragment : Fragment() {
             val (x, y) = mContext.screenSize
         }
 
+        //自动布局动画
         btnAutoLayoutAnimation.setOnClickListener {
             activity?.loadFragment(
                     R.layout.fragment_auto_animation_layout,
@@ -139,8 +195,30 @@ class EffectFragment : Fragment() {
             )
         }
 
-        btnLottie.setOnClickListener {
-            this@EffectFragment.activity?.startActivity<LottieDemoActivity>()
+        //ValueAnimator的动效
+        btnValueAnimator.setOnClickListener {
+            activity?.loadFragment(
+                    R.layout.fragment_value_animator,
+                    "Value Animator",
+                    object : ViewDataBinder {
+                        override fun bindView(view: View) {
+                            val ivDog = view.findViewById<ImageView>(R.id.iv_dog)
+                            val translationXAnimator = ValueAnimator.ofFloat(0f, mContext.screenWidth.toFloat())
+                            val translationYAnimator = ValueAnimator.ofFloat(0f, mContext.screenHeight.toFloat())
+                            translationXAnimator.addUpdateListener { value ->
+                                ivDog.translationX = value.animatedValue as Float
+                            }
+                            translationYAnimator.addUpdateListener { value ->
+                                ivDog.translationY = value.animatedValue as Float
+                            }
+                            val set = AnimatorSet()
+                            set.duration = 10000
+                            set.play(translationXAnimator).with(translationYAnimator)
+                            set.interpolator = BounceInterpolator()
+                            set.start()
+                        }
+                    }
+            )
         }
 
         btnVectorDrawable.setOnClickListener {

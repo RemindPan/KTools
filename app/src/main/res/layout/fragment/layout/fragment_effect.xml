@@ -42,10 +42,10 @@
             android:text="Auto Animation Layout Updates" />
 
         <Button
-            android:id="@+id/btnLottie"
+            android:id="@+id/btnValueAnimator"
             style="@style/KButton"
             android:background="#f44336"
-            android:text="Lottie"
+            android:text="Value Animator"
             android:textAllCaps="false" />
 
         <Button
@@ -53,6 +53,30 @@
             style="@style/KButton"
             android:background="#f44336"
             android:text="Vector Drawable"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/btnCrossFadeAnimator"
+            style="@style/KButton"
+            android:background="#f44336"
+            android:text="Cross Fade Animator"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/btnCardFlip"
+            style="@style/KButton"
+            android:background="#f44336"
+            android:text="Card Flip Animator"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/btnSpringAnim"
+            style="@style/KButton"
+            android:background="#f44336"
+            android:text="Spring Animation"
             android:textAllCaps="false" />
 
 
