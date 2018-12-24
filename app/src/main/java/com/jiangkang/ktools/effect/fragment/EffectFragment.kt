@@ -5,14 +5,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Path
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v4.media.session.PlaybackStateCompat
+import android.view.*
 import android.view.animation.BounceInterpolator
+import android.view.animation.PathInterpolator
 import android.widget.*
 import com.jiangkang.container.fragment.ViewDataBinder
 import com.jiangkang.container.loadFragment
@@ -67,6 +67,78 @@ class EffectFragment : Fragment() {
         handleCrossFadeView()
         handleFlipCard()
         handleSpringAnimation()
+        handleCircleRevealAnimation()
+        handleCurvedMotion()
+    }
+
+    /**
+     * 通过PathInterpolator实现曲线运动
+     */
+    private fun handleCurvedMotion() {
+        btnCurvedMotionAnim.setOnClickListener {
+            activity?.loadFragment(
+                    R.layout.fragment_value_animator,
+                    "Curved Motion Animation",
+                    object : ViewDataBinder {
+                        override fun bindView(view: View) {
+                            val ivDog = view.findViewById<ImageView>(R.id.iv_dog)
+
+                            val path = Path().apply {
+                                arcTo(0f, 0f, 1000f, 1000f, 270f, -180f, true)
+                            }
+                            val animator = ObjectAnimator.ofFloat(ivDog, View.X, View.Y, path).apply {
+                                duration = 5000
+                                repeatMode = ObjectAnimator.REVERSE
+                                start()
+                            }
+
+                        }
+
+                    }
+            )
+        }
+    }
+
+
+    /**
+     * 圆形显示动画
+     */
+    private fun handleCircleRevealAnimation() {
+        btnCircleRevealAnim.setOnClickListener {
+            activity?.loadFragment(
+                    R.layout.fragment_value_animator,
+                    "Circle Reveal Animation",
+                    object : ViewDataBinder {
+                        override fun bindView(view: View) {
+                            val ivDog = view.findViewById<ImageView>(R.id.iv_dog)
+
+                            val cx = ivDog.width / 2
+                            val cy = ivDog.height / 2
+                            val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
+                            val anim = ViewAnimationUtils.createCircularReveal(ivDog, cx, cy, 0f, finalRadius)
+                            ivDog.visibility = View.VISIBLE
+                            anim.duration = 5000
+                            ivDog.postDelayed({ anim.start() }, 3000)
+
+                            ivDog.setOnClickListener {
+                                val cx = ivDog.width / 2
+                                val cy = ivDog.height / 2
+                                val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
+                                val anim = ViewAnimationUtils.createCircularReveal(ivDog, cx, cy, finalRadius, 0f)
+                                anim.duration = 5000
+                                anim.addListener(object : AnimatorListenerAdapter() {
+                                    override fun onAnimationEnd(animation: Animator?) {
+                                        ivDog.visibility = View.INVISIBLE
+                                        ToastUtils.showShortToast("小狗不见了！")
+                                    }
+                                })
+                                anim.start()
+                            }
+                        }
+
+                    }
+            )
+        }
     }
 
     /**
