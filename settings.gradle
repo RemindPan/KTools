@@ -1,6 +1,6 @@
 import com.jiangkang.gradle.kotlin.HelloWorldPlugin
 
-include ':app', ':tools', ':requests', ':annotations', ':storage', ':hack', ':widget', ':kdownloader',  ':compiler', ':hybrid', ':jni', ':design', ':jetpack', ':image', ':audio', ':video', ':anko', ':klint', ':kanimation', ':container'
+include ':app', ':tools', ':requests', ':annotations', ':storage', ':hack', ':widget', ':kdownloader',  ':compiler', ':hybrid', ':jni', ':design', ':jetpack', ':image', ':anko', ':klint', ':kanimation', ':container', ':media'
 
 
 //apply plugin: HelloWorldPlugin

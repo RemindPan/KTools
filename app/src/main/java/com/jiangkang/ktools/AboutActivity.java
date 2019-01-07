@@ -25,20 +25,5 @@ public class AboutActivity extends AppCompatActivity {
         AboutPageViewModel viewModel = new AboutPageViewModel(this);
         viewModel.setAuthor("姜康").setSourceUrl("https://github.com/jiangkang/KTools");
         binding.setVm(viewModel);
-
-        EventBus.getDefault().register(this);
-
     }
-
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(DemoEvent event){
-
-    }
-
-
-
-
-
-
 }

@@ -21,7 +21,7 @@ object Versions {
     //android
     const val supportVersion = "28.0.0"
 
-    const val constraintLayoutVersion = "1.1.2"
+    const val constraintLayoutVersion = "1.1.3"
 
     //glide
     const val glideVersion = "4.2.0"

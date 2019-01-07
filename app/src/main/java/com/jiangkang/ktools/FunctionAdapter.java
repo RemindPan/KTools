@@ -1,11 +1,15 @@
 package com.jiangkang.ktools;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -67,12 +71,14 @@ public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final FunctionEntity entity = functionList.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, entity.getActivity()));
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext,
+                        holder.mTvFunctionName, BaseActivity.Companion.getVIEW_NAME_HEADER_TITLE());
+                ActivityCompat.startActivity(mContext,new Intent(mContext, entity.getActivity()),optionsCompat.toBundle());
             }
         });
 

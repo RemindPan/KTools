@@ -9,16 +9,16 @@ object Deps {
 
     const val androidRuntime = "com.google.android:android:4.1.1.4"
 
-    val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_version}"
+    const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_version}"
 
-    val aspectj = "org.aspectj:aspectjtools:1.9.1"
-    val aspectj_weaver = "org.aspectj:aspectjweaver:1.9.1"
+    const val aspectj = "org.aspectj:aspectjtools:1.9.1"
+    const val aspectj_weaver = "org.aspectj:aspectjweaver:1.9.1"
 
-    val greendaoPlugin = "org.greenrobot:greendao-gradle-plugin:3.2.2"
+    const val greendaoPlugin = "org.greenrobot:greendao-gradle-plugin:3.2.2"
 
-    val gradle_dependencies_graph_plugin = "com.vanniktech:gradle-dependency-graph-generator-plugin:0.4.0"
+    const val gradle_dependencies_graph_plugin = "com.vanniktech:gradle-dependency-graph-generator-plugin:0.4.0"
 
-    val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin_version}"
+    const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin_version}"
 
     val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1"
 
@@ -47,7 +47,7 @@ object Deps {
     object Arch {
 
         object Lifecycle {
-            val runtime = "android.arch.lifecycle:runtime:${Versions.Arch.lifecycle}"
+            const val runtime = "android.arch.lifecycle:runtime:${Versions.Arch.lifecycle}"
             val compiler = "android.arch.lifecycle:compiler:${Versions.Arch.lifecycle}"
             val extentions = "android.arch.lifecycle:extensions:${Versions.Arch.lifecycle}"
         }
@@ -72,9 +72,10 @@ object Deps {
     }
 
     object Support {
-        val compact = "com.android.support:support-compat:${Versions.supportVersion}"
+        val compat = "com.android.support:support-compat:${Versions.supportVersion}"
         val v4 = "com.android.support:support-v4:${Versions.supportVersion}"
         val v7 = "com.android.support:appcompat-v7:${Versions.supportVersion}"
+        val v13 = "com.android.support:support-v13:${Versions.supportVersion}"
         val design = "com.android.support:design:${Versions.supportVersion}"
         val supportAnnotations = "com.android.support:support-annotations:${Versions.supportVersion}"
         val recyclerview = "com.android.support:recyclerview-v7:${Versions.supportVersion}"
@@ -83,6 +84,7 @@ object Deps {
         val vector_drawable = "com.android.support:support-vector-drawable:${Versions.supportVersion}"
         val multidex = "com.android.support:multidex:1.0.1"
         val dynamic_animation = "com.android.support:support-dynamic-animation:${Versions.supportVersion}"
+        val media = "com.android.support:support-media-compat:${Versions.supportVersion}"
 
         object Test {
             val runner = "com.android.support.test:runner:1.0.2"

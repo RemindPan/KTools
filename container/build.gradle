@@ -30,7 +30,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation Deps.Support.compact
+    implementation Deps.Support.compat
     implementation Deps.Support.v7
     implementation Deps.Support.v4
 
