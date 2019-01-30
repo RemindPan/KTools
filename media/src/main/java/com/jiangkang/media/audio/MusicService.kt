@@ -1,6 +1,9 @@
 package com.jiangkang.media.audio
 
 import android.content.Intent
+import android.content.IntentFilter
+import android.media.AudioManager
+import android.media.AudioManager.ACTION_AUDIO_BECOMING_NOISY
 import android.os.Bundle
 import android.os.IBinder
 import android.support.v4.app.NotificationCompat
@@ -26,6 +29,27 @@ class MusicService : MediaBrowserServiceCompat() {
 
     private lateinit var mStateBuilder: PlaybackStateCompat.Builder
 
+    private val intentFilter = IntentFilter(ACTION_AUDIO_BECOMING_NOISY)
+
+    private lateinit var afChangeListener:AudioManager.OnAudioFocusChangeListener
+
+    private val myNoisyAudioStreamReceiver = BecomingNoisyReceiver()
+
+    private val mMusicSessionCallback = object : MediaSessionCompat.Callback() {
+
+        override fun onPlay() {
+            super.onPlay()
+        }
+
+        override fun onPause() {
+            super.onPause()
+        }
+
+        override fun onStop() {
+            super.onStop()
+        }
+
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -36,7 +60,7 @@ class MusicService : MediaBrowserServiceCompat() {
                     .setActions(PlaybackStateCompat.ACTION_PLAY or PlaybackStateCompat.ACTION_PLAY_PAUSE)
             setPlaybackState(mStateBuilder.build())
 
-            setCallback(MusicSessionCallback())
+            setCallback(mMusicSessionCallback)
 
             setSessionToken(sessionToken)
         }
@@ -137,19 +161,6 @@ class MusicService : MediaBrowserServiceCompat() {
 
 }
 
+class BecomingNoisyReceiver {
 
-class MusicSessionCallback : MediaSessionCompat.Callback() {
-
-    override fun onPlay() {
-        super.onPlay()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
 }
-

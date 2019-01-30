@@ -1,6 +1,7 @@
 package com.jiangkang.ktools
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ComponentName
@@ -10,28 +11,26 @@ import android.database.Cursor
 import android.os.Bundle
 import android.os.Environment
 import android.provider.ContactsContract
-import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import android.transition.Explode
-import android.transition.Fade
 import android.util.Log
 import android.view.View
-import android.view.Window
 import com.jiangkang.ktools.service.AIDLDemoActivity
 import com.jiangkang.ktools.share.ShareActivity
 import com.jiangkang.tools.permission.RxPermissions
 import com.jiangkang.tools.struct.JsonGenerator
 import com.jiangkang.tools.system.ContactHelper
 import com.jiangkang.tools.utils.ClipboardUtils
+import com.jiangkang.tools.utils.ShellUtils
 import com.jiangkang.tools.utils.SpUtils
 import com.jiangkang.tools.utils.ToastUtils
 import dalvik.system.DexClassLoader
 import kotlinx.android.synthetic.main.activity_system.*
-import kotlinx.android.synthetic.main.activity_web.view.*
-import org.jetbrains.anko.appcompat.v7.actionBarContainer
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.wallpaperManager
 import org.json.JSONException
 import org.json.JSONObject
@@ -46,6 +45,7 @@ import java.io.File
  * 3.设置文本到剪贴板，从剪贴板中取出文本
  */
 
+@SuppressLint("LogUtilsNotUsed")
 class SystemActivity : AppCompatActivity() {
 
     private var jsonObject: JSONObject? = null
@@ -86,6 +86,19 @@ class SystemActivity : AppCompatActivity() {
             onClickBtnExitApp()
         }
 
+        btnQuickSettings.setOnClickListener {
+
+            runBlocking {
+                val result = async {
+                    ShellUtils.execCmd("adb shell setprop debug.layout true", false)
+                }
+                async {
+                    ShellUtils.execCmd("adb shell am start com.android.settings/.DevelopmentSettings", false)
+                }
+                toast("result : $result")
+            }
+
+        }
 
     }
 
@@ -158,8 +171,6 @@ class SystemActivity : AppCompatActivity() {
 
             } while (data.moveToNext())
         }
-
-        Log.d(TAG, "onLoadFinished: result =\n" + result.toString())
 
         return result
     }

@@ -5,8 +5,11 @@ import android.content.Context
 import android.media.AudioManager
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
+import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
+import android.support.v4.media.session.PlaybackStateCompat
 import android.support.v7.app.AppCompatActivity
+import android.widget.Button
 import com.jiangkang.media.R
 
 class MusicActivity : AppCompatActivity() {
@@ -22,7 +25,7 @@ class MusicActivity : AppCompatActivity() {
         setContentView(R.layout.activity_music)
 
         mMusicControllerCallback = MusicControllerCallback()
-        mMusicConnectionCallback = MusicConnectionCallback(this, mMediaBrowser)
+        mMusicConnectionCallback = MusicConnectionCallback(this, mMediaBrowser, mMusicControllerCallback)
 
         mMediaBrowser = MediaBrowserCompat(
                 this,
@@ -53,7 +56,7 @@ class MusicActivity : AppCompatActivity() {
 }
 
 
-class MusicConnectionCallback(var context: Context, var browser: MediaBrowserCompat) : MediaBrowserCompat.ConnectionCallback() {
+class MusicConnectionCallback(var context: Context, var browser: MediaBrowserCompat, private val musicControllerCallback: MusicControllerCallback) : MediaBrowserCompat.ConnectionCallback() {
 
     override fun onConnected() {
         browser.sessionToken.also { token ->
@@ -64,10 +67,37 @@ class MusicConnectionCallback(var context: Context, var browser: MediaBrowserCom
     }
 
     private fun buildTransportControls() {
+        val activity = context as MusicActivity
+        val mediaController = MediaControllerCompat.getMediaController(activity)
 
+        val mBtnPlayPause = activity.findViewById<Button>(R.id.btn_play_pause)
+        mBtnPlayPause.setOnClickListener {
+            val pbState = mediaController.playbackState.state
+            if (pbState == PlaybackStateCompat.STATE_PLAYING) {
+                mediaController.transportControls.pause()
+            } else {
+                mediaController.transportControls.play()
+            }
+        }
+
+        //display a init state
+        val metadata = mediaController.metadata
+        val pbState = mediaController.playbackState
+
+        mediaController.registerCallback(musicControllerCallback)
     }
 
 }
 
 
-class MusicControllerCallback : MediaControllerCompat.Callback() {}
+class MusicControllerCallback : MediaControllerCompat.Callback() {
+
+    override fun onMetadataChanged(metadata: MediaMetadataCompat?) {
+        super.onMetadataChanged(metadata)
+    }
+
+    override fun onPlaybackStateChanged(state: PlaybackStateCompat?) {
+        super.onPlaybackStateChanged(state)
+    }
+    
+}
