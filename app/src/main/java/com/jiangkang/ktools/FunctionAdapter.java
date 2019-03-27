@@ -57,11 +57,11 @@ public class FunctionAdapter extends RecyclerView.Adapter<FunctionAdapter.ViewHo
         functionList.add(new FunctionEntity("Audio", AudioActivity.class, R.drawable.ic_audio));
         functionList.add(new FunctionEntity("Effect", EffectActivity.class, R.drawable.ic_effect));
         functionList.add(new FunctionEntity("RxJava", RxJavaActivity.class, R.drawable.ic_rx_java));
-//        functionList.add(new FunctionEntity("Weex", WeexActivity.class, R.drawable.ic_weex));
         functionList.add(new FunctionEntity("Web", HybridActivity.class, R.drawable.ic_web));
         functionList.add(new FunctionEntity("JNI", JNIActivity.class, R.drawable.ic_jni));
         functionList.add(new FunctionEntity("Jetpack", JetpackMainActivity.class, R.drawable.ic_jetpack));
         functionList.add(new FunctionEntity("Anko", AnkoMainActivity.class, R.drawable.ic_anko));
+        functionList.add(new FunctionEntity("Flutter", FlutterContainerActivity.class, R.drawable.ic_flutter));
     }
 
     @Override

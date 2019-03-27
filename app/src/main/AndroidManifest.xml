@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jiangkang.ktools">
-
     <!-- 获取通讯录权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -20,9 +19,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-
-    <!-- 地理位置 -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" /> <!-- 地理位置 -->
     <uses-permission android:name="android.permissions.ACCESS_FINE_LOCATION" />
 
     <uses-feature android:name="android.hardware.location.gps" />
@@ -44,6 +41,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".FlutterContainerActivity"></activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}"
@@ -194,7 +193,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".animation.CardFlipActivity" />
-        <activity android:name=".animation.SpringAnimationActivity"></activity>
+        <activity android:name=".animation.SpringAnimationActivity" />
     </application>
 
 </manifest>
