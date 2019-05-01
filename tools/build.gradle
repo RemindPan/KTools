@@ -5,6 +5,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion Versions.compileSdkVersion
     buildToolsVersion Versions.buildToolsVersion
@@ -75,7 +77,7 @@ dependencies {
     implementation Deps.Glide.glide
 
     implementation Deps.ARouter.api
-    annotationProcessor Deps.ARouter.compiler
+    kapt Deps.ARouter.compiler
     implementation Deps.kotlin
     implementation Deps.anko
     testImplementation 'com.google.android:android:4.1.1.4'

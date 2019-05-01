@@ -4,6 +4,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
 
@@ -46,7 +48,7 @@ dependencies {
     implementation Deps.Arch.Lifecycle.runtime
 
     implementation Deps.Arch.Room.runtime
-    annotationProcessor Deps.Arch.Room.compiler
+    kapt Deps.Arch.Room.compiler
     implementation Deps.Arch.Room.rxjava2
 
     implementation Deps.Arch.workmanager

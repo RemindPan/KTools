@@ -1,6 +1,8 @@
 import com.jiangkang.gradle.kotlin.Versions
 import com.jiangkang.gradle.kotlin.Deps
 
+
+
 def isBuildAsApp = false
 
 
@@ -12,6 +14,7 @@ if (isBuildAsApp.toBoolean()) {
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion Versions.compileSdkVersion
 
@@ -68,10 +71,10 @@ dependencies {
     implementation Deps.Support.recyclerview
 
     implementation Deps.ButterKnife.butterknife
-    annotationProcessor Deps.ButterKnife.compiler
+    kapt Deps.ButterKnife.compiler
 
     implementation Deps.ARouter.api
-    annotationProcessor Deps.ARouter.compiler
+    kapt Deps.ARouter.compiler
 
     implementation Deps.OkHttp.okhttp3
     implementation Deps.OkHttp.logginginterceptor

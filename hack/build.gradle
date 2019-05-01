@@ -9,6 +9,8 @@ if (isBuildAsApp.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compileSdkVersion
@@ -30,9 +32,6 @@ android {
                 arguments = [ moduleName : project.getName() ]
             }
         }
-
-
-
     }
 
     buildTypes {
@@ -63,17 +62,17 @@ dependencies {
     androidTestImplementation Deps.Support.Test.espresso
 
     implementation Deps.ButterKnife.butterknife
-    annotationProcessor Deps.ButterKnife.compiler
+    kapt Deps.ButterKnife.compiler
 
     implementation project(path: ':tools')
 
     implementation Deps.ARouter.api
-    annotationProcessor Deps.ARouter.compiler
+    kapt Deps.ARouter.compiler
     implementation Deps.kotlin
 
     lintChecks project(path: ':klint')
 }
-apply plugin: 'kotlin-android'
+
 repositories {
     mavenCentral()
 }

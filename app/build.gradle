@@ -5,6 +5,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
 
     //仅仅在编译的时候起作用，建议总是使用最新版本，值是一个API Level
@@ -162,7 +164,7 @@ dependencies {
         }
 
         implementation Deps.ButterKnife.butterknife
-        annotationProcessor Deps.ButterKnife.compiler
+        kapt Deps.ButterKnife.compiler
 
         implementation Deps.RxJava.rxjava
         implementation Deps.RxJava.rxanroid
@@ -185,11 +187,11 @@ dependencies {
 
         implementation Deps.Dagger.dagger_android
         implementation Deps.Dagger.dagger_android_support
-        annotationProcessor Deps.Dagger.compiler
+        kapt Deps.Dagger.compiler
 
         implementation Deps.Glide.glide
         implementation Deps.Glide.okhttp
-        annotationProcessor Deps.Glide.compiler
+        kapt Deps.Glide.compiler
 
         implementation Deps.OkHttp.okhttp3
         testImplementation Deps.OkHttp.mockwebserver
@@ -200,7 +202,7 @@ dependencies {
 
         implementation Deps.Arch.Room.runtime
         implementation Deps.Arch.Room.rxjava2
-        annotationProcessor Deps.Arch.Room.compiler
+        kapt Deps.Arch.Room.compiler
 
         implementation Deps.kotlin
         implementation Deps.anko
@@ -242,7 +244,7 @@ dependencies {
         implementation project(path: ':hybrid')
         implementation project(path: ':jni')
         implementation project(path: ':storage')
-        annotationProcessor project(path: ':compiler')
+        kapt project(path: ':compiler')
         implementation project(path: ':jetpack')
         implementation project(path: ':anko')
         implementation project(path: ':image')

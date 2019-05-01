@@ -27,7 +27,6 @@ import javax.lang.model.util.Elements;
 @SupportedAnnotationTypes({"com.jiangkang.annotations.apt.BindLayout"})
 public class BindLayoutProcessor extends AbstractProcessor {
 
-
     private Elements elements;
 
     private Filer filer;
