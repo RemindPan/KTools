@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
@@ -26,40 +25,28 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 
+import static com.jiangkang.compiler.utils.Constants.PACKAGE_NAME;
+import static com.jiangkang.compiler.utils.Constants.classContext;
+import static com.jiangkang.compiler.utils.Constants.classIntent;
+
 @AutoService(Processor.class)
 @SupportedAnnotationTypes({"com.jiangkang.annotations.apt.Router"})
-public class RouterProcessor extends AbstractProcessor {
+public class RouterProcessor extends BaseProcessor {
 
     private Map<String, String> maps;
 
-    private Elements elements;
-
-    private Filer filer;
-
     private static final String METHOD_PREFIX = "start";
-
-    private static final ClassName classIntent = ClassName.get("android.content", "Intent");
-
-    private static final ClassName classContext = ClassName.get("android.content", "Context");
-
-    private static final String PACKAGE_NAME = "com.jiangkang.ktools";
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
-
         //初始化一些帮助类
         maps = new HashMap<>();
-        elements = processingEnvironment.getElementUtils();
-        filer = processingEnvironment.getFiler();
-
     }
 
 
     @Override
-
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-
         //遍历
         for (Element element : roundEnvironment.getElementsAnnotatedWith(Router.class)) {
             if (!SuperficialValidation.validateElement(element)) continue;
@@ -71,7 +58,7 @@ public class RouterProcessor extends AbstractProcessor {
                 //存入Map
                 maps.put(
                         typeElement.getSimpleName().toString(),
-                        elements.getPackageOf(typeElement).getQualifiedName().toString()
+                        elementsUtils.getPackageOf(typeElement).getQualifiedName().toString()
                 );
             }
         }
@@ -109,17 +96,10 @@ public class RouterProcessor extends AbstractProcessor {
             JavaFile.builder(
                     PACKAGE_NAME,
                     routerHelperClass.build()
-            ).build().writeTo(filer);
+            ).build().writeTo(filerUtils);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return true;
-    }
-
-
-    @Override
-    public SourceVersion getSupportedSourceVersion() {
-        return SourceVersion.latest();
     }
 }

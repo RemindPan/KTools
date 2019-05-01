@@ -10,6 +10,8 @@ dependencies {
     api Deps.javapoet
     //注解 processor 类，并对其生成 META-INF 的配置信息
     compileOnly Deps.Auto.service
+    implementation 'org.apache.commons:commons-lang3:3.8.1'
+    implementation 'org.apache.commons:commons-collections4:4.3'
 }
 
 sourceCompatibility = "1.8"
